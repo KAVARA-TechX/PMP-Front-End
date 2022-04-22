@@ -19,48 +19,66 @@ import sriLanka from '../assets/footer/sriLanka.jpg';
 
 const Footer = () => {
 	return (
+		// main container
 		<Box
 			bg='rgb(51,55,64)'
-			h='500px'
+			h='fit-content'
 			w='100vw'
 			position={'relative'}
 			mt={40}
 		>
+			{/* floating card */}
 			<Box
 				w='90vw'
-				position={'absolute'}
+				position={'relative'}
 				left='50%'
 				transform={'translateX(-50%)'}
 				top='-100px'
 			>
+				{/* section inside floating card */}
 				<Box
 					w='100%'
-					h='400px'
-					bg='white'
+					bg='#FCFCFC'
+					py={5}
 					borderRadius={'2xl'}
 					boxShadow='2xl'
-					display={'flex'}
-					overflow='hidden'
+					display={'grid'}
+					gap={5}
+					gridTemplateColumns={{
+						base: '1fr',
+						lg: 'repeat(8,1fr)',
+					}}
+					overflowY='scroll'
 				>
+					{/* about section */}
 					<Box
 						h='100%'
-						w='25%'
 						display={'flex'}
 						justifyContent='center'
+						textAlign={{ base: 'center', lg: 'center' }}
 					>
-						<Box mt={5}>
-							<Text fontSize={20}>About Us</Text>
+						<Box mt={5} w='100%' h='100%' p={3}>
+							<Text fontSize={20} fontWeight={600}>
+								About Us
+							</Text>
 							<Text fontSize={20}>About Us</Text>
 							<Text fontSize={20}>About Us</Text>
 						</Box>
 					</Box>
+					{/* for supplies,brands and travel agents section */}
 					<Box
 						h='100%'
-						w='25%'
 						display={'flex'}
 						justifyContent='center'
+						gridColumnStart={{ lg: 2 }}
+						gridColumnEnd={{ lg: 4 }}
 					>
-						<Box mt={5}>
+						<Box
+							mt={5}
+							w='100%'
+							p={3}
+							textAlign={{ base: 'center' }}
+						>
 							<Text fontSize={20} fontWeight={600}>
 								For Supplies
 							</Text>
@@ -88,61 +106,34 @@ const Footer = () => {
 							</Text>
 						</Box>
 					</Box>
-					<Box h='100%' w='20%'>
-						<Box mt={5} ml={3}>
+					{/* for travellers section */}
+					<Box h='100%'>
+						<Box
+							mt={5}
+							w='100%'
+							p={3}
+							textAlign={{ base: 'center' }}
+						>
 							<Text fontSize={20} fontWeight={600}>
 								For Travellers
 							</Text>
-							<Text fontSize={20} fontWeight={300} mb={3}>
+							<Text fontSize={20} fontWeight={300}>
 								Gift An Experience
 							</Text>
 						</Box>
 					</Box>
-					<Box h='100%' w='30%'>
-						{/* <Box mt={5} w='100%'>
-							<Text fontSize={20} fontWeight={600}>
-								Travel Destinations
-							</Text>
-							<Box whiteSpace='pre-wrap'>
-								<Box
-									w='33%'
-									h='100px'
-									bg='orange'
-									display={'inline-flex'}
-									justifyContent='center'
-									alignItems='center'
-								>
-									Bali
-								</Box>
-								<Box
-									w='33%'
-									h='100px'
-									bg='orange'
-									display={'inline-flex'}
-									justifyContent='center'
-									alignItems='center'
-								>
-									Dubai
-								</Box>
-								<Box
-									w='33%'
-									h='100px'
-									bg='orange'
-									display={'inline-flex'}
-									justifyContent='center'
-									alignItems='center'
-								>
-									Singapore
-								</Box>
-								<Box>Thailand</Box>
-								<Box>Andaman</Box>
-								<Box>India</Box>
-								<Box>Ladakh</Box>
-								<Box>Hongkong</Box>
-								<Box>Sri Lanka</Box>
-							</Box>
-						</Box> */}
-						<Box mt={5} w='100%'>
+					{/* for travel destination section */}
+					<Box
+						h='100%'
+						gridColumnStart={{ lg: 6 }}
+						gridColumnEnd={{ lg: 9 }}
+					>
+						<Box
+							mt={5}
+							px={2}
+							w='100%'
+							textAlign={{ base: 'center' }}
+						>
 							<Text fontSize={20} fontWeight={600} mb={3}>
 								Travel Destinations
 							</Text>
@@ -272,12 +263,12 @@ const Footer = () => {
 						</Box>
 					</Box>
 				</Box>
+				{/* section outside floating card */}
 				<Box
-					// w='100%'
-					h='100px'
+					w={{ base: '100%', lg: '60%' }}
+					h='10px'
 					display={'flex'}
 					justifyContent='space-around'
-					w='600px'
 					mx='auto'
 					mt={10}
 				>

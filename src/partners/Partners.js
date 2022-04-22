@@ -15,7 +15,14 @@ import { ReactComponent as Twelve } from '../assets/logos/twelve.svg';
 
 const Partners = () => {
 	return (
-		<Box w='80vw' mx='auto' mt={10}>
+		<Box
+			w='80vw'
+			mx='auto'
+			mt={10}
+			display='flex'
+			flexDir={'column'}
+			alignItems='center'
+		>
 			{/* heading */}
 			<Box
 				w='100%'
@@ -26,14 +33,23 @@ const Partners = () => {
 				<Text fontSize={40} fontWeight={600} color='rgba(0,0,0,.6)'>
 					Our Partners
 				</Text>
-				<Text fontSize={20} color='rgba(0,0,0,.3)'>
+				<Text
+					fontSize={20}
+					color='rgba(0,0,0,.3)'
+					textAlign={{ base: 'center' }}
+				>
 					We team up with the best to give you an unmatchable
 					experience
 				</Text>
 			</Box>
 			{/* logos */}
 			<Box
-				display={'flex'}
+				display={'grid'}
+				gap={10}
+				gridTemplateColumns={{
+					base: 'repeat(4,1fr)',
+					lg: 'repeat(12,1fr)',
+				}}
 				justifyContent='space-around'
 				mt={5}
 				pt={10}

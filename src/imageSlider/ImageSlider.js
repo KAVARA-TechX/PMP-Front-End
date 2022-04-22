@@ -4,7 +4,7 @@ import './style.css';
 
 const ImageSlider = () => {
 	return (
-		<Box w='80vw' mx='auto' overflowX={'scroll'}>
+		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto' overflowX={'scroll'}>
 			{/* slider heading */}
 			<Box>
 				<Text
@@ -12,6 +12,7 @@ const ImageSlider = () => {
 					fontWeight={600}
 					color='rgba(0,0,0,.6)'
 					mb={5}
+					textAlign={{ base: 'center', lg: 'start' }}
 				>
 					Visit Maldives
 				</Text>
@@ -30,74 +31,74 @@ const ImageSlider = () => {
 				<Box
 					height='500px'
 					display={'inline-block'}
-					mx={10}
+					mx={5}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 				<Box
 					height='500px'
-					mx={10}
+					mx={5}
 					display={'inline-block'}
 					w='300px'
 					bg='pink.100'
 					borderRadius={'xl'}
-					boxShadow='2xl'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
 				></Box>
 			</Box>
 		</Box>
