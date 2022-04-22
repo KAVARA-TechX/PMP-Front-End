@@ -5,15 +5,16 @@ import banner from '../assets/banner.jpeg';
 const Banner = () => {
 	return (
 		<Box
-			w='80vw'
+			w={{ base: '100vw', lg: '80vw' }}
 			mx='auto'
-			h='250px'
+			h={{ base: '350px', lg: '250px' }}
 			display={'flex'}
-			borderRadius='xl'
+			borderRadius={{ base: 'none', lg: 'xl' }}
 			overflow={'hidden'}
 			mb={10}
+			flexDir={{ base: 'column', lg: 'row' }}
 		>
-			<Box w='70%' h='100%'>
+			<Box w={{ base: '100%', lg: '70%' }} h='100%'>
 				<Box
 					w='100%'
 					h='100%'
@@ -23,16 +24,16 @@ const Banner = () => {
 				/>
 			</Box>
 			<Box
-				w='30%'
-				h='100%'
+				w={{ base: '100%', lg: '30%' }}
+				h={{ base: '30%', lg: '100%' }}
 				bg='rgb(40,56,75)'
 				boxShadow='-50px 0 100px 100px rgb(40,56,75)'
 				position={'relative'}
 			>
 				<Box
-					position={'relative'}
-					top='50%'
-					left='0%'
+					position={'absolute'}
+					top={{ base: '-30%', lg: '50%' }}
+					left={{ base: '50%', lg: '0%' }}
 					transform={'translateY(-50%) translateX(-50%)'}
 					display='flex'
 					flexDir={'column'}
