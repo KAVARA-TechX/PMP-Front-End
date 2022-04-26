@@ -15,7 +15,7 @@ import {
 	FormControl,
 	FormLabel,
 } from '@chakra-ui/react';
-import main1 from '../assets/main1.jpeg';
+import main1 from '../assets/thingsToDo/scuba.webp';
 
 const UserForm = ({ state, setState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,7 +42,7 @@ const UserForm = ({ state, setState }) => {
 					<ModalHeader p={0}>
 						<Box
 							bgImage={main1}
-							bgPosition={'50% 80%'}
+							bgPosition={'50% 60%'}
 							bgSize={'cover'}
 							color='white'
 							h='200px '

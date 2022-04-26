@@ -1,11 +1,57 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import hero from '../assets/main2.jpeg';
 import UserForm from '../modal/UserForm';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import './Hero.css';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
+
+	useEffect(() => {
+		const headings = document.getElementById('headings').children;
+		const timerIn = 3000;
+		const timerOut = 2800;
+
+		let index = 0;
+		const animateText = () => {
+			for (let i = 0; i < headings.length; i++) {
+				headings[i].classList.remove('text-in', 'text-out');
+			}
+
+			headings[index].classList.add('text-in');
+
+			setTimeout(() => {
+				headings[index].classList.add('text-out');
+			}, timerOut);
+
+			setTimeout(() => {
+				if (index === headings.length - 1) {
+					index = 0;
+				} else {
+					index++;
+				}
+				animateText();
+			}, timerIn);
+			// if (index === headings.length - 1) {
+			// 	index = 0;
+			// } else {
+			// 	index += 1;
+			// }
+			// setTimeout(animateText, 3000);
+		};
+		animateText();
+	}, []);
+
+	// const animateText = () => {
+	// 	headings[index].classList.add('text-in');
+	// 	if (index === headings_length - 1) {
+	// 		index = 0;
+	// 	} else {
+	// 		index += 1;
+	// 	}
+	// 	setTimeout(animateText, 3000);
+	// };
 
 	return (
 		<Box h='500px' w='100vw' bg='red' mb='100px'>
@@ -23,27 +69,31 @@ const Hero = () => {
 				pl={{ lg: 10 }}
 			>
 				<Box
-					pt={{ base: 100, lg: 150 }}
+					pt={{ base: 100, lg: 130 }}
 					// pl={{ base: 0, lg: 100 }}
 					lineHeight={1}
 					textAlign='center'
 				>
 					<Text
+						as={'div'}
 						fontSize={60}
-						fontWeight={500}
-						color='rgba(0,0,0,.5)'
-						lineHeight={0.9}
-						textAlign={{ base: 'center' }}
-					>
-						It's time for a new
-					</Text>
-					<Text
-						fontSize={{ base: 50, lg: 70 }}
-						fontWeight={800}
-						color={{ base: 'rgba(0,0,0,.8)', lg: 'rgba(0,0,0,.7)' }}
+						fontWeight={300}
+						color='rgba(0,0,0,.7)'
+						lineHeight={1}
 						textAlign={{ base: 'center', lg: 'start' }}
+						id='headings'
+						overflow={'hidden'}
 					>
-						EXPERIENCE
+						<Text display={'none'} id='heading-one'>
+							It's time for you to experience the inexperienced
+						</Text>
+						<Text display={'none'} id='heading-two'>
+							A wishful escape to your desired destination
+						</Text>
+						<Text display={'none'} id='heading-three'>
+							Visit Maldives- A dream come true / A fantasy
+							fulfilled
+						</Text>
 					</Text>
 				</Box>
 				<Box
@@ -72,7 +122,7 @@ const Hero = () => {
 							setModalState(true);
 						}}
 					>
-						Get Quote
+						Discover Now
 					</Button>
 				</Box>
 			</Box>
