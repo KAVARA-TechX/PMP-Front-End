@@ -25,7 +25,9 @@ const ImageSlider = () => {
 					color='rgba(0,0,0,.6)'
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
-				></Text>
+				>
+					Visit Maldives
+				</Text>
 			</Box>
 			{/* slider cards */}
 			<Box

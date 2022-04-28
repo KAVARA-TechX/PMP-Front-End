@@ -16,7 +16,7 @@ const App = () => {
 			<Facts /> {/* Responsive Done */}
 			<Packages /> {/* Responsive Done*/}
 			<SpaceBetween space='50px' />
-			<Banner /> {/* Responsive Done */}
+			{/* <Banner /> Responsive Done */}
 			<ImageSlider /> {/* Responsive Done */}
 			<Partners /> {/* Responsive Done */}
 			<Footer /> {/* Responsive Done */}
