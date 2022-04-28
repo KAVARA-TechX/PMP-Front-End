@@ -1,5 +1,8 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
+import sunset from '../assets/thingsToDo/sunset.webp';
+import surf from '../assets/thingsToDo/surf.webp';
+import scuba from '../assets/thingsToDo/scuba.webp';
 
 const Packages = () => {
 	return (
@@ -59,7 +62,9 @@ const Packages = () => {
 				<Box
 					h='400px'
 					minW={{ base: '250px' }}
-					bg='Highlight'
+					bgImg={sunset}
+					bgSize='cover'
+					bgPos={'50%'}
 					borderRadius={'xl'}
 					boxShadow={'0 3px 10px rgb(0,0,0,0.2)'}
 					m={5}
@@ -67,7 +72,9 @@ const Packages = () => {
 				<Box
 					h='400px'
 					minW={{ base: '250px' }}
-					bg='pink.100'
+					bgImg={surf}
+					bgSize='cover'
+					bgPos={'50%'}
 					borderRadius={'xl'}
 					boxShadow={'0 3px 10px rgb(0,0,0,0.2)'}
 					m={5}
@@ -75,7 +82,9 @@ const Packages = () => {
 				<Box
 					h='400px'
 					minW={{ base: '250px' }}
-					bg='ThreeDFace'
+					bgImg={scuba}
+					bgSize='cover'
+					bgPos={'50%'}
 					borderRadius={'xl'}
 					boxShadow={'0 3px 10px rgb(0,0,0,0.2)'}
 					m={5}
