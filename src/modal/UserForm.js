@@ -22,21 +22,40 @@ import main1 from '../assets/thingsToDo/scuba.webp';
 import { AccessFormState } from '../context/formStateContext';
 
 const UserForm = ({ state, setState }) => {
+	const [loading, SetLoading] = useState(false);
 	const [name, setName] = useState('');
+	const [checkName, setCheckName] = useState(false);
 	const [email, setEmail] = useState('');
+	const [checkEmail, setCheckEmail] = useState(false);
 	const [phone, setPhone] = useState('');
+	const [checkPhone, setCheckPhone] = useState(false);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialRef = React.useRef();
 	const finalRef = React.useRef();
 	const { isSubmitted, SetIsSubmitted } = AccessFormState();
 
 	const handleForm = async () => {
-		try {
-			const response = await createLead(name, email, phone);
-			console.log(response);
-			SetIsSubmitted(true);
-		} catch (err) {
-			console.log(err);
+		SetLoading(true);
+		// let's first check if any input is empty or not
+		if (name === '' || email === '' || phone === '') {
+			if (name === '') setCheckName(true);
+			if (email === '') setCheckEmail(true);
+			if (phone === '') setCheckPhone(true);
+			SetLoading(false);
+		} else {
+			// now we will check for phone number length
+			if (phone.length === 10) {
+				try {
+					const response = await createLead(name, email, phone);
+					SetIsSubmitted(true);
+					SetLoading(false);
+				} catch (err) {
+					console.log(err);
+					SetLoading(false);
+				}
+			} else {
+				setCheckPhone(true);
+			}
 		}
 	};
 
@@ -44,7 +63,7 @@ const UserForm = ({ state, setState }) => {
 		if (state) {
 			onOpen();
 		}
-	}, [state]);
+	});
 
 	return createPortal(
 		isSubmitted ? (
@@ -133,6 +152,7 @@ const UserForm = ({ state, setState }) => {
 							<FormControl>
 								<FormLabel>Name</FormLabel>
 								<Input
+									isInvalid={checkName}
 									ref={initialRef}
 									placeholder='Name'
 									onChange={(e) => {
@@ -144,6 +164,7 @@ const UserForm = ({ state, setState }) => {
 							<FormControl mt={4}>
 								<FormLabel>Email</FormLabel>
 								<Input
+									isInvalid={checkEmail}
 									placeholder='xyz@email.com'
 									type='email'
 									onChange={(e) => {
@@ -154,21 +175,33 @@ const UserForm = ({ state, setState }) => {
 							<FormControl mt={4}>
 								<FormLabel>Mobile No.</FormLabel>
 								<Input
+									isInvalid={checkPhone}
 									placeholder='+91 0000000000'
 									type='number'
 									onChange={(e) => {
 										setPhone(e.target.value);
 									}}
 								/>
+								<Input
+									type='text'
+									value='landing page'
+									hidden
+								/>
 							</FormControl>
 						</ModalBody>
 
 						<ModalFooter>
 							<Button
+								isLoading={loading}
+								_hover={{
+									backgroundColor: 'orange',
+								}}
 								bg='orange'
 								color='white'
 								mr={3}
-								onClick={handleForm}
+								onClick={() => {
+									handleForm();
+								}}
 							>
 								Get Quote
 							</Button>

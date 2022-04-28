@@ -84,13 +84,25 @@ const Hero = () => {
 						id='headings'
 						overflow={'hidden'}
 					>
-						<Text display={'none'} id='heading-one'>
+						<Text
+							display={'none'}
+							id='heading-one'
+							w={{ lg: '65%' }}
+						>
 							It's time for you to experience the inexperienced
 						</Text>
-						<Text display={'none'} id='heading-two'>
+						<Text
+							display={'none'}
+							id='heading-two'
+							w={{ lg: '65%' }}
+						>
 							A wishful escape to your desired destination
 						</Text>
-						<Text display={'none'} id='heading-three'>
+						<Text
+							display={'none'}
+							id='heading-three'
+							w={{ lg: '65%' }}
+						>
 							Visit Maldives- A dream come true / A fantasy
 							fulfilled
 						</Text>
