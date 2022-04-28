@@ -15,6 +15,7 @@ const createLead = (name, email, phone) => {
 		source: 'Landing Page',
 		date: completeDate,
 		concern: 'true',
+		email,
 	});
 };
 

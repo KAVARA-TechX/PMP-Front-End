@@ -58,6 +58,7 @@ const Packages = () => {
 				display={'flex'}
 				alignItems='center'
 				overflowX={{ base: 'scroll', lg: 'none' }}
+				className='hide-scroll-bar'
 			>
 				<Box
 					h='400px'

@@ -12,7 +12,11 @@ import surfing from '../assets/thingsToDo/surfing.webp';
 
 const ImageSlider = () => {
 	return (
-		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto' overflowX={'scroll'}>
+		<Box
+			w={{ base: '100vw', lg: '80vw' }}
+			mx='auto'
+			className='show-scroll-when-scrolling'
+		>
 			{/* slider heading */}
 			<Box>
 				<Text
@@ -21,20 +25,19 @@ const ImageSlider = () => {
 					color='rgba(0,0,0,.6)'
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
-				>
-					Visit Maldives
-				</Text>
+				></Text>
 			</Box>
 			{/* slider cards */}
 			<Box
 				as='div'
 				id='scrollbar'
-				overflowX={'scroll'}
-				overflowY='hidden'
+				// overflowX={'scroll'}
+				// overflowY='hidden'
 				display='block'
 				whiteSpace='nowrap'
 				pb={10}
 				color='white'
+				// className='show-scroll-when-scrolling'
 			>
 				{/* card */}
 				<Box
