@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import Hero from './heroSection/Hero';
 import { Box } from '@chakra-ui/react';
 
@@ -22,27 +22,40 @@ const Footer = lazy(() => {
 });
 
 const App = () => {
+	const [load, setLoad] = useState(false);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setLoad(true);
+		}, 100);
+	});
 	return (
 		<Box overflow='hidden'>
 			<Hero /> {/* Responsive Done */}
-			<Suspense fallback={<div>Loading...</div>}>
-				<Facts /> {/* Responsive Done */}
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Packages /> {/* Responsive Done*/}
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<SpaceBetween space='50px' />
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<ImageSlider /> {/* Responsive Done */}
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Partners /> {/* Responsive Done */}
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Footer /> {/* Responsive Done */}
-			</Suspense>
+			{load ? (
+				<>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Facts /> {/* Responsive Done */}
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Packages /> {/* Responsive Done*/}
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<SpaceBetween space='50px' />
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<ImageSlider /> {/* Responsive Done */}
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Partners /> {/* Responsive Done */}
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Footer /> {/* Responsive Done */}
+					</Suspense>
+				</>
+			) : (
+				<></>
+			)}
 		</Box>
 	);
 };
