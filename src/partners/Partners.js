@@ -1,5 +1,4 @@
-import { Box, Text, Image } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Text } from '@chakra-ui/react';
 import { ReactComponent as One } from '../assets/logos/one.svg';
 import { ReactComponent as Two } from '../assets/logos/two.svg';
 import { ReactComponent as Three } from '../assets/logos/three.svg';

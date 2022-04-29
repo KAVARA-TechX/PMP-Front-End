@@ -1,4 +1,4 @@
-import React from 'react';
+// import { lazy, Suspense } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import image from '../assets/thingsToDo/house.webp';
 

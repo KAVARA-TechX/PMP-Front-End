@@ -2,7 +2,7 @@ import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import hero from '../assets/main2.jpeg';
 import UserForm from '../modal/UserForm';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import './Hero.css';
 
 const Hero = () => {
@@ -33,32 +33,17 @@ const Hero = () => {
 				}
 				animateText();
 			}, timerIn);
-			// if (index === headings.length - 1) {
-			// 	index = 0;
-			// } else {
-			// 	index += 1;
-			// }
-			// setTimeout(animateText, 3000);
 		};
 		animateText();
 	}, []);
 
-	// const animateText = () => {
-	// 	headings[index].classList.add('text-in');
-	// 	if (index === headings_length - 1) {
-	// 		index = 0;
-	// 	} else {
-	// 		index += 1;
-	// 	}
-	// 	setTimeout(animateText, 3000);
-	// };
-
 	return (
-		<Box h='500px' w='100vw' bg='red' mb='100px'>
+		<Box h='500px' w='100vw' mb='100px'>
 			<UserForm state={modalState} setState={setModalState} />
 			<Box
 				h='100%'
-				backgroundImage={`url(${hero})`}
+				// backgroundImage={`url(${hero})`}
+				bgImage={`url(${hero})`}
 				backgroundPosition={'right'}
 				backgroundRepeat='no-repeat'
 				bgSize={'cover'}
@@ -113,7 +98,7 @@ const Hero = () => {
 					w={{ base: '100%', lg: '70%' }}
 					h='100px'
 					borderRadius={{ base: '0', lg: 'xl' }}
-					display='flex'
+					display={{ base: modalState ? 'none' : 'flex', lg: 'flex' }}
 					justifyContent={{ base: 'center', lg: 'start' }}
 					alignItems={{ base: 'center' }}
 					position={{ base: 'fixed', lg: 'relative' }}

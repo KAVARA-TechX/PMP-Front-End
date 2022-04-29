@@ -12,7 +12,12 @@ import surfing from '../assets/thingsToDo/surfing.webp';
 
 const ImageSlider = () => {
 	return (
-		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto' overflowX={'scroll'}>
+		<Box
+			w={{ base: '100vw', lg: '80vw' }}
+			mx='auto'
+
+			// className='show-scroll-when-scrolling'
+		>
 			{/* slider heading */}
 			<Box>
 				<Text
@@ -29,12 +34,13 @@ const ImageSlider = () => {
 			<Box
 				as='div'
 				id='scrollbar'
-				overflowX={'scroll'}
-				overflowY='hidden'
+				// overflowX={'scroll'}
+				// overflowY='hidden'
 				display='block'
 				whiteSpace='nowrap'
 				pb={10}
 				color='white'
+				className='show-scroll-when-scrolling'
 			>
 				{/* card */}
 				<Box

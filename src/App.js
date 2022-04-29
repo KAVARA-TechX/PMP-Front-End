@@ -1,25 +1,48 @@
-import React from 'react';
-import Banner from './banner/Banner';
-import Facts from './facts/Facts';
-import Footer from './footer/Footer';
+import { lazy, Suspense } from 'react';
 import Hero from './heroSection/Hero';
-import ImageSlider from './imageSlider/ImageSlider';
-import Packages from './packages/Packages';
-import Partners from './partners/Partners';
-import SpaceBetween from './spaceBetween/SpaceBetween';
 import { Box } from '@chakra-ui/react';
+
+const Facts = lazy(() => {
+	return import('./facts/Facts');
+});
+const Packages = lazy(() => {
+	return import('./packages/Packages');
+});
+const SpaceBetween = lazy(() => {
+	return import('./spaceBetween/SpaceBetween');
+});
+const ImageSlider = lazy(() => {
+	return import('./imageSlider/ImageSlider');
+});
+const Partners = lazy(() => {
+	return import('./partners/Partners');
+});
+const Footer = lazy(() => {
+	return import('./footer/Footer');
+});
 
 const App = () => {
 	return (
 		<Box overflow='hidden'>
 			<Hero /> {/* Responsive Done */}
-			<Facts /> {/* Responsive Done */}
-			<Packages /> {/* Responsive Done*/}
-			<SpaceBetween space='50px' />
-			<Banner /> {/* Responsive Done */}
-			<ImageSlider /> {/* Responsive Done */}
-			<Partners /> {/* Responsive Done */}
-			<Footer /> {/* Responsive Done */}
+			<Suspense fallback={<div>Loading...</div>}>
+				<Facts /> {/* Responsive Done */}
+			</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Packages /> {/* Responsive Done*/}
+			</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<SpaceBetween space='50px' />
+			</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<ImageSlider /> {/* Responsive Done */}
+			</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Partners /> {/* Responsive Done */}
+			</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Footer /> {/* Responsive Done */}
+			</Suspense>
 		</Box>
 	);
 };

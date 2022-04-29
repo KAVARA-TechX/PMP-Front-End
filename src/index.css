@@ -1,0 +1,20 @@
+/* .show-scroll-when-scrolling::-webkit-scrollbar {
+	overflow-y: hidden;
+} */
+
+.show-scroll-when-scrolling {
+	overflow-y: hidden;
+}
+
+.show-scroll-when-scrolling:hover {
+	overflow-y: scroll;
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide-scroll-bar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
