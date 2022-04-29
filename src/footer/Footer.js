@@ -31,7 +31,7 @@ const Footer = () => {
 					bg='#FCFCFC'
 					py={5}
 					borderRadius={'2xl'}
-					boxShadow='2xl'
+					boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'
 					display={'grid'}
 					gap={5}
 					gridTemplateColumns={{
