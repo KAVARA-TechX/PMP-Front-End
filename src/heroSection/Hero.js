@@ -43,16 +43,6 @@ const Hero = () => {
 		animateText();
 	}, []);
 
-	// const animateText = () => {
-	// 	headings[index].classList.add('text-in');
-	// 	if (index === headings_length - 1) {
-	// 		index = 0;
-	// 	} else {
-	// 		index += 1;
-	// 	}
-	// 	setTimeout(animateText, 3000);
-	// };
-
 	return (
 		<Box h='500px' w='100vw' bg='red' mb='100px'>
 			<UserForm state={modalState} setState={setModalState} />
@@ -113,7 +103,7 @@ const Hero = () => {
 					w={{ base: '100%', lg: '70%' }}
 					h='100px'
 					borderRadius={{ base: '0', lg: 'xl' }}
-					display='flex'
+					display={{ base: modalState ? 'none' : 'flex', lg: 'flex' }}
 					justifyContent={{ base: 'center', lg: 'start' }}
 					alignItems={{ base: 'center' }}
 					position={{ base: 'fixed', lg: 'relative' }}

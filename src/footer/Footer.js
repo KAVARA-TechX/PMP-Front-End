@@ -112,16 +112,21 @@ const Footer = () => {
 						justifyContent='center'
 						textAlign={{ base: 'center', lg: 'start' }}
 						className='hide-scroll-bar'
+						alignItems={'center'}
 					>
 						<Box
 							mt={5}
 							w='100%'
 							h='100%'
 							p={3}
-							px={{ lg: 20 }}
+							mx={{ base: 'auto', lg: 'none' }}
 							display={'grid'}
-							gridTemplateColumns={'repeat( 3, 1fr)'}
+							gridTemplateColumns={{
+								base: 'repeat(5, 1fr)',
+								lg: 'repeat( 3, 1fr)',
+							}}
 							className='hide-scroll-bar'
+							gap={{ base: 1, lg: 1 }}
 						>
 							<Box
 								as='a'
@@ -135,6 +140,7 @@ const Footer = () => {
 								alignItems={'center'}
 								p={5}
 								className='hide-scroll-bar'
+								mx='auto'
 							>
 								<Icon as={FaFacebookF} color='rgb(51,55,64)' />
 							</Box>
@@ -150,6 +156,7 @@ const Footer = () => {
 								alignItems={'center'}
 								className='hide-scroll-bar'
 								p={5}
+								mx='auto'
 							>
 								<Icon as={FaInstagram} color='rgb(51,55,64)' />
 							</Box>
@@ -165,6 +172,7 @@ const Footer = () => {
 								alignItems={'center'}
 								className='hide-scroll-bar'
 								p={5}
+								mx='auto'
 							>
 								<Icon as={FaLinkedinIn} color='rgb(51,55,64)' />
 							</Box>
@@ -179,6 +187,7 @@ const Footer = () => {
 								justifyContent='center'
 								alignItems={'center'}
 								p={5}
+								mx='auto'
 								className='hide-scroll-bar'
 							>
 								<Icon as={FaTwitter} color='rgb(51,55,64)' />
@@ -195,6 +204,7 @@ const Footer = () => {
 								alignItems={'center'}
 								p={5}
 								className='hide-scroll-bar'
+								mx='auto'
 							>
 								<Icon as={FaYoutube} color='rgb(51,55,64)' />
 							</Box>

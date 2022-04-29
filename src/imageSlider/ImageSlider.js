@@ -15,7 +15,8 @@ const ImageSlider = () => {
 		<Box
 			w={{ base: '100vw', lg: '80vw' }}
 			mx='auto'
-			className='show-scroll-when-scrolling'
+
+			// className='show-scroll-when-scrolling'
 		>
 			{/* slider heading */}
 			<Box>
@@ -39,7 +40,7 @@ const ImageSlider = () => {
 				whiteSpace='nowrap'
 				pb={10}
 				color='white'
-				// className='show-scroll-when-scrolling'
+				className='show-scroll-when-scrolling'
 			>
 				{/* card */}
 				<Box
