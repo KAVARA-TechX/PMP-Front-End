@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text } from '@chakra-ui/react';
 import {
 	FaFacebookF,
 	FaInstagram,

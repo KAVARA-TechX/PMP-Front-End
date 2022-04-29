@@ -1,5 +1,4 @@
 import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
 import sunset from '../assets/thingsToDo/sunset.webp';
 import surf from '../assets/thingsToDo/surf.webp';
 import scuba from '../assets/thingsToDo/scuba.webp';
