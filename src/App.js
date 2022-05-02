@@ -51,7 +51,7 @@ const App = () => {
 						<ImageSlider /> {/* Responsive Done */}
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
-						<Partners /> {/* Responsive Done */}
+						{/*<Partners /> {/* Responsive Done */}
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Footer /> {/* Responsive Done */}
