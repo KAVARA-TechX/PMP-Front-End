@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import Hero from './heroSection/Hero';
 import { Box } from '@chakra-ui/react';
+import Banner from './banner/Banner';
 
 const Facts = lazy(() => {
 	return import('./facts/Facts');
@@ -43,11 +44,14 @@ const App = () => {
 					<Suspense fallback={<div>Loading...</div>}>
 						<SpaceBetween space='50px' />
 					</Suspense>
+					<Suspense>
+						<Banner />
+					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
 						<ImageSlider /> {/* Responsive Done */}
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
-						<Partners /> {/* Responsive Done */}
+						{/*<Partners /> {/* Responsive Done */}
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Footer /> {/* Responsive Done */}
