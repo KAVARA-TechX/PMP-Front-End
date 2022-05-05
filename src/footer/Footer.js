@@ -219,7 +219,7 @@ const Footer = () => {
 					href='https://bit.ly/38wyHtX'
 					textAlign={'center'}
 				>
-					© Plan My Leisure 2020 | Developed by CFT Labs
+					© Plan My Leisure 2020
 				</Text>
 			</Box>
 		</Box>

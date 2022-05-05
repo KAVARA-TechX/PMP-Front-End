@@ -1,11 +1,11 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import './style.css';
-import beach from '../assets/thingsToDo/beach.webp';
-import glow from '../assets/thingsToDo/glow.webp';
-import house from '../assets/thingsToDo/house.webp';
-import scuba from '../assets/thingsToDo/scuba.webp';
-import spa from '../assets/thingsToDo/spa.webp';
+// import './style.css';
+import beach from '../assets/thingsToDo/beach.png';
+import glow from '../assets/thingsToDo/glow.png';
+import house from '../assets/thingsToDo/house.png';
+import scuba from '../assets/thingsToDo/scuba.png';
+import spa from '../assets/thingsToDo/spa.png';
 import sunset from '../assets/thingsToDo/sunset.webp';
 import surf from '../assets/thingsToDo/surf.webp';
 import surfing from '../assets/thingsToDo/surfing.webp';
@@ -27,7 +27,7 @@ const ImageSlider = () => {
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
 				>
-					Visit Maldives
+					Fun and Explore
 				</Text>
 			</Box>
 			{/* slider cards */}
@@ -47,26 +47,24 @@ const ImageSlider = () => {
 					bgImage={beach}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
 						Stroll at Hulhumale Beach
 					</Text>
@@ -75,26 +73,24 @@ const ImageSlider = () => {
 					bgImage={glow}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
 						Glowing Beach on Vaadhoo Island
 					</Text>
@@ -103,54 +99,50 @@ const ImageSlider = () => {
 					bgImage={house}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
-						Stay in a Overwater Bungalow like Six Senses Laamu
+						Overwater Bungalow
 					</Text>
 				</Box>
 				<Box
 					bgImage={scuba}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
 						Scuba Diving at Maaya Thila
 					</Text>
@@ -159,28 +151,26 @@ const ImageSlider = () => {
 					bgImage={spa}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
-						Indulge in Spa Treatment at Adaaran Prestige Vadoo
+						Indulge in Spa Treatment
 					</Text>
 				</Box>
 				<Box
@@ -188,26 +178,24 @@ const ImageSlider = () => {
 					display='inline-block'
 					bgSize='cover'
 					bgPos={'50% 50%'}
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						whiteSpace={'pre-wrap'}
+						textAlign='center'
+						mx={'5px'}
 					>
 						Enjoy Sunset Cruise
 					</Text>
@@ -216,26 +204,22 @@ const ImageSlider = () => {
 					bgImage={surf}
 					display='inline-block'
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						mx={'5px'}
 					>
 						Water Skiing
 					</Text>
@@ -243,27 +227,23 @@ const ImageSlider = () => {
 				<Box
 					bgImage={surfing}
 					bgSize='cover'
-					height='500px'
+					height='400px'
 					display='inline-block'
 					mx={5}
-					w='300px'
+					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2)'
+					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
+					overflow='hidden'
 				>
 					<Text
 						w='100%'
-						bg='rgba(0,0,0,.1)'
-						left='50%'
-						top='50%'
-						position={'absolute'}
-						transform='translate(-50%,-50%)'
-						textAlign={'center'}
-						fontSize={30}
-						fontWeight={800}
-						whiteSpace='pre-wrap'
-						textTransform={'uppercase'}
-						px={'5px'}
+						h='100%'
+						display={'flex'}
+						alignItems='end'
+						fontSize={27}
+						justifyContent='center'
+						mx={'5px'}
 					>
 						Surfing
 					</Text>

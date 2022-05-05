@@ -14,7 +14,7 @@ const Facts = () => {
 			<Box w={{ base: '100%', lg: '50%' }}>
 				<Box ml={5}>
 					<Text color='orange' fontSize={20} fontWeight={500} mb={1}>
-						Traveler Point
+						Plan My Leisure
 					</Text>
 					<Text
 						color='rgba(0,0,0,.7)'
@@ -77,6 +77,19 @@ const Facts = () => {
 							15+
 						</Text>
 						<Text>Destinations</Text>
+					</Box>
+					<Box
+						height={{ base: '150px', lg: '200px' }}
+						display='flex'
+						flexDir={'column'}
+						justifyContent={'center'}
+						alignItems='center'
+						position={'relative'}
+					>
+						<Text fontSize={40} fontWeight={600} color='orange'>
+							1500+
+						</Text>
+						<Text>Satisfied Clients</Text>
 					</Box>
 					<Box
 						height='150px'

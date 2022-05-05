@@ -52,10 +52,11 @@ const Banner = () => {
 						<Text
 							textAlign='center'
 							fontSize={35}
-							fontWeight={700}
+							fontWeight={500}
 							whiteSpace='nowrap'
 						>
-							The Sunny Side of Life
+							<Text fontWeight={500}>Visit Maldives</Text>A
+							fantasy fulfilled
 						</Text>
 						<Box
 							bg='orange'
