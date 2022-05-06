@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-// import './style.css';
+import '../style.css';
+import '../index.css';
 import beach from '../assets/thingsToDo/beach.png';
 import glow from '../assets/thingsToDo/glow.png';
 import house from '../assets/thingsToDo/house.png';
@@ -15,11 +16,11 @@ const ImageSlider = () => {
 		<Box
 			w={{ base: '100vw', lg: '80vw' }}
 			mx='auto'
-
 			// className='show-scroll-when-scrolling'
+			className='hide-scroll-bar'
 		>
 			{/* slider heading */}
-			<Box>
+			<Box className='hide-scroll-bar'>
 				<Text
 					fontSize={30}
 					fontWeight={600}
@@ -54,6 +55,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -80,6 +82,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -106,6 +109,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -132,6 +136,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -158,6 +163,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -185,6 +191,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -211,6 +218,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'
@@ -235,6 +243,7 @@ const ImageSlider = () => {
 					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
+					className='hide-scroll-bar'
 				>
 					<Text
 						w='100%'

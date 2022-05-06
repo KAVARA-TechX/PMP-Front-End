@@ -1,15 +1,15 @@
 // import { lazy, Suspense } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import image from '../assets/thingsToDo/house.webp';
+import image from '../assets/thingsToDo/dream-vacation.png';
 
 const Facts = () => {
 	return (
-		<Box w='100vw' h='fit-content' display='flex' mt='150px' mb={10}>
+		<Box w='100vw' h='600px' display='flex' mt='150px' mb={10}>
 			<Box
 				w={{ base: '0%', lg: '50%' }}
 				bgImage={image}
 				bgSize='cover'
-				bgPosition={'50% 100%'}
+				bgPosition={'50% 50%'}
 			></Box>
 			<Box w={{ base: '100%', lg: '50%' }}>
 				<Box ml={5}>
