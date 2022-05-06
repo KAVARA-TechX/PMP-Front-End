@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
-import sunset from '../assets/thingsToDo/sunset.webp';
-import surf from '../assets/thingsToDo/surf.webp';
-import scuba from '../assets/thingsToDo/scuba.webp';
+import sunset from '../assets/thingsToDo/sunset.png';
+import surf from '../assets/thingsToDo/skiing.png';
+import scuba from '../assets/thingsToDo/scuba.png';
 
 const Packages = () => {
 	return (

@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import banner from '../assets/banner.jpeg';
+import banner from '../assets/VisitMaldives.png';
 import UserForm from '../modal/UserForm';
 
 const Banner = () => {
@@ -24,7 +24,7 @@ const Banner = () => {
 						h='100%'
 						bgSize={'cover'}
 						bgPosition='left'
-						bgImage={`url(${banner})`}
+						bgImage={banner}
 					/>
 				</Box>
 				<Box
@@ -52,10 +52,11 @@ const Banner = () => {
 						<Text
 							textAlign='center'
 							fontSize={35}
-							fontWeight={700}
+							fontWeight={500}
 							whiteSpace='nowrap'
 						>
-							The Sunny Side of Life
+							<Text fontWeight={500}>Visit Maldives</Text>A
+							fantasy fulfilled
 						</Text>
 						<Box
 							bg='orange'
