@@ -31,7 +31,7 @@ const Packages = () => {
 								bottom: 0,
 								height: '2px',
 								width: '100%',
-								background: 'orange',
+								background: '#32BAC9',
 							},
 							lg: {
 								content: '""',
@@ -40,7 +40,7 @@ const Packages = () => {
 								bottom: 0,
 								height: '2px',
 								width: '85%',
-								background: 'orange',
+								background: '#32BAC9',
 							},
 						}}
 					>
