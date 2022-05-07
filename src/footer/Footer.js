@@ -6,7 +6,7 @@ import {
 	FaTwitter,
 	FaYoutube,
 } from 'react-icons/fa';
-import cftlogo from '../assets/logo.webp';
+import cftlogo from '../assets/logo.png';
 
 const Footer = () => {
 	return (
@@ -231,7 +231,7 @@ const Footer = () => {
 				float='left'
 				position={'absolute'}
 				bottom='20px'
-				right={'20px'}
+				right={'5vw'}
 				href='https://bit.ly/38wyHtX'
 			>
 				<Image src={cftlogo} h={'40px'} />

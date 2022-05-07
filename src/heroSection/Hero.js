@@ -1,12 +1,9 @@
-import { Box, Button, Text, Image } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import hero from '../assets/header.jpeg';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
-// import './Hero.css';
 import one from '../assets/header2.jpeg';
-import two from '../assets/main2.jpeg';
-import Search from './search/Search';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
@@ -148,10 +145,6 @@ const Hero = () => {
 						Discover Now
 					</Button>
 				</Box>
-				<Search />
-				<Button position={'absolute'} top={7} right={10}>
-					Login
-				</Button>
 			</Box>
 		</>
 	);
