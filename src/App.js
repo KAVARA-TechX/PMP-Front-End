@@ -15,9 +15,10 @@ const SpaceBetween = lazy(() => {
 const ImageSlider = lazy(() => {
 	return import('./imageSlider/ImageSlider');
 });
-const Partners = lazy(() => {
-	return import('./partners/Partners');
+const IconSection = lazy(() => {
+	return import('./iconSection/IconSection');
 });
+
 const Footer = lazy(() => {
 	return import('./footer/Footer');
 });
@@ -52,6 +53,9 @@ const App = () => {
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
 						{/*<Partners /> {/* Responsive Done */}
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<IconSection />
 					</Suspense>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Footer /> {/* Responsive Done */}

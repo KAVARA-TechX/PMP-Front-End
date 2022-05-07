@@ -1,4 +1,4 @@
-import { Box, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text, Image } from '@chakra-ui/react';
 import {
 	FaFacebookF,
 	FaInstagram,
@@ -6,7 +6,7 @@ import {
 	FaTwitter,
 	FaYoutube,
 } from 'react-icons/fa';
-import React from 'react';
+import cftlogo from '../assets/logo.png';
 
 const Footer = () => {
 	return (
@@ -211,16 +211,30 @@ const Footer = () => {
 						</Box>
 					</Box>
 				</Box>
-				<Text
-					pt={7}
-					display={'block'}
-					as='a'
-					color='white'
-					href='https://bit.ly/38wyHtX'
-					textAlign={'center'}
-				>
-					© Plan My Leisure 2020 | Developed by CFT Labs
-				</Text>
+			</Box>
+			<Text
+				display={'inline-block'}
+				position='absolute'
+				as='a'
+				color='white'
+				href='https://bit.ly/38wyHtX'
+				textAlign={'center'}
+				bottom='20px'
+				left='50%'
+				transform={'translateX(-50%)'}
+			>
+				© Plan My Leisure 2020
+			</Text>
+			<Box
+				as='a'
+				display={'inline-block'}
+				float='left'
+				position={'absolute'}
+				bottom='20px'
+				right={'5vw'}
+				href='https://bit.ly/38wyHtX'
+			>
+				<Image src={cftlogo} h={'40px'} />
 			</Box>
 		</Box>
 	);

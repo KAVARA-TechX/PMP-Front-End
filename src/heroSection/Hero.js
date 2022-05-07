@@ -1,109 +1,132 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import hero from '../assets/main2.jpeg';
+import hero from '../assets/header.jpeg';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
-import './Hero.css';
+import one from '../assets/header2.jpeg';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
 
 	useEffect(() => {
-		const headings = document.getElementById('headings').children;
-		const timerIn = 3000;
-		const timerOut = 2800;
+		let slides = document.querySelector('.slides');
+		const allSlide = document.querySelectorAll('.slide');
 
 		let index = 0;
-		const animateText = () => {
-			for (let i = 0; i < headings.length; i++) {
-				headings[i].classList.remove('text-in', 'text-out');
+
+		setInterval(() => {
+			index++;
+			slides.style.transform = `translateX(-${100 * index}vw)`;
+			slides.style.transition = '1s';
+			if (index === 3) {
+				slides.style.transition = 'none';
+				slides = document.querySelector('.slides');
+				index = 0;
+				slides.style.transform = `translateX(-${100 * index}vw)`;
 			}
-
-			headings[index].classList.add('text-in');
-
-			setTimeout(() => {
-				headings[index].classList.add('text-out');
-			}, timerOut);
-
-			setTimeout(() => {
-				if (index === headings.length - 1) {
-					index = 0;
-				} else {
-					index++;
-				}
-				animateText();
-			}, timerIn);
-		};
-		animateText();
-	}, []);
+		}, 3000);
+	});
 
 	return (
-		<Box h='500px' w='100vw' mb='100px'>
-			<UserForm state={modalState} setState={setModalState} />
+		<>
 			<Box
-				h='100%'
-				// backgroundImage={`url(${hero})`}
-				bgImage={`url(${hero})`}
-				backgroundPosition={'right'}
-				backgroundRepeat='no-repeat'
-				bgSize={'cover'}
-				position='relative'
-				display={'flex'}
-				flexDir='column'
-				alignItems={{ base: 'center', lg: 'start' }}
-				pl={{ lg: 10 }}
+				h='500px'
+				w='100vw'
+				mb={{ base: '230px', lg: '100px' }}
+				position={'relative'}
 			>
-				<Box
-					pt={{ base: 100, lg: 130 }}
-					// pl={{ base: 0, lg: 100 }}
-					lineHeight={1}
-					textAlign='center'
-				>
-					<Text
-						as={'div'}
-						fontSize={60}
-						fontWeight={300}
-						color='rgba(0,0,0,.7)'
-						lineHeight={1}
-						textAlign={{ base: 'center', lg: 'start' }}
-						id='headings'
-						overflow={'hidden'}
+				<UserForm state={modalState} setState={setModalState} />
+				<Box className='slides' display={'flex'}>
+					<Box
+						className='slide'
+						w={'100vw'}
+						h='500px'
+						bgImage={hero}
+						bgSize='cover'
+						bgPos={'50% 50%'}
+						flexShrink={'0'}
+						pt={{ base: 100, lg: 130 }}
+						position='relative'
 					>
 						<Text
-							display={'none'}
-							id='heading-one'
-							w={{ lg: '65%' }}
+							color={'black'}
+							position='absolute'
+							top='30%'
+							left={'30px'}
+							fontSize={60}
+							fontWeight={300}
+							lineHeight={1}
+							textAlign={{ base: 'center', lg: 'start' }}
 						>
-							It's time for you to experience the inexperienced
+							It's time for you to <br />
+							experience the inexperienced
 						</Text>
+					</Box>
+					<Box
+						className='slide'
+						w={'100vw'}
+						h='500px'
+						bgImage={one}
+						bgSize='cover'
+						bgPos={'50% 50%'}
+						flexShrink={'0'}
+						pt={{ base: 100, lg: 130 }}
+						position='relative'
+					>
 						<Text
-							display={'none'}
-							id='heading-two'
-							w={{ lg: '65%' }}
+							color={'black'}
+							position='absolute'
+							top='30%'
+							left={'30px'}
+							fontSize={60}
+							fontWeight={300}
+							lineHeight={1}
+							textAlign={{ base: 'center', lg: 'start' }}
 						>
-							A wishful escape to your desired destination
+							A wishful escape to <br /> your desired destination
 						</Text>
+					</Box>
+					<Box
+						className='slide'
+						w={'100vw'}
+						h='500px'
+						bgImage={hero}
+						bgSize='cover'
+						bgPos={'50% 50%'}
+						flexShrink={'0'}
+						pt={{ base: 100, lg: 130 }}
+						position='relative'
+					>
 						<Text
-							display={'none'}
-							id='heading-three'
-							w={{ lg: '65%' }}
+							color={'black'}
+							position='absolute'
+							top='30%'
+							left={'30px'}
+							fontSize={60}
+							fontWeight={300}
+							lineHeight={1}
+							textAlign={{ base: 'center', lg: 'start' }}
 						>
-							Visit Maldives- A dream come true / A fantasy
-							fulfilled
+							It's time for you to <br /> experience the
+							inexperienced
 						</Text>
-					</Text>
+					</Box>
 				</Box>
 				<Box
 					mt={{ base: 10, lg: 5 }}
 					w={{ base: '100%', lg: '70%' }}
 					h='100px'
 					borderRadius={{ base: '0', lg: 'xl' }}
-					display={{ base: modalState ? 'none' : 'flex', lg: 'flex' }}
+					display={{
+						base: modalState ? 'none' : 'flex',
+						lg: 'flex',
+					}}
 					justifyContent={{ base: 'center', lg: 'start' }}
 					alignItems={{ base: 'center' }}
-					position={{ base: 'fixed', lg: 'relative' }}
-					bottom={1}
+					position={{ base: 'fixed', lg: 'absolute' }}
+					bottom={{ base: 1, lg: '120px' }}
 					right={0}
+					left={{ lg: '50px' }}
 					zIndex={{ base: 10000000, lg: 1 }}
 				>
 					<Button
@@ -123,7 +146,7 @@ const Hero = () => {
 					</Button>
 				</Box>
 			</Box>
-		</Box>
+		</>
 	);
 };
 

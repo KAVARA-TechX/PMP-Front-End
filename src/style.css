@@ -1,7 +1,7 @@
-/* #scrollbar::-webkit-scrollbar {
+#scrollbar::-webkit-scrollbar {
 	display: none;
 }
 #scrollbar {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-} */
+}
