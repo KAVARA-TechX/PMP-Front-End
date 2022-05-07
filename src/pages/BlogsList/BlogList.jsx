@@ -1,22 +1,19 @@
-import { Box, Text, Button } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const SearchResult = () => {
-	const value = useParams();
+const BlogList = () => {
 	const navigate = useNavigate();
-
 	const handleBack = () => {
 		navigate('/');
 	};
-
 	return (
 		<Box
 			w='100vw'
 			h='100vh'
 			pl='5vw'
 			pr='5vw'
-			pt='5vw'
+			pt='7vw'
 			position={'relative'}
 		>
 			<Box position={'absolute'} top='10px'>
@@ -27,7 +24,7 @@ const SearchResult = () => {
 			</Box>
 			{/* heading */}
 			<Box>
-				<Text fontSize={30}>Search Result</Text>
+				<Text fontSize={30}>Blogs</Text>
 			</Box>
 			{/* results */}
 			<Box minH='900px'>
@@ -64,4 +61,4 @@ const SearchResult = () => {
 	);
 };
 
-export default SearchResult;
+export default BlogList;

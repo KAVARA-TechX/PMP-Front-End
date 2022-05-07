@@ -1,6 +1,9 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const Blog = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto'>
 			<Text
@@ -83,6 +86,9 @@ const Blog = () => {
 					left='50%'
 					transform='translate(-50%,50%)'
 					cursor={'pointer'}
+					onClick={() => {
+						navigate('/blogs');
+					}}
 				>
 					Read More
 				</Text>
