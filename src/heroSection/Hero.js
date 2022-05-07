@@ -51,7 +51,7 @@ const Hero = () => {
 					>
 						<Text
 							className='font'
-							color={'black'}
+							color={'white'}
 							position='absolute'
 							top={{ base: '50%', lg: '30%' }}
 							left={{ base: '50%', lg: '30px' }}
@@ -60,7 +60,7 @@ const Hero = () => {
 								lg: 'none',
 							}}
 							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 300 }}
+							fontWeight={{ base: 400, lg: 400 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
 						>
@@ -80,7 +80,7 @@ const Hero = () => {
 						position='relative'
 					>
 						<Text
-							color={'black'}
+							color={'white'}
 							position='absolute'
 							top={{ base: '50%', lg: '30%' }}
 							left={{ base: '50%', lg: '30px' }}
@@ -89,7 +89,7 @@ const Hero = () => {
 								lg: 'none',
 							}}
 							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 300 }}
+							fontWeight={{ base: 400, lg: 400 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
 							textTransform={'uppercase'}
@@ -109,7 +109,7 @@ const Hero = () => {
 						position='relative'
 					>
 						<Text
-							color={'black'}
+							color={'white'}
 							position='absolute'
 							top={{ base: '50%', lg: '30%' }}
 							left={{ base: '50%', lg: '30px' }}
@@ -118,7 +118,7 @@ const Hero = () => {
 								lg: 'none',
 							}}
 							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 300 }}
+							fontWeight={{ base: 400, lg: 400 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
 							textTransform={'uppercase'}
