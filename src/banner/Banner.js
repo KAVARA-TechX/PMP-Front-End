@@ -55,8 +55,7 @@ const Banner = () => {
 							fontWeight={500}
 							whiteSpace='nowrap'
 						>
-							<Text fontWeight={500}>Visit Maldives</Text>A
-							fantasy fulfilled
+							<Text fontWeight={500}></Text>A fantasy fulfilled
 						</Text>
 						<Box
 							bg='orange'
