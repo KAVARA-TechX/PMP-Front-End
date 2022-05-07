@@ -1,15 +1,54 @@
 import { Box, Text, Input, Button } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+	const [location, setLocation] = useState('');
+	const [guest, setGuest] = useState(1);
+	const [submitButton, setSubmitButton] = useState(true);
 	let today = new Date();
-	let tommorrow = new Date();
+	const navigate = useNavigate();
+
 	today.setDate(today.getDate());
 	const [startDate, setStartDate] = useState(
 		today.toISOString().substr(0, 10)
 	);
 	today.setDate(today.getDate() + 1);
 	const [endDate, setEndDate] = useState(today.toISOString().substr(0, 10));
+
+	const handleForm = () => {
+		if (location === '') {
+			console.log('trying to submit the wrong thing');
+		} else {
+			if (guest < 1 || guest === '') {
+				console.log('are you fucking idiot');
+			} else {
+				navigate(
+					`/search/${location}/${startDate}/${endDate}/${guest}`
+				);
+			}
+		}
+	};
+	useEffect(() => {
+		if (location !== '') {
+			if (startDate !== '') {
+				if (endDate !== '') {
+					if (guest !== '') {
+						setSubmitButton(false);
+					} else {
+						setSubmitButton(true);
+					}
+				} else {
+					setSubmitButton(true);
+				}
+			} else {
+				setSubmitButton(true);
+			}
+		} else {
+			setSubmitButton(true);
+		}
+	}, [location, startDate, endDate, guest]);
+
 	return (
 		<Box
 			position='absolute'
@@ -48,6 +87,9 @@ const Search = () => {
 					pr={0}
 					_focus={{ outline: 'none' }}
 					pb={{ base: 3, lg: 0 }}
+					onChange={(e) => {
+						setLocation(e.target.value);
+					}}
 				/>
 			</Box>
 			{/* check in */}
@@ -108,6 +150,10 @@ const Search = () => {
 					pr={0}
 					_focus={{ outline: 'none' }}
 					textAlign='start'
+					value={guest}
+					onChange={(e) => {
+						setGuest(e.target.value);
+					}}
 				/>
 			</Box>
 			{/* search Button */}
@@ -120,7 +166,15 @@ const Search = () => {
 				justifyContent={'center'}
 				mt={{ base: 3, lg: 0 }}
 			>
-				<Button h='50px' w='100%' bg='orange' color='white'>
+				<Button
+					h='50px'
+					w='100%'
+					bg='#32BAC9'
+					color='white'
+					onClick={handleForm}
+					disabled={submitButton}
+					_hover={{ backgroundColor: '#32BAC9' }}
+				>
 					Search
 				</Button>
 			</Box>
