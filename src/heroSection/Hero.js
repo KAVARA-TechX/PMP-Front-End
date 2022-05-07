@@ -48,8 +48,11 @@ const Hero = () => {
 						pt={{ base: 100, lg: 130 }}
 						position='relative'
 						textTransform={'uppercase'}
+						overflow='hidden'
 					>
 						<Text
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.1)'
 							className='font'
 							color={'white'}
 							position='absolute'
@@ -78,8 +81,11 @@ const Hero = () => {
 						flexShrink={'0'}
 						pt={{ base: 100, lg: 130 }}
 						position='relative'
+						overflow='hidden'
 					>
 						<Text
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.1)'
 							color={'white'}
 							position='absolute'
 							top={{ base: '50%', lg: '30%' }}
@@ -107,8 +113,11 @@ const Hero = () => {
 						flexShrink={'0'}
 						pt={{ base: 100, lg: 130 }}
 						position='relative'
+						overflow='hidden'
 					>
 						<Text
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.1)'
 							color={'white'}
 							position='absolute'
 							top={{ base: '50%', lg: '30%' }}
