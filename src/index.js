@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { FromStateProvider } from './context/formStateContext';
+import './assets/fonts/peace_sans.ttf';
 import './index.css';
 
 const root_tag = document.getElementById('root');

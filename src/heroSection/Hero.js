@@ -32,7 +32,7 @@ const Hero = () => {
 			<Box
 				h='500px'
 				w='100vw'
-				mb={{ base: '230px', lg: '100px' }}
+				mb={{ base: '130px', lg: '100px' }}
 				position={'relative'}
 			>
 				<UserForm state={modalState} setState={setModalState} />
@@ -47,14 +47,20 @@ const Hero = () => {
 						flexShrink={'0'}
 						pt={{ base: 100, lg: 130 }}
 						position='relative'
+						textTransform={'uppercase'}
 					>
 						<Text
+							className='font'
 							color={'black'}
 							position='absolute'
-							top='30%'
-							left={'30px'}
-							fontSize={60}
-							fontWeight={300}
+							top={{ base: '50%', lg: '30%' }}
+							left={{ base: '50%', lg: '30px' }}
+							transform={{
+								base: 'translateY(-50%) translateX(-50%)',
+								lg: 'none',
+							}}
+							fontSize={{ base: 50, lg: 60 }}
+							fontWeight={{ base: 400, lg: 300 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
 						>
@@ -76,12 +82,17 @@ const Hero = () => {
 						<Text
 							color={'black'}
 							position='absolute'
-							top='30%'
-							left={'30px'}
-							fontSize={60}
-							fontWeight={300}
+							top={{ base: '50%', lg: '30%' }}
+							left={{ base: '50%', lg: '30px' }}
+							transform={{
+								base: 'translateY(-50%) translateX(-50%)',
+								lg: 'none',
+							}}
+							fontSize={{ base: 50, lg: 60 }}
+							fontWeight={{ base: 400, lg: 300 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
+							textTransform={'uppercase'}
 						>
 							A wishful escape to <br /> your desired destination
 						</Text>
@@ -100,12 +111,17 @@ const Hero = () => {
 						<Text
 							color={'black'}
 							position='absolute'
-							top='30%'
-							left={'30px'}
-							fontSize={60}
-							fontWeight={300}
+							top={{ base: '50%', lg: '30%' }}
+							left={{ base: '50%', lg: '30px' }}
+							transform={{
+								base: 'translateY(-50%) translateX(-50%)',
+								lg: 'none',
+							}}
+							fontSize={{ base: 50, lg: 60 }}
+							fontWeight={{ base: 400, lg: 300 }}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
+							textTransform={'uppercase'}
 						>
 							It's time for you to <br /> experience the
 							inexperienced
@@ -132,11 +148,11 @@ const Hero = () => {
 					<Button
 						fontSize={20}
 						color='white'
-						bg='orange'
+						bg='#32BAC9'
 						w={{ base: '90%', lg: '150px' }}
 						h='50px'
 						_hover={{
-							background: 'orange',
+							background: '#32BAC9',
 						}}
 						onClick={() => {
 							setModalState(true);

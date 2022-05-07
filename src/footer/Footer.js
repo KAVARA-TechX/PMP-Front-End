@@ -7,14 +7,15 @@ import {
 	FaYoutube,
 } from 'react-icons/fa';
 import cftlogo from '../assets/logo.png';
-import footerImg from '../assets/footer.jpeg';
+import footerImg from '../assets/footer1.jpg';
 
 const Footer = () => {
 	return (
 		<Box
+			// bg='rgb(55,57,66)'
 			bgImage={footerImg}
 			bgSize='cover'
-			bgPos={'50% 50%'}
+			bgPos={'0 50%'}
 			h='fit-content'
 			w='100vw'
 			position='relative'
@@ -137,7 +138,7 @@ const Footer = () => {
 								w='20px'
 								h='20px'
 								borderRadius={'full'}
-								bg='gray'
+								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
@@ -153,7 +154,7 @@ const Footer = () => {
 								w='20px'
 								h='20px'
 								borderRadius={'full'}
-								bg='gray'
+								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
@@ -169,7 +170,7 @@ const Footer = () => {
 								w='20px'
 								h='20px'
 								borderRadius={'full'}
-								bg='gray'
+								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
@@ -185,7 +186,7 @@ const Footer = () => {
 								w='20px'
 								h='20px'
 								borderRadius={'full'}
-								bg='gray'
+								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
@@ -201,7 +202,7 @@ const Footer = () => {
 								w='20px'
 								h='20px'
 								borderRadius={'full'}
-								bg='gray'
+								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
