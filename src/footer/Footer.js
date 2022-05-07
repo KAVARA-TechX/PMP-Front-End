@@ -7,11 +7,14 @@ import {
 	FaYoutube,
 } from 'react-icons/fa';
 import cftlogo from '../assets/logo.png';
+import footerImg from '../assets/footer.jpeg';
 
 const Footer = () => {
 	return (
 		<Box
-			bg='rgb(51,55,64)'
+			bgImage={footerImg}
+			bgSize='cover'
+			bgPos={'50% 50%'}
 			h='fit-content'
 			w='100vw'
 			position='relative'
