@@ -9,7 +9,7 @@ const IconSection = () => {
 		<Box
 			w='100vw'
 			h='100px'
-			bg='rgba(255,165,0,.8)'
+			bg='#32BAC9'
 			display={'grid'}
 			gridTemplateColumns={'repeat(4, 1fr)'}
 			alignItems='center'

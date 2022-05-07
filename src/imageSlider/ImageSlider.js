@@ -149,7 +149,7 @@ const ImageSlider = () => {
 						textAlign='center'
 						mx={'5px'}
 					>
-						Scuba Diving at Maaya Thila
+						Scuba Diving
 					</Text>
 				</Box>
 				<Box

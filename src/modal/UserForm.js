@@ -188,9 +188,9 @@ const UserForm = ({ state, setState }) => {
 						<Button
 							isLoading={loading}
 							_hover={{
-								backgroundColor: 'orange',
+								backgroundColor: '#32BAC9',
 							}}
-							bg='orange'
+							bg='#32BAC9'
 							color='white'
 							mr={3}
 							onClick={() => {
