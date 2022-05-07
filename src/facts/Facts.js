@@ -13,7 +13,7 @@ const Facts = () => {
 			></Box>
 			<Box w={{ base: '100%', lg: '50%' }}>
 				<Box ml={5}>
-					<Text color='orange' fontSize={20} fontWeight={500} mb={1}>
+					<Text color='#32BAC9' fontSize={20} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>
 					<Text
@@ -46,7 +46,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='orange'>
+						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
 							100+
 						</Text>
 
@@ -60,7 +60,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='orange'>
+						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
 							1000+
 						</Text>
 						<Text>Travellers</Text>
@@ -73,7 +73,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='orange'>
+						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
 							15+
 						</Text>
 						<Text>Destinations</Text>
@@ -86,7 +86,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='orange'>
+						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
 							1500+
 						</Text>
 						<Text>Satisfied Clients</Text>

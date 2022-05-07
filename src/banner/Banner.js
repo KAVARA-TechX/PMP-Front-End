@@ -58,7 +58,7 @@ const Banner = () => {
 							<Text fontWeight={500}></Text>A fantasy fulfilled
 						</Text>
 						<Box
-							bg='orange'
+							bg='#32BAC9'
 							mx='auto'
 							py={3}
 							px={5}

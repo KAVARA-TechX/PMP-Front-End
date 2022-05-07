@@ -20,7 +20,7 @@ const Blog = () => {
 				}}
 				gap={3}
 				position='relative'
-				borderBottom={'2px solid orange'}
+				borderBottom={'2px solid #32BAC9'}
 				pb={5}
 			>
 				<Box

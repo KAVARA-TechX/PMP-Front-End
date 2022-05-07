@@ -120,7 +120,7 @@ const Search = () => {
 				justifyContent={'center'}
 				mt={{ base: 3, lg: 0 }}
 			>
-				<Button h='50px' w='100%' bg='orange' color='white'>
+				<Button h='50px' w='100%' bg='#32BAC9' color='white'>
 					Search
 				</Button>
 			</Box>

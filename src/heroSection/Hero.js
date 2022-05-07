@@ -135,11 +135,11 @@ const Hero = () => {
 					<Button
 						fontSize={20}
 						color='white'
-						bg='orange'
+						bg='#32BAC9'
 						w={{ base: '90%', lg: '150px' }}
 						h='50px'
 						_hover={{
-							background: 'orange',
+							background: '#32BAC9',
 						}}
 						onClick={() => {
 							setModalState(true);
@@ -149,7 +149,16 @@ const Hero = () => {
 					</Button>
 				</Box>
 				<Search />
-				<Button position={'absolute'} top={7} right={10}>
+				<Button
+					position={'absolute'}
+					top={7}
+					right={10}
+					bg='#32BAC9'
+					color={'white'}
+					_hover={{
+						backgroundColor: '#32BAC9',
+					}}
+				>
 					Login
 				</Button>
 			</Box>
