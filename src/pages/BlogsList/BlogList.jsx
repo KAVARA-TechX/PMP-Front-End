@@ -1,5 +1,5 @@
-import { Box, Button, Text, Image } from '@chakra-ui/react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
+import { Box, Text, Image } from '@chakra-ui/react';
+
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/banner.png';
 import img2 from '../../assets/banner.jpeg';
@@ -21,7 +21,7 @@ const BlogList = () => {
 				pr='5vw'
 				pt='7vw'
 				position={'relative'}
-				bg='#DBDBDB'
+				bg='#e6f2f2'
 			>
 				{/* heading */}
 				<Box pb={5}>

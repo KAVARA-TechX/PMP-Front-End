@@ -14,11 +14,18 @@ const Nav = () => {
 				alignItems='center'
 				pl={10}
 				pr={10}
-				bg={path === '' ? 'transperant' : '#DBDBDB'}
+				bg={path === '' ? 'transperant' : '#e6f2f2'}
 			>
 				{/* logo */}
 				<Box flexGrow={2}>
-					<Image src={logo} h='100px' />
+					<Image
+						src={logo}
+						h='100px'
+						cursor={'pointer'}
+						onClick={() => {
+							navigate('/');
+						}}
+					/>
 				</Box>
 				{/* options */}
 				<Box

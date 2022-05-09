@@ -31,7 +31,7 @@ const Footer = () => {
 			>
 				<Box
 					w='100%'
-					bg='#FCFCFC'
+					bg='#e6f2f2'
 					py={5}
 					borderRadius={'2xl'}
 					boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'

@@ -1,7 +1,10 @@
 /* .show-scroll-when-scrolling::-webkit-scrollbar {
 	overflow-y: hidden;
 } */
-
+body {
+	font-family: 'Source Sans Pro' !important;
+	background-color: #e6f2f2 !important;
+}
 .show-scroll-when-scrolling {
 	overflow-y: hidden;
 }
