@@ -1,5 +1,11 @@
 import { Box, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import img1 from '../assets/banner.jpeg';
+import img2 from '../assets/VisitMaldives.png';
+import img3 from '../assets/MainBanner2.png';
+import img4 from '../assets/thingsToDo/house.png';
+import img5 from '../assets/banner.png';
+import img6 from '../assets/footer.jpg';
 
 const Blog = () => {
 	const navigate = useNavigate();
@@ -23,40 +29,61 @@ const Blog = () => {
 				}}
 				gap={3}
 				position='relative'
-				borderBottom={'2px solid #32BAC9'}
 				pb={5}
+				color='white'
+				fontWeight={'bold'}
 			>
 				<Box
-					bg='gray.600'
+					bgImage={img1}
+					bgSize='cover'
 					w='100%'
 					minH='200px'
-					// gridColumn={{ lg: '1 / 3' }}
 					gridColumnStart={{ lg: 1 }}
 					gridColumnEnd={{ lg: 3 }}
 					borderRadius='md'
-				></Box>
+					display={'flex'}
+					alignItems='end'
+					pb={3}
+					pl={2}
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+				>
+					Blog One
+				</Box>
 				<Box
-					bg='gray.600'
+					bgImage={img2}
+					bgSize='cover'
 					w='100%'
 					h='200px'
 					borderRadius='md'
 					gridColumnStart={{ lg: 3 }}
 					gridColumnEnd={{ lg: 4 }}
+					display={'flex'}
+					alignItems='end'
+					pb={3}
+					pl={2}
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 				>
-					{' '}
+					Blog Two
 				</Box>
 				<Box
-					bg='gray.600'
+					bgImage={img3}
+					bgSize='cover'
 					w='100%'
 					h='200px'
 					borderRadius='md'
 					gridColumnStart={{ lg: 4 }}
 					gridColumnEnd={{ lg: 5 }}
+					display={'flex'}
+					alignItems='end'
+					pb={3}
+					pl={2}
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 				>
-					{' '}
+					Blog Three
 				</Box>
 				<Box
-					bg='gray.600'
+					bgImage={img4}
+					bgSize='cover'
 					w='100%'
 					minH='200px'
 					borderRadius='md'
@@ -64,34 +91,56 @@ const Blog = () => {
 					gridColumnEnd={{ lg: 6 }}
 					gridRowStart={{ lg: 1 }}
 					gridRowEnd={{ lg: 3 }}
-				></Box>
+					overflow='hidden'
+				>
+					<Box
+						w='100%'
+						h='100%'
+						bg='rgba(0,0,0,.2)'
+						color='white'
+						fontWeight={'bold'}
+						display='flex'
+						justifyContent='center'
+						alignItems='center'
+						fontSize={30}
+						cursor='pointer'
+						onClick={() => {
+							navigate('/blogs');
+						}}
+					>
+						Read More
+					</Box>
+				</Box>
 				<Box
-					bg='gray.600'
+					bgImage={img5}
+					bgSize='cover'
 					w='100%'
 					h='150px'
 					gridColumn={{ lg: '1 / 3' }}
 					borderRadius='md'
-				></Box>
+					display={'flex'}
+					alignItems='end'
+					pb={3}
+					pl={2}
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+				>
+					Blog Four
+				</Box>
 				<Box
-					bg='gray.600'
+					bgImage={img6}
+					bgSize='cover'
 					w='100%'
 					h='150px'
 					gridColumn={{ lg: '3 / 5' }}
 					borderRadius='md'
-				></Box>
-				<Text
-					bg='white'
-					position={'absolute'}
-					bottom={0}
-					left='50%'
-					transform='translate(-50%,50%)'
-					cursor={'pointer'}
-					onClick={() => {
-						navigate('/blogs');
-					}}
+					display={'flex'}
+					alignItems='end'
+					pb={3}
+					pl={2}
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 				>
-					Read More
-				</Text>
+					Blog Five
+				</Box>
 			</Box>
 		</Box>
 	);

@@ -18,3 +18,7 @@
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+
+.new-font {
+	font-family: 'Source Sans Pro' !important;
+}
