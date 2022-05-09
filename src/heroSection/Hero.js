@@ -35,6 +35,7 @@ const Hero = () => {
 				mb={{ base: '130px', lg: '100px' }}
 				position={'relative'}
 			>
+				<Box position={'absolute'} top='0'></Box>
 				<UserForm state={modalState} setState={setModalState} />
 				<Box className='slides' display={'flex'}>
 					<Box
