@@ -18,6 +18,7 @@ const ImageSlider = () => {
 			mx='auto'
 			// className='show-scroll-when-scrolling'
 			className='hide-scroll-bar'
+			mb={7}
 		>
 			{/* slider heading */}
 			<Box className='hide-scroll-bar'>
@@ -66,8 +67,9 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
-						Stroll at Hulhumale Beach
+						Stroll at a Beach
 					</Text>
 				</Box>
 				<Box
@@ -93,8 +95,9 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
-						Glowing Beach on Vaadhoo Island
+						Glowing Beach
 					</Text>
 				</Box>
 				<Box
@@ -120,6 +123,7 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Overwater Bungalow
 					</Text>
@@ -147,6 +151,7 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Scuba Diving
 					</Text>
@@ -174,6 +179,7 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Indulge in Spa Treatment
 					</Text>
@@ -202,6 +208,7 @@ const ImageSlider = () => {
 						whiteSpace={'pre-wrap'}
 						textAlign='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Enjoy Sunset Cruise
 					</Text>
@@ -227,6 +234,7 @@ const ImageSlider = () => {
 						fontSize={27}
 						justifyContent='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Water Skiing
 					</Text>
@@ -252,6 +260,7 @@ const ImageSlider = () => {
 						fontSize={27}
 						justifyContent='center'
 						mx={'5px'}
+						pb={3}
 					>
 						Surfing
 					</Text>
