@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
+import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Hotels from './pages/hotels/Hotels';
 import PackagesPage from './pages/packages/Packages';
@@ -18,7 +19,7 @@ const App = () => {
 			</Route>
 			<Route path='blogs'>
 				<Route index element={<BlogList />} />
-				<Route path=':id' element={<DefaultBlogPage />} />
+				<Route path=':id' element={<BlogDetails />} />
 			</Route>
 			<Route path='/packages' element={<PackagesPage />} />
 			<Route path='/Hotels' element={<Hotels />} />
