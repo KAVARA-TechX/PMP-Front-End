@@ -13,16 +13,10 @@ const Facts = () => {
 			></Box>
 			<Box w={{ base: '100%', lg: '50%' }}>
 				<Box ml={5}>
-					<Text color='#32BAC9' fontSize={20} fontWeight={500} mb={1}>
+					<Text fontSize={20} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>
-					<Text
-						color='rgba(0,0,0,.7)'
-						fontSize={40}
-						fontWeight={800}
-						lineHeight={1}
-						mb={5}
-					>
+					<Text fontSize={40} fontWeight={800} lineHeight={1} mb={5}>
 						We help you find your dream vacation
 					</Text>
 					<Text lineHeight={1.4}>

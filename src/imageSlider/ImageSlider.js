@@ -24,7 +24,6 @@ const ImageSlider = () => {
 				<Text
 					fontSize={30}
 					fontWeight={600}
-					color='rgba(0,0,0,.6)'
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
 				>

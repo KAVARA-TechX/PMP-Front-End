@@ -21,7 +21,7 @@ const BlogList = () => {
 				pr='5vw'
 				pt='7vw'
 				position={'relative'}
-				bg='#e6f2f2'
+				bg='#222222'
 			>
 				{/* heading */}
 				<Box pb={5}>
@@ -34,8 +34,8 @@ const BlogList = () => {
 					{/* this blog contain a blog in a blog list */}
 					<Box
 						display={'flex'}
-						borderTop='1px solid rgba(0,0,0,.3)'
-						borderBottom='1px solid rgba(0,0,0,.3)'
+						borderTop='1px solid rgba(255,255,255,.3)'
+						borderBottom='1px solid rgba(255,255,255,.3)'
 						py={4}
 						cursor='pointer'
 					>
@@ -55,12 +55,11 @@ const BlogList = () => {
 								fontWeight={'bold'}
 								pb={5}
 								pt={4}
-								color='gray.600'
 							>
 								Heading One
 							</Text>
 							{/* chunck of blog body */}
-							<Text display={'inline-block'} color='gray.600'>
+							<Text display={'inline-block'}>
 								Lorem Ipsum is simply dummy text of the printing
 								and typesetting industry. Lorem Ipsum has been
 								the industry's standard dummy text ever since
@@ -68,11 +67,7 @@ const BlogList = () => {
 								of type and scrambled it to make a type specimen
 								book.
 							</Text>
-							<Box
-								position={'absolute'}
-								bottom={0}
-								color='gray.500'
-							>
+							<Box position={'absolute'} bottom={0}>
 								<Text display={'inline-block'} pr={5}>
 									3 min Read
 								</Text>
@@ -87,8 +82,8 @@ const BlogList = () => {
 
 					<Box
 						display={'flex'}
-						borderTop='1px solid rgba(0,0,0,.3)'
-						borderBottom='1px solid rgba(0,0,0,.3)'
+						borderTop='1px solid rgba(255,255,255,.3)'
+						borderBottom='1px solid rgba(255,255,255,.3)'
 						py={4}
 						cursor='pointer'
 					>
@@ -101,12 +96,11 @@ const BlogList = () => {
 								fontWeight={700}
 								pb={5}
 								pt={4}
-								color='gray.600'
 							>
 								Heading Two
 							</Text>
 							{/* chunck of blog body */}
-							<Text display={'inline-block'} color='gray.600'>
+							<Text display={'inline-block'}>
 								Lorem Ipsum is simply dummy text of the printing
 								and typesetting industry. Lorem Ipsum has been
 								the industry's standard dummy text ever since

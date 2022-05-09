@@ -14,7 +14,7 @@ const Nav = () => {
 				alignItems='center'
 				pl={10}
 				pr={10}
-				bg={path === '' ? 'transperant' : '#e6f2f2'}
+				bg={path === '' ? 'transperant' : '#222222'}
 			>
 				{/* logo */}
 				<Box flexGrow={2}>
@@ -38,7 +38,7 @@ const Nav = () => {
 				>
 					<Text
 						cursor={'pointer'}
-						color={path === '' ? '#32BAC9' : 'black'}
+						color={path === '' ? '#32BAC9' : '#f5f5f5'}
 						borderBottom={
 							path === '' ? '1px solid #32bac9' : 'none'
 						}
@@ -74,7 +74,7 @@ const Nav = () => {
 					</Text> */}
 					<Text
 						cursor={'pointer'}
-						color={path === 'blogs' ? '#32BAC9' : 'black'}
+						color={path === 'blogs' ? '#32BAC9' : '#f5f5f5'}
 						borderBottom={
 							path === 'blogs' ? '1px solid #32bac9' : 'none'
 						}

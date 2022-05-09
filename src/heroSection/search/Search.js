@@ -55,7 +55,7 @@ const Search = () => {
 			zIndex={100}
 			w={{ base: '100vw', lg: '80vw' }}
 			h='fit-content'
-			bg='#e6f2f2'
+			bg='#222222'
 			borderRadius={{ base: 'none', lg: 'xl' }}
 			left='50%'
 			bottom={{ base: '-10%', lg: '0%' }}
