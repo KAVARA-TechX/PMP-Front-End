@@ -1,9 +1,10 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Text, Image } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import hero from '../assets/header.jpeg';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
 import one from '../assets/header2.jpeg';
+import logo from '../assets/logo/logo.png';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
@@ -35,6 +36,15 @@ const Hero = () => {
 				mb={{ base: '130px', lg: '100px' }}
 				position={'relative'}
 			>
+				<Box
+					position={'absolute'}
+					top='0'
+					left={{ base: '50%', lg: '0' }}
+					transform={{ base: 'translateX(-50%)', lg: 'none' }}
+					zIndex={100}
+				>
+					<Image src={logo} h='100px' />
+				</Box>
 				<UserForm state={modalState} setState={setModalState} />
 				<Box className='slides' display={'flex'}>
 					<Box

@@ -8,7 +8,7 @@ const IconSection = () => {
 	return (
 		<Box
 			w='100vw'
-			h='100px'
+			h='130px'
 			bg='#32BAC9'
 			display={'grid'}
 			gridTemplateColumns={'repeat(4, 1fr)'}
