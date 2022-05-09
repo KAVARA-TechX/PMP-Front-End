@@ -7,7 +7,7 @@ import {
 	FaYoutube,
 } from 'react-icons/fa';
 import cftlogo from '../assets/logo.png';
-import footerImg from '../assets/footer3.jpg';
+import footerImg from '../assets/footer4.jpg';
 
 const Footer = () => {
 	return (
@@ -15,7 +15,7 @@ const Footer = () => {
 			// bg='rgb(55,57,66)'
 			bgImage={footerImg}
 			bgSize='cover'
-			bgPos={'0 18%'}
+			bgPos={'0 25%'}
 			h='fit-content'
 			w='100vw'
 			position='relative'
