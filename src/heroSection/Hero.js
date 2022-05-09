@@ -7,6 +7,7 @@ import { useState } from 'react';
 import one from '../assets/header2.jpeg';
 import two from '../assets/main2.jpeg';
 import Search from './search/Search';
+import Nav from '../nav/Nav';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
@@ -39,6 +40,9 @@ const Hero = () => {
 				position={'relative'}
 			>
 				<UserForm state={modalState} setState={setModalState} />
+				<Box position={'absolute'} top='0' zIndex={10}>
+					<Nav />
+				</Box>
 				<Box className='slides' display={'flex'}>
 					<Box
 						className='slide'
@@ -53,8 +57,8 @@ const Hero = () => {
 						overflow={'hidden'}
 					>
 						<Text
-							bg='rgba(0,0,0,.1)'
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.3)'
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.3)'}
 							color={'white'}
 							position='absolute'
 							top={{ base: '40%', lg: '30%' }}
@@ -85,8 +89,8 @@ const Hero = () => {
 						overflow={'hidden'}
 					>
 						<Text
-							bg='rgba(0,0,0,.1)'
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.3)'
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.3)'}
 							color={'white'}
 							position='absolute'
 							top={{ base: '40%', lg: '30%' }}
@@ -116,8 +120,8 @@ const Hero = () => {
 						overflow={'hidden'}
 					>
 						<Text
-							bg='rgba(0,0,0,.1)'
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
+							bg='rgba(0,0,0,.3)'
+							boxShadow={'0 0 0 1000px rgba(0,0,0,.3)'}
 							color={'white'}
 							position='absolute'
 							top={{ base: '40%', lg: '30%' }}
@@ -170,7 +174,7 @@ const Hero = () => {
 					</Button>
 				</Box>
 				<Search />
-				<Button
+				{/* <Button
 					position={'absolute'}
 					top={7}
 					right={10}
@@ -181,7 +185,7 @@ const Hero = () => {
 					}}
 				>
 					Login
-				</Button>
+				</Button> */}
 			</Box>
 		</>
 	);
