@@ -7,9 +7,9 @@ import glow from '../assets/thingsToDo/glow.png';
 import house from '../assets/thingsToDo/house.png';
 import scuba from '../assets/thingsToDo/scuba.png';
 import spa from '../assets/thingsToDo/spa.png';
-import sunset from '../assets/thingsToDo/sunset.webp';
-import surf from '../assets/thingsToDo/surf.webp';
-import surfing from '../assets/thingsToDo/surfing.webp';
+import sunset from '../assets/thingsToDo/sunset.png';
+import surf from '../assets/thingsToDo/skiing.png';
+import surfing from '../assets/thingsToDo/Surfing.png';
 
 const ImageSlider = () => {
 	return (
