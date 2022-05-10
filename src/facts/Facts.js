@@ -44,7 +44,7 @@ const Facts = () => {
 							100+
 						</Text>
 
-						<Text>Holiday Package</Text>
+						<Text>Holiday Packages</Text>
 					</Box>
 					<Box
 						height={{ base: '150px', lg: '200px' }}
