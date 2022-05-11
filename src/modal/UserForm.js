@@ -163,7 +163,7 @@ const UserForm = ({ state, setState }) => {
 							<FormLabel>Email</FormLabel>
 							<Input
 								isInvalid={checkEmail}
-								placeholder='"Email"'
+								placeholder='Email'
 								type='email'
 								onChange={(e) => {
 									setEmail(e.target.value);
