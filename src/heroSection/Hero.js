@@ -67,7 +67,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
@@ -99,7 +99,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
@@ -130,7 +130,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
