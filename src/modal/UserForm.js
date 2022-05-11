@@ -97,7 +97,7 @@ const UserForm = ({ state, setState }) => {
 						setState(false);
 					}}
 				/>
-				<ModalBody pb={6}>
+				<ModalBody pb={6} bg='#222222'>
 					<Box
 						pt={5}
 						display={'flex'}
@@ -146,7 +146,7 @@ const UserForm = ({ state, setState }) => {
 							setState(false);
 						}}
 					/>
-					<ModalBody pb={6}>
+					<ModalBody pb={6} bg='#222222'>
 						<FormControl>
 							<FormLabel>Name</FormLabel>
 							<Input
@@ -184,7 +184,7 @@ const UserForm = ({ state, setState }) => {
 						</FormControl>
 					</ModalBody>
 
-					<ModalFooter>
+					<ModalFooter bg='#222222'>
 						<Button
 							isLoading={loading}
 							_hover={{

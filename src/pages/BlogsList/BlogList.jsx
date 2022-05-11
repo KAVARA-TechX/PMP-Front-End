@@ -1,6 +1,10 @@
-import { Box, Button, Text } from '@chakra-ui/react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
+import { Box, Text, Image } from '@chakra-ui/react';
+
 import { useNavigate } from 'react-router-dom';
+import img from '../../assets/banner.png';
+import img2 from '../../assets/banner.jpeg';
+import Footer from '../../footer/Footer';
+import Nav from '../../nav/Nav';
 
 const BlogList = () => {
 	const navigate = useNavigate();
@@ -8,56 +12,122 @@ const BlogList = () => {
 		navigate('/');
 	};
 	return (
-		<Box
-			w='100vw'
-			h='100vh'
-			pl='5vw'
-			pr='5vw'
-			pt='7vw'
-			position={'relative'}
-		>
-			<Box position={'absolute'} top='10px'>
-				<Button bg='#32BAC9' color={'white'} onClick={handleBack}>
-					{' '}
-					<ArrowBackIcon />
-				</Button>
+		<>
+			<Nav />
+			<Box
+				w='100vw'
+				h='100vh'
+				pl='5vw'
+				pr='5vw'
+				pt='7vw'
+				position={'relative'}
+				bg='#222222'
+			>
+				{/* heading */}
+				<Box pb={5}>
+					<Text fontSize={40} fontWeight={700}>
+						Blogs
+					</Text>
+				</Box>
+				{/* results */}
+				<Box minH='900px' className='new-font'>
+					{/* this blog contain a blog in a blog list */}
+					<Box
+						display={'flex'}
+						borderTop='1px solid rgba(255,255,255,.3)'
+						borderBottom='1px solid rgba(255,255,255,.3)'
+						py={4}
+						cursor='pointer'
+					>
+						{/* this box is for data  */}
+						<Box
+							w={'60%'}
+							pr={4}
+							position='relative'
+							onClick={() => {
+								navigate('/blogs/121212');
+							}}
+						>
+							{/* Heading */}
+							<Text
+								display={'inline-block'}
+								fontSize={30}
+								fontWeight={'bold'}
+								pb={5}
+								pt={4}
+							>
+								Heading One
+							</Text>
+							{/* chunck of blog body */}
+							<Text display={'inline-block'}>
+								Lorem Ipsum is simply dummy text of the printing
+								and typesetting industry. Lorem Ipsum has been
+								the industry's standard dummy text ever since
+								the 1500s, when an unknown printer took a galley
+								of type and scrambled it to make a type specimen
+								book.
+							</Text>
+							<Box position={'absolute'} bottom={0}>
+								<Text display={'inline-block'} pr={5}>
+									3 min Read
+								</Text>
+								<Text display={'inline-block'}>April 3</Text>
+							</Box>
+						</Box>
+						{/* this box is for image */}
+						<Box w='40%'>
+							<Image src={img} />
+						</Box>
+					</Box>
+
+					<Box
+						display={'flex'}
+						borderTop='1px solid rgba(255,255,255,.3)'
+						borderBottom='1px solid rgba(255,255,255,.3)'
+						py={4}
+						cursor='pointer'
+					>
+						{/* this box is for data  */}
+						<Box w={'60%'} pr={4} position='relative'>
+							{/* Heading */}
+							<Text
+								display={'inline-block'}
+								fontSize={30}
+								fontWeight={700}
+								pb={5}
+								pt={4}
+							>
+								Heading Two
+							</Text>
+							{/* chunck of blog body */}
+							<Text display={'inline-block'}>
+								Lorem Ipsum is simply dummy text of the printing
+								and typesetting industry. Lorem Ipsum has been
+								the industry's standard dummy text ever since
+								the 1500s, when an unknown printer took a galley
+								of type and scrambled it to make a type specimen
+								book.
+							</Text>
+							<Box
+								position={'absolute'}
+								bottom={0}
+								color='gray.500'
+							>
+								<Text display={'inline-block'} pr={5}>
+									3 min Read
+								</Text>
+								<Text display={'inline-block'}>April 3</Text>
+							</Box>
+						</Box>
+						{/* this box is for image */}
+						<Box w='40%'>
+							<Image src={img2} />
+						</Box>
+					</Box>
+				</Box>
 			</Box>
-			{/* heading */}
-			<Box>
-				<Text fontSize={30}>Blogs</Text>
-			</Box>
-			{/* results */}
-			<Box minH='900px'>
-				<Box
-					w='100%'
-					h='150px'
-					bg='gray.600'
-					borderRadius={'2xl'}
-					mt='20px'
-				/>
-				<Box
-					w='100%'
-					h='150px'
-					bg='gray.600'
-					borderRadius={'2xl'}
-					mt='20px'
-				/>
-				<Box
-					w='100%'
-					h='150px'
-					bg='gray.600'
-					borderRadius={'2xl'}
-					mt='20px'
-				/>
-				<Box
-					w='100%'
-					h='150px'
-					bg='gray.600'
-					borderRadius={'2xl'}
-					mt='20px'
-				/>
-			</Box>
-		</Box>
+			<Footer />
+		</>
 	);
 };
 
