@@ -1,9 +1,3 @@
-@font-face {
-	font-family: 'PeaceSans';
-	src: local('PeaceSans'),
-		url('./assets/fonts/peace_sans.ttf') formate('truetype');
-	font-weight: normal;
-}
 /* .show-scroll-when-scrolling::-webkit-scrollbar {
 	overflow-y: hidden;
 } */
