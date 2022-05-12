@@ -6,9 +6,28 @@ import img3 from '../assets/MainBanner2.png';
 import img4 from '../assets/thingsToDo/house.png';
 import img5 from '../assets/banner.png';
 import img6 from '../assets/footer.jpg';
+import { useEffect, useState } from 'react';
+import getBlogsByCount from '../apis/getBlogsByCount';
 
 const Blog = () => {
+	const [latestBlogs, setLatestBlogs] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		console.log('running effect');
+		const getLatestBlog = async () => {
+			try {
+				const response = await getBlogsByCount(1, 5);
+				setLatestBlogs(response.data);
+				setLoading(false);
+			} catch (error) {
+				console.log(error);
+				setLoading(false);
+			}
+		};
+		getLatestBlog();
+	}, []);
 
 	return (
 		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto'>
@@ -20,127 +39,165 @@ const Blog = () => {
 			>
 				Blogs
 			</Text>
-			<Box
-				display={'grid'}
-				gridTemplateColumns={{
-					base: 'repeat(1,1fr)',
-					lg: 'repeat(5,1fr)',
-				}}
-				gap={3}
-				position='relative'
-				pb={5}
-				color='white'
-				fontWeight={'bold'}
-			>
+			{loading ? (
+				<Box></Box>
+			) : (
 				<Box
-					bgImage={img1}
-					bgSize='cover'
-					w='100%'
-					minH='200px'
-					gridColumnStart={{ lg: 1 }}
-					gridColumnEnd={{ lg: 3 }}
-					borderRadius='md'
-					display={'flex'}
-					alignItems='end'
-					pb={3}
-					pl={2}
-					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-				>
-					Blog One
-				</Box>
-				<Box
-					bgImage={img2}
-					bgSize='cover'
-					w='100%'
-					h='200px'
-					borderRadius='md'
-					gridColumnStart={{ lg: 3 }}
-					gridColumnEnd={{ lg: 4 }}
-					display={'flex'}
-					alignItems='end'
-					pb={3}
-					pl={2}
-					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-				>
-					Blog Two
-				</Box>
-				<Box
-					bgImage={img3}
-					bgSize='cover'
-					w='100%'
-					h='200px'
-					borderRadius='md'
-					gridColumnStart={{ lg: 4 }}
-					gridColumnEnd={{ lg: 5 }}
-					display={'flex'}
-					alignItems='end'
-					pb={3}
-					pl={2}
-					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-				>
-					Blog Three
-				</Box>
-				<Box
-					bgImage={img4}
-					bgSize='cover'
-					w='100%'
-					minH='200px'
-					borderRadius='md'
-					gridColumnStart={{ lg: 5 }}
-					gridColumnEnd={{ lg: 6 }}
-					gridRowStart={{ lg: 1 }}
-					gridRowEnd={{ lg: 3 }}
-					overflow='hidden'
+					display={'grid'}
+					gridTemplateColumns={{
+						base: 'repeat(1,1fr)',
+						lg: 'repeat(5,1fr)',
+					}}
+					gap={3}
+					position='relative'
+					pb={5}
+					color='white'
+					fontWeight={'bold'}
 				>
 					<Box
+						bgImage={latestBlogs[0].imageUrl}
+						bgSize='cover'
 						w='100%'
-						h='100%'
-						bg='rgba(0,0,0,.2)'
-						color='white'
-						fontWeight={'bold'}
-						display='flex'
-						justifyContent='center'
-						alignItems='center'
-						fontSize={30}
-						cursor='pointer'
+						minH='200px'
+						gridColumnStart={{ lg: 1 }}
+						gridColumnEnd={{ lg: 3 }}
+						borderRadius='md'
+						display={'flex'}
+						alignItems='end'
+						pb={3}
+						pl={2}
+						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+						cursor={'pointer'}
 						onClick={() => {
-							navigate('/blogs');
+							navigate(`blogs/${latestBlogs[0]._id}`, {
+								state: latestBlogs[0],
+							});
 						}}
 					>
-						Read More
+						{latestBlogs[0].blogHeading}
+					</Box>
+					<Box
+						bgImage={latestBlogs[1].imageUrl}
+						bgSize='cover'
+						w='100%'
+						h='200px'
+						borderRadius='md'
+						gridColumnStart={{ lg: 3 }}
+						gridColumnEnd={{ lg: 4 }}
+						display={'flex'}
+						alignItems='end'
+						pb={3}
+						pl={2}
+						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+						cursor={'pointer'}
+						onClick={() => {
+							navigate(`blogs/${latestBlogs[1]._id}`, {
+								state: latestBlogs[1],
+							});
+						}}
+					>
+						{latestBlogs[1].blogHeading}
+					</Box>
+					<Box
+						bgImage={latestBlogs[2].imageUrl}
+						bgSize='cover'
+						w='100%'
+						h='200px'
+						borderRadius='md'
+						gridColumnStart={{ lg: 4 }}
+						gridColumnEnd={{ lg: 5 }}
+						display={'flex'}
+						alignItems='end'
+						pb={3}
+						pl={2}
+						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+						cursor={'pointer'}
+						onClick={() => {
+							navigate(`blogs/${latestBlogs[2]._id}`, {
+								state: latestBlogs[2],
+							});
+						}}
+					>
+						{latestBlogs[2].blogHeading}
+					</Box>
+					<Box
+						bgImage={latestBlogs[3].imageUrl}
+						bgSize='cover'
+						w='100%'
+						minH='200px'
+						borderRadius='md'
+						gridColumnStart={{ lg: 1 }}
+						gridColumnEnd={{ lg: 3 }}
+						gridRowStart={{ lg: 2 }}
+						gridRowEnd={{ lg: 3 }}
+						overflow='hidden'
+						display={'flex'}
+						alignItems='end'
+						pb={3}
+						pl={2}
+						cursor={'pointer'}
+						onClick={() => {
+							navigate(`blogs/${latestBlogs[3]._id}`, {
+								state: latestBlogs[3],
+							});
+						}}
+					>
+						{latestBlogs[3].blogHeading}
+					</Box>
+					<Box
+						bgImage={latestBlogs[4].imageUrl}
+						bgSize='cover'
+						w='100%'
+						h='200px'
+						gridColumn={{ lg: '3 / 5' }}
+						gridRow={{ lg: '2 / 3' }}
+						borderRadius='md'
+						display={'flex'}
+						alignItems='end'
+						pb={3}
+						pl={2}
+						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+						cursor={'pointer'}
+						onClick={() => {
+							navigate(`blogs/${latestBlogs[4]._id}`, {
+								state: latestBlogs[4],
+							});
+						}}
+					>
+						{latestBlogs[4].blogHeading}
+					</Box>
+					<Box
+						bgImage={img4}
+						bgSize='cover'
+						w='100%'
+						minH='100px'
+						gridColumn={{ lg: '5 / 6' }}
+						gridRow={{ lg: '1 / 3' }}
+						borderRadius='md'
+						display={'flex'}
+						alignItems='end'
+						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					>
+						<Box
+							w='100%'
+							h='100%'
+							bg='rgba(0,0,0,.2)'
+							color='white'
+							fontWeight={'bold'}
+							display='flex'
+							justifyContent='center'
+							alignItems='center'
+							fontSize={30}
+							cursor='pointer'
+							onClick={() => {
+								navigate('/blogs');
+							}}
+						>
+							Read More
+						</Box>
 					</Box>
 				</Box>
-				<Box
-					bgImage={img5}
-					bgSize='cover'
-					w='100%'
-					h='150px'
-					gridColumn={{ lg: '1 / 3' }}
-					borderRadius='md'
-					display={'flex'}
-					alignItems='end'
-					pb={3}
-					pl={2}
-					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-				>
-					Blog Four
-				</Box>
-				<Box
-					bgImage={img6}
-					bgSize='cover'
-					w='100%'
-					h='150px'
-					gridColumn={{ lg: '3 / 5' }}
-					borderRadius='md'
-					display={'flex'}
-					alignItems='end'
-					pb={3}
-					pl={2}
-					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-				>
-					Blog Five
-				</Box>
-			</Box>
+			)}
 		</Box>
 	);
 };

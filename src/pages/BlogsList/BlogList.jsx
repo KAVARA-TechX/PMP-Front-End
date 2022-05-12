@@ -33,6 +33,7 @@ const Blog = ({ data }) => {
 	return (
 		<Box
 			display={'flex'}
+			flexDir={{ base: 'column', lg: 'row' }}
 			borderTop='1px solid rgba(255,255,255,.3)'
 			borderBottom='1px solid rgba(255,255,255,.3)'
 			py={4}
@@ -40,12 +41,15 @@ const Blog = ({ data }) => {
 		>
 			{/* this box is for data  */}
 			<Box
-				w={'60%'}
+				w={{ base: '100%', lg: '60%' }}
+				h='fit-content'
+				pb={10}
 				pr={4}
 				position='relative'
 				onClick={() => {
 					navigate(`/blogs/${data._id}`, { state: data });
 				}}
+				order={{ base: 2, lg: 1 }}
 			>
 				{/* Heading */}
 				<Text
@@ -54,6 +58,7 @@ const Blog = ({ data }) => {
 					fontWeight={'bold'}
 					pb={5}
 					pt={4}
+					textAlign='justify'
 				>
 					{data.blogHeading}
 				</Text>
@@ -65,7 +70,12 @@ const Blog = ({ data }) => {
 					printer took a galley of type and scrambled it to make a
 					type specimen book. */}
 					{data.blogBody
-						? data.blogBody.replace(/(<([^>]+)>)/gi, '')
+						? data.blogBody.replace(/(<([^>]+)>)/gi, '').length >
+						  200
+							? data.blogBody
+									.replace(/(<([^>]+)>)/gi, '')
+									.slice(0, 200) + '...'
+							: data.blogBody.replace(/(<([^>]+)>)/gi, '')
 						: ''}
 				</Text>
 				<Box position={'absolute'} bottom={0}>
@@ -78,7 +88,7 @@ const Blog = ({ data }) => {
 				</Box>
 			</Box>
 			{/* this box is for image */}
-			<Box w='40%'>
+			<Box w={{ base: '100%', lg: '40%' }} order={{ base: 1, lg: 2 }}>
 				<Image src={data.imageUrl} />
 			</Box>
 		</Box>

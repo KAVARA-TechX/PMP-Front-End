@@ -18,7 +18,7 @@ const Hero = () => {
 
 		let index = 0;
 
-		setInterval(() => {
+		const interval = setInterval(() => {
 			index++;
 			slides.style.transform = `translateX(-${100 * index}vw)`;
 			slides.style.transition = '1s';
@@ -29,6 +29,9 @@ const Hero = () => {
 				slides.style.transform = `translateX(-${100 * index}vw)`;
 			}
 		}, 3000);
+		return () => {
+			clearInterval(interval);
+		};
 	});
 
 	return (
