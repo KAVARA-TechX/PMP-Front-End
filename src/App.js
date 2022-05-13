@@ -4,6 +4,7 @@ import Homepage from './Homepage';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Hotels from './pages/hotels/Hotels';
+import ListingPage from './pages/listingPage/ListingPage';
 import PackagesPage from './pages/packages/Packages';
 import SearchResult from './pages/SearchResult/SearchResult';
 
@@ -23,6 +24,7 @@ const App = () => {
 			</Route>
 			<Route path='/packages' element={<PackagesPage />} />
 			<Route path='/Hotels' element={<Hotels />} />
+			<Route path='/listing' element={<ListingPage />} />
 		</Routes>
 	);
 };

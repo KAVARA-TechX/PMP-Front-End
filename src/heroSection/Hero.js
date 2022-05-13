@@ -18,7 +18,7 @@ const Hero = () => {
 
 		let index = 0;
 
-		setInterval(() => {
+		const interval = setInterval(() => {
 			index++;
 			slides.style.transform = `translateX(-${100 * index}vw)`;
 			slides.style.transition = '1s';
@@ -29,6 +29,9 @@ const Hero = () => {
 				slides.style.transform = `translateX(-${100 * index}vw)`;
 			}
 		}, 3000);
+		return () => {
+			clearInterval(interval);
+		};
 	});
 
 	return (
@@ -67,7 +70,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
@@ -99,7 +102,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
@@ -130,7 +133,7 @@ const Hero = () => {
 								base: 'translateX(-50%) translateY(-50%)',
 								lg: 'none',
 							}}
-							fontSize={60}
+							fontSize={50}
 							fontWeight={300}
 							lineHeight={1}
 							textAlign={{ base: 'center', lg: 'start' }}
