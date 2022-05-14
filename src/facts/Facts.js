@@ -1,10 +1,18 @@
 // import { lazy, Suspense } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import image from '../assets/thingsToDo/dream-vacation.png';
+import './Facts.css';
 
 const Facts = () => {
 	return (
-		<Box w='100vw' h='600px' display='flex' mt='150px' mb={10}>
+		<Box
+			w='100vw'
+			h='600px'
+			display='flex'
+			mt='150px'
+			mb={10}
+			className='facts'
+		>
 			<Box
 				w={{ base: '0%', lg: '50%' }}
 				bgImage={image}
@@ -16,7 +24,13 @@ const Facts = () => {
 					<Text fontSize={20} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>
-					<Text fontSize={40} fontWeight={800} lineHeight={1} mb={5}>
+					<Text
+						fontSize={40}
+						fontWeight={800}
+						lineHeight={1}
+						mb={5}
+						className='facts-heading'
+					>
 						We help you find your dream vacation
 					</Text>
 					<Text lineHeight={1.4}>

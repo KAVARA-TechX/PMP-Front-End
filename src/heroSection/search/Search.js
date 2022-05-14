@@ -1,9 +1,10 @@
+import { SearchIcon } from '@chakra-ui/icons';
 import { Box, Text, Input, Button } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
-	const [location, setLocation] = useState('');
+	const [location, setLocation] = useState('fdd');
 	const [guest, setGuest] = useState(1);
 	const [submitButton, setSubmitButton] = useState(true);
 	let today = new Date();
@@ -53,10 +54,10 @@ const Search = () => {
 		<Box
 			position='absolute'
 			zIndex={100}
-			w={{ base: '100vw', lg: '80vw' }}
+			w={{ base: '100vw', lg: '70vw' }}
 			h='fit-content'
 			bg='#222222'
-			borderRadius={{ base: 'none', lg: 'xl' }}
+			borderRadius={{ base: 'none', lg: 'full' }}
 			left='50%'
 			bottom={{ base: '-10%', lg: '0%' }}
 			transform='translateX(-50%) translateY(50%)'
@@ -67,17 +68,17 @@ const Search = () => {
 				lg: '25% 20% 20% 20% 15%',
 			}}
 			pl={5}
-			pr={5}
-			pt={5}
-			pb={5}
+			pr={0}
+			pt={4}
+			pb={4}
 			alignItems='center'
 		>
 			{/* location */}
 			<Box pl={5} pr={5} gridColumn={{ base: '1 / 3', lg: '1 / 2' }}>
 				<Text fontWeight={500} textAlign='start'>
-					Location
+					Where
 				</Text>
-				<Input
+				{/* <Input
 					textAlign='start'
 					type='text'
 					placeholder='location'
@@ -90,14 +91,14 @@ const Search = () => {
 					onChange={(e) => {
 						setLocation(e.target.value);
 					}}
-				/>
+				/> */}
 			</Box>
 			{/* check in */}
 			<Box flexGrow={1} pl={5} pr={5}>
 				<Text fontWeight={500} textAlign='start'>
 					Check In
 				</Text>
-				<Input
+				{/* <Input
 					textAlign={{ base: 'center', lg: 'start' }}
 					type='date'
 					border='none'
@@ -110,14 +111,14 @@ const Search = () => {
 						console.log(e.target.value);
 						setStartDate(e.target.value);
 					}}
-				/>
+				/> */}
 			</Box>
 			{/* check out */}
 			<Box flexGrow={1} pl={5} pr={5}>
 				<Text fontWeight={500} textAlign='start'>
 					Check Out
 				</Text>
-				<Input
+				{/* <Input
 					textAlign='start'
 					type='date'
 					border='none'
@@ -131,7 +132,7 @@ const Search = () => {
 						console.log(e.target.value);
 						setEndDate(e.target.value);
 					}}
-				/>
+				/> */}
 			</Box>
 			{/* Guests */}
 			<Box pl={5} pr={5} gridColumn={{ base: '1 / 3', lg: '4 / 5' }}>
@@ -140,9 +141,9 @@ const Search = () => {
 					fontWeight={500}
 					textAlign='start'
 				>
-					Guests
+					Who
 				</Text>
-				<Input
+				{/* <Input
 					type='number'
 					border='none'
 					placeholder='1'
@@ -154,7 +155,7 @@ const Search = () => {
 					onChange={(e) => {
 						setGuest(e.target.value);
 					}}
-				/>
+				/> */}
 			</Box>
 			{/* search Button */}
 			<Box
@@ -167,15 +168,18 @@ const Search = () => {
 				mt={{ base: 3, lg: 0 }}
 			>
 				<Button
-					h='50px'
+					h='40px'
 					w='100%'
 					bg='#32BAC9'
 					color='white'
 					onClick={handleForm}
 					disabled={submitButton}
+					borderRadius='full'
 					_hover={{ backgroundColor: '#32BAC9' }}
+					display='flex'
+					gap={2}
 				>
-					Search
+					<SearchIcon /> Search
 				</Button>
 			</Box>
 		</Box>

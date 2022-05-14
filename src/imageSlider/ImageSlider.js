@@ -10,6 +10,7 @@ import spa from '../assets/thingsToDo/spa.png';
 import sunset from '../assets/thingsToDo/sunset.png';
 import surf from '../assets/thingsToDo/skiing.png';
 import surfing from '../assets/thingsToDo/Surfing.png';
+import './ImageSlider.css';
 
 const ImageSlider = () => {
 	return (
@@ -17,7 +18,7 @@ const ImageSlider = () => {
 			w={{ base: '100vw', lg: '80vw' }}
 			mx='auto'
 			// className='show-scroll-when-scrolling'
-			className='hide-scroll-bar'
+			className='hide-scroll-bar ImageSlider'
 			mb={7}
 		>
 			{/* slider heading */}
@@ -27,6 +28,7 @@ const ImageSlider = () => {
 					fontWeight={600}
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
+					className='ImageSlider-heading'
 				>
 					Fun and Explore
 				</Text>
@@ -52,10 +54,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow=' rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='0.5s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -80,10 +87,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow=' rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='0.5s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -108,10 +120,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='0.5s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -136,10 +153,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='0.5s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -164,10 +186,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='.2s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -193,10 +220,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='.2s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -221,10 +253,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='.2s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
@@ -247,10 +284,15 @@ const ImageSlider = () => {
 					mx={5}
 					w='250px'
 					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+					boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					position={'relative'}
 					overflow='hidden'
 					className='hide-scroll-bar'
+					transition='.2s'
+					_hover={{
+						boxShadow:
+							'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+					}}
 				>
 					<Text
 						w='100%'
