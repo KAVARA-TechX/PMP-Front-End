@@ -1,11 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import img1 from '../assets/banner.jpeg';
-import img2 from '../assets/VisitMaldives.png';
-import img3 from '../assets/MainBanner2.png';
 import img4 from '../assets/thingsToDo/house.png';
-import img5 from '../assets/banner.png';
-import img6 from '../assets/footer.jpg';
 import { useEffect, useState } from 'react';
 import getBlogsByCount from '../apis/getBlogsByCount';
 import './Blog.css';
@@ -66,8 +61,6 @@ const Blog = () => {
 						borderRadius='md'
 						display={'flex'}
 						alignItems='end'
-						pb={3}
-						pl={2}
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
@@ -75,8 +68,19 @@ const Blog = () => {
 								state: latestBlogs[0],
 							});
 						}}
+						className='show'
 					>
-						{latestBlogs[0].blogHeading}
+						<Box
+							w='100%'
+							h='100%'
+							display={'none'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='30px'
+							bg='rgba(0,0,0,.3)'
+						>
+							{latestBlogs[0].blogHeading}
+						</Box>
 					</Box>
 					<Box
 						bgImage={latestBlogs[1].imageUrl}
@@ -88,8 +92,6 @@ const Blog = () => {
 						gridColumnEnd={{ lg: 4 }}
 						display={'flex'}
 						alignItems='end'
-						pb={3}
-						pl={2}
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
@@ -97,8 +99,19 @@ const Blog = () => {
 								state: latestBlogs[1],
 							});
 						}}
+						className='show'
 					>
-						{latestBlogs[1].blogHeading}
+						<Box
+							w='100%'
+							h='100%'
+							display={'none'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='30px'
+							bg='rgba(0,0,0,.3)'
+						>
+							{latestBlogs[1].blogHeading}
+						</Box>
 					</Box>
 					<Box
 						bgImage={latestBlogs[2].imageUrl}
@@ -110,8 +123,6 @@ const Blog = () => {
 						gridColumnEnd={{ lg: 5 }}
 						display={'flex'}
 						alignItems='end'
-						pb={3}
-						pl={2}
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
@@ -119,8 +130,19 @@ const Blog = () => {
 								state: latestBlogs[2],
 							});
 						}}
+						className='show'
 					>
-						{latestBlogs[2].blogHeading}
+						<Box
+							w='100%'
+							h='100%'
+							display={'none'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='30px'
+							bg='rgba(0,0,0,.3)'
+						>
+							{latestBlogs[2].blogHeading}
+						</Box>
 					</Box>
 					<Box
 						bgImage={latestBlogs[3].imageUrl}
@@ -135,16 +157,25 @@ const Blog = () => {
 						overflow='hidden'
 						display={'flex'}
 						alignItems='end'
-						pb={3}
-						pl={2}
 						cursor={'pointer'}
 						onClick={() => {
 							navigate(`blogs/${latestBlogs[3]._id}`, {
 								state: latestBlogs[3],
 							});
 						}}
+						className='show'
 					>
-						{latestBlogs[3].blogHeading}
+						<Box
+							w='100%'
+							h='100%'
+							display={'none'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='30px'
+							bg='rgba(0,0,0,.3)'
+						>
+							{latestBlogs[3].blogHeading}
+						</Box>
 					</Box>
 					<Box
 						bgImage={latestBlogs[4].imageUrl}
@@ -156,8 +187,6 @@ const Blog = () => {
 						borderRadius='md'
 						display={'flex'}
 						alignItems='end'
-						pb={3}
-						pl={2}
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
@@ -165,8 +194,19 @@ const Blog = () => {
 								state: latestBlogs[4],
 							});
 						}}
+						className='show'
 					>
-						{latestBlogs[4].blogHeading}
+						<Box
+							w='100%'
+							h='100%'
+							display={'none'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='30px'
+							bg='rgba(0,0,0,.3)'
+						>
+							{latestBlogs[4].blogHeading}
+						</Box>
 					</Box>
 					<Box
 						bgImage={img4}

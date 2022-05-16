@@ -11,6 +11,11 @@ import {
 	DrawerCloseButton,
 	DrawerHeader,
 	DrawerBody,
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuList,
+	MenuGroup,
 } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
@@ -72,7 +77,7 @@ const Nav = () => {
 							navigate('/');
 						}}
 					>
-						Home
+						{/* Home */}
 					</Text>
 					<Text
 						cursor={'pointer'}
@@ -84,31 +89,47 @@ const Nav = () => {
 							navigate('/blogs');
 						}}
 					>
-						Blogs
+						{/* Blogs */}
 					</Text>
-					<Box
-						bg='rgba(0,0,0,.5)'
-						// bg='#222222'
-						_hover={{ backgroundColor: 'rgba(0,0,0,.5)' }}
-						color='white'
-						borderRadius={'full'}
-						display='flex'
-						boxShadow='xl'
-						alignItems={'center'}
-						gap={3}
-						px={'10px'}
-						py={'7px'}
-					>
-						<Icon
-							as={GiHamburgerMenu}
-							fontSize={20}
-							color='gray.400'
-						/>
-						<Icon
-							as={BsPersonCircle}
-							fontSize={30}
-							color='whiteAlpha.900'
-						/>
+					<Box>
+						<Menu>
+							<MenuButton>
+								<Box
+									bg='rgba(0,0,0,.5)'
+									// bg='#222222'
+									_hover={{
+										backgroundColor: 'rgba(0,0,0,.5)',
+									}}
+									color='white'
+									borderRadius={'full'}
+									display='flex'
+									boxShadow='xl'
+									alignItems={'center'}
+									gap={3}
+									px={'10px'}
+									py={'7px'}
+								>
+									<Icon
+										as={GiHamburgerMenu}
+										fontSize={20}
+										color='gray.400'
+									/>
+									<Icon
+										as={BsPersonCircle}
+										fontSize={30}
+										color='whiteAlpha.900'
+									/>
+								</Box>
+							</MenuButton>
+							<MenuList bg='#222222' border='none'>
+								<MenuItem _focus={{ bg: 'rgba(0,0,0,.3)' }}>
+									Login
+								</MenuItem>
+								<MenuItem _focus={{ bg: 'rgba(0,0,0,.3)' }}>
+									SignUp
+								</MenuItem>
+							</MenuList>
+						</Menu>
 					</Box>
 				</Box>
 				<Box

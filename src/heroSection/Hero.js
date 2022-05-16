@@ -160,7 +160,7 @@ const Hero = () => {
 					left={{ lg: '50px' }}
 					zIndex={{ base: 10000000, lg: 1 }}
 				>
-					<Button
+					{/* <Button
 						fontSize={20}
 						color='white'
 						bg='#32BAC9'
@@ -174,7 +174,7 @@ const Hero = () => {
 						}}
 					>
 						Discover Now
-					</Button>
+					</Button> */}
 				</Box>
 				<Search />
 				{/* <Button

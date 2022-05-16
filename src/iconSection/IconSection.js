@@ -8,13 +8,19 @@ const IconSection = () => {
 	return (
 		<Box
 			w='100vw'
-			h='130px'
+			h='fit-content'
 			bg='#32BAC9'
 			display={'grid'}
-			gridTemplateColumns={'repeat(4, 1fr)'}
+			gridTemplateColumns={{
+				base: 'repeat(2,1fr)',
+				lg: 'repeat(4, 1fr)',
+			}}
 			alignItems='center'
 			textAlign={'center'}
 			color='white'
+			pt={'40px'}
+			pb={'40px'}
+			rowGap='50px'
 			mb={10}
 		>
 			<Box display={'flex'} flexDir='column' fontWeight={500}>
