@@ -1,13 +1,15 @@
 import { Box, Icon, Text, Image } from '@chakra-ui/react';
 import {
 	FaFacebookF,
-	FaInstagram,
 	FaLinkedinIn,
 	FaTwitter,
 	FaYoutube,
+	FaInstagram,
 } from 'react-icons/fa';
+import instagram from './instagram.png';
 import cftlogo from '../assets/logo.png';
 import footer from '../assets/footer4.jpg';
+import './Footer.css';
 
 const Footer = () => {
 	return (
@@ -59,22 +61,22 @@ const Footer = () => {
 							px={{ lg: 20 }}
 							className='hide-scroll-bar'
 						>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								About Us
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								Careers
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								Blogs
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								Testimonials
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								FAQ
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400}>
 								T&C
 							</Text>
 						</Box>
@@ -94,16 +96,16 @@ const Footer = () => {
 							px={{ lg: 20 }}
 							className='hide-scroll-bar'
 						>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								Contact Us
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								For Travel Agents
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								For Travellers
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text fontSize={17} fontWeight={400} mb='5px'>
 								For Brands
 							</Text>
 						</Box>
@@ -142,26 +144,31 @@ const Footer = () => {
 								justifyContent='center'
 								alignItems={'center'}
 								p={5}
-								className='hide-scroll-bar'
+								className='hide-scroll-bar facebook'
 								mx='auto'
 							>
 								<Icon as={FaFacebookF} color='rgb(51,55,64)' />
 							</Box>
 							<Box
 								as='a'
+								h='fit-content'
 								href='https://www.instagram.com/planmyleisure/'
-								w='20px'
-								h='20px'
 								borderRadius={'full'}
 								bg='#32BAC9'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
-								className='hide-scroll-bar'
-								p={5}
+								className='hide-scroll-bar instagram'
 								mx='auto'
+								p={'11px'}
 							>
-								<Icon as={FaInstagram} color='rgb(51,55,64)' />
+								{/* <Icon as={FaInstagram} color='rgb(51,55,64)' /> */}
+								<Image
+									h='20px'
+									w='20px'
+									src={instagram}
+									className='ilogo'
+								/>
 							</Box>
 							<Box
 								as='a'
@@ -173,7 +180,7 @@ const Footer = () => {
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}
-								className='hide-scroll-bar'
+								className='hide-scroll-bar linkedin'
 								p={5}
 								mx='auto'
 							>
@@ -191,7 +198,7 @@ const Footer = () => {
 								alignItems={'center'}
 								p={5}
 								mx='auto'
-								className='hide-scroll-bar'
+								className='hide-scroll-bar twitter'
 							>
 								<Icon as={FaTwitter} color='rgb(51,55,64)' />
 							</Box>
@@ -206,7 +213,7 @@ const Footer = () => {
 								justifyContent='center'
 								alignItems={'center'}
 								p={5}
-								className='hide-scroll-bar'
+								className='hide-scroll-bar youtube'
 								mx='auto'
 							>
 								<Icon as={FaYoutube} color='rgb(51,55,64)' />

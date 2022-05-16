@@ -1,12 +1,39 @@
 import { SearchIcon } from '@chakra-ui/icons';
-import { Box, Text, Input, Button } from '@chakra-ui/react';
+import {
+	Box,
+	Text,
+	Input,
+	Button,
+	Popover,
+	PopoverTrigger,
+	Portal,
+	PopoverContent,
+	PopoverArrow,
+	PopoverHeader,
+	PopoverCloseButton,
+	PopoverBody,
+	PopoverFooter,
+	useDisclosure,
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import { useNavigate } from 'react-router-dom';
+import './Search.css';
+import CheckInDate from './searchComponents/CheckInDate';
+import CheckOutDate from './searchComponents/CheckOutDate';
+import Who from './searchComponents/Who';
+import When from './searchComponents/When';
 
 const Search = () => {
 	const [location, setLocation] = useState('fdd');
+	const [checkinDate, setCheckinDate] = useState(new Date());
+
 	const [guest, setGuest] = useState(1);
 	const [submitButton, setSubmitButton] = useState(true);
+	const { onOpen, onClose, isOpen } = useDisclosure();
+	const [isCheckIn, setIsCheckIn] = useState(false);
+	const [checkinValue, setCheckinValue] = useState('CheckIn');
+	const [checkoutValue, setCheckoutValue] = useState('CheckOut');
 	let today = new Date();
 	const navigate = useNavigate();
 
@@ -53,35 +80,37 @@ const Search = () => {
 	return (
 		<Box
 			position='absolute'
-			zIndex={100}
-			w={{ base: '100vw', lg: '70vw' }}
+			zIndex={9}
+			minW={{ base: '80vw', lg: '50vw' }}
 			h='fit-content'
 			bg='#222222'
-			borderRadius={{ base: 'none', lg: 'full' }}
+			borderRadius={{ base: 'md', lg: 'full' }}
 			left='50%'
 			bottom={{ base: '-10%', lg: '0%' }}
 			transform='translateX(-50%) translateY(50%)'
 			boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px;'}
-			display='grid'
-			gridTemplateColumns={{
-				base: 'repeat(2,1fr)',
-				lg: '25% 20% 20% 20% 15%',
-			}}
+			display='flex'
+			flexDir={{ base: 'column', lg: 'row' }}
+			justifyContent={'space-around'}
+			// gridTemplateColumns={{
+			// 	base: 'repeat(2,1fr)',
+			// 	lg: '25% 25% 25% 25%',
+			// }}
 			pl={5}
-			pr={0}
+			pr={{ base: 5, lg: 0 }}
 			pt={4}
 			pb={4}
 			alignItems='center'
+			flexWrap={'wrap'}
 		>
 			{/* location */}
-			<Box pl={5} pr={5} gridColumn={{ base: '1 / 3', lg: '1 / 2' }}>
-				<Text fontWeight={500} textAlign='start'>
-					Where
-				</Text>
-				{/* <Input
-					textAlign='start'
+			<Box w={{ base: '100%', lg: '100px' }}>
+				<Input
+					textAlign='center'
+					w='100%'
+					fontSize={20}
 					type='text'
-					placeholder='location'
+					placeholder='Where'
 					outline={'none'}
 					border='none'
 					pl={0}
@@ -91,90 +120,26 @@ const Search = () => {
 					onChange={(e) => {
 						setLocation(e.target.value);
 					}}
-				/> */}
+				/>
 			</Box>
-			{/* check in */}
-			<Box flexGrow={1} pl={5} pr={5}>
-				<Text fontWeight={500} textAlign='start'>
-					Check In
-				</Text>
-				{/* <Input
-					textAlign={{ base: 'center', lg: 'start' }}
-					type='date'
-					border='none'
-					w={'fit-content'}
-					pl={0}
-					pr={0}
-					_focus={{ outline: 'none' }}
-					defaultValue={startDate}
-					onChange={(e) => {
-						console.log(e.target.value);
-						setStartDate(e.target.value);
-					}}
-				/> */}
-			</Box>
-			{/* check out */}
-			<Box flexGrow={1} pl={5} pr={5}>
-				<Text fontWeight={500} textAlign='start'>
-					Check Out
-				</Text>
-				{/* <Input
-					textAlign='start'
-					type='date'
-					border='none'
-					pl={0}
-					pr={0}
-					w={'fit-content'}
-					_focus={{ outline: 'none' }}
-					_selected={new Date()}
-					defaultValue={endDate}
-					onChange={(e) => {
-						console.log(e.target.value);
-						setEndDate(e.target.value);
-					}}
-				/> */}
-			</Box>
-			{/* Guests */}
-			<Box pl={5} pr={5} gridColumn={{ base: '1 / 3', lg: '4 / 5' }}>
-				<Text
-					pt={{ base: 3, lg: 0 }}
-					fontWeight={500}
-					textAlign='start'
-				>
-					Who
-				</Text>
-				{/* <Input
-					type='number'
-					border='none'
-					placeholder='1'
-					pl={0}
-					pr={0}
-					_focus={{ outline: 'none' }}
-					textAlign='start'
-					value={guest}
-					onChange={(e) => {
-						setGuest(e.target.value);
-					}}
-				/> */}
-			</Box>
+			<When />
+			<Who />
 			{/* search Button */}
 			<Box
-				flexGrow={0.7}
-				pl={5}
-				pr={5}
-				gridColumn={{ base: '1 / 3', lg: '5 / 6' }}
+				w={{ base: '100%', lg: '100px' }}
 				display='flex'
 				justifyContent={'center'}
-				mt={{ base: 3, lg: 0 }}
+				mt={{ base: 5, lg: 0 }}
+				// mr={}
 			>
 				<Button
 					h='40px'
-					w='100%'
+					w={{ base: '100%', lg: 'fit-content' }}
 					bg='#32BAC9'
 					color='white'
 					onClick={handleForm}
 					disabled={submitButton}
-					borderRadius='full'
+					borderRadius={{ base: 'md', lg: 'full' }}
 					_hover={{ backgroundColor: '#32BAC9' }}
 					display='flex'
 					gap={2}

@@ -95,29 +95,12 @@ const PackagesPage = () => {
 						display={'flex'}
 						overflow='hidden'
 					>
-						{/* <Box
-							position={'absolute'}
-							right={'30px'}
-							top='20px'
-							cursor='pointer'
-							onClick={() => {
-								onClose();
-							}}
-						>
-							<CloseIcon />
-						</Box>
 						<Box
-							position={'absolute'}
-							right={'350px'}
-							top='20px'
-							cursor='pointer'
-							onClick={() => {
-								onClose();
-							}}
-						>
-							<ArrowBackIcon fontSize={20} />
-						</Box> */}
-						<Box w='300px' bgImg={sideImg} bgSize='cover'></Box>
+							w='300px'
+							bgImg={sideImg}
+							bgSize='cover'
+							display={{ base: 'none', lg: 'block' }}
+						></Box>
 						{showDate ? (
 							<Box w='400px' pt='50px'>
 								<Text
@@ -380,14 +363,18 @@ const PackagesPage = () => {
 				<Box
 					position='absolute'
 					left='50%'
-					top='50%'
+					top={{ base: '50%', lg: '50%' }}
 					transform='translate(-50%,-50%)'
 					display={'flex'}
 					flexDir='column'
 					justifyContent={'center'}
 					alignItems='center'
 				>
-					<Text fontSize={50} fontWeight={700}>
+					<Text
+						fontSize={{ base: 40, lg: 50 }}
+						fontWeight={700}
+						textAlign={{ base: 'center' }}
+					>
 						Maldives Tour Packages
 					</Text>
 					<Text></Text>
@@ -420,7 +407,7 @@ const PackagesPage = () => {
 					w='100%'
 					h='fit-content'
 					bg='black'
-					display={'flex'}
+					display={{ base: 'none', lg: 'flex' }}
 					justifyContent='space-between'
 					px='5vw'
 					py='20px'

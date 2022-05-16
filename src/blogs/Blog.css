@@ -1,3 +1,7 @@
 .Blog:hover .Blog-heading {
 	color: #32bac9;
 }
+
+.show:hover div {
+	display: flex;
+}
