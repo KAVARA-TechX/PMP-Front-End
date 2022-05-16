@@ -8,6 +8,7 @@ import img5 from '../assets/banner.png';
 import img6 from '../assets/footer.jpg';
 import { useEffect, useState } from 'react';
 import getBlogsByCount from '../apis/getBlogsByCount';
+import './Blog.css';
 
 const Blog = () => {
 	const [latestBlogs, setLatestBlogs] = useState([]);
@@ -30,12 +31,13 @@ const Blog = () => {
 	}, []);
 
 	return (
-		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto'>
+		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto' className='Blog'>
 			<Text
 				fontSize={30}
 				fontWeight={600}
 				mb={5}
 				textAlign={{ base: 'center', lg: 'start' }}
+				className='Blog-heading'
 			>
 				Blogs
 			</Text>

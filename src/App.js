@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
+import AboutPackage from './pages/aboutPackage/AboutPackage';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Hotels from './pages/hotels/Hotels';
@@ -25,6 +26,7 @@ const App = () => {
 			<Route path='/packages' element={<PackagesPage />} />
 			<Route path='/Hotels' element={<Hotels />} />
 			<Route path='/listing' element={<ListingPage />} />
+			<Route path='/about-package/' element={<AboutPackage />} />
 		</Routes>
 	);
 };
