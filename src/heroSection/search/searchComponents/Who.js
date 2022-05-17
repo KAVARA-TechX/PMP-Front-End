@@ -10,15 +10,24 @@ import {
 	Icon,
 	PopoverArrow,
 	PopoverCloseButton,
+	useOutsideClick,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 const Who = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const ref = useRef();
 
 	const [numberOfAdults, setNumberOfAdults] = useState(0);
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
+
+	useOutsideClick({
+		ref: ref,
+		handler: () => {
+			onClose();
+		},
+	});
 
 	return (
 		<Box minW='100px' textAlign={'center'} mt={{ base: 3, lg: 0 }}>
@@ -42,7 +51,7 @@ const Who = () => {
 				</PopoverTrigger>
 				<Box zIndex={110}>
 					<Portal zIndex={10000} w='full' h='full'>
-						<PopoverContent bg='#222222' zIndex={10000}>
+						<PopoverContent bg='#222222' zIndex={10000} ref={ref}>
 							<PopoverArrow bg='#222222' />
 							<Box
 								zIndex={110}
