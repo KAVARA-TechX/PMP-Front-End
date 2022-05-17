@@ -81,7 +81,7 @@ const Search = () => {
 		<Box
 			position='absolute'
 			zIndex={9}
-			minW={{ base: '80vw', lg: '50vw' }}
+			minW={{ base: '80vw', lg: '70vw' }}
 			h='fit-content'
 			bg='#222222'
 			borderRadius={{ base: 'md', lg: 'full' }}
@@ -91,13 +91,9 @@ const Search = () => {
 			boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px;'}
 			display='flex'
 			flexDir={{ base: 'column', lg: 'row' }}
-			justifyContent={'space-around'}
-			// gridTemplateColumns={{
-			// 	base: 'repeat(2,1fr)',
-			// 	lg: '25% 25% 25% 25%',
-			// }}
-			pl={5}
-			pr={{ base: 5, lg: 0 }}
+			justifyContent={'space-between'}
+			pl={{ base: 5, lg: '50px' }}
+			pr={{ base: 5, lg: '20px' }}
 			pt={4}
 			pb={4}
 			alignItems='center'
@@ -106,7 +102,7 @@ const Search = () => {
 			{/* location */}
 			<Box w={{ base: '100%', lg: '100px' }}>
 				<Input
-					textAlign='center'
+					textAlign={{ base: 'center', lg: 'start' }}
 					w='100%'
 					fontSize={20}
 					type='text'
@@ -119,6 +115,9 @@ const Search = () => {
 					pb={{ base: 3, lg: 0 }}
 					onChange={(e) => {
 						setLocation(e.target.value);
+					}}
+					_placeholder={{
+						color: '#f5f5f5',
 					}}
 				/>
 			</Box>

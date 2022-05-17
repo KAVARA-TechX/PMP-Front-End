@@ -6,15 +6,17 @@ import {
 	Portal,
 	PopoverContent,
 	useDisclosure,
+	useOutsideClick,
 } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { addDays, format } from 'date-fns';
 import CheckOutDate from './CheckOutDate';
 import CheckInDate from './CheckInDate';
 
 const When = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const popoverRef = useRef();
 
 	const [isCheckInSelected, setIsCheckInSelected] = useState(false);
 
@@ -22,6 +24,13 @@ const When = () => {
 	const [checkOutDate, setCheckoutDate] = useState();
 
 	const [checkoutValue, setCheckoutValue] = useState('When');
+
+	useOutsideClick({
+		ref: popoverRef,
+		handler: () => {
+			onClose();
+		},
+	});
 
 	const handleCheckInDate = (e) => {
 		setCheckInDate(e);
@@ -46,7 +55,7 @@ const When = () => {
 			textAlign={'center'}
 			minW={{ base: '50%', lg: '100px' }}
 		>
-			<Popover zIndex={10000} isOpen={isOpen}>
+			<Popover zIndex={10000} isOpen={isOpen} isLazy>
 				<PopoverTrigger zIndex={10000}>
 					<Text
 						cursor={'pointer'}
@@ -61,7 +70,11 @@ const When = () => {
 				</PopoverTrigger>
 				<Box zIndex={110}>
 					<Portal zIndex={10000} w='full' h='full'>
-						<PopoverContent bg='#222222' zIndex={10000}>
+						<PopoverContent
+							bg='#222222'
+							zIndex={10000}
+							ref={popoverRef}
+						>
 							{!isCheckInSelected ? (
 								<CheckInDate
 									handleStart={handleCheckInDate}

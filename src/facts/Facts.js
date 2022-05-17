@@ -33,7 +33,11 @@ const Facts = () => {
 					>
 						We help you find your dream vacation
 					</Text>
-					<Text lineHeight={1.4}>
+					<Text
+						lineHeight={1.4}
+						textAlign='start'
+						pr={{ base: '', lg: '50px' }}
+					>
 						We make sure you enjoy your leisure to the fullest .
 						Over the years, we have helped more than 10000
 						travellers find the perfect holiday package to their

@@ -11,11 +11,11 @@ const Blog = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log('running effect');
+		setLoading(true);
 		const getLatestBlog = async () => {
 			try {
 				const response = await getBlogsByCount(1, 5);
-				setLatestBlogs(response.data);
+				setLatestBlogs(response.data.blogs);
 				setLoading(false);
 			} catch (error) {
 				console.log(error);
