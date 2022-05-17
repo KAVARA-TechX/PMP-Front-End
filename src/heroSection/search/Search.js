@@ -91,9 +91,9 @@ const Search = () => {
 			boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px;'}
 			display='flex'
 			flexDir={{ base: 'column', lg: 'row' }}
-			justifyContent={'space-around'}
-			pl={5}
-			pr={{ base: 5, lg: 0 }}
+			justifyContent={'space-between'}
+			pl={{ base: 5, lg: '50px' }}
+			pr={{ base: 5, lg: '20px' }}
 			pt={4}
 			pb={4}
 			alignItems='center'
