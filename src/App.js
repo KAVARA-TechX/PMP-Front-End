@@ -9,6 +9,7 @@ import ListingPage from './pages/listingPage/ListingPage';
 import PackagesPage from './pages/packages/Packages';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import SearchResult from './pages/SearchResult/SearchResult';
+import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 
 const App = () => {
 	return (
@@ -29,6 +30,7 @@ const App = () => {
 			<Route path='/listing' element={<ListingPage />} />
 			<Route path='/about-package/' element={<AboutPackage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+			<Route path='/term-of-use' element={<TermsOfUse />} />
 		</Routes>
 	);
 };
