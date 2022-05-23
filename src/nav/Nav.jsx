@@ -155,6 +155,11 @@ const Nav = () => {
 										<MenuItem
 											_focus={{ bg: 'rgba(0,0,0,.3)' }}
 										>
+											My Bookings
+										</MenuItem>
+										<MenuItem
+											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+										>
 											Profile
 										</MenuItem>
 										<GoogleLogout
