@@ -15,15 +15,22 @@ import {
 	Input,
 	useToast,
 } from '@chakra-ui/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import ReactDOM from 'react-dom';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
+import LoginApi from '../apis/LoginApi';
+import { FaLeaf } from 'react-icons/fa';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { setLoginState, setToken } = AccessLoginContext();
+	const { setLoginState, setToken, setUsed } = AccessLoginContext();
+	const [email, setEmail] = useState('');
+	const [checkEmail, setCheckEmail] = useState(false);
+	const [password, setPassword] = useState('');
+	const [checkPassword, setCheckPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const toast = useToast();
 
 	useEffect(() => {
@@ -36,6 +43,7 @@ const LoginModal = ({ open, setOpen }) => {
 		console.log(response);
 		setLoginState(true);
 		setToken(response.accessToken);
+		setUsed('google');
 		setOpen(false);
 		onClose();
 	};
@@ -49,6 +57,34 @@ const LoginModal = ({ open, setOpen }) => {
 			duration: 6000,
 			isClosable: true,
 		});
+	};
+
+	const handleLogin = async () => {
+		if (email !== '' && password !== '') {
+			setLoading(true);
+			try {
+				const response = await LoginApi(email, password);
+				console.log(response);
+				setLoginState(true);
+				setToken('nigolrofdesudrowssapliame');
+				setUsed('email');
+				setOpen(false);
+				onClose();
+				setLoading(false);
+			} catch (error) {
+				setLoading(false);
+				setCheckEmail(true);
+				setCheckPassword(true);
+			}
+		} else {
+			if (email === '') {
+				setCheckEmail(true);
+			}
+
+			if (password === '') {
+				setCheckPassword(true);
+			}
+		}
 	};
 
 	return (
@@ -95,11 +131,29 @@ const LoginModal = ({ open, setOpen }) => {
 						gap={3}
 						pt='20px'
 					>
-						<Input type={'email'} placeholder='Email' />
-						<Input type={'password'} placeholder='Password' />
+						<Input
+							type={'email'}
+							placeholder='Email'
+							isInvalid={checkEmail}
+							value={email}
+							onChange={(e) => {
+								setEmail(e.target.value);
+							}}
+						/>
+						<Input
+							type={'password'}
+							placeholder='Password'
+							isInvalid={checkPassword}
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+						/>
 						<Button
 							bg='#32BAC9'
 							_hover={{ backgroundColor: '#32BAC9' }}
+							onClick={handleLogin}
+							isLoading={loading}
 						>
 							Login
 						</Button>

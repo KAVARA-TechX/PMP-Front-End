@@ -27,11 +27,13 @@ import { useState } from 'react';
 import SignupModal from './SignupModal';
 import { AccessLoginContext } from '../context/LoginContext';
 import { GoogleLogout } from 'react-google-login';
+import LogoutApi from '../apis/LogoutApi';
 const Nav = () => {
 	const path = useLocation().pathname.split('/')[1];
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [open, setOpen] = useState(false);
 	const [signupOpen, setSignupOpen] = useState(false);
+	const { used } = AccessLoginContext();
 
 	const navigate = useNavigate();
 
@@ -51,6 +53,18 @@ const Nav = () => {
 	const timeToLogout = () => {
 		window.localStorage.clear();
 		document.location.reload();
+	};
+
+	const handleEmailLogout = async () => {
+		try {
+			const response = await LogoutApi();
+			if (response.status === 200) {
+				timeToLogout();
+			}
+		} catch (error) {
+			console.log(error);
+			timeToLogout();
+		}
 	};
 
 	return (
@@ -162,23 +176,36 @@ const Nav = () => {
 										>
 											Profile
 										</MenuItem>
-										<GoogleLogout
-											clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
-											render={(renderProps) => (
-												<MenuItem
-													_focus={{
-														bg: 'rgba(0,0,0,.3)',
-													}}
-													onClick={
-														renderProps.onClick
-													}
-												>
-													Logout
-												</MenuItem>
-											)}
-											buttonText='Logout'
-											onLogoutSuccess={timeToLogout}
-										></GoogleLogout>
+										{used === 'google' ? (
+											<GoogleLogout
+												clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
+												render={(renderProps) => (
+													<MenuItem
+														_focus={{
+															bg: 'rgba(0,0,0,.3)',
+														}}
+														onClick={
+															renderProps.onClick
+														}
+													>
+														Logout
+													</MenuItem>
+												)}
+												buttonText='Logout'
+												onLogoutSuccess={timeToLogout}
+											></GoogleLogout>
+										) : (
+											<MenuItem
+												_focus={{
+													bg: 'rgba(0,0,0,.3)',
+												}}
+												onClick={() => {
+													handleEmailLogout();
+												}}
+											>
+												Logout
+											</MenuItem>
+										)}
 										{/* <MenuItem
 											_focus={{ bg: 'rgba(0,0,0,.3)' }}
 										>
