@@ -18,7 +18,7 @@ const BlogDetails = () => {
 			<Nav />
 			<Box pl='5vw' pr='5vw' pt='50px' overflow={'hidden'}>
 				<Text fontSize={40} fontWeight={600} pb='30px'>
-					Heading One
+					{blogData.blogHeading}
 				</Text>
 				<Box h='fit-content' pb='30px'>
 					<Image src={blogData.imageUrl} mx='auto' w='90%' />

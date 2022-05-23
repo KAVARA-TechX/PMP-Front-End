@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import Hero from './heroSection/Hero';
-import { Box } from '@chakra-ui/react';
+import { Box, useToast } from '@chakra-ui/react';
 import Banner from './banner/Banner';
+import { useLocation } from 'react-router-dom';
 
 const Facts = lazy(() => {
 	return import('./facts/Facts');
@@ -30,42 +31,60 @@ const Footer = lazy(() => {
 
 const Homepage = () => {
 	const [load, setLoad] = useState(false);
+	const location = useLocation();
+	const toast = useToast();
+
+	useEffect(() => {
+		try {
+			if (location.state.account) {
+				toast({
+					title: 'Success',
+					description:
+						'Account is created successfully! Please login to continue.',
+					status: 'success',
+					position: 'top',
+					duration: 9000,
+					isClosable: true,
+				});
+			}
+		} catch (error) {}
+	}, [location]);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setLoad(true);
 		}, 100);
-	});
+	}, []);
 	return (
 		<Box overflow='hidden'>
 			<Hero /> {/* Responsive Done */}
 			{load ? (
 				<>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<Facts /> {/* Responsive Done */}
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<Packages /> {/* Responsive Done*/}
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<SpaceBetween space='50px' />
 					</Suspense>
 					<Suspense>
 						<Banner />
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<ImageSlider /> {/* Responsive Done */}
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						{/*<Partners /> {/* Responsive Done */}
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<IconSection />
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<Blog />
 					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<Footer /> {/* Responsive Done */}
 					</Suspense>
 				</>
