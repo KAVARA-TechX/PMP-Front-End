@@ -22,13 +22,41 @@ import { FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo/logo.png';
 import { BsPersonCircle } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import LoginModal from './LoginModal';
+import { useState } from 'react';
+import SignupModal from './SignupModal';
+import { AccessLoginContext } from '../context/LoginContext';
+import { GoogleLogout } from 'react-google-login';
 const Nav = () => {
 	const path = useLocation().pathname.split('/')[1];
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [open, setOpen] = useState(false);
+	const [signupOpen, setSignupOpen] = useState(false);
 
 	const navigate = useNavigate();
+
+	const handleLoignClick = () => {
+		console.log('login button is clicked');
+		setOpen(true);
+	};
+
+	const handleSignupClick = () => {
+		console.log('signup button is clicked');
+		setSignupOpen(true);
+	};
+
+	const { loginState } = AccessLoginContext();
+
+	// this will logout the use
+	const timeToLogout = () => {
+		window.localStorage.clear();
+		document.location.reload();
+	};
+
 	return (
 		<>
+			<LoginModal open={open} setOpen={setOpen} />
+			<SignupModal open={signupOpen} setOpen={setSignupOpen} />
 			<Box
 				w='100vw'
 				h='80px'
@@ -122,12 +150,53 @@ const Nav = () => {
 								</Box>
 							</MenuButton>
 							<MenuList bg='#222222' border='none'>
-								<MenuItem _focus={{ bg: 'rgba(0,0,0,.3)' }}>
-									Login
-								</MenuItem>
-								<MenuItem _focus={{ bg: 'rgba(0,0,0,.3)' }}>
-									SignUp
-								</MenuItem>
+								{loginState ? (
+									<>
+										<MenuItem
+											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+										>
+											Profile
+										</MenuItem>
+										<GoogleLogout
+											clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
+											render={(renderProps) => (
+												<MenuItem
+													_focus={{
+														bg: 'rgba(0,0,0,.3)',
+													}}
+													onClick={
+														renderProps.onClick
+													}
+												>
+													Logout
+												</MenuItem>
+											)}
+											buttonText='Logout'
+											onLogoutSuccess={timeToLogout}
+										></GoogleLogout>
+										{/* <MenuItem
+											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+										>
+											Logout
+										</MenuItem> */}
+									</>
+								) : (
+									<>
+										<MenuItem
+											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+											onClick={handleLoignClick}
+										>
+											Login
+										</MenuItem>
+
+										<MenuItem
+											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+											onClick={handleSignupClick}
+										>
+											SignUp
+										</MenuItem>
+									</>
+								)}
 							</MenuList>
 						</Menu>
 					</Box>
@@ -207,6 +276,7 @@ const Nav = () => {
 										color='white'
 										mt={'100px'}
 										fontSize={20}
+										onClick={handleLoignClick}
 									>
 										Login
 									</Button>
