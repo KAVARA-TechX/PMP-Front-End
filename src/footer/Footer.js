@@ -10,8 +10,11 @@ import instagram from './instagram.png';
 import cftlogo from '../assets/logo.png';
 import footer from '../assets/footer4.jpg';
 import './Footer.css';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box
 			bgImage={footer}
@@ -61,7 +64,15 @@ const Footer = () => {
 							px={{ lg: 20 }}
 							className='hide-scroll-bar'
 						>
-							<Text fontSize={17} fontWeight={400} mb='5px'>
+							<Text
+								fontSize={17}
+								fontWeight={400}
+								mb='5px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/about-us');
+								}}
+							>
 								About Us
 							</Text>
 							<Text fontSize={17} fontWeight={400} mb='5px'>

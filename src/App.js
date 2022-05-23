@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
 import AboutPackage from './pages/aboutPackage/AboutPackage';
+import AboutUs from './pages/AboutUs/AboutUs';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Hotels from './pages/hotels/Hotels';
@@ -30,7 +31,8 @@ const App = () => {
 			<Route path='/listing' element={<ListingPage />} />
 			<Route path='/about-package/' element={<AboutPackage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicy />} />
-			<Route path='/term-of-use' element={<TermsOfUse />} />
+			<Route path='/terms-of-use' element={<TermsOfUse />} />
+			<Route path='/about-us' element={<AboutUs />} />
 		</Routes>
 	);
 };
