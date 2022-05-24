@@ -6,6 +6,7 @@ const LoginProvider = ({ children }) => {
 	const [loginState, setLoginState] = useState(false);
 	const [token, setToken] = useState('');
 	const [used, setUsed] = useState('');
+	const [loginclick, setLoginclick] = useState(null);
 
 	useEffect(() => {
 		if (window.localStorage.getItem('loginStatus') === 'true') {
@@ -19,6 +20,7 @@ const LoginProvider = ({ children }) => {
 		loginState: loginState,
 		token: token,
 		used: used,
+		loginclick: loginclick,
 		setUsed: (value) => {
 			setUsed(value);
 			window.localStorage.setItem('used', value);
@@ -30,6 +32,9 @@ const LoginProvider = ({ children }) => {
 		setToken: (value) => {
 			setToken(value);
 			window.localStorage.setItem('token', value);
+		},
+		setLoginclick: (val) => {
+			setLoginclick(val);
 		},
 	};
 

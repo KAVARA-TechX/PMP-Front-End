@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import '../../../node_modules/react-day-picker/dist/style.css';
 import '../../packages/day-picker.css';
+import { AccessLoginContext } from '../../context/LoginContext';
 
 const city = [
 	{ name: 'Bengaluru,IN', code: 'BLR' },
@@ -60,6 +61,8 @@ const PackagesPage = () => {
 	const [showConfigRoom, setShowConfigRoom] = useState(false);
 	const [numberOfAdults, setNumberOfAdults] = useState(1);
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
+
+	const { loginState, loginclick } = AccessLoginContext();
 
 	const handleDate = (e) => {
 		setChoosed(e);
@@ -501,7 +504,11 @@ const PackagesPage = () => {
 						overflow='hidden'
 						cursor='pointer'
 						onClick={() => {
-							onOpen();
+							if (loginState == true) {
+								onOpen();
+							} else {
+								loginclick.click();
+							}
 						}}
 						transition={'.5s'}
 						_hover={{
