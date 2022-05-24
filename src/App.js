@@ -5,10 +5,12 @@ import AboutPackage from './pages/aboutPackage/AboutPackage';
 import AboutUs from './pages/AboutUs/AboutUs';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
+import Cancellation from './pages/Cancellation/Cancellation';
 import Hotels from './pages/hotels/Hotels';
 import ListingPage from './pages/listingPage/ListingPage';
 import PackagesPage from './pages/packages/Packages';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
+import RefundPage from './pages/RefundPage/RefundPage';
 import SearchResult from './pages/SearchResult/SearchResult';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
@@ -35,6 +37,8 @@ const App = () => {
 			<Route path='/terms-of-use' element={<TermsOfUse />} />
 			<Route path='/about-us' element={<AboutUs />} />
 			<Route path='/user/activate/:token' element={<UserActivation />} />
+			<Route path='/cancellation' element={<Cancellation />} />
+			<Route path='/refund' element={<RefundPage />} />
 		</Routes>
 	);
 };

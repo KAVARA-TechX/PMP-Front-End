@@ -378,7 +378,7 @@ const PackagesPage = () => {
 						Maldives Tour Packages
 					</Text>
 					<Text></Text>
-					<Box
+					{/* <Box
 						mt={5}
 						bg='#32BAC9'
 						borderRadius='2xl'
@@ -398,7 +398,7 @@ const PackagesPage = () => {
 						}}
 					>
 						VIEW ALL PACKAGES
-					</Box>
+					</Box> */}
 				</Box>
 				{/* black box with details */}
 				<Box

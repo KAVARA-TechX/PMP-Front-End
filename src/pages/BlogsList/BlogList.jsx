@@ -79,9 +79,9 @@ const Blog = ({ data }) => {
 						: ''}
 				</Text>
 				<Box position={'absolute'} bottom={0}>
-					<Text display={'inline-block'} pr={5} color='gray.600'>
+					{/* <Text display={'inline-block'} pr={5} color='gray.600'>
 						3 min Read
-					</Text>
+					</Text> */}
 					<Text display={'inline-block'} color='gray.600'>
 						{monthName[ca.getMonth()]} {ca.getDate()}
 					</Text>

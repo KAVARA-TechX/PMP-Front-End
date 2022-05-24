@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const UserActivationApi = (token) => {
-	return axios.post('https://planmyleisure.herokuapp.com/user/activation', {
+	return axios.post('https://planmy.herokuapp.com/user/activation', {
 		activation_token: token,
 	});
 };

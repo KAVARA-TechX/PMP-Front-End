@@ -75,9 +75,9 @@ const Footer = () => {
 							>
 								About Us
 							</Text>
-							<Text fontSize={17} fontWeight={400} mb='5px'>
+							{/* <Text fontSize={17} fontWeight={400} mb='5px'>
 								Careers
-							</Text>
+							</Text> */}
 							<Text fontSize={17} fontWeight={400} mb='5px'>
 								Blogs
 							</Text>
