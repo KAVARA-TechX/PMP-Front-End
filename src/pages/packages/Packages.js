@@ -504,7 +504,7 @@ const PackagesPage = () => {
 						overflow='hidden'
 						cursor='pointer'
 						onClick={() => {
-							if (loginState == true) {
+							if (loginState === true) {
 								onOpen();
 							} else {
 								loginclick.click();
