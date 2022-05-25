@@ -8,6 +8,10 @@ import BlogList from './pages/BlogsList/BlogList';
 import Cancellation from './pages/Cancellation/Cancellation';
 import Hotels from './pages/hotels/Hotels';
 import ListingPage from './pages/listingPage/ListingPage';
+import Cancelled from './pages/myBookings/Cancelled';
+import Completed from './pages/myBookings/Completed';
+import MyBookings from './pages/myBookings/MyBookings';
+import Upcoming from './pages/myBookings/Upcoming';
 import PackagesPage from './pages/packages/Packages';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import RefundPage from './pages/RefundPage/RefundPage';
@@ -39,6 +43,11 @@ const App = () => {
 			<Route path='/user/activate/:token' element={<UserActivation />} />
 			<Route path='/cancellation' element={<Cancellation />} />
 			<Route path='/refund' element={<RefundPage />} />
+			<Route path='/mybookings' element={<MyBookings />}>
+				<Route index element={<Upcoming />} />
+				<Route path='completed' element={<Completed />} />
+				<Route path='cancelled' element={<Cancelled />} />
+			</Route>
 		</Routes>
 	);
 };

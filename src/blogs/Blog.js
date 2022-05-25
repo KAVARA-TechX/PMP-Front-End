@@ -74,9 +74,10 @@ const Blog = () => {
 							w='100%'
 							h='100%'
 							display={'none'}
-							justifyContent='center'
-							alignItems={'center'}
-							fontSize='30px'
+							justifyContent='start'
+							alignItems={'end'}
+							fontSize='14px'
+							px='5px'
 							bg='rgba(0,0,0,.3)'
 						>
 							{latestBlogs[0].blogHeading}
@@ -105,9 +106,10 @@ const Blog = () => {
 							w='100%'
 							h='100%'
 							display={'none'}
-							justifyContent='center'
-							alignItems={'center'}
-							fontSize='30px'
+							justifyContent='start'
+							alignItems={'end'}
+							fontSize='14px'
+							px='5px'
 							bg='rgba(0,0,0,.3)'
 						>
 							{latestBlogs[1].blogHeading}
@@ -136,9 +138,10 @@ const Blog = () => {
 							w='100%'
 							h='100%'
 							display={'none'}
-							justifyContent='center'
-							alignItems={'center'}
-							fontSize='30px'
+							justifyContent='start'
+							alignItems={'end'}
+							fontSize='14px'
+							px='5px'
 							bg='rgba(0,0,0,.3)'
 						>
 							{latestBlogs[2].blogHeading}
@@ -169,9 +172,10 @@ const Blog = () => {
 							w='100%'
 							h='100%'
 							display={'none'}
-							justifyContent='center'
-							alignItems={'center'}
-							fontSize='30px'
+							justifyContent='start'
+							alignItems={'end'}
+							fontSize='14px'
+							px='5px'
 							bg='rgba(0,0,0,.3)'
 						>
 							{latestBlogs[3].blogHeading}
@@ -200,9 +204,10 @@ const Blog = () => {
 							w='100%'
 							h='100%'
 							display={'none'}
-							justifyContent='center'
-							alignItems={'center'}
-							fontSize='30px'
+							justifyContent='start'
+							alignItems={'end'}
+							fontSize='14px'
+							px='5px'
 							bg='rgba(0,0,0,.3)'
 						>
 							{latestBlogs[4].blogHeading}
@@ -223,13 +228,13 @@ const Blog = () => {
 						<Box
 							w='100%'
 							h='100%'
-							bg='rgba(0,0,0,.2)'
+							bg='rgba(0,0,0,.3)'
 							color='white'
-							fontWeight={'bold'}
+							fontWeight={600}
 							display='flex'
 							justifyContent='center'
 							alignItems='center'
-							fontSize={30}
+							fontSize={20}
 							cursor='pointer'
 							onClick={() => {
 								navigate('/blogs');

@@ -23,19 +23,25 @@ import logo from '../assets/logo/logo.png';
 import { BsPersonCircle } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import LoginModal from './LoginModal';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SignupModal from './SignupModal';
 import { AccessLoginContext } from '../context/LoginContext';
 import { GoogleLogout } from 'react-google-login';
 import LogoutApi from '../apis/LogoutApi';
+
 const Nav = () => {
 	const path = useLocation().pathname.split('/')[1];
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [open, setOpen] = useState(false);
 	const [signupOpen, setSignupOpen] = useState(false);
-	const { used } = AccessLoginContext();
+	const { used, setLoginclick } = AccessLoginContext();
+	const lgclick = useRef();
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		setLoginclick(lgclick.current);
+	});
 
 	const handleLoignClick = () => {
 		console.log('login button is clicked');
@@ -217,6 +223,7 @@ const Nav = () => {
 										<MenuItem
 											_focus={{ bg: 'rgba(0,0,0,.3)' }}
 											onClick={handleLoignClick}
+											ref={lgclick}
 										>
 											Login
 										</MenuItem>
