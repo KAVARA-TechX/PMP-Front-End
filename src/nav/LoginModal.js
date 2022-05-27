@@ -21,11 +21,14 @@ import ReactDOM from 'react-dom';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
 import LoginApi from '../apis/LoginApi';
+import { gapi } from 'gapi-script';
 import { FaLeaf } from 'react-icons/fa';
+import axios from 'axios';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { setLoginState, setToken, setUsed } = AccessLoginContext();
+	const { setLoginState, setToken, setUsed, setProfileurl } =
+		AccessLoginContext();
 	const [email, setEmail] = useState('');
 	const [checkEmail, setCheckEmail] = useState(false);
 	const [password, setPassword] = useState('');
@@ -34,6 +37,16 @@ const LoginModal = ({ open, setOpen }) => {
 	const toast = useToast();
 
 	useEffect(() => {
+		// function start() {
+		// 	gapi.client.init({
+		// 		clientId:
+		// 			'578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com',
+		// 		scope: '',
+		// 	});
+		// }
+
+		// gapi.load('client:auth2', start);
+
 		if (open) {
 			onOpen();
 		}
@@ -52,8 +65,9 @@ const LoginModal = ({ open, setOpen }) => {
 		console.log(response);
 		toast({
 			title: 'Error',
-			description: 'Something went wrong, Please try again later.',
-			status: 'error',
+			description:
+				'Please allow third party cookies to login through google.',
+			status: 'warning',
 			duration: 6000,
 			isClosable: true,
 		});
@@ -66,8 +80,9 @@ const LoginModal = ({ open, setOpen }) => {
 				const response = await LoginApi(email, password);
 				console.log(response);
 				setLoginState(true);
-				setToken('nigolrofdesudrowssapliame');
+				setToken(response.data.refresh_token);
 				setUsed('email');
+				setProfileurl(response.data.user.avatar);
 				setOpen(false);
 				onClose();
 				setLoading(false);
@@ -200,7 +215,14 @@ const LoginModal = ({ open, setOpen }) => {
 						</Text>
 					</Box> */}
 					<GoogleLogin
-						clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
+						// demo
+						clientId='268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com'
+						// clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
+						buttonText=''
+						autoLoad={false}
+						cookiePolicy={'single_host_origin'}
+						onSuccess={success}
+						onFailure={failure}
 						render={(renderProps) => (
 							<Box
 								width='80%'
@@ -226,10 +248,6 @@ const LoginModal = ({ open, setOpen }) => {
 								</Text>
 							</Box>
 						)}
-						buttonText='Login'
-						onSuccess={success}
-						onFailure={failure}
-						cookiePolicy={'single_host_origin'}
 					/>
 				</Box>
 			</ModalContent>

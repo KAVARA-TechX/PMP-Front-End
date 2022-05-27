@@ -7,6 +7,7 @@ const LoginProvider = ({ children }) => {
 	const [token, setToken] = useState('');
 	const [used, setUsed] = useState('');
 	const [loginclick, setLoginclick] = useState(null);
+	const [profileurl, setProfileurl] = useState('');
 
 	useEffect(() => {
 		if (window.localStorage.getItem('loginStatus') === 'true') {
@@ -21,6 +22,11 @@ const LoginProvider = ({ children }) => {
 		token: token,
 		used: used,
 		loginclick: loginclick,
+		profileurl: profileurl,
+		setProfileurl: (val) => {
+			console.log('profile url set to ', val);
+			setProfileurl(val);
+		},
 		setUsed: (value) => {
 			setUsed(value);
 			window.localStorage.setItem('used', value);
