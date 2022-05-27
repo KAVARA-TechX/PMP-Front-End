@@ -34,9 +34,10 @@ const Nav = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [open, setOpen] = useState(false);
 	const [signupOpen, setSignupOpen] = useState(false);
-	const { used, setLoginclick } = AccessLoginContext();
+	const { used, setLoginclick, profileurl } = AccessLoginContext();
 	const lgclick = useRef();
 
+	console.log('profile url value is ', profileurl);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -162,11 +163,22 @@ const Nav = () => {
 										fontSize={20}
 										color='gray.400'
 									/>
-									<Icon
-										as={BsPersonCircle}
-										fontSize={30}
-										color='whiteAlpha.900'
-									/>
+									{!loginState ? (
+										<Icon
+											as={BsPersonCircle}
+											fontSize={30}
+											color='whiteAlpha.900'
+										/>
+									) : (
+										<Box
+											bgImg={profileurl}
+											bgSize='cover'
+											borderRadius={'full'}
+											overflow='hidden'
+											height='30px'
+											width={'30px'}
+										/>
+									)}
 								</Box>
 							</MenuButton>
 							<MenuList bg='#222222' border='none'>
@@ -174,13 +186,19 @@ const Nav = () => {
 									<>
 										<MenuItem
 											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+											onClick={() => {
+												navigate('/mybookings');
+											}}
 										>
 											My Bookings
 										</MenuItem>
 										<MenuItem
 											_focus={{ bg: 'rgba(0,0,0,.3)' }}
+											onClick={() => {
+												navigate('/profile');
+											}}
 										>
-											Profile
+											Account
 										</MenuItem>
 										{used === 'google' ? (
 											<GoogleLogout

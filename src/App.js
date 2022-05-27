@@ -14,6 +14,7 @@ import MyBookings from './pages/myBookings/MyBookings';
 import Upcoming from './pages/myBookings/Upcoming';
 import PackagesPage from './pages/packages/Packages';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
+import Profile from './pages/profile/Profile';
 import RefundPage from './pages/RefundPage/RefundPage';
 import SearchResult from './pages/SearchResult/SearchResult';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
@@ -47,6 +48,9 @@ const App = () => {
 				<Route index element={<Upcoming />} />
 				<Route path='completed' element={<Completed />} />
 				<Route path='cancelled' element={<Cancelled />} />
+			</Route>
+			<Route path='/profile'>
+				<Route index element={<Profile />} />
 			</Route>
 		</Routes>
 	);
