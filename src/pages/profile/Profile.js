@@ -7,13 +7,21 @@ import {
 	Button,
 	Stack,
 	Skeleton,
+	AlertDialog,
+	AlertDialogOverlay,
+	AlertDialogFooter,
+	AlertDialogBody,
+	AlertDialogContent,
+	AlertDialogHeader,
+	useDisclosure,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
 const Profile = () => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [loading, setLoading] = useState(true);
 	const [isEditing, setIsEditing] = useState(false);
 	const [value, setValue] = useState();
@@ -23,6 +31,7 @@ const Profile = () => {
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [address, setAddress] = useState('');
+	const cancleRef = useRef();
 
 	useEffect(() => {
 		const userDetails = async () => {
@@ -37,7 +46,48 @@ const Profile = () => {
 
 	return (
 		<>
+			<AlertDialog
+				isOpen={isOpen}
+				onClose={onClose}
+				leastDestructiveRef={cancleRef}
+			>
+				<AlertDialogOverlay>
+					<AlertDialogContent bg='#222'>
+						<AlertDialogHeader fontSize={'lg'} fontWeight={'bold'}>
+							Change Password
+						</AlertDialogHeader>
+						<AlertDialogBody>
+							<Text mb='10px'>
+								Enter a new password below to change your
+								password.
+							</Text>
+							<Text>Password</Text>
+							<Input type='password' mb='20px' />
+							<Text>Re-enter new password</Text>
+							<Input type='password' />
+						</AlertDialogBody>
+						<AlertDialogFooter>
+							<Button
+								ref={cancleRef}
+								onClick={onClose}
+								bg='#444'
+								_hover={{ background: '#444' }}
+							>
+								Cancel
+							</Button>
+							<Button
+								colorScheme='orange'
+								onClick={onClose}
+								ml={3}
+							>
+								Reset Password
+							</Button>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialogOverlay>
+			</AlertDialog>
 			<Nav />
+
 			{loading ? (
 				<Box px='5vw' pt={5}>
 					<Text fontSize={30} fontWeight={700} display='inline'>
@@ -202,6 +252,20 @@ const Profile = () => {
 										</Text>
 									)}
 								</Box>
+							</Box>
+							<Box
+								display={isEditing ? 'none' : 'inline-block'}
+								mt='50px'
+								bg='rgba(255,255,255,.2)'
+								px='15px'
+								py='10px'
+								borderRadius={'10px'}
+								cursor='pointer'
+								onClick={() => {
+									onOpen();
+								}}
+							>
+								Change Password
 							</Box>
 							<Box
 								display={isEditing ? 'flex' : 'none'}
