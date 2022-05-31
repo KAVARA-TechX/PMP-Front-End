@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "pmlpro",
+    "production": "pmlpro"
+  },
+  "targets": {}
+}
