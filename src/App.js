@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AccessLoginContext } from './context/LoginContext';
 import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
 import AboutPackage from './pages/aboutPackage/AboutPackage';
@@ -21,6 +22,7 @@ import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
 
 const App = () => {
+	const { loginState } = AccessLoginContext();
 	return (
 		<Routes>
 			<Route path='/' element={<Homepage />} />
@@ -44,13 +46,19 @@ const App = () => {
 			<Route path='/user/activate/:token' element={<UserActivation />} />
 			<Route path='/cancellation' element={<Cancellation />} />
 			<Route path='/refund' element={<RefundPage />} />
-			<Route path='/mybookings' element={<MyBookings />}>
+			<Route
+				path='/mybookings'
+				element={loginState ? <MyBookings /> : <Navigate to='/' />}
+			>
 				<Route index element={<Upcoming />} />
 				<Route path='completed' element={<Completed />} />
 				<Route path='cancelled' element={<Cancelled />} />
 			</Route>
 			<Route path='/profile'>
-				<Route index element={<Profile />} />
+				<Route
+					index
+					element={loginState ? <Profile /> : <Navigate to='/' />}
+				/>
 			</Route>
 		</Routes>
 	);

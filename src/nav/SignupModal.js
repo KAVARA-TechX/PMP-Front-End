@@ -203,7 +203,7 @@ const SignupModal = ({ open, setOpen }) => {
 							}}
 						></Box>
 						<GoogleLogin
-							clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com/'
+							clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com'
 							render={(renderProps) => (
 								<Box
 									width='80%'
