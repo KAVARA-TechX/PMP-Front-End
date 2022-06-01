@@ -1,9 +1,26 @@
 import { Box, Image, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getUserinfoApi from '../../apis/getUserInfoApi';
+import GetUserRequestedPackages from '../../apis/GetUserRequestedPackages';
 import img from '../../assets/bookings/undraw_Starry_window_re_0v82.png';
 
 const Upcoming = () => {
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const requestedPackages = async () => {
+			try {
+				const res = await getUserinfoApi();
+				const response = await GetUserRequestedPackages(res.data._id);
+
+				console.log('response is ', response.data);
+			} catch (error) {
+				console.log('error occurred ', error);
+			}
+		};
+		requestedPackages();
+	});
 
 	return (
 		<Box

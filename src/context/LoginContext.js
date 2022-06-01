@@ -14,6 +14,7 @@ const LoginProvider = ({ children }) => {
 			setLoginState(window.localStorage.getItem('loginStatus'));
 			setToken(window.localStorage.getItem('token'));
 			setUsed(window.localStorage.getItem('used'));
+			setProfileurl(window.localStorage.getItem('profileImg'));
 		}
 	}, []);
 
@@ -25,7 +26,17 @@ const LoginProvider = ({ children }) => {
 		profileurl: profileurl,
 		setProfileurl: (val) => {
 			console.log('profile url set to ', val);
-			setProfileurl(val);
+			setProfileurl(
+				val === ''
+					? 'http://res.cloudinary.com/dqxu3gkbd/image/upload/v1654083257/avatar/tmp-1-1654083257369_dtrdd4.jpg'
+					: val
+			);
+			localStorage.setItem(
+				'profileImg',
+				val === ''
+					? 'http://res.cloudinary.com/dqxu3gkbd/image/upload/v1654083257/avatar/tmp-1-1654083257369_dtrdd4.jpg'
+					: val
+			);
 		},
 		setUsed: (value) => {
 			setUsed(value);
