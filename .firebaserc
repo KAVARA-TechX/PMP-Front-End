@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "pmlpro",
-    "production": "pmlpro"
+    "production": "pmlpro",
+    "staging": "plan-my-leisure-testing"
   },
   "targets": {}
 }
