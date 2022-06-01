@@ -7,6 +7,8 @@ import {
 	ModalContent,
 	Input,
 	Icon,
+	Button,
+	useToast,
 } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
 import { CheckIcon, CloseIcon, ArrowBackIcon } from '@chakra-ui/icons';
@@ -18,6 +20,8 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import '../../../node_modules/react-day-picker/dist/style.css';
 import '../../packages/day-picker.css';
 import { addDays } from 'date-fns';
+import getUserinfoApi from '../../apis/getUserInfoApi';
+import CreatePackageRequest from '../../apis/CreatePackageRequest';
 
 const ImageSlider = (imgLink) => {
 	try {
@@ -81,6 +85,9 @@ const PackageCard = ({ data }) => {
 	const [showConfigRoom, setShowConfigRoom] = useState(false);
 	const [numberOfAdults, setNumberOfAdults] = useState(1);
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
+	const [cityName, setCityName] = useState('');
+	const [loading, setLoading] = useState(false);
+	const toast = useToast();
 
 	const handleDate = (e) => {
 		setEndDateFromMonth(e);
@@ -96,9 +103,37 @@ const PackageCard = ({ data }) => {
 		setShowCity(true);
 	};
 
-	const handleCity = () => {
+	const handleCity = (cn) => {
+		setCityName(cn);
 		setShowCity(false);
 		setShowConfigRoom(true);
+	};
+
+	const handlePackageRequest = async () => {
+		setLoading(true);
+		try {
+			const response = await getUserinfoApi();
+			const res = await CreatePackageRequest(
+				data._id,
+				choosed,
+				endDate,
+				numberOfAdults + numberOfChilds,
+				cityName,
+				response.data._id
+			);
+			setLoading(false);
+			onClose();
+			toast({
+				title: 'success',
+				description: 'Package request created successfully.',
+				status: 'success',
+				duration: 8000,
+				isClosable: true,
+			});
+		} catch (error) {
+			console.log('error occurred : ', error);
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -270,6 +305,10 @@ const PackageCard = ({ data }) => {
 													handleCity(item.name);
 												}}
 												key={index}
+												_hover={{
+													background:
+														'rgba(255,255,255,.2)',
+												}}
 											>
 												<Text>{item.name}</Text>
 												<Text>{item.code}</Text>
@@ -414,7 +453,7 @@ const PackageCard = ({ data }) => {
 										/>
 									</Text>
 									<Box flexGrow={2}></Box>
-									<Box
+									<Button
 										bg='#32BAC9'
 										px='15px'
 										py='10px'
@@ -422,9 +461,15 @@ const PackageCard = ({ data }) => {
 										fontWeight={600}
 										borderRadius={'md'}
 										textAlign='center'
+										onClick={handlePackageRequest}
+										cursor='pointer'
+										_hover={{
+											background: '#32bac9',
+										}}
+										isLoading={loading}
 									>
 										Get Trip Cost
-									</Box>
+									</Button>
 								</Box>
 							</Box>
 						) : (

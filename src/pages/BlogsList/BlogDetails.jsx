@@ -20,8 +20,15 @@ const BlogDetails = () => {
 				<Text fontSize={40} fontWeight={600} pb='30px'>
 					{blogData.blogHeading}
 				</Text>
-				<Box h='fit-content' pb='30px'>
-					<Image src={blogData.imageUrl} mx='auto' w='90%' />
+				<Box
+					h='600px'
+					pb='30px'
+					overflow={'hidden'}
+					bgImage={blogData.imageUrl}
+					bgSize='cover'
+					bgPos={'50% 50%'}
+				>
+					{/* <Image src={blogData.imageUrl} mx='auto' w='100%' /> */}
 				</Box>
 				<Text fontSize={20} lineHeight={1.9}>
 					{parse(blogData.blogBody)}
