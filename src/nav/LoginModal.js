@@ -217,8 +217,7 @@ const LoginModal = ({ open, setOpen }) => {
 					</Box> */}
 					<GoogleLogin
 						// demo
-						clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com/'
-						// clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
+						clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com'
 						buttonText=''
 						autoLoad={false}
 						cookiePolicy={'single_host_origin'}
