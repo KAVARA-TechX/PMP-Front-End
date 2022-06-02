@@ -11,7 +11,12 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { CheckIcon, CloseIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import {
+	CheckIcon,
+	CloseIcon,
+	ArrowBackIcon,
+	CheckCircleIcon,
+} from '@chakra-ui/icons';
 import img from '../../assets/footer.jpg';
 import sideImg from '../../assets/thingsToDo/skiing.png';
 import { AccessLoginContext } from '../../context/LoginContext';
@@ -87,6 +92,7 @@ const PackageCard = ({ data }) => {
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
 	const [cityName, setCityName] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [isFilled, setIsFilled] = useState(false);
 	const toast = useToast();
 
 	const handleDate = (e) => {
@@ -122,7 +128,8 @@ const PackageCard = ({ data }) => {
 				response.data._id
 			);
 			setLoading(false);
-			onClose();
+			setShowConfigRoom(false);
+			setIsFilled(true);
 			toast({
 				title: 'success',
 				description: 'Package request created successfully.',
@@ -138,6 +145,7 @@ const PackageCard = ({ data }) => {
 
 	return (
 		<>
+			{console.log('data is : ', data)}
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}
@@ -475,6 +483,47 @@ const PackageCard = ({ data }) => {
 						) : (
 							<></>
 						)}
+						{/* show thankyou for submission */}
+						{isFilled ? (
+							<>
+								<Box
+									w='400px'
+									h='100%'
+									pt='50px'
+									display={'flex'}
+									justifyContent='center'
+									alignItems='center'
+									position={'relative'}
+								>
+									<CloseIcon
+										position={'absolute'}
+										top='20px'
+										right='20px'
+										cursor={'pointer'}
+										onClick={() => {
+											onClose();
+										}}
+									/>
+									<Box
+										display={'inline-flex'}
+										flexDir='column'
+										alignItems={'center'}
+										justifyContent='center'
+									>
+										<CheckCircleIcon
+											color='green.200'
+											fontSize={40}
+										/>
+										<Text fontSize={30} fontWeight='600'>
+											Thank you!
+										</Text>
+										<Text>Your request has been sent.</Text>
+									</Box>
+								</Box>
+							</>
+						) : (
+							<></>
+						)}
 					</Box>
 				</ModalContent>
 			</Modal>
@@ -482,21 +531,22 @@ const PackageCard = ({ data }) => {
 				w={'100%'}
 				h={{ base: 'fit-content', lg: '350px' }}
 				bg='gray.600'
+				border={'1px solid rgba(255,255,255,0.1)'}
 				borderRadius={'2xl'}
 				mt='20px'
 				display={'flex'}
 				flexDir={{ base: 'column', lg: 'row' }}
 				overflow='hidden'
-				cursor='pointer'
-				onClick={() => {
-					if (loginState === true) {
-						console.log('one should open');
-						onOpen();
-					} else {
-						console.log('two should open');
-						loginclick.click();
-					}
-				}}
+				// cursor='pointer'
+				// onClick={() => {
+				// 	if (loginState === true) {
+				// 		console.log('one should open');
+				// 		onOpen();
+				// 	} else {
+				// 		console.log('two should open');
+				// 		loginclick.click();
+				// 	}
+				// }}
 				transition={'.5s'}
 				_hover={{
 					boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
@@ -510,6 +560,7 @@ const PackageCard = ({ data }) => {
 					bgPos={'50% 50%'}
 				></Box>
 				<Box
+					bg='#222'
 					pl='30px'
 					mr={{ base: '30px', lg: '0px' }}
 					pt='30px'
@@ -602,13 +653,28 @@ const PackageCard = ({ data }) => {
 							</Text>
 						</Text>
 						<Box
-							bg='#32BAC9'
+							bg='transparent'
+							border={'1px solid rgba(255,255,255,.3)'}
 							// display={'inline-block'}
 							fontSize={20}
 							fontWeight={600}
 							py={'15px'}
 							textAlign='center'
 							borderRadius={'xl'}
+							cursor='pointer'
+							_hover={{
+								background: '#fff',
+								color: 'rgba(0,0,0,.8)',
+							}}
+							onClick={() => {
+								if (loginState === true) {
+									console.log('one should open');
+									onOpen();
+								} else {
+									console.log('two should open');
+									loginclick.click();
+								}
+							}}
 						>
 							Customise
 						</Box>

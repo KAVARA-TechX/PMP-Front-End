@@ -90,7 +90,7 @@ const LoginModal = ({ open, setOpen }) => {
 				const response = await LoginApi(email, password);
 				console.log(response);
 				setLoginState(true);
-				setToken(response.data.refresh_token);
+				setToken(response.data.token);
 				setUsed('email');
 				setProfileurl(response.data.user.avatar);
 				setOpen(false);
