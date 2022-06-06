@@ -24,6 +24,7 @@ import LoginApi from '../apis/LoginApi';
 import { gapi } from 'gapi-script';
 import { FaLeaf } from 'react-icons/fa';
 import axios from 'axios';
+import googleLoginApi from '../apis/googleLoginApi';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,13 +53,21 @@ const LoginModal = ({ open, setOpen }) => {
 		}
 	});
 
-	const success = (response) => {
-		console.log(response);
-		setLoginState(true);
-		setToken(response.accessToken);
-		setUsed('google');
-		setOpen(false);
-		setProfileurl('');
+	const success = async (response) => {
+		// console.log(response);
+		let tokenId = response.tokenId;
+		try {
+			const res = await googleLoginApi(tokenId);
+			console.log('main response : ', res);
+			setLoginState(true);
+			setToken(res.data.token);
+			setUsed('google');
+			setOpen(false);
+			setProfileurl(res.data.msg.avatar);
+		} catch (error) {
+			console.log('some error occured', error);
+		}
+
 		onClose();
 	};
 
@@ -81,7 +90,7 @@ const LoginModal = ({ open, setOpen }) => {
 				const response = await LoginApi(email, password);
 				console.log(response);
 				setLoginState(true);
-				setToken(response.data.refresh_token);
+				setToken(response.data.token);
 				setUsed('email');
 				setProfileurl(response.data.user.avatar);
 				setOpen(false);

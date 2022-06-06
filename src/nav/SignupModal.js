@@ -17,10 +17,12 @@ import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
 import SignupApi from '../apis/SignupApi';
+import googleLoginApi from '../apis/googleLoginApi';
 
 const SignupModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure(open);
-	const { setLoginState, setToken, setUsed } = AccessLoginContext();
+	const { setLoginState, setToken, setUsed, setProfileurl } =
+		AccessLoginContext();
 	const [name, setName] = useState('');
 	const [checkName, setCheckName] = useState(false);
 	const [email, setEmail] = useState('');
@@ -37,12 +39,20 @@ const SignupModal = ({ open, setOpen }) => {
 		}
 	});
 
-	const success = (response) => {
+	const success = async (response) => {
+		let tokenId = response.tokenId;
+		try {
+			const res = await googleLoginApi(tokenId);
+			setLoginState(true);
+			setToken(res.data.token);
+			setUsed('google');
+			setOpen(false);
+			setProfileurl(res.data.msg.avatar);
+		} catch (error) {
+			console.log('some error occured', error);
+		}
 		console.log(response);
-		setLoginState(true);
-		setToken(response.accessToken);
-		setUsed('google');
-		setOpen(false);
+
 		onClose();
 	};
 

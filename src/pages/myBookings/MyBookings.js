@@ -72,32 +72,6 @@ const MyBookings = () => {
 						Cancelled
 					</Text>
 				</Box>
-				<Box
-					display={'inline-flex'}
-					border='1px solid gray'
-					mt={{ base: '20px', lg: '0' }}
-				>
-					<Text fontSize={{ base: 13, lg: 18 }} px='10px' py='10px'>
-						Sort by :
-					</Text>
-					<Text
-						fontSize={{ base: 13, lg: 18 }}
-						px='10px'
-						py='10px'
-						cursor={'pointer'}
-						background='rgba(255,255,255,.2)'
-					>
-						Booking date
-					</Text>
-					<Text
-						cursor={'pointer'}
-						fontSize={{ base: 13, lg: 18 }}
-						px='10px'
-						py='10px'
-					>
-						Check-in date
-					</Text>
-				</Box>
 			</Box>
 			<Outlet />
 			<Footer />
