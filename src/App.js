@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Cancellation from './pages/Cancellation/Cancellation';
+import FAQ from './pages/FAQ/FAQ';
 import Hotels from './pages/hotels/Hotels';
 import ListingPage from './pages/listingPage/ListingPage';
 import Cancelled from './pages/myBookings/Cancelled';
@@ -18,6 +19,7 @@ import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import Profile from './pages/profile/Profile';
 import RefundPage from './pages/RefundPage/RefundPage';
 import SearchResult from './pages/SearchResult/SearchResult';
+import TAC from './pages/TAC/TAC';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
 
@@ -60,6 +62,8 @@ const App = () => {
 					element={loginState ? <Profile /> : <Navigate to='/' />}
 				/>
 			</Route>
+			<Route path='/faq' element={<FAQ />} />
+			<Route path='/terms-and-conditions' element={<TAC />} />
 		</Routes>
 	);
 };
