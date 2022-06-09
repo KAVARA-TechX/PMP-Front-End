@@ -2,7 +2,7 @@ import { Box, Text } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
-const PrivacyPolicy = () => {
+const TAC = () => {
 	return (
 		<>
 			<Nav />
@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
 						color='#222'
 						textAlign={'center'}
 					>
-						Privacy Policy
+						Terms & Conditions
 					</Text>
 				</Box>
 				<Text
@@ -74,4 +74,4 @@ const PrivacyPolicy = () => {
 	);
 };
 
-export default PrivacyPolicy;
+export default TAC;
