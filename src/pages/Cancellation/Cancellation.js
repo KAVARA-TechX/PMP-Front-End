@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
@@ -6,52 +6,233 @@ const Cancellation = () => {
 	return (
 		<>
 			<Nav />
-			<Box px='5vw' pt='50px'>
-				<Text fontSize={30} fontWeight={700}>
-					Cancellation
-				</Text>
+			<Box>
+				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+					<Text
+						fontSize={30}
+						fontWeight={700}
+						color='#222'
+						textAlign={'center'}
+					>
+						Cancellation Policy
+					</Text>
+				</Box>
 				<Text
-					mt='30px'
+					mx='15vw'
+					px='50px'
+					py='50px'
+					borderRadius={'10px'}
+					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
 					fontSize={18}
 					fontWeight={400}
 					textAlign='justify'
+					position={'relative'}
+					bottom='50px'
+					background='#222'
+					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Cras sed libero scelerisque, feugiat ex at, hendrerit elit.
-					Maecenas quam turpis, posuere a ex quis, hendrerit ultricies
-					purus. Phasellus commodo ex nec libero iaculis, sit amet
-					hendrerit ex iaculis. Fusce at vehicula purus, a consectetur
-					magna. Morbi sit amet finibus ante. Etiam gravida pretium
-					suscipit. Maecenas tempor ornare lacus molestie facilisis.
-					Maecenas vel justo diam. Phasellus leo ligula, pulvinar nec
-					elit id, mollis feugiat diam. Nunc consectetur sem vitae
-					orci sollicitudin lobortis. Aliquam ut elit mattis,
-					imperdiet orci consequat, gravida tortor. Ut pharetra risus
-					pulvinar lectus malesuada imperdiet. Fusce suscipit turpis
-					et sem consequat laoreet. Proin lobortis sem iaculis
-					eleifend faucibus. Mauris mollis eu tellus eget efficitur.
-					Mauris pellentesque hendrerit congue. Integer rhoncus
-					vulputate sollicitudin. Maecenas mi est, elementum ut
-					iaculis a, sodales ut nisi. Fusce mattis elit risus, nec
-					aliquam ex rhoncus vitae. Nulla eget nulla et dolor
-					malesuada faucibus eleifend id orci. Aliquam erat volutpat.
-					Nunc hendrerit purus sit amet felis hendrerit, a vestibulum
-					est mollis. Praesent eget sodales mi. Suspendisse dapibus
-					pulvinar hendrerit. Etiam ultricies ante faucibus libero
-					consectetur, nec maximus nunc efficitur. Cras eu congue ex.
-					Integer varius mollis imperdiet. Nullam vestibulum neque et
-					dui commodo vestibulum. Aliquam erat volutpat. Suspendisse
-					auctor diam sit amet sollicitudin pulvinar. Nulla cursus
-					purus vitae efficitur posuere. Duis tristique mi nec nisi
-					rhoncus, a commodo magna dictum. Ut vel sapien nisi. Etiam a
-					sem ut ex congue mattis. Curabitur ac lobortis turpis. Morbi
-					vel mauris ac arcu euismod tincidunt. Cras lobortis dapibus
-					massa, sed molestie risus scelerisque id. Proin semper
-					dignissim hendrerit. Vestibulum faucibus nisl non ante
-					ullamcorper, at bibendum massa suscipit. Orci varius natoque
-					penatibus et magnis dis parturient montes, nascetur
-					ridiculus mus.
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						General
+					</Text>
+					<Text>
+						The cancellation policy is effective for all vacations
+						crafted by PML from 01 September 2019. PML customers
+						eligible for refunds will receive the refund amount
+						within 90 working days from the date of cancellation or
+						when the supplier(s) processes the refund, whichever is
+						later. For refunds related to on-trip cancellations,
+						customers will receive the refund amount within 90
+						working days from the date of their return or when the
+						supplier(s) processes the refund, whichever is later.
+						For queries/clarifications, please reach out to
+						info@planmyleisure.com .
+					</Text>
+					<Text>
+						The Refund amount depicted is subjected to change based
+						on international exchange rates , refunds received from
+						suppliers and payments received from customers till
+						date. Any change in refund amount will be communicated
+						to customers by their respective account owners.
+					</Text>
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						Flights
+					</Text>
+					<UnorderedList>
+						<ListItem>
+							On cancelling flights marked as “Non-Refundable” on
+							the final travel vouchers, customers will be
+							eligible for a zero refund.
+						</ListItem>
+						<ListItem>
+							For Flights marked as “Refundable” on the final
+							travel vouchers, customers will receive a refund as
+							per the details mentioned under the “Cancellation
+							Policy” section of the product and also in the final
+							itinerary shared over the email.
+						</ListItem>
+						<ListItem>
+							The total refunds for flights may include components
+							which vary as per the international exchange rates.
+						</ListItem>
+						<ListItem>
+							PML will not be responsible for
+							grounded/cancelled/delayed flights. Any cancellation
+							requests for these flights will have to be placed
+							with the respective airlines. Realization of refunds
+							would be subject to processing by the respective
+							airline carrier.
+						</ListItem>
+						<ListItem>
+							The onus is on the customer to ensure that his/her
+							passport has a minimum of 1-year validity and is in
+							good condition. PML is not liable to refund a
+							customer who is not allowed to board the flight
+							because of invalid passports (validity expired,
+							damaged passports).
+						</ListItem>
+						<ListItem>
+							Customers are expected to reach the airport ahead of
+							their boarding time (at least 2 hours prior to
+							boarding time). PML is not responsible to refund
+							customers (for cases wherein airport transfers are
+							not planned by us) who miss their flights owing to
+							delayed arrival at the airport.
+						</ListItem>
+						<ListItem>
+							For cases wherein airport transfers are planned by
+							PML, flight cancellations due to delayed transfers
+							owing to unforeseen circumstances specific to a
+							region will not be borne by PML.
+						</ListItem>
+						<ListItem>
+							Details about baggage limitations (cabin and
+							check-in) will be furnished as part of the final
+							travel vouchers. Additional costs owing to breached
+							baggage limits will have to be paid by the customer
+							at the time of check-in.
+						</ListItem>
+						<ListItem>
+							Certain flight carriers (LCC like Ryanair, Vueling,
+							Voltea etc.) have a mandatory web check-in policy.
+							Failure to comply with this could result in an
+							additional cost to be paid at the airport. PML is
+							not liable to refund customers in such
+							circumstances. PML will set meal preferences for
+							customers with airline carriers upon request.
+						</ListItem>
+						<ListItem>
+							PML will set meal preferences for customers with
+							airline carriers upon request. However, PML has no
+							control over the availability and quality of meals
+							served on the flight. This will be controlled
+							completely by the airline carrier.
+						</ListItem>
+					</UnorderedList>
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						Hotels
+					</Text>
+					<UnorderedList>
+						<ListItem>
+							On cancelling hotels which have been marked as
+							“Non-Refundable” on the final travel vouchers, the
+							customer will be eligible for a zero refund.
+						</ListItem>
+						<ListItem>
+							For hotels which have been marked as “Refundable” on
+							the final travel vouchers, refunds and their
+							timelines will be applicable as mentioned under the
+							“Cancellation Policy” section of the product and in
+							the final itinerary shared over email.
+						</ListItem>
+						<ListItem>
+							The total refunds for hotels may include components
+							which vary with international exchange rates.
+						</ListItem>
+						<ListItem>
+							While PML strives to provide the best hotels with
+							world-class amenities, we cannot be held responsible
+							for factors such as hotel staff behaviour,
+							cleanliness and quality of accommodation. Additional
+							costs owing to on-trip room upgrades and additional
+							amenities will be borne by the customer. All hotels
+							changed on-trip (Hotels booked per itinerary
+							cancelled and new hotels booked) will entail a 100%
+							cancellation fee.
+						</ListItem>
+						<ListItem>
+							Entertaining early check-in or late check-out
+							requests is solely based on the discretion of the
+							hotel. PML will not be able to process cancellation
+							requests owing to non-availability of these
+							requests.
+						</ListItem>
+					</UnorderedList>
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						Activities
+					</Text>
+					<UnorderedList>
+						<ListItem>
+							On cancelling activities marked as “Non-Refundable”
+							on the final travel vouchers, the customer will be
+							eligible for a zero refund.
+						</ListItem>
+						<ListItem>
+							For activities, which have been marked as
+							“Refundable” on the final travel vouchers, refunds
+							and their timelines will be applicable as mentioned
+							under the “Cancellation Policy” section of the
+							product and in the final itinerary shared over
+							email.
+						</ListItem>
+						<ListItem>
+							The total refund for activities may include
+							components which vary with international exchange
+							rates.
+						</ListItem>
+					</UnorderedList>
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						Transfers
+					</Text>
+					<UnorderedList>
+						<ListItem>
+							For all transfers, refunds and their timelines will
+							be applicable as mentioned under the “Cancellation
+							Policy” section of the product and in the final
+							itinerary shared over email.
+						</ListItem>
+						<ListItem>
+							The total refunds for transfers may include
+							components which vary with international exchange
+							rates.
+						</ListItem>
+					</UnorderedList>
+					<Text fontWeight={600} pt={10} fontSize={20}>
+						Visa & Insurance
+					</Text>
+					<UnorderedList>
+						<ListItem>
+							PML acts as a facilitator for processing Visa
+							applications. We will guide customers on Visa
+							formalities & Visa documentation for specific
+							destinations. The discretion to grant/reject Visa
+							rests solely with the concerned embassy and PML will
+							not be responsible for rejection of any
+							applications. The visa fee is non-refundable in case
+							of rejected visa applications.
+						</ListItem>
+						<ListItem>
+							While we strive to provide a seamless Visa
+							experience to the customers, PML will not be held
+							responsible for unforeseen changes to Visa
+							formalities levied by the embassy during the
+							document submission and processing phase.
+						</ListItem>
+						<ListItem>
+							Insurance once applied is subject to 100%
+							cancellation fee and is non-refundable.
+						</ListItem>
+					</UnorderedList>
 				</Text>
 			</Box>
 			<Footer />

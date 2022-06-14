@@ -6,52 +6,44 @@ const AboutUs = () => {
 	return (
 		<>
 			<Nav />
-			<Box px='5vw' pt='50px'>
-				<Text fontSize={30} fontWeight={700}>
-					About Us
-				</Text>
+			<Box>
+				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+					<Text
+						fontSize={30}
+						fontWeight={700}
+						color='#222'
+						textAlign={'center'}
+					>
+						About Us
+					</Text>
+				</Box>
 				<Text
-					mt='30px'
+					mx='15vw'
+					px='50px'
+					py='50px'
+					borderRadius={'10px'}
+					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
 					fontSize={18}
 					fontWeight={400}
 					textAlign='justify'
+					position={'relative'}
+					bottom='50px'
+					background='#222'
+					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Cras sed libero scelerisque, feugiat ex at, hendrerit elit.
-					Maecenas quam turpis, posuere a ex quis, hendrerit ultricies
-					purus. Phasellus commodo ex nec libero iaculis, sit amet
-					hendrerit ex iaculis. Fusce at vehicula purus, a consectetur
-					magna. Morbi sit amet finibus ante. Etiam gravida pretium
-					suscipit. Maecenas tempor ornare lacus molestie facilisis.
-					Maecenas vel justo diam. Phasellus leo ligula, pulvinar nec
-					elit id, mollis feugiat diam. Nunc consectetur sem vitae
-					orci sollicitudin lobortis. Aliquam ut elit mattis,
-					imperdiet orci consequat, gravida tortor. Ut pharetra risus
-					pulvinar lectus malesuada imperdiet. Fusce suscipit turpis
-					et sem consequat laoreet. Proin lobortis sem iaculis
-					eleifend faucibus. Mauris mollis eu tellus eget efficitur.
-					Mauris pellentesque hendrerit congue. Integer rhoncus
-					vulputate sollicitudin. Maecenas mi est, elementum ut
-					iaculis a, sodales ut nisi. Fusce mattis elit risus, nec
-					aliquam ex rhoncus vitae. Nulla eget nulla et dolor
-					malesuada faucibus eleifend id orci. Aliquam erat volutpat.
-					Nunc hendrerit purus sit amet felis hendrerit, a vestibulum
-					est mollis. Praesent eget sodales mi. Suspendisse dapibus
-					pulvinar hendrerit. Etiam ultricies ante faucibus libero
-					consectetur, nec maximus nunc efficitur. Cras eu congue ex.
-					Integer varius mollis imperdiet. Nullam vestibulum neque et
-					dui commodo vestibulum. Aliquam erat volutpat. Suspendisse
-					auctor diam sit amet sollicitudin pulvinar. Nulla cursus
-					purus vitae efficitur posuere. Duis tristique mi nec nisi
-					rhoncus, a commodo magna dictum. Ut vel sapien nisi. Etiam a
-					sem ut ex congue mattis. Curabitur ac lobortis turpis. Morbi
-					vel mauris ac arcu euismod tincidunt. Cras lobortis dapibus
-					massa, sed molestie risus scelerisque id. Proin semper
-					dignissim hendrerit. Vestibulum faucibus nisl non ante
-					ullamcorper, at bibendum massa suscipit. Orci varius natoque
-					penatibus et magnis dis parturient montes, nascetur
-					ridiculus mus.
+					Plan My Leisure, started in 2020, is India’s smoothest
+					online D-I-Y travel booking platform which empowers you to
+					curate customised holidays for yourself and for your friends
+					and family. This itinerary building platform considers
+					several factors like the traveller’s interests and budget,
+					duration of the trip, number of pax, in order to deliver the
+					best service completely online. Plan My Leisure was born out
+					of sheer interest in travelling. A lot of passion goes
+					behind curating the best travel experiences for you. We make
+					sure that you cherish your travels and book with us for all
+					your future endeavors. Plan My Leisure guarantees you a
+					hassle-free trip with zero regrets.
 				</Text>
 			</Box>
 			<Footer />

@@ -92,10 +92,47 @@ const Footer = () => {
 								<Text fontSize={17} fontWeight={400} mb='5px'>
 									Testimonials
 								</Text>
-								<Text fontSize={17} fontWeight={400} mb='5px'>
+								<Text
+									fontSize={17}
+									fontWeight={400}
+									mb='5px'
+									onClick={() => {
+										navigate('/cancellation');
+									}}
+									cursor='pointer'
+								>
+									Cancellation Policy
+								</Text>
+								<Text
+									fontSize={17}
+									fontWeight={400}
+									mb='5px'
+									onClick={() => {
+										navigate('/privacy-policy');
+									}}
+									cursor='pointer'
+								>
+									Privacy Policy
+								</Text>
+								<Text
+									fontSize={17}
+									fontWeight={400}
+									mb='5px'
+									onClick={() => {
+										navigate('/faq');
+									}}
+									cursor='pointer'
+								>
 									FAQ
 								</Text>
-								<Text fontSize={17} fontWeight={400}>
+								<Text
+									fontSize={17}
+									fontWeight={400}
+									onClick={() => {
+										navigate('/terms-and-conditions');
+									}}
+									cursor='pointer'
+								>
 									T&C
 								</Text>
 							</Box>
