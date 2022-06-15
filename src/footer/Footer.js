@@ -8,8 +8,11 @@ import {
 } from 'react-icons/fa';
 import cftlogo from '../assets/logo.png';
 import footerImg from '../assets/footer4.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box
 			// bg='rgb(55,57,66)'
@@ -60,7 +63,14 @@ const Footer = () => {
 							px={{ lg: 20 }}
 							className='hide-scroll-bar'
 						>
-							<Text fontSize={20} fontWeight={400}>
+							<Text
+								fontSize={20}
+								fontWeight={400}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/about-us');
+								}}
+							>
 								About Us
 							</Text>
 							<Text fontSize={20} fontWeight={400}>
@@ -72,10 +82,44 @@ const Footer = () => {
 							<Text fontSize={20} fontWeight={400}>
 								Testimonials
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text
+								fontSize={20}
+								fontWeight={400}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/cancellation');
+								}}
+							>
+								Cancellation
+							</Text>
+							<Text
+								fontSize={20}
+								fontWeight={400}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/privacy-policy');
+								}}
+							>
+								Privacy Policy
+							</Text>
+							<Text
+								fontSize={20}
+								fontWeight={400}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/faq');
+								}}
+							>
 								FAQ
 							</Text>
-							<Text fontSize={20} fontWeight={400}>
+							<Text
+								fontSize={20}
+								fontWeight={400}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/tac');
+								}}
+							>
 								T&C
 							</Text>
 						</Box>
