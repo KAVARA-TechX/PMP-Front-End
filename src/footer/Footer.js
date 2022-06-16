@@ -15,7 +15,6 @@ const Footer = () => {
 
 	return (
 		<Box
-			// bg='rgb(55,57,66)'
 			bgImage={footerImg}
 			bgSize='cover'
 			bgPos={'0 25%'}
