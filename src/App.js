@@ -3,7 +3,6 @@ import { AccessLoginContext } from './context/LoginContext';
 import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
 import AboutPackage from './pages/aboutPackage/AboutPackage';
-import AboutUs from './pages/aboutUs/AboutUs';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Cancellation from './pages/Cancellation/Cancellation';
@@ -22,6 +21,7 @@ import SearchResult from './pages/SearchResult/SearchResult';
 import TAC from './pages/tac/TAC';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
+import AboutUs from './pages/aboutUs/AboutUs';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
@@ -44,7 +44,6 @@ const App = () => {
 			<Route path='/about-package/' element={<AboutPackage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicy />} />
 			<Route path='/terms-of-use' element={<TermsOfUse />} />
-			<Route path='/about-us' element={<AboutUs />} />
 			<Route path='/user/activate/:token' element={<UserActivation />} />
 			<Route path='/cancellation' element={<Cancellation />} />
 			<Route path='/refund' element={<RefundPage />} />
@@ -64,6 +63,7 @@ const App = () => {
 			</Route>
 			<Route path='/faq' element={<FAQ />} />
 			<Route path='/terms-and-conditions' element={<TAC />} />
+			<Route path='/about-us' element={<AboutUs />} />
 		</Routes>
 	);
 };
