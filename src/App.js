@@ -1,26 +1,27 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AccessLoginContext } from './context/LoginContext';
+
 import Homepage from './Homepage';
-import AboutPackage from './pages/aboutPackage/AboutPackage';
-import BlogDetails from './pages/BlogsList/BlogDetails';
+import SearchResult from './pages/SearchResult/SearchResult';
 import BlogList from './pages/BlogsList/BlogList';
-import Cancellation from './pages/Cancellation/Cancellation';
+import BlogDetails from './pages/BlogsList/BlogDetails';
+import PackagesPage from './pages/packages/Packages';
 import Hotels from './pages/hotels/Hotels';
 import ListingPage from './pages/listingPage/ListingPage';
-import Cancelled from './pages/myBookings/Cancelled';
-import Completed from './pages/myBookings/Completed';
-import MyBookings from './pages/myBookings/MyBookings';
-import Upcoming from './pages/myBookings/Upcoming';
-import PackagesPage from './pages/packages/Packages';
+import AboutPackage from './pages/aboutPackage/AboutPackage';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
-import Profile from './pages/profile/Profile';
-import RefundPage from './pages/RefundPage/RefundPage';
-import SearchResult from './pages/SearchResult/SearchResult';
-import TAC from './pages/tac/TAC';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
-import AboutUs from './pages/aboutUs/AboutUs';
+import Cancellation from './pages/Cancellation/Cancellation';
+import RefundPage from './pages/RefundPage/RefundPage';
+import MyBookings from './pages/myBookings/MyBookings';
+import Upcoming from './pages/myBookings/Upcoming';
+import Completed from './pages/myBookings/Completed';
+import Cancelled from './pages/myBookings/Cancelled';
+import Profile from './pages/profile/Profile';
 import FAQ from './pages/faq/FAQ';
+import TAC from './pages/tac/TAC';
+import AboutUs from './pages/aboutUs/AboutUs';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
