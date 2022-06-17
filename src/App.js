@@ -5,7 +5,6 @@ import AboutPackage from './pages/aboutPackage/AboutPackage';
 import BlogDetails from './pages/BlogsList/BlogDetails';
 import BlogList from './pages/BlogsList/BlogList';
 import Cancellation from './pages/Cancellation/Cancellation';
-import FAQ from './pages/faq/FAQ';
 import Hotels from './pages/hotels/Hotels';
 import ListingPage from './pages/listingPage/ListingPage';
 import Cancelled from './pages/myBookings/Cancelled';
@@ -21,6 +20,7 @@ import TAC from './pages/tac/TAC';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
 import AboutUs from './pages/aboutUs/AboutUs';
+import FAQ from './pages/faq/FAQ';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
