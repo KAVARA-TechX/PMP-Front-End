@@ -26,11 +26,11 @@ const Profile = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [value, setValue] = useState();
 	const [name, setName] = useState('');
-	const [gender, setGender] = useState('');
-	const [dob, setDob] = useState('');
+	// const [gender, setGender] = useState('');
+	// const [dob, setDob] = useState('');
 	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [address, setAddress] = useState('');
+	// const [phone, setPhone] = useState('');
+	// const [address, setAddress] = useState('');
 	const cancleRef = useRef();
 
 	useEffect(() => {

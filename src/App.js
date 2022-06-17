@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AccessLoginContext } from './context/LoginContext';
-import DefaultBlogPage from './DefaultBlogPage';
 import Homepage from './Homepage';
 import AboutPackage from './pages/aboutPackage/AboutPackage';
 import BlogDetails from './pages/BlogsList/BlogDetails';

@@ -28,28 +28,28 @@ import { addDays } from 'date-fns';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import CreatePackageRequest from '../../apis/CreatePackageRequest';
 
-const ImageSlider = (imgLink) => {
-	try {
-		console.log('image we got : ', imgLink[0].url);
-		return (
-			<Box
-				h={{ base: '200px', lg: '100%' }}
-				w={{ base: '100%', lg: '30%' }}
-				bgImg={`url(${imgLink.imgLink[0].url})`}
-				bgSize='cover'
-			></Box>
-		);
-	} catch (e) {
-		return (
-			<Box
-				h={{ base: '200px', lg: '100%' }}
-				w={{ base: '100%', lg: '30%' }}
-				bgImg={img}
-				bgSize='cover'
-			></Box>
-		);
-	}
-};
+// const ImageSlider = (imgLink) => {
+// 	try {
+// 		console.log('image we got : ', imgLink[0].url);
+// 		return (
+// 			<Box
+// 				h={{ base: '200px', lg: '100%' }}
+// 				w={{ base: '100%', lg: '30%' }}
+// 				bgImg={`url(${imgLink.imgLink[0].url})`}
+// 				bgSize='cover'
+// 			></Box>
+// 		);
+// 	} catch (e) {
+// 		return (
+// 			<Box
+// 				h={{ base: '200px', lg: '100%' }}
+// 				w={{ base: '100%', lg: '30%' }}
+// 				bgImg={img}
+// 				bgSize='cover'
+// 			></Box>
+// 		);
+// 	}
+// };
 
 const city = [
 	{ name: 'Bengaluru,IN', code: 'BLR' },
@@ -127,6 +127,7 @@ const PackageCard = ({ data }) => {
 				cityName,
 				response.data._id
 			);
+			console.log(res);
 			setLoading(false);
 			setShowConfigRoom(false);
 			setIsFilled(true);
@@ -441,7 +442,7 @@ const PackageCard = ({ data }) => {
 													: '#32BAC9'
 											}
 											onClick={() => {
-												if (numberOfChilds != 0) {
+												if (numberOfChilds !== 0) {
 													setNumberOfChlids(
 														(prev) => prev - 1
 													);

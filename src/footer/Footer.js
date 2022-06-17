@@ -4,7 +4,6 @@ import {
 	FaLinkedinIn,
 	FaTwitter,
 	FaYoutube,
-	FaInstagram,
 } from 'react-icons/fa';
 import instagram from './instagram.png';
 import cftlogo from '../assets/logo.png';

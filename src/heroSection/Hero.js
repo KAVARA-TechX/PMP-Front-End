@@ -1,29 +1,20 @@
-import { Box, Button, Text, Image } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
-import hero from '../assets/header.jpeg';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
-// import './Hero.css';
-import one from '../assets/header2.jpeg';
-import two from '../assets/main2.jpeg';
-import Search from './search/Search';
 import Nav from '../nav/Nav';
 import getAllHeroImage from '../apis/getAllHeroImage';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
-	const [length, setLength] = useState(0);
+	// const [length, setLength] = useState(0);
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const imgRef = useRef();
 
 	const makeItMove = (len) => {
-		console.log('value of length is : ', len);
-
 		let slides = document.querySelector('.slides');
-		const allSlide = document.querySelectorAll('.slide');
-
-		console.log('slides are : ', imgRef.current);
+		// const allSlide = document.querySelectorAll('.slide');
 
 		let index = 0;
 
@@ -48,8 +39,7 @@ const Hero = () => {
 		const getImages = async () => {
 			try {
 				const response = await getAllHeroImage();
-				console.log(response.data.heroImages);
-				setLength((prev) => response.data.heroImages.length);
+				// setLength((prev) => response.data.heroImages.length);
 				setImages((prev) => response.data.heroImages);
 				setLoading(false);
 				interval = makeItMove(response.data.heroImages.length);
@@ -95,6 +85,7 @@ const Hero = () => {
 										pt={{ base: 100, lg: 130 }}
 										position='relative'
 										overflow={'hidden'}
+										key={index}
 									>
 										<Text
 											w='50%'
@@ -157,69 +148,6 @@ const Hero = () => {
 							</Box>
 						</>
 					)}
-					{/* <Box
-						className='slide'
-						w={'100vw'}
-						h='500px'
-						bgImage={one}
-						bgSize='cover'
-						bgPos={'50% 50%'}
-						flexShrink={'0'}
-						pt={{ base: 100, lg: 130 }}
-						position='relative'
-						overflow={'hidden'}
-					>
-						<Text
-							bg='rgba(0,0,0,.3)'
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.3)'}
-							color={'white'}
-							position='absolute'
-							top={{ base: '40%', lg: '30%' }}
-							left={{ base: '50%', lg: '30px' }}
-							transform={{
-								base: 'translateX(-50%) translateY(-50%)',
-								lg: 'none',
-							}}
-							fontSize={50}
-							fontWeight={300}
-							lineHeight={1}
-							textAlign={{ base: 'center', lg: 'start' }}
-						>
-							A wishful escape to <br /> your desired destination
-						</Text>
-					</Box>
-					<Box
-						className='slide'
-						w={'100vw'}
-						h='500px'
-						bgImage={hero}
-						bgSize='cover'
-						bgPos={'50% 50%'}
-						flexShrink={'0'}
-						pt={{ base: 100, lg: 130 }}
-						position='relative'
-						overflow={'hidden'}
-					>
-						<Text
-							bg='rgba(0,0,0,.3)'
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.3)'}
-							color={'white'}
-							position='absolute'
-							top={{ base: '40%', lg: '30%' }}
-							left={{ base: '50%', lg: '30px' }}
-							transform={{
-								base: 'translateX(-50%) translateY(-50%)',
-								lg: 'none',
-							}}
-							fontSize={50}
-							fontWeight={300}
-							lineHeight={1}
-							textAlign={{ base: 'center', lg: 'start' }}
-						>
-							It's time for you to <br /> experience the
-							inexperienced
-						</Text>
-					</Box> */}
 				</Box>
 				<Box
 					mt={{ base: 10, lg: 5 }}
@@ -237,23 +165,7 @@ const Hero = () => {
 					right={0}
 					left={{ lg: '50px' }}
 					zIndex={{ base: 10000000, lg: 1 }}
-				>
-					{/* <Button
-						fontSize={20}
-						color='white'
-						bg='#32BAC9'
-						w={{ base: '90%', lg: '150px' }}
-						h='50px'
-						_hover={{
-							background: '#32BAC9',
-						}}
-						onClick={() => {
-							setModalState(true);
-						}}
-					>
-						Discover Now
-					</Button> */}
-				</Box>
+				></Box>
 				{/* <Search /> */}
 			</Box>
 		</>

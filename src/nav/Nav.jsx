@@ -15,7 +15,6 @@ import {
 	MenuButton,
 	MenuItem,
 	MenuList,
-	MenuGroup,
 } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
@@ -37,7 +36,6 @@ const Nav = () => {
 	const { used, setLoginclick, profileurl } = AccessLoginContext();
 	const lgclick = useRef();
 
-	console.log('profile url value is ', profileurl);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -45,12 +43,10 @@ const Nav = () => {
 	});
 
 	const handleLoignClick = () => {
-		console.log('login button is clicked');
 		setOpen(true);
 	};
 
 	const handleSignupClick = () => {
-		console.log('signup button is clicked');
 		setSignupOpen(true);
 	};
 

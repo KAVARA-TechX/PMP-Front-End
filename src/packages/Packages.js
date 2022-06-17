@@ -1,21 +1,12 @@
-import {
-	Box,
-	Modal,
-	ModalCloseButton,
-	ModalContent,
-	ModalOverlay,
-	Text,
-	Input,
-	useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import sunset from '../assets/thingsToDo/sunset.png';
 import surf from '../assets/thingsToDo/skiing.png';
 import scuba from '../assets/thingsToDo/scuba.png';
-import { DayPicker } from 'react-day-picker';
+// import { DayPicker } from 'react-day-picker';
 import '../../node_modules/react-day-picker/dist/style.css';
 import './day-picker.css';
-import { useState } from 'react';
-import sideImg from '../assets/thingsToDo/skiing.png';
+// import { useState } from 'react';
+// import sideImg from '../assets/thingsToDo/skiing.png';
 import { useNavigate } from 'react-router-dom';
 import './Packages.css';
 

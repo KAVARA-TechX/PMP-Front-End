@@ -18,6 +18,7 @@ const BrandsModal = ({ state, setState }) => {
 		if (state) {
 			onOpen();
 		}
+		// eslint-disable-next-line
 	}, [state]);
 
 	return (

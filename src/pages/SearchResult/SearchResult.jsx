@@ -1,27 +1,18 @@
-import {
-	Box,
-	Text,
-	Button,
-	Icon,
-	Badge,
-	Input,
-	Checkbox,
-	Stack,
-} from '@chakra-ui/react';
-import { ArrowBackIcon, CheckIcon, StarIcon } from '@chakra-ui/icons';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Box, Text, Icon, Badge, Checkbox, Stack } from '@chakra-ui/react';
+import { CheckIcon, StarIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import img from '../../assets/thingsToDo/dream-vacation.png';
 import Nav from '../../nav/Nav';
 import Footer from '../../footer/Footer';
 
 const SearchResult = () => {
-	const value = useParams();
+	// const value = useParams();
 	const navigate = useNavigate();
 
-	const handleBack = () => {
-		navigate('/');
-	};
+	// const handleBack = () => {
+	// 	navigate('/');
+	// };
 
 	return (
 		<>

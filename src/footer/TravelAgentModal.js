@@ -30,6 +30,7 @@ const TravelAgentModal = ({ state, setState }) => {
 		if (state) {
 			onOpen();
 		}
+		// eslint-disable-next-line
 	}, [state]);
 
 	const handleSubmit = async () => {
@@ -48,7 +49,7 @@ const TravelAgentModal = ({ state, setState }) => {
 			if (email === '') {
 				setCheckEmail(true);
 			}
-			if (String(phone).length != 10) {
+			if (String(phone).length !== 10) {
 				setCheckPhone(true);
 			}
 		} else {

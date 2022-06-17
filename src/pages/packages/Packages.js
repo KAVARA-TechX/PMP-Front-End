@@ -3,7 +3,7 @@ import { Box, Text, Icon } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import img from '../../assets/footer.jpg';
 import { CalendarIcon } from '@chakra-ui/icons';
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import PackageCard from './PackageCard';
 import getPackageApi from '../../apis/getPackageApi';
