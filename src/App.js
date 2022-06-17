@@ -20,7 +20,7 @@ import Completed from './pages/myBookings/Completed';
 import Cancelled from './pages/myBookings/Cancelled';
 import Profile from './pages/profile/Profile';
 import Faq from './Faq';
-import Tac from './pages/tac/Tac';
+import Tac from './Tac';
 import AboutUs from './pages/aboutUs/AboutUs';
 
 const App = () => {

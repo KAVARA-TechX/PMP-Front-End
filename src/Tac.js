@@ -1,6 +1,6 @@
 import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
-import Footer from '../../footer/Footer';
-import Nav from '../../nav/Nav';
+import Footer from './footer/Footer';
+import Nav from './nav/Nav';
 
 const Tac = () => {
 	return (
