@@ -10,7 +10,6 @@ import {
 	Icon,
 	Input,
 	useToast,
-	Badge,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
@@ -51,13 +50,11 @@ const SignupModal = ({ open, setOpen }) => {
 		} catch (error) {
 			console.log('some error occured', error);
 		}
-		console.log(response);
 
 		onClose();
 	};
 
 	const failure = (response) => {
-		console.log(response);
 		toast({
 			title: 'Error',
 			description: 'Something went wrong, Please try again later.',
@@ -72,7 +69,7 @@ const SignupModal = ({ open, setOpen }) => {
 		if (name !== '' && (email !== '') & (password !== '')) {
 			try {
 				const response = await SignupApi(name, password, email);
-				console.log(response);
+
 				if (
 					response.data.message ===
 					'Register Success!Please activate your email to start.'

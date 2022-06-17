@@ -3,11 +3,7 @@ import {
 	useDisclosure,
 	Modal,
 	ModalOverlay,
-	ModalHeader,
 	ModalContent,
-	ModalCloseButton,
-	ModalBody,
-	ModalFooter,
 	Button,
 	Box,
 	Text,
@@ -15,15 +11,11 @@ import {
 	Input,
 	useToast,
 } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import ReactDOM from 'react-dom';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
 import LoginApi from '../apis/LoginApi';
-import { gapi } from 'gapi-script';
-import { FaLeaf } from 'react-icons/fa';
-import axios from 'axios';
 import googleLoginApi from '../apis/googleLoginApi';
 
 const LoginModal = ({ open, setOpen }) => {
@@ -38,27 +30,15 @@ const LoginModal = ({ open, setOpen }) => {
 	const toast = useToast();
 
 	useEffect(() => {
-		// function start() {
-		// 	gapi.client.init({
-		// 		clientId:
-		// 			'578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com',
-		// 		scope: '',
-		// 	});
-		// }
-
-		// gapi.load('client:auth2', start);
-
 		if (open) {
 			onOpen();
 		}
 	});
 
 	const success = async (response) => {
-		// console.log(response);
 		let tokenId = response.tokenId;
 		try {
 			const res = await googleLoginApi(tokenId);
-			console.log('main response : ', res);
 			setLoginState(true);
 			setToken(res.data.token);
 			setUsed('google');
@@ -72,7 +52,6 @@ const LoginModal = ({ open, setOpen }) => {
 	};
 
 	const failure = (response) => {
-		console.log(response);
 		toast({
 			title: 'Error',
 			description:
@@ -88,7 +67,6 @@ const LoginModal = ({ open, setOpen }) => {
 			setLoading(true);
 			try {
 				const response = await LoginApi(email, password);
-				console.log(response);
 				setLoginState(true);
 				setToken(response.data.token);
 				setUsed('email');
@@ -202,28 +180,6 @@ const LoginModal = ({ open, setOpen }) => {
 							textAlign: 'center',
 						}}
 					></Box>
-					{/* <Box
-						width='80%'
-						fontSize={20}
-						fontWeight={600}
-						bg='#fff'
-						color='black'
-						px='auto'
-						display={'flex'}
-						justifyContent='center'
-						py='5px'
-						borderRadius={'lg'}
-						cursor='pointer'
-					>
-						<Text
-							display={'inline-flex'}
-							gap={5}
-							alignItems='center'
-						>
-							<Icon as={FcGoogle} />
-							Continue with Google
-						</Text>
-					</Box> */}
 					<GoogleLogin
 						// demo
 						clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com'

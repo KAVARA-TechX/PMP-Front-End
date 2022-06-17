@@ -1,11 +1,11 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import img from '../../assets/banner.png';
-import img2 from '../../assets/banner.jpeg';
+// import img from '../../assets/banner.png';
+// import img2 from '../../assets/banner.jpeg';
 // import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import React, { useEffect, useState, Suspense } from 'react';
 
 const Footer = React.lazy(() => {
@@ -97,10 +97,10 @@ const Blog = ({ data }) => {
 
 const BlogList = () => {
 	const [blogList, setBlogList] = useState([]);
-	const navigate = useNavigate();
-	const handleBack = () => {
-		navigate('/');
-	};
+	// const navigate = useNavigate();
+	// const handleBack = () => {
+	// 	navigate('/');
+	// };
 
 	useEffect(() => {
 		const getBlogs = async () => {

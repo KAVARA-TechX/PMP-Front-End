@@ -1,8 +1,8 @@
-import { Box, Text, Image } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import parse from 'html-react-parser';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
-import img from '../../assets/banner.png';
+// import img from '../../assets/banner.png';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 

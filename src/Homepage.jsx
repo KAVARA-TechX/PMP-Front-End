@@ -48,7 +48,7 @@ const Homepage = () => {
 				});
 			}
 		} catch (error) {}
-	}, []);
+	});
 
 	useEffect(() => {
 		setTimeout(() => {
