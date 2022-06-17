@@ -21,7 +21,7 @@ import Cancelled from './pages/myBookings/Cancelled';
 import Profile from './pages/profile/Profile';
 import Faq from './Faq';
 import Tac from './Tac';
-import AboutUs from './pages/aboutUs/AboutUs';
+import AboutUs from './AboutUs';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
