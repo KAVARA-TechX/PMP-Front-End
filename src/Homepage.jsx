@@ -7,6 +7,9 @@ import { useLocation } from 'react-router-dom';
 const Facts = lazy(() => {
 	return import('./facts/Facts');
 });
+const DreamVacation = lazy(() => {
+	return import('./dreamVacation/DreamVacation');
+});
 const Packages = lazy(() => {
 	return import('./packages/Packages');
 });
@@ -61,10 +64,13 @@ const Homepage = () => {
 			{load ? (
 				<>
 					<Suspense fallback={<div></div>}>
-						<Facts /> {/* Responsive Done */}
+						<Facts />
 					</Suspense>
 					<Suspense fallback={<div></div>}>
-						<Packages /> {/* Responsive Done*/}
+						<DreamVacation />
+					</Suspense>
+					<Suspense fallback={<div></div>}>
+						<Packages />
 					</Suspense>
 					<Suspense fallback={<div></div>}>
 						<SpaceBetween space='50px' />

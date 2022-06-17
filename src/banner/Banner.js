@@ -9,30 +9,73 @@ const Banner = () => {
 		<>
 			<UserForm state={modalState} setState={setModalState} />
 			<Box
-				w={{ base: '100vw', lg: '80vw' }}
-				mx='auto'
+				// w={{ base: '100vw', lg: '100%' }}
+				mx='5.78vw'
 				h={{ base: '350px', lg: '250px' }}
 				display={'flex'}
 				borderRadius={{ base: 'none', lg: 'xl' }}
 				overflow={'hidden'}
-				mb={10}
+				mb={'50px'}
 				flexDir={{ base: 'column', lg: 'row' }}
+				bg='green'
 			>
-				<Box w={{ base: '100%', lg: '70%' }} h='100%'>
+				<Box
+					w={{ base: '100%', lg: '100%' }}
+					h='100%'
+					bgImage={banner}
+					bgSize={'cover'}
+					bgPosition='left'
+				>
 					<Box
 						w='100%'
 						h='100%'
-						bgSize={'cover'}
-						bgPosition='left'
-						bgImage={banner}
-					/>
+						bg='linear-gradient(270deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)'
+						position='relative'
+					>
+						<Box
+							position={'absolute'}
+							top='50%'
+							transform={'translateY(-50%)'}
+							right='10%'
+							display={'flex'}
+							flexDir='column'
+							alignItems={'center'}
+						>
+							<Text
+								textAlign='center'
+								fontSize={35}
+								fontWeight={700}
+								whiteSpace='nowrap'
+							>
+								Visit Maldives <br /> A Fantasy Fulfilled
+							</Text>
+							<Box
+								bg='rgba(255, 255, 255, 0.7)'
+								py={3}
+								px={5}
+								w='fit-content'
+								borderRadius={'xl'}
+								cursor='pointer'
+								mt={5}
+								onClick={() => {
+									setModalState(true);
+								}}
+								textAlign='center'
+								color='#082032'
+								fontWeight={600}
+							>
+								Sell all packages
+							</Box>
+						</Box>
+					</Box>
 				</Box>
 				<Box
-					w={{ base: '100%', lg: '30%' }}
+					w={{ base: '100%', lg: '0%' }}
 					h={{ base: '30%', lg: '100%' }}
 					bg='rgb(40,56,75)'
-					boxShadow='-50px 0 100px 100px rgb(40,56,75)'
+					// boxShadow='-50px 0 100px 100px rgb(40,56,75)'
 					position={'relative'}
+					display='none'
 				>
 					<Box
 						position={'absolute'}

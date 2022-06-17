@@ -7,19 +7,24 @@ const Facts = () => {
 	return (
 		<Box
 			w='100vw'
-			h='600px'
+			h='fit-content'
 			display='flex'
-			mt='150px'
+			mt='100px'
 			mb={10}
 			className='facts'
+			px='30px'
+			gap='20px'
 		>
 			<Box
 				w={{ base: '0%', lg: '50%' }}
+				mb={10}
+				borderRadius='20px'
 				bgImage={image}
 				bgSize='cover'
 				bgPosition={'50% 50%'}
+				flexGrow={1}
 			></Box>
-			<Box w={{ base: '100%', lg: '50%' }}>
+			<Box w={{ base: '100%', lg: '35.57%' }} h='fit-content'>
 				<Box ml={5}>
 					<Text fontSize={20} fontWeight={500} mb={1}>
 						Plan My Leisure
@@ -36,7 +41,7 @@ const Facts = () => {
 					<Text
 						lineHeight={1.4}
 						textAlign='start'
-						pr={{ base: '', lg: '50px' }}
+						// pr={{ base: '', lg: '10px' }}
 					>
 						We make sure you enjoy your leisure to the fullest .
 						Over the years, we have helped more than 10000
@@ -103,13 +108,13 @@ const Facts = () => {
 						</Text>
 						<Text>Satisfied Clients</Text>
 					</Box>
-					<Box
+					{/* <Box
 						height='150px'
 						display='flex'
 						flexDir={'column'}
 						justifyContent={'center'}
 						alignItems='center'
-					></Box>
+					></Box> */}
 				</Box>
 			</Box>
 		</Box>
