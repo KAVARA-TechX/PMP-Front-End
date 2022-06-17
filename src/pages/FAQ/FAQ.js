@@ -8,7 +8,7 @@ import {
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
-const FAQ = () => {
+const Faq = () => {
 	return (
 		<>
 			<Nav />
@@ -190,4 +190,4 @@ const FAQ = () => {
 	);
 };
 
-export default FAQ;
+export default Faq;

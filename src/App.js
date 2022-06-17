@@ -19,8 +19,8 @@ import Upcoming from './pages/myBookings/Upcoming';
 import Completed from './pages/myBookings/Completed';
 import Cancelled from './pages/myBookings/Cancelled';
 import Profile from './pages/profile/Profile';
-import FAQ from './pages/faq/FAQ';
-import TAC from './pages/tac/TAC';
+import Faq from './pages/faq/Faq';
+import Tac from './pages/tac/Tac';
 import AboutUs from './pages/aboutUs/AboutUs';
 
 const App = () => {
@@ -61,8 +61,8 @@ const App = () => {
 					element={loginState ? <Profile /> : <Navigate to='/' />}
 				/>
 			</Route>
-			<Route path='/faq' element={<FAQ />} />
-			<Route path='/terms-and-conditions' element={<TAC />} />
+			<Route path='/faq' element={<Faq />} />
+			<Route path='/terms-and-conditions' element={<Tac />} />
 			<Route path='/about-us' element={<AboutUs />} />
 		</Routes>
 	);

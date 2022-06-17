@@ -2,7 +2,7 @@ import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
-const TAC = () => {
+const Tac = () => {
 	return (
 		<>
 			<Nav />
@@ -631,4 +631,4 @@ const TAC = () => {
 	);
 };
 
-export default TAC;
+export default Tac;
