@@ -9,8 +9,8 @@ const Banner = () => {
 		<>
 			<UserForm state={modalState} setState={setModalState} />
 			<Box
-				// w={{ base: '100vw', lg: '100%' }}
-				mx='5.78vw'
+				w={{ base: '100vw', lg: '95vw' }}
+				mx='auto'
 				h={{ base: '350px', lg: '250px' }}
 				display={'flex'}
 				borderRadius={{ base: 'none', lg: 'xl' }}
@@ -35,8 +35,11 @@ const Banner = () => {
 						<Box
 							position={'absolute'}
 							top='50%'
-							transform={'translateY(-50%)'}
-							right='10%'
+							transform={{
+								base: 'translateX(50%) translateY(-50%)',
+								lg: 'translateY(-50%)',
+							}}
+							right={{ base: '50%', lg: '10%' }}
 							display={'flex'}
 							flexDir='column'
 							alignItems={'center'}
@@ -64,7 +67,7 @@ const Banner = () => {
 								color='#082032'
 								fontWeight={600}
 							>
-								Sell all packages
+								Get quote for <br /> customised package
 							</Box>
 						</Box>
 					</Box>

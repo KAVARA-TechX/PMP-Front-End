@@ -39,16 +39,17 @@ const Footer = () => {
 			<TravelAgentModal state={travelagent} setState={setTravelAgent} />
 			<BrandsModal state={brands} setState={setBrands} />
 			<Box
-				h='400px'
+				h={{ base: 'fit-content', lg: '400px' }}
 				w='100vw'
 				overflow={'hidden'}
 				className='hide-scroll-bar'
 				bg='#082032'
 				display={'grid'}
-				gridTemplateColumns='.7fr 1fr 1fr'
+				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1fr 1fr' }}
+				gap={{ base: '20px', lg: '0' }}
 				py='30px '
 			>
-				<Box pl='80px' display={'flex'} flexDir='column'>
+				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
 						<Image src={logo} h='100%' />
 					</Box>
@@ -167,7 +168,7 @@ const Footer = () => {
 					<Text fontWeight={700} fontSize='28px' mb='10px'>
 						Subscribe to hear news
 					</Text>
-					<InputGroup w='90%' size={'lg'}>
+					<InputGroup w={{ base: '90%', lg: '70%' }} size={'lg'}>
 						<Input
 							bg='white'
 							pr='50px'

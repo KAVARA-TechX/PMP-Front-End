@@ -64,7 +64,8 @@ const SearchResult = () => {
 						<Box
 							w={'100%'}
 							h={{ base: 'fit-content', lg: '300px' }}
-							bg='gray.600'
+							bg='transparent'
+							border='1px solid #2d3748'
 							borderRadius={'2xl'}
 							mt='20px'
 							display={'flex'}

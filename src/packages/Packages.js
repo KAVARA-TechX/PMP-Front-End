@@ -46,7 +46,7 @@ const Packages = () => {
 						Packages
 					</Text>
 					<Text
-						textAlign={{ base: 'center', lg: 'start' }}
+						textAlign={{ base: 'start', lg: 'start' }}
 						fontSize='20px'
 					>
 						Discover your ideal Experience

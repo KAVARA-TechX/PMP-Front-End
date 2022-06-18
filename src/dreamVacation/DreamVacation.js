@@ -13,14 +13,23 @@ const DreamVacation = () => {
 			py='70px'
 			mb={10}
 		>
-			<Text fontWeight={700} textAlign='center' fontSize={'40px'}>
+			<Text
+				fontWeight={700}
+				textAlign='center'
+				fontSize={{ base: '30px', lg: '40px' }}
+			>
 				Let’s find you your dream vacation
 			</Text>
-			<Box display={'grid'} gridTemplateColumns='repeat(3,1fr)' mt='50px'>
+			<Box
+				display={'grid'}
+				gridTemplateColumns={{ base: '1fr', lg: 'repeat(3,1fr)' }}
+				mt='50px'
+				gap={{ base: '30px', lg: '0' }}
+			>
 				<Box w='300px' mx='auto'>
 					<Box
-						w='80px'
-						h='80px'
+						w={{ base: '60px', lg: '80px' }}
+						h={{ base: '60px', lg: '80px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -30,9 +39,16 @@ const DreamVacation = () => {
 						border='3px solid #0e87f6'
 						mb='20px'
 					>
-						<Image src={clipboard} h='40px' />
+						<Image
+							src={clipboard}
+							h={{ base: '30px', lg: '40px' }}
+						/>
 					</Box>
-					<Text fontWeight={700} fontSize='28px' textAlign={'center'}>
+					<Text
+						fontWeight={700}
+						fontSize={{ base: '22px', lg: '28px' }}
+						textAlign={'center'}
+					>
 						Select a Package
 					</Text>
 					<Text
@@ -47,8 +63,8 @@ const DreamVacation = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w='80px'
-						h='80px'
+						w={{ base: '60px', lg: '80px' }}
+						h={{ base: '60px', lg: '80px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -58,9 +74,13 @@ const DreamVacation = () => {
 						border='3px solid #0e87f6'
 						mb='20px'
 					>
-						<Image src={message} h='40px' />
+						<Image src={message} h={{ base: '30px', lg: '40px' }} />
 					</Box>
-					<Text fontWeight={700} fontSize='28px' textAlign={'center'}>
+					<Text
+						fontWeight={700}
+						fontSize={{ base: '22px', lg: '28px' }}
+						textAlign={'center'}
+					>
 						Get it Customised
 					</Text>
 					<Text
@@ -76,8 +96,8 @@ const DreamVacation = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w='80px'
-						h='80px'
+						w={{ base: '60px', lg: '80px' }}
+						h={{ base: '60px', lg: '80px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -87,9 +107,16 @@ const DreamVacation = () => {
 						border='3px solid #0e87f6'
 						mb='20px'
 					>
-						<Image src={cardtick} h='40px' />
+						<Image
+							src={cardtick}
+							h={{ base: '30px', lg: '40px' }}
+						/>
 					</Box>
-					<Text fontWeight={700} fontSize='28px' textAlign={'center'}>
+					<Text
+						fontWeight={700}
+						fontSize={{ base: '22px', lg: '28px' }}
+						textAlign={'center'}
+					>
 						Pay Securely
 					</Text>
 					<Text

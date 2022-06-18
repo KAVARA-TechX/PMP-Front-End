@@ -78,7 +78,7 @@ const Nav = () => {
 				w='100vw'
 				h='80px'
 				display={'flex'}
-				justifyContent={{ base: 'center', lg: 'none' }}
+				justifyContent={{ base: 'center', lg: 'space-between' }}
 				alignItems='center'
 				pl={10}
 				pr={10}
@@ -92,7 +92,7 @@ const Nav = () => {
 				overflow={'hidden'}
 			>
 				{/* logo */}
-				<Box flexGrow={{ base: 'none', lg: 2 }}>
+				<Box flexGrow={{ base: 'none', lg: 1 }}>
 					<Image
 						src={logo}
 						h='100px'
@@ -102,40 +102,17 @@ const Nav = () => {
 						}}
 					/>
 				</Box>
+
 				{/* options */}
 				<Box
 					display={{ base: 'none', lg: 'flex' }}
 					justifyContent='space-between'
-					w={'20vw'}
+					// w={'20vw'}
 					textTransform='uppercase'
 					alignItems={'end'}
-					mr={'50px'}
+					// mr={'50px'}
 					fontWeight={700}
 				>
-					<Text
-						cursor={'pointer'}
-						color={path === '' ? '#32BAC9' : '#f5f5f5'}
-						borderBottom={
-							path === '' ? '1px solid #32bac9' : 'none'
-						}
-						onClick={() => {
-							navigate('/');
-						}}
-					>
-						{/* Home */}
-					</Text>
-					<Text
-						cursor={'pointer'}
-						color={path === 'blogs' ? '#32BAC9' : '#f5f5f5'}
-						borderBottom={
-							path === 'blogs' ? '1px solid #32bac9' : 'none'
-						}
-						onClick={() => {
-							navigate('/blogs');
-						}}
-					>
-						{/* Blogs */}
-					</Text>
 					<Box>
 						<Menu>
 							<MenuButton>

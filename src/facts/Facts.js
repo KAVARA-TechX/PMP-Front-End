@@ -9,10 +9,10 @@ const Facts = () => {
 			w='100vw'
 			h='fit-content'
 			display='flex'
-			mt='100px'
+			mt={{ base: '30px', lg: '100px' }}
 			mb={10}
 			className='facts'
-			px='30px'
+			px={{ base: '10px', lg: '30px' }}
 			gap='20px'
 		>
 			<Box
@@ -25,7 +25,7 @@ const Facts = () => {
 				flexGrow={1}
 			></Box>
 			<Box w={{ base: '100%', lg: '35.57%' }} h='fit-content'>
-				<Box ml={5}>
+				<Box ml={{ base: 0, lg: 5 }}>
 					<Text fontSize={20} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>

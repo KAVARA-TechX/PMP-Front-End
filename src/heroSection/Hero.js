@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Nav from '../nav/Nav';
 import getAllHeroImage from '../apis/getAllHeroImage';
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
+import Search from './search/Search';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
@@ -61,7 +62,7 @@ const Hero = () => {
 			<Box
 				h='500px'
 				w='100vw'
-				mb={{ base: '230px', lg: '100px' }}
+				mb={{ base: '170px', lg: '100px' }}
 				position={'relative'}
 			>
 				<UserForm state={modalState} setState={setModalState} />
@@ -89,7 +90,7 @@ const Hero = () => {
 										key={index}
 									>
 										<Text
-											w='50%'
+											w={{ base: '100%', lg: '50%' }}
 											bg='rgba(0,0,0,.3)'
 											boxShadow={
 												'0 0 0 10000px rgba(0,0,0,.3)'
@@ -128,7 +129,7 @@ const Hero = () => {
 								overflow={'hidden'}
 							>
 								<Text
-									w='50%'
+									w={{ base: '100%', lg: '50%' }}
 									bg='rgba(0,0,0,.3)'
 									boxShadow={'0 0 0 10000px rgba(0,0,0,.3)'}
 									color={'white'}
@@ -167,15 +168,17 @@ const Hero = () => {
 					left={{ lg: '50px' }}
 					zIndex={{ base: 10000000, lg: 1 }}
 				></Box>
-				{/* <Search /> */}
+				<Search />
 				<Box
+					display={{ base: 'none', lg: 'inline-block' }}
 					position={'absolute'}
 					right='0'
-					bottom={0}
+					top='50%'
+					transform='translateY(-50%)'
 					h='190px'
-					w='250px'
+					w='200px'
 					bg='rgba(8, 32, 50,.65)'
-					borderRadius={'32px 0 0 0'}
+					borderRadius={'32px 0 0 32px'}
 					pr='50px'
 					pt='40px'
 				>
