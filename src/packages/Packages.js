@@ -15,70 +15,63 @@ const Packages = () => {
 
 	return (
 		<>
-			<Box
-				w='100vw'
-				display={'flex'}
-				flexDir={{ base: 'column', lg: 'row' }}
-				alignItems='center'
-				className='packages'
-			>
-				<Box
-					w={{ base: '100%', lg: '35%' }}
-					h='100%'
-					display='flex'
-					justifyContent='center'
-					alignItems='center'
-				>
-					<Box>
-						<Text
-							fontSize={{ base: 25, lg: 30 }}
-							fontWeight={600}
-							position='relative'
-							_after={{
-								base: {
-									content: '""',
-									position: 'absolute',
-									left: 0,
-									bottom: 0,
-									height: '2px',
-									width: '100%',
-									background: '#32BAC9',
-								},
-								lg: {
-									content: '""',
-									position: 'absolute',
-									left: 0,
-									bottom: 0,
-									height: '2px',
-									width: '85%',
-									background: '#32BAC9',
-								},
-							}}
-							className='packages-heading'
-						>
-							Find The Perfect Escape
-						</Text>
-						<Text textAlign={{ base: 'center', lg: 'start' }}>
-							Discover your ideal Experience
-						</Text>
-					</Box>
+			<Box w='100vw' className='packages' px='5.78vw'>
+				<Box>
+					<Text
+						fontSize={{ base: 25, lg: 40 }}
+						fontWeight={700}
+						position='relative'
+						// _after={{
+						// 	base: {
+						// 		content: '""',
+						// 		position: 'absolute',
+						// 		left: 0,
+						// 		bottom: 0,
+						// 		height: '2px',
+						// 		width: '100%',
+						// 		background: '#32BAC9',
+						// 	},
+						// 	lg: {
+						// 		content: '""',
+						// 		position: 'absolute',
+						// 		left: 0,
+						// 		bottom: 0,
+						// 		height: '2px',
+						// 		width: '85%',
+						// 		background: '#32BAC9',
+						// 	},
+						// }}
+						className='packages-heading'
+					>
+						Packages
+					</Text>
+					<Text
+						textAlign={{ base: 'start', lg: 'start' }}
+						fontSize='20px'
+					>
+						Discover your ideal Experience
+					</Text>
 				</Box>
+
 				<Box
-					w={{ base: '100%', lg: '75%' }}
-					h='100%'
-					display={'flex'}
-					alignItems='center'
-					overflowX={{ base: 'scroll', lg: 'none' }}
-					className='hide-scroll-bar'
+					// w={{ base: '100%', lg: '75%' }}
+					as='div'
+					display={'block'}
+					whiteSpace='nowrap'
+					// alignItems='center'
+					mt='20px'
+					overflowX={{ base: 'scroll', lg: 'scroll' }}
+					className='show-scroll-when-scrolling'
 				>
 					<Box
-						h='400px'
-						minW={{ base: '250px' }}
+						display={'inline-block'}
+						h='450px'
+						w='300px'
 						bgImg={sunset}
 						bgSize='cover'
 						bgPos={'50%'}
 						borderRadius={'xl'}
-						m={5}
+						mx={5}
 						cursor='pointer'
 						onClick={() => {
 							navigate('/packages');
@@ -89,13 +82,14 @@ const Packages = () => {
 						}}
 					/>
 					<Box
-						h='400px'
-						minW={{ base: '250px' }}
+						display={'inline-block'}
+						h='450px'
+						w='300px'
 						bgImg={surf}
 						bgSize='cover'
 						bgPos={'50%'}
 						borderRadius={'xl'}
-						m={5}
+						mx={5}
 						cursor='pointer'
 						onClick={() => {
 							navigate('/packages');
@@ -106,13 +100,50 @@ const Packages = () => {
 						}}
 					/>
 					<Box
-						h='400px'
-						minW={{ base: '250px' }}
+						display={'inline-block'}
+						h='450px'
+						w='300px'
 						bgImg={scuba}
 						bgSize='cover'
 						bgPos={'50%'}
 						borderRadius={'xl'}
-						m={5}
+						mx={5}
+						cursor='pointer'
+						onClick={() => {
+							navigate('/packages');
+						}}
+						transition='.2s'
+						_hover={{
+							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
+						}}
+					/>
+					<Box
+						display={'inline-block'}
+						h='450px'
+						w='300px'
+						bgImg={sunset}
+						bgSize='cover'
+						bgPos={'50%'}
+						borderRadius={'xl'}
+						mx={5}
+						cursor='pointer'
+						onClick={() => {
+							navigate('/packages');
+						}}
+						transition='.2s'
+						_hover={{
+							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
+						}}
+					/>
+					<Box
+						display={'inline-block'}
+						h='450px'
+						w='300px'
+						bgImg={surf}
+						bgSize='cover'
+						bgPos={'50%'}
+						borderRadius={'xl'}
+						mx={5}
 						cursor='pointer'
 						onClick={() => {
 							navigate('/packages');

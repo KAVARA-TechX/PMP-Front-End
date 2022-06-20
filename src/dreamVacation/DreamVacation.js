@@ -1,13 +1,9 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Text, Image } from '@chakra-ui/react';
 import clipboard from '../assets/icons/clipboard-text.png';
 import message from '../assets/icons/messages.png';
 import cardtick from '../assets/icons/card-tick.png';
-// import x7 from '../assets/icons/24x7.svg';
-// import allRounder from '../assets/icons/allRound.svg';
-// import easyPrice from '../assets/icons/easyPrice.svg';
-// import oneStopShop from '../assets/icons/oneStopShop.svg';
 
-const IconSection = () => {
+const DreamVacation = () => {
 	return (
 		<Box
 			w='100vw'
@@ -15,14 +11,14 @@ const IconSection = () => {
 			bg='rgba(14, 135, 246,.25)'
 			px='30px'
 			py='70px'
-			mb={'60px'}
+			mb={10}
 		>
 			<Text
 				fontWeight={700}
 				textAlign='center'
 				fontSize={{ base: '30px', lg: '40px' }}
 			>
-				Our Gurantee
+				Let’s find you your dream vacation
 			</Text>
 			<Box
 				display={'grid'}
@@ -53,7 +49,16 @@ const IconSection = () => {
 						fontSize={{ base: '22px', lg: '28px' }}
 						textAlign={'center'}
 					>
-						24/7 Assistance
+						Select a Package
+					</Text>
+					<Text
+						textAlign={'center'}
+						fontSize={'16px'}
+						lineHeight='24px'
+						fontWeight={500}
+					>
+						Select a destination of your choice and fill in the
+						basic information.
 					</Text>
 				</Box>
 				<Box w='300px' mx='auto'>
@@ -76,7 +81,17 @@ const IconSection = () => {
 						fontSize={{ base: '22px', lg: '28px' }}
 						textAlign={'center'}
 					>
-						One-Stop Shop
+						Get it Customised
+					</Text>
+					<Text
+						textAlign={'center'}
+						px='10px'
+						fontSize={'16px'}
+						lineHeight='24px'
+						fontWeight={500}
+					>
+						You can personalize your trip as per your wish. Click
+						and explore options to complete your customisation.
 					</Text>
 				</Box>
 				<Box w='300px' mx='auto'>
@@ -102,48 +117,20 @@ const IconSection = () => {
 						fontSize={{ base: '22px', lg: '28px' }}
 						textAlign={'center'}
 					>
-						All Round Expertise
+						Pay Securely
+					</Text>
+					<Text
+						textAlign={'center'}
+						fontSize={'16px'}
+						lineHeight='24px'
+						fontWeight={500}
+					>
+						Pay easily with a safe and secure gateway.
 					</Text>
 				</Box>
 			</Box>
 		</Box>
 	);
-	// return (
-	// 	<Box
-	// 		w='100vw'
-	// 		h='fit-content'
-	// 		bg='#32BAC9'
-	// 		display={'grid'}
-	// 		gridTemplateColumns={{
-	// 			base: 'repeat(2,1fr)',
-	// 			lg: 'repeat(4, 1fr)',
-	// 		}}
-	// 		alignItems='center'
-	// 		textAlign={'center'}
-	// 		color='white'
-	// 		pt={'40px'}
-	// 		pb={'40px'}
-	// 		rowGap='50px'
-	// 		mb={10}
-	// 	>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={x7} h='50px' />
-	// 			24X7 Assistance
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={allRounder} h='50px' />
-	// 			All Rounder Expertise
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={easyPrice} h='50px' />
-	// 			Easy Pricing
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={oneStopShop} h='50px' />
-	// 			One-Stop Shop
-	// 		</Box>
-	// 	</Box>
-	// );
 };
 
-export default IconSection;
+export default DreamVacation;

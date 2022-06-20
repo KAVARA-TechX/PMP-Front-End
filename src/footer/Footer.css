@@ -32,8 +32,8 @@
 	filter: brightness(40%);
 }
 
-.instagram:hover img {
-	filter: grayscale(0);
+.instagram:hover svg {
+	color: rgb(239, 55, 55);
 }
 
 .instagram:hover {

@@ -530,7 +530,7 @@ const PackageCard = ({ data }) => {
 			</Modal>
 			<Box
 				w={'100%'}
-				h={{ base: 'fit-content', lg: '350px' }}
+				h={{ base: 'fit-content', lg: '400px' }}
 				bg='gray.600'
 				border={'1px solid rgba(255,255,255,0.1)'}
 				borderRadius={'2xl'}
@@ -678,6 +678,32 @@ const PackageCard = ({ data }) => {
 							}}
 						>
 							Customise
+						</Box>
+						<Box
+							mt='10px'
+							bg='#32BAC9'
+							border={'1px solid rgba(255,255,255,.3)'}
+							// display={'inline-block'}
+							fontSize={20}
+							fontWeight={600}
+							py={'15px'}
+							textAlign='center'
+							borderRadius={'xl'}
+							cursor='pointer'
+							_hover={{
+								background: '#32BAC9',
+							}}
+							onClick={() => {
+								if (loginState === true) {
+									console.log('one should open');
+									onOpen();
+								} else {
+									console.log('two should open');
+									loginclick.click();
+								}
+							}}
+						>
+							Get Now
 						</Box>
 					</Box>
 				</Box>
