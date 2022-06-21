@@ -9,13 +9,26 @@ import './day-picker.css';
 // import sideImg from '../assets/thingsToDo/skiing.png';
 import { useNavigate } from 'react-router-dom';
 import './Packages.css';
+import { useEffect, useState } from 'react';
+import getPackageApi from '../apis/getPackageApi';
 
 const Packages = () => {
 	const navigate = useNavigate();
+	const [pkg, setPkg] = useState([]);
+
+	useEffect(() => {
+		const getData = async () => {
+			try {
+				const res = await getPackageApi();
+				setPkg(res.data.packages);
+			} catch (error) {}
+		};
+		getData();
+	}, []);
 
 	return (
 		<>
-			<Box w='100vw' className='packages' px='5.78vw'>
+			<Box w='100vw' className='packages' px='5vw'>
 				<Box>
 					<Text
 						fontSize={{ base: 25, lg: 40 }}
@@ -61,98 +74,31 @@ const Packages = () => {
 					// alignItems='center'
 					mt='20px'
 					overflowX={{ base: 'scroll', lg: 'scroll' }}
-					className='show-scroll-when-scrolling'
+					className='hide-scroll-bar'
 				>
-					<Box
-						display={'inline-block'}
-						h='450px'
-						w='300px'
-						bgImg={sunset}
-						bgSize='cover'
-						bgPos={'50%'}
-						borderRadius={'xl'}
-						mx={5}
-						cursor='pointer'
-						onClick={() => {
-							navigate('/packages');
-						}}
-						transition='.2s'
-						_hover={{
-							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-						}}
-					/>
-					<Box
-						display={'inline-block'}
-						h='450px'
-						w='300px'
-						bgImg={surf}
-						bgSize='cover'
-						bgPos={'50%'}
-						borderRadius={'xl'}
-						mx={5}
-						cursor='pointer'
-						onClick={() => {
-							navigate('/packages');
-						}}
-						transition='.2s'
-						_hover={{
-							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-						}}
-					/>
-					<Box
-						display={'inline-block'}
-						h='450px'
-						w='300px'
-						bgImg={scuba}
-						bgSize='cover'
-						bgPos={'50%'}
-						borderRadius={'xl'}
-						mx={5}
-						cursor='pointer'
-						onClick={() => {
-							navigate('/packages');
-						}}
-						transition='.2s'
-						_hover={{
-							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-						}}
-					/>
-					<Box
-						display={'inline-block'}
-						h='450px'
-						w='300px'
-						bgImg={sunset}
-						bgSize='cover'
-						bgPos={'50%'}
-						borderRadius={'xl'}
-						mx={5}
-						cursor='pointer'
-						onClick={() => {
-							navigate('/packages');
-						}}
-						transition='.2s'
-						_hover={{
-							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-						}}
-					/>
-					<Box
-						display={'inline-block'}
-						h='450px'
-						w='300px'
-						bgImg={surf}
-						bgSize='cover'
-						bgPos={'50%'}
-						borderRadius={'xl'}
-						mx={5}
-						cursor='pointer'
-						onClick={() => {
-							navigate('/packages');
-						}}
-						transition='.2s'
-						_hover={{
-							boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-						}}
-					/>
+					{pkg.map((data, index) => {
+						return (
+							<Box
+								key={index}
+								display={'inline-block'}
+								h='350px'
+								w='230px'
+								bgImg={data.image[0].url}
+								bgSize='cover'
+								bgPos={'50%'}
+								borderRadius={'xl'}
+								mx={5}
+								cursor='pointer'
+								onClick={() => {
+									navigate('/about-package');
+								}}
+								transition='.2s'
+								_hover={{
+									boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
+								}}
+							/>
+						);
+					})}
 				</Box>
 			</Box>
 		</>

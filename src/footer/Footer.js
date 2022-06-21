@@ -47,7 +47,8 @@ const Footer = () => {
 				display={'grid'}
 				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1fr 1fr' }}
 				gap={{ base: '20px', lg: '0' }}
-				py='30px '
+				py='30px'
+				px='5vw'
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
@@ -165,7 +166,7 @@ const Footer = () => {
 					</Box>
 				</Box>
 				<Box pl='20px' pr='20px'>
-					<Text fontWeight={700} fontSize='28px' mb='10px'>
+					{/* <Text fontWeight={700} fontSize='28px' mb='10px'>
 						Subscribe to hear news
 					</Text>
 					<InputGroup w={{ base: '90%', lg: '70%' }} size={'lg'}>
@@ -196,7 +197,7 @@ const Footer = () => {
 								Send
 							</Button>
 						</InputRightElement>
-					</InputGroup>
+					</InputGroup> */}
 					<Box display={'flex'} mt='30px' gap='30px'>
 						<Box
 							as='a'

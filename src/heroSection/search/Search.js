@@ -134,12 +134,12 @@ const Search = () => {
 				<Button
 					h='40px'
 					w={{ base: '100%', lg: 'fit-content' }}
-					bg='#32BAC9'
+					bg='#0e87f6'
 					color='white'
 					onClick={handleForm}
 					disabled={submitButton}
 					borderRadius={{ base: 'md', lg: 'full' }}
-					_hover={{ backgroundColor: '#32BAC9' }}
+					_hover={{ backgroundColor: '#0e87f6' }}
 					display='flex'
 					gap={2}
 				>
