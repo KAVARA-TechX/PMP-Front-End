@@ -103,8 +103,9 @@ const AboutPackage = () => {
 				>
 					<Box
 						display={'flex'}
+						flexDir='column'
 						justifyContent='space-between'
-						alignItems='center'
+						alignItems='flex-start'
 					>
 						<Text color='black' fontSize={30}>
 							<Text fontSize={20} textDecor='line-through'>
@@ -115,17 +116,39 @@ const AboutPackage = () => {
 								Total Savings: ₹10,000
 							</Text>
 						</Text>
-						<Box color='white'>
+						<Box
+							color='white'
+							display={'flex'}
+							w='100%'
+							gap={'20px'}
+						>
 							<Box
-								bg='#32BAC9'
-								px='35px'
+								bg='#0e87f6'
 								py='20px'
 								fontSize={20}
 								borderRadius='xl'
 								textAlign={'center'}
-								mx={'30px'}
+								flexGrow={1}
+								cursor='pointer'
 							>
 								Book Now
+							</Box>
+							<Box
+								bg='transparent'
+								py='20px'
+								fontSize={20}
+								borderRadius='xl'
+								textAlign={'center'}
+								flexGrow={1}
+								color='#000'
+								border='3px solid #0e87f6'
+								cursor='pointer'
+								_hover={{
+									background: '#0e87f6',
+									color: 'white',
+								}}
+							>
+								Customize
 							</Box>
 						</Box>
 					</Box>
@@ -149,7 +172,7 @@ const AboutPackage = () => {
 							</Text>
 						</Box>
 					</Box>
-					<Box display={'flex'} justifyContent='center' mt='50px'>
+					{/* <Box display={'flex'} justifyContent='center' mt='50px'>
 						<Box
 							w='90%'
 							bg='green.300'
@@ -165,8 +188,8 @@ const AboutPackage = () => {
 							<Icon as={IoLogoWhatsapp} color='green' />{' '}
 							<Text color='green'>Contact us on Whatsapp</Text>
 						</Box>
-					</Box>
-					<Box display={'flex'} mt='50px' color={'black'}>
+					</Box> */}
+					{/* <Box display={'flex'} mt='50px' color={'black'}>
 						<Box
 							display={'flex'}
 							alignItems='center'
@@ -187,7 +210,7 @@ const AboutPackage = () => {
 							<Icon as={GiCancel} />
 							<Text>cancelation policy</Text>
 						</Box>
-					</Box>
+					</Box> */}
 				</Box>
 			</Box>
 			<Footer />

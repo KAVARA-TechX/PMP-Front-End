@@ -14,19 +14,19 @@ const IconSection = () => {
 			h='fit-content'
 			bg='rgba(14, 135, 246,.25)'
 			px='30px'
-			py='70px'
+			py='30px'
 			mb={'60px'}
 		>
 			<Text
 				fontWeight={700}
 				textAlign='center'
-				fontSize={{ base: '30px', lg: '40px' }}
+				fontSize={{ base: '30px', lg: '35px' }}
 			>
 				Our Gurantee
 			</Text>
 			<Box
 				display={'grid'}
-				gridTemplateColumns={{ base: '1fr', lg: 'repeat(3,1fr)' }}
+				gridTemplateColumns={{ base: '1fr', lg: 'repeat(4,1fr)' }}
 				mt='50px'
 				gap={{ base: '30px', lg: '0' }}
 			>
@@ -50,7 +50,7 @@ const IconSection = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						24/7 Assistance
@@ -73,7 +73,7 @@ const IconSection = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						One-Stop Shop
@@ -99,10 +99,36 @@ const IconSection = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						All Round Expertise
+					</Text>
+				</Box>
+				<Box w='300px' mx='auto'>
+					<Box
+						w={{ base: '60px', lg: '80px' }}
+						h={{ base: '60px', lg: '80px' }}
+						mx='auto'
+						display={'flex'}
+						justifyContent='center'
+						alignItems={'center'}
+						borderRadius={'full'}
+						overflow='hidden'
+						border='3px solid #0e87f6'
+						mb='20px'
+					>
+						<Image
+							src={cardtick}
+							h={{ base: '30px', lg: '40px' }}
+						/>
+					</Box>
+					<Text
+						fontWeight={700}
+						fontSize={{ base: '22px', lg: '24px' }}
+						textAlign={'center'}
+					>
+						Easy Pay
 					</Text>
 				</Box>
 			</Box>

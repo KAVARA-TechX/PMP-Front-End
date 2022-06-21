@@ -27,6 +27,7 @@ import '../../packages/day-picker.css';
 import { addDays } from 'date-fns';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import CreatePackageRequest from '../../apis/CreatePackageRequest';
+import { useNavigate } from 'react-router-dom';
 
 // const ImageSlider = (imgLink) => {
 // 	try {
@@ -94,6 +95,7 @@ const PackageCard = ({ data }) => {
 	const [loading, setLoading] = useState(false);
 	const [isFilled, setIsFilled] = useState(false);
 	const toast = useToast();
+	const navigate = useNavigate();
 
 	const handleDate = (e) => {
 		setEndDateFromMonth(e);
@@ -620,15 +622,22 @@ const PackageCard = ({ data }) => {
 						.split(',')
 						.map((item, index) => {
 							return (
-								<Text
-									textAlign={'start'}
-									ml='10px'
-									mt='10px'
-									fontWeight={300}
-									key={index}
-								>
-									<CheckIcon color={'green.200'} /> {item}
-								</Text>
+								<>
+									{item === '' ? (
+										''
+									) : (
+										<Text
+											textAlign={'start'}
+											ml='10px'
+											mt='10px'
+											fontWeight={300}
+											key={index}
+										>
+											<CheckIcon color={'green.200'} />{' '}
+											{item}
+										</Text>
+									)}
+								</>
 							);
 						})}
 					<Box flexGrow={2}></Box>
@@ -667,19 +676,22 @@ const PackageCard = ({ data }) => {
 								background: '#fff',
 								color: 'rgba(0,0,0,.8)',
 							}}
+							// onClick={() => {
+							// 	if (loginState === true) {
+							// 		console.log('one should open');
+							// 		onOpen();
+							// 	} else {
+							// 		console.log('two should open');
+							// 		loginclick.click();
+							// 	}
+							// }}
 							onClick={() => {
-								if (loginState === true) {
-									console.log('one should open');
-									onOpen();
-								} else {
-									console.log('two should open');
-									loginclick.click();
-								}
+								navigate('/about-package');
 							}}
 						>
-							Customise
+							View Package
 						</Box>
-						<Box
+						{/* <Box
 							mt='10px'
 							bg='#32BAC9'
 							border={'1px solid rgba(255,255,255,.3)'}
@@ -704,7 +716,7 @@ const PackageCard = ({ data }) => {
 							}}
 						>
 							Get Now
-						</Box>
+						</Box> */}
 					</Box>
 				</Box>
 			</Box>

@@ -12,6 +12,8 @@ const Hero = () => {
 	// const [length, setLength] = useState(0);
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [city, setCity] = useState('');
+	const [location, setLocation] = useState('');
 	const imgRef = useRef();
 
 	const makeItMove = (len) => {
@@ -56,6 +58,8 @@ const Hero = () => {
 			clearInterval(interval);
 		};
 	}, []);
+
+	const changecityandlocation = (city, location) => {};
 
 	return (
 		<>
@@ -190,10 +194,10 @@ const Hero = () => {
 						borderRadius={'full'}
 					></Box>
 					<Text textAlign={'end'} fontSize='20px' mt='7px'>
-						City
+						city
 					</Text>
 					<Text textAlign={'end'} fontSize='24px' fontWeight={600}>
-						Location
+						location
 					</Text>
 					<Box float={'right'} mt='20px'>
 						<Icon

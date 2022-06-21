@@ -9,14 +9,14 @@ const DreamVacation = () => {
 			w='100vw'
 			h='fit-content'
 			bg='rgba(14, 135, 246,.25)'
-			px='30px'
-			py='70px'
+			px='5vw'
+			py='30px'
 			mb={10}
 		>
 			<Text
 				fontWeight={700}
 				textAlign='center'
-				fontSize={{ base: '30px', lg: '40px' }}
+				fontSize={{ base: '30px', lg: '35px' }}
 			>
 				Let’s find you your dream vacation
 			</Text>
@@ -46,14 +46,14 @@ const DreamVacation = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						Select a Package
 					</Text>
 					<Text
 						textAlign={'center'}
-						fontSize={'16px'}
+						fontSize={'15px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>
@@ -78,7 +78,7 @@ const DreamVacation = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						Get it Customised
@@ -86,7 +86,7 @@ const DreamVacation = () => {
 					<Text
 						textAlign={'center'}
 						px='10px'
-						fontSize={'16px'}
+						fontSize={'15px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>
@@ -114,14 +114,14 @@ const DreamVacation = () => {
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '28px' }}
+						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
 						Pay Securely
 					</Text>
 					<Text
 						textAlign={'center'}
-						fontSize={'16px'}
+						fontSize={'15px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>

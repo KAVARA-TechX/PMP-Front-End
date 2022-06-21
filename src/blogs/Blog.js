@@ -26,7 +26,7 @@ const Blog = () => {
 	}, []);
 
 	return (
-		<Box w={{ base: '100vw', lg: '80vw' }} mx='auto' className='Blog'>
+		<Box w={{ base: '100vw', lg: '90vw' }} mx='auto' className='Blog'>
 			<Text
 				fontSize={30}
 				fontWeight={600}
