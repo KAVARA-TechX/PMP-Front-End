@@ -14,13 +14,13 @@ import { addDays, format } from 'date-fns';
 import CheckOutDate from './CheckOutDate';
 import CheckInDate from './CheckInDate';
 
-const When = () => {
+const When = ({ setStartDate, setEndDate }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const popoverRef = useRef();
 
 	const [isCheckInSelected, setIsCheckInSelected] = useState(false);
 
-	const [checkInDate, setCheckInDate] = useState(new Date());
+	const [checkInDate, setCheckInDate] = useState();
 	const [checkOutDate, setCheckoutDate] = useState();
 
 	const [checkoutValue, setCheckoutValue] = useState('When');
@@ -34,20 +34,24 @@ const When = () => {
 
 	const handleCheckInDate = (e) => {
 		setCheckInDate(e);
+		setStartDate(e);
 		setIsCheckInSelected(true);
 	};
 
 	const handleCheckOutDate = (e) => {
-		setCheckoutDate((prev) => e);
+		onClose();
 		setCheckoutValue(
 			`${checkInDate.getDate()}/${
 				checkInDate.getMonth() + 1
-			}/${checkInDate.getFullYear()} - ${checkOutDate.getDate()}/${
-				checkOutDate.getMonth() + 1
-			}/${checkOutDate.getFullYear()}`
+			}/${checkInDate.getFullYear()} - ${e.getDate()}/${
+				e.getMonth() + 1
+			}/${e.getFullYear()}`
 		);
+		setCheckoutDate((prev) => e);
+		setEndDate(e);
+
+		// setEndDate(e);
 		setIsCheckInSelected(false);
-		onClose();
 	};
 	return (
 		<Box

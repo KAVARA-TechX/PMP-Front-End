@@ -39,22 +39,23 @@ const Footer = () => {
 			<TravelAgentModal state={travelagent} setState={setTravelAgent} />
 			<BrandsModal state={brands} setState={setBrands} />
 			<Box
-				h={{ base: 'fit-content', lg: '400px' }}
+				h={{ base: 'fit-content', lg: '440px' }}
 				w='100vw'
 				overflow={'hidden'}
 				className='hide-scroll-bar'
 				bg='#082032'
 				display={'grid'}
-				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1fr 1fr' }}
+				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1.3fr .7fr' }}
 				gap={{ base: '20px', lg: '0' }}
 				py='30px'
 				px='5vw'
+				mt='50px'
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
-						<Image src={logo} h='100%' />
+						<Image src={logo} h='100%' />3
 					</Box>
-					<Text mb='10px'>about one line comes here</Text>
+					<Text mb='10px'>Leisure away with Plan My Leisure</Text>
 					<Box
 						display={'flex'}
 						alignItems='flex-start'
@@ -63,21 +64,51 @@ const Footer = () => {
 					>
 						<Icon as={HiLocationMarker} />
 						<Box position='relative' bottom='5px'>
-							<Text>Address line - 1</Text>
-							<Text>Address line - 2</Text>
+							<Text fontSize={'14px'}>
+								B-5, 1st Floor, Sayba Shopping Center,
+								<br />
+								Newmill Road, Kurla West, Mumbai,
+								<br /> 400070, India
+							</Text>
 						</Box>
 					</Box>
 					<Box
 						display={'flex'}
-						alignItems='center'
+						alignItems='flex-start'
+						gap='5px'
+						mt='10px'
+					>
+						<Icon as={HiLocationMarker} />
+						<Box position='relative' bottom='5px'>
+							<Text fontSize={'14px'}>
+								4th Floor, Plaza Mall, MG Road, Gurgaon,
+								Haryana, 122002, India
+							</Text>
+						</Box>
+					</Box>
+					<Box
+						display={'flex'}
+						alignItems='flex-start'
 						gap='5px'
 						mt='10px'
 					>
 						<Icon as={MdEmail} />
-						<Text>Email address</Text>
+						<Text
+							position='relative'
+							bottom='5px'
+							fontSize={'14px'}
+						>
+							<a href='mailto:info@planmyleisure.com'>
+								info@planmyleisure.com
+							</a>
+							<br />
+							<a href='mailto:planmyleisure@gmail.com'>
+								planmyleisure@gmail.com
+							</a>
+						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
-					<Text>© Plan My Leisure 2020</Text>
+					<Text pt='20px'>© Plan My Leisure 2020</Text>
 				</Box>
 				<Box display={'flex'} justifyContent='space-around' pt='30px'>
 					<Box>

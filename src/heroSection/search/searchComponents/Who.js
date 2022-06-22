@@ -15,7 +15,7 @@ import {
 import { useRef, useState } from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
-const Who = () => {
+const Who = ({ setGuest }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const ref = useRef();
 
@@ -69,6 +69,9 @@ const Who = () => {
 									<PopoverCloseButton
 										onClick={() => {
 											onClose();
+											setGuest(
+												numberOfAdults + numberOfChilds
+											);
 										}}
 									/>
 								</Box>

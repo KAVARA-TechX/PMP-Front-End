@@ -41,7 +41,7 @@ const App = () => {
 			<Route path='/packages' element={<PackagesPage />} />
 			<Route path='/Hotels' element={<Hotels />} />
 			<Route path='/listing' element={<ListingPage />} />
-			<Route path='/about-package/' element={<AboutPackage />} />
+			<Route path='/about-package/:id' element={<AboutPackage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicy />} />
 			<Route path='/terms-of-use' element={<TermsOfUse />} />
 			<Route path='/user/activate/:token' element={<UserActivation />} />

@@ -25,24 +25,15 @@ import Who from './searchComponents/Who';
 import When from './searchComponents/When';
 
 const Search = () => {
-	const [location, setLocation] = useState('fdd');
-	const [checkinDate, setCheckinDate] = useState(new Date());
+	const [location, setLocation] = useState('');
 
-	const [guest, setGuest] = useState(1);
+	const [guest, setGuest] = useState(0);
 	const [submitButton, setSubmitButton] = useState(true);
-	const { onOpen, onClose, isOpen } = useDisclosure();
-	const [isCheckIn, setIsCheckIn] = useState(false);
-	const [checkinValue, setCheckinValue] = useState('CheckIn');
-	const [checkoutValue, setCheckoutValue] = useState('CheckOut');
-	let today = new Date();
+
 	const navigate = useNavigate();
 
-	today.setDate(today.getDate());
-	const [startDate, setStartDate] = useState(
-		today.toISOString().substr(0, 10)
-	);
-	today.setDate(today.getDate() + 1);
-	const [endDate, setEndDate] = useState(today.toISOString().substr(0, 10));
+	const [startDate, setStartDate] = useState();
+	const [endDate, setEndDate] = useState();
 
 	const handleForm = () => {
 		if (location === '') {
@@ -57,11 +48,14 @@ const Search = () => {
 			}
 		}
 	};
+
 	useEffect(() => {
+		console.log(location, startDate, endDate, guest);
+
 		if (location !== '') {
-			if (startDate !== '') {
-				if (endDate !== '') {
-					if (guest !== '') {
+			if (startDate !== undefined) {
+				if (endDate !== undefined) {
+					if (guest >= 1) {
 						setSubmitButton(false);
 					} else {
 						setSubmitButton(true);
@@ -102,6 +96,7 @@ const Search = () => {
 			{/* location */}
 			<Box w={{ base: '100%', lg: '100px' }}>
 				<Input
+					value={location}
 					textAlign={{ base: 'center', lg: 'start' }}
 					w='100%'
 					fontSize={20}
@@ -121,8 +116,8 @@ const Search = () => {
 					}}
 				/>
 			</Box>
-			<When />
-			<Who />
+			<When setStartDate={setStartDate} setEndDate={setEndDate} />
+			<Who setGuest={setGuest} />
 			{/* search Button */}
 			<Box
 				w={{ base: '100%', lg: '100px' }}
