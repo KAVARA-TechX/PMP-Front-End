@@ -20,21 +20,7 @@ const CheckInDate = ({ current, handleStart }) => {
 
 	return (
 		<Box>
-			{/* <Popover zIndex={10000} isOpen={isOpen}> */}
-			{/* <PopoverTrigger zIndex={10000}>
-					<Text
-						cursor={'pointer'}
-						fontSize={20}
-						onClick={() => {
-							onOpen();
-						}}
-					>
-						{checkinValue}
-					</Text>
-				</PopoverTrigger> */}
 			<Box zIndex={110}>
-				{/* <Portal zIndex={10000} w='full' h='full'> */}
-				{/* <PopoverContent bg='#222222' zIndex={10000}> */}
 				<Box
 					zIndex={110}
 					h='fit-contnet'
@@ -53,10 +39,7 @@ const CheckInDate = ({ current, handleStart }) => {
 						disabled={{ before: new Date() }}
 					/>
 				</Box>
-				{/* </PopoverContent> */}
-				{/* </Portal> */}
 			</Box>
-			{/* </Popover> */}
 		</Box>
 	);
 };

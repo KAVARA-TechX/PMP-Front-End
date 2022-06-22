@@ -1,18 +1,44 @@
-import { Box, Text, Icon, Badge, Checkbox, Stack } from '@chakra-ui/react';
+import {
+	Box,
+	Text,
+	Icon,
+	Badge,
+	Checkbox,
+	Stack,
+	Spinner,
+} from '@chakra-ui/react';
 import { CheckIcon, StarIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import img from '../../assets/thingsToDo/dream-vacation.png';
 import Nav from '../../nav/Nav';
 import Footer from '../../footer/Footer';
+import { useEffect, useState } from 'react';
+import searchApi from '../../apis/searchApi';
+import PackageCard from '../../components/packageCard/PackageCard';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 
 const SearchResult = () => {
-	// const value = useParams();
+	const value = useParams();
 	const navigate = useNavigate();
+	const [results, setResults] = useState([]);
+	const [loading, setLoading] = useState(true);
 
-	// const handleBack = () => {
-	// 	navigate('/');
-	// };
+	useEffect(() => {
+		const getData = async () => {
+			try {
+				const res = await searchApi(value.location);
+				setResults(res.data.packages);
+				console.log(res.data.packages);
+				setLoading(false);
+			} catch (error) {
+				console.log('error is ', error);
+			}
+		};
+
+		getData();
+	}, []);
 
 	return (
 		<>
@@ -23,6 +49,7 @@ const SearchResult = () => {
 				pt='5vw'
 				position={'relative'}
 				display='flex'
+				pb='50px'
 			>
 				{/* filter column */}
 				<Box
@@ -60,322 +87,23 @@ const SearchResult = () => {
 						<Text fontSize={30}>Search Result</Text>
 					</Box>
 					{/* results */}
-					<Box>
+					{loading ? (
 						<Box
-							w={'100%'}
-							h={{ base: 'fit-content', lg: '300px' }}
-							bg='transparent'
-							border='1px solid #2d3748'
-							borderRadius={'2xl'}
-							mt='20px'
+							w='100%'
+							h='400px'
 							display={'flex'}
-							flexDir={{ base: 'column', lg: 'row' }}
-							overflow='hidden'
-							boxShadow={'2xl'}
-							cursor='pointer'
-							onClick={() => {
-								navigate('/about-package');
-							}}
+							justifyContent='center'
+							alignItems={'center'}
 						>
-							<Box
-								h={{ base: '200px', lg: '100%' }}
-								w={{ base: '100%', lg: '30%' }}
-								bgImg={img}
-								bgSize='cover'
-							></Box>
-							<Box
-								pl='30px'
-								mr={{ base: '30px', lg: '0px' }}
-								pt='30px'
-								display={'flex'}
-								flexDir='column'
-								w={{ base: '100%', lg: '40%' }}
-							>
-								<Text fontSize={20} fontWeight={700}>
-									Package one
-								</Text>
-								<Text
-									display={'flex'}
-									alignItems='center'
-									gap={1}
-								>
-									3 <StarIcon color='gold' /> Hotel
-								</Text>
-								<Box
-									mt={3}
-									display='flex'
-									gap='10px'
-									flexWrap={'wrap'}
-									mr={5}
-								>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> BUDGET
-									</Badge>{' '}
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> SURFING
-									</Badge>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> REFUNDABLE
-									</Badge>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> KIDS FRIENDLY
-									</Badge>
-								</Box>
-								<Box flexGrow={2} mt={5} />
-								<Text
-									display={'flex'}
-									alignItems='center'
-									gap={1}
-									mb={3}
-								>
-									<Icon as={FcGoogle} /> Rated 4.4/5
-								</Text>
-							</Box>
-							<Box
-								h='100%'
-								w={{ base: '100%', lg: '30%' }}
-								bg='gray.700'
-								pt='30px'
-								pl='30px'
-								display={'flex'}
-								flexDir='column'
-							>
-								<Text textAlign={'start'}>
-									PACKAGE INCLUDES
-								</Text>
-								<Text
-									textAlign={'start'}
-									ml='10px'
-									mt='10px'
-									fontWeight={300}
-								>
-									<CheckIcon color={'green.200'} /> Speed boat
-									transfer
-								</Text>
-								<Text textAlign={'start'} fontWeight={300}>
-									<CheckIcon color={'green.200'} ml='10px' />{' '}
-									24x7 online support
-								</Text>
-								<Box flexGrow={2}></Box>
-								<Box mr='30px' mb='20px' mt='30px'>
-									<Text>
-										<Badge
-											bg='red.600'
-											display={'inline-block'}
-										>
-											14%OFF
-										</Badge>{' '}
-										<Text
-											display={'inline-block'}
-											textDecoration='line-through'
-											color='gray'
-										>
-											₹ 74,387
-										</Text>
-									</Text>
-									<Text
-										fontSize={20}
-										fontWeight={600}
-										mb='15px'
-									>
-										₹ 64,127
-									</Text>
-									<Box
-										bg='green.500'
-										// display={'inline-block'}
-										fontSize={20}
-										fontWeight={600}
-										py={'15px'}
-										textAlign='center'
-										borderRadius={'xl'}
-									>
-										View Deal
-									</Box>
-								</Box>
-							</Box>
+							<Spinner />
 						</Box>
-						{/* next card */}
-						<Box
-							w={'100%'}
-							h={{ base: 'fit-content', lg: '300px' }}
-							bg='gray.600'
-							borderRadius={'2xl'}
-							mt='20px'
-							display={'flex'}
-							flexDir={{ base: 'column', lg: 'row' }}
-							overflow='hidden'
-							boxShadow={'2xl'}
-							cursor='pointer'
-							onClick={() => {
-								navigate('/about-package');
-							}}
-						>
-							<Box
-								h={{ base: '200px', lg: '100%' }}
-								w={{ base: '100%', lg: '30%' }}
-								bgImg={img}
-								bgSize='cover'
-							></Box>
-							<Box
-								pl='30px'
-								mr={{ base: '30px', lg: '0px' }}
-								pt='30px'
-								display={'flex'}
-								flexDir='column'
-								w={{ base: '100%', lg: '40%' }}
-							>
-								<Text fontSize={20} fontWeight={700}>
-									Package one
-								</Text>
-								<Text
-									display={'flex'}
-									alignItems='center'
-									gap={1}
-								>
-									3 <StarIcon color='gold' /> Hotel
-								</Text>
-								<Box
-									mt={3}
-									display='flex'
-									gap='10px'
-									flexWrap={'wrap'}
-									mr={5}
-								>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> BUDGET
-									</Badge>{' '}
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> SURFING
-									</Badge>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> REFUNDABLE
-									</Badge>
-									<Badge
-										bg={'green.200'}
-										color='green'
-										px={2}
-										py={1}
-										borderRadius='md'
-									>
-										<CheckIcon /> KIDS FRIENDLY
-									</Badge>
-								</Box>
-								<Box flexGrow={2} mt={5} />
-								<Text
-									display={'flex'}
-									alignItems='center'
-									gap={1}
-									mb={3}
-								>
-									<Icon as={FcGoogle} /> Rated 4.4/5
-								</Text>
-							</Box>
-							<Box
-								h='100%'
-								w={{ base: '100%', lg: '30%' }}
-								bg='gray.700'
-								pt='30px'
-								pl='30px'
-								display={'flex'}
-								flexDir='column'
-							>
-								<Text textAlign={'start'}>
-									PACKAGE INCLUDES
-								</Text>
-								<Text
-									textAlign={'start'}
-									ml='10px'
-									mt='10px'
-									fontWeight={300}
-								>
-									<CheckIcon color={'green.200'} /> Speed boat
-									transfer
-								</Text>
-								<Text textAlign={'start'} fontWeight={300}>
-									<CheckIcon color={'green.200'} ml='10px' />{' '}
-									24x7 online support
-								</Text>
-								<Box flexGrow={2}></Box>
-								<Box mr='30px' mb='20px' mt='30px'>
-									<Text>
-										<Badge
-											bg='red.600'
-											display={'inline-block'}
-										>
-											14%OFF
-										</Badge>{' '}
-										<Text
-											display={'inline-block'}
-											textDecoration='line-through'
-											color='gray'
-										>
-											₹ 74,387
-										</Text>
-									</Text>
-									<Text
-										fontSize={20}
-										fontWeight={600}
-										mb='15px'
-									>
-										₹ 64,127
-									</Text>
-									<Box
-										bg='green.500'
-										// display={'inline-block'}
-										fontSize={20}
-										fontWeight={600}
-										py={'15px'}
-										textAlign='center'
-										borderRadius={'xl'}
-									>
-										View Deal
-									</Box>
-								</Box>
-							</Box>
+					) : (
+						<Box>
+							{results.map((data, index) => {
+								return <PackageCard data={data} key={index} />;
+							})}
 						</Box>
-					</Box>
+					)}
 				</Box>
 			</Box>
 			<Footer />

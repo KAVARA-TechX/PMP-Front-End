@@ -28,6 +28,7 @@ import { addDays } from 'date-fns';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import CreatePackageRequest from '../../apis/CreatePackageRequest';
 import { useNavigate } from 'react-router-dom';
+import PackageCard from '../../components/packageCard/PackageCard';
 
 // const ImageSlider = (imgLink) => {
 // 	try {
@@ -79,7 +80,7 @@ const city = [
 	{ name: 'Mangalore,IN', code: 'IXE' },
 ];
 
-const PackageCard = ({ data }) => {
+const PackageCardd = ({ data }) => {
 	const { loginState, loginclick } = AccessLoginContext();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [choosed, setChoosed] = useState(new Date());
@@ -530,7 +531,8 @@ const PackageCard = ({ data }) => {
 					</Box>
 				</ModalContent>
 			</Modal>
-			<Box
+			<PackageCard data={data} />
+			{/* <Box
 				w={'100%'}
 				h={{ base: 'fit-content', lg: '400px' }}
 				bg='gray.600'
@@ -540,16 +542,6 @@ const PackageCard = ({ data }) => {
 				display={'flex'}
 				flexDir={{ base: 'column', lg: 'row' }}
 				overflow='hidden'
-				// cursor='pointer'
-				// onClick={() => {
-				// 	if (loginState === true) {
-				// 		console.log('one should open');
-				// 		onOpen();
-				// 	} else {
-				// 		console.log('two should open');
-				// 		loginclick.click();
-				// 	}
-				// }}
 				transition={'.5s'}
 				_hover={{
 					boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
@@ -574,9 +566,7 @@ const PackageCard = ({ data }) => {
 					<Text fontSize={20} fontWeight={700}>
 						{data.packageTitle}
 					</Text>
-					<Text display={'flex'} alignItems='center' gap={1}>
-						{/* 3 <Icon as={BsStarFill} color='gold' /> Hotel */}
-					</Text>
+					<Text display={'flex'} alignItems='center' gap={1}></Text>
 					<Box
 						as='ul'
 						mt={3}
@@ -665,7 +655,6 @@ const PackageCard = ({ data }) => {
 						<Box
 							bg='transparent'
 							border={'1px solid rgba(255,255,255,.3)'}
-							// display={'inline-block'}
 							fontSize={20}
 							fontWeight={600}
 							py={'15px'}
@@ -676,52 +665,17 @@ const PackageCard = ({ data }) => {
 								background: '#fff',
 								color: 'rgba(0,0,0,.8)',
 							}}
-							// onClick={() => {
-							// 	if (loginState === true) {
-							// 		console.log('one should open');
-							// 		onOpen();
-							// 	} else {
-							// 		console.log('two should open');
-							// 		loginclick.click();
-							// 	}
-							// }}
 							onClick={() => {
 								navigate('/about-package');
 							}}
 						>
 							View Package
 						</Box>
-						{/* <Box
-							mt='10px'
-							bg='#32BAC9'
-							border={'1px solid rgba(255,255,255,.3)'}
-							// display={'inline-block'}
-							fontSize={20}
-							fontWeight={600}
-							py={'15px'}
-							textAlign='center'
-							borderRadius={'xl'}
-							cursor='pointer'
-							_hover={{
-								background: '#32BAC9',
-							}}
-							onClick={() => {
-								if (loginState === true) {
-									console.log('one should open');
-									onOpen();
-								} else {
-									console.log('two should open');
-									loginclick.click();
-								}
-							}}
-						>
-							Get Now
-						</Box> */}
 					</Box>
 				</Box>
-			</Box>
+			</Box> */}
 		</>
 	);
 };
 
-export default PackageCard;
+export default PackageCardd;

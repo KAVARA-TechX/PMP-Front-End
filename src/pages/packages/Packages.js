@@ -5,7 +5,7 @@ import img from '../../assets/footer.jpg';
 import { CalendarIcon } from '@chakra-ui/icons';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import PackageCard from './PackageCard';
+import PackageCardd from './PackageCard';
 import getPackageApi from '../../apis/getPackageApi';
 
 const PackagesPage = () => {
@@ -141,7 +141,7 @@ const PackagesPage = () => {
 				<Box pt={'40px'} pb='40px'>
 					{/* card  */}
 					{packageList.map((data, index) => {
-						return <PackageCard data={data} key={index} />;
+						return <PackageCardd data={data} key={index} />;
 					})}
 				</Box>
 			</Box>

@@ -1,10 +1,10 @@
 import { Box, Text } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addDays } from 'date-fns';
 
 const CheckOutDate = ({ startWith, handleEnd }) => {
-	const [checkoutDate, setCheckoutDate] = useState(new Date());
+	const [checkoutDate, setCheckoutDate] = useState();
 
 	const handleCheckOut = (e) => {
 		setCheckoutDate(e);
