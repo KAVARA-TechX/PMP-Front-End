@@ -12,6 +12,8 @@ const PackagesPage = () => {
 	const [packageList, setPackageList] = useState([]);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const getPackageList = async () => {
 			const response = await getPackageApi();
 

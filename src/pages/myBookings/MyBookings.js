@@ -1,9 +1,13 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
 const MyBookings = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	const path = useLocation().pathname.split('/');
 	console.log(path);
 	const navigate = useNavigate();

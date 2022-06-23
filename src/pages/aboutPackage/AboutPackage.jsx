@@ -216,6 +216,7 @@ const AboutPackage = () => {
 	//-----------------------------------
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const getData = async () => {
 			try {
 				const res = await getPackageById(got.id);

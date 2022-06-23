@@ -26,6 +26,8 @@ const SearchResult = () => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const getData = async () => {
 			try {
 				const res = await searchApi(value.location);
