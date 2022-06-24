@@ -24,6 +24,8 @@ const Hero = () => {
 	const imgRef = useRef();
 	const splide_ref = useRef();
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const prev = useRef();
+	const next = useRef();
 
 	const makeItMove = (len) => {
 		let slides = document.querySelector('.slides');
@@ -47,32 +49,27 @@ const Hero = () => {
 	};
 
 	useEffect(() => {
-		let interval = undefined;
-
+		// let interval = undefined;
 		const getImages = async () => {
 			try {
 				const response = await getAllHeroImage();
-				// setLength((prev) => response.data.heroImages.length);
+				// 		// setLength((prev) => response.data.heroImages.length);
 				setImages((prev) => response.data.heroImages);
 				setLoading(false);
-				interval = makeItMove(response.data.heroImages.length);
+				// 		interval = makeItMove(response.data.heroImages.length);
 			} catch (error) {
 				console.log('something went wrong');
 			}
 		};
-
 		getImages();
-
-		return () => {
-			clearInterval(interval);
-		};
+		// return () => {
+		// 	clearInterval(interval);
+		// };
 	}, []);
 
 	// useEffect(() => {
 	// 	console.log(splide_ref.current.splide.index);
 	// }, [splide_ref]);
-
-	const changecityandlocation = (city, location) => {};
 
 	return (
 		<>
@@ -109,7 +106,10 @@ const Hero = () => {
 							{names[currentIndex].location}
 						</p>
 						<div className='slider_controls'>
-							<button className='splide__arrow splide__arrow--prev'>
+							<button
+								className='splide__arrow splide__arrow--prev'
+								ref={prev}
+							>
 								<Icon
 									as={AiOutlineLeftCircle}
 									transform='rotate(180deg)'
@@ -117,7 +117,10 @@ const Hero = () => {
 									color='#fff !important'
 								/>
 							</button>
-							<button className='splide__arrow splide__arrow--next'>
+							<button
+								className='splide__arrow splide__arrow--next'
+								ref={next}
+							>
 								<Icon
 									as={AiOutlineRightCircle}
 									fontSize='24px'

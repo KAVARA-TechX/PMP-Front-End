@@ -1,0 +1,13 @@
+.blog-details-container {
+	font-size: 20px;
+}
+.blog-details-container h2 {
+	font-size: 24px;
+}
+.blog-details-container ul {
+	padding: 0 30px;
+}
+
+.blog-details-container strong {
+	font-weight: 700;
+}

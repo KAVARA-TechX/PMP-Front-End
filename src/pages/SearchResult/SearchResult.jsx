@@ -24,18 +24,25 @@ const SearchResult = () => {
 	const navigate = useNavigate();
 	const [results, setResults] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [notFound, setNotFound] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
 		const getData = async () => {
 			try {
-				const res = await searchApi(value.location);
+				const res = await searchApi(
+					value.location,
+					value.startDate,
+					value.endDate
+				);
 				setResults(res.data.packages);
 				console.log(res.data.packages);
 				setLoading(false);
 			} catch (error) {
 				console.log('error is ', error);
+				setNotFound(true);
+				setLoading(false);
 			}
 		};
 
@@ -98,6 +105,18 @@ const SearchResult = () => {
 							alignItems={'center'}
 						>
 							<Spinner />
+						</Box>
+					) : notFound ? (
+						<Box
+							h='100%'
+							w='100%'
+							display={'flex'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='50px'
+							color='rgba(255,255,255,.3)'
+						>
+							No Result Found
 						</Box>
 					) : (
 						<Box>

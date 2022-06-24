@@ -5,6 +5,7 @@ import Nav from '../../nav/Nav';
 // import img from '../../assets/banner.png';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import './blogDetails.css';
 
 const BlogDetails = () => {
 	const val = useLocation();
@@ -32,9 +33,13 @@ const BlogDetails = () => {
 				>
 					{/* <Image src={blogData.imageUrl} mx='auto' w='100%' /> */}
 				</Box>
-				<Text fontSize={20} lineHeight={1.9}>
+				<Box
+					fontSize={20}
+					lineHeight={1.9}
+					className='blog-details-container'
+				>
 					{parse(blogData.blogBody)}
-				</Text>
+				</Box>
 			</Box>
 			<Footer />
 		</>
