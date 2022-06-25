@@ -13,6 +13,7 @@ import './Hero.css';
 const names = [
 	{ city: 'Delhi', location: 'india' },
 	{ city: 'Gujarat', location: 'Gandhidham' },
+	{ city: 'xyz', location: 'moon' },
 ];
 
 const Hero = () => {
@@ -54,6 +55,7 @@ const Hero = () => {
 			try {
 				const response = await getAllHeroImage();
 				// 		// setLength((prev) => response.data.heroImages.length);
+				console.log('hero response is : ', response);
 				setImages((prev) => response.data.heroImages);
 				setLoading(false);
 				// 		interval = makeItMove(response.data.heroImages.length);

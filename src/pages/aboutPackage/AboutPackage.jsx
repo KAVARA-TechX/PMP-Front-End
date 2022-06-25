@@ -114,6 +114,33 @@ const AboutPackage = () => {
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
 	const [isFilled, setIsFilled] = useState(false);
 	const toast = useToast();
+	const [booknowLoading, setBooknowLoading] = useState(false);
+
+	const handleBookedPackage = async (response) => {
+		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
+
+		try {
+			const response = await getUserinfoApi();
+			const res = await CreatePackageRequest(
+				pkgData._id,
+				sDate,
+				eDate,
+				2,
+				'somewhere',
+				response.data._id,
+				'Done'
+			);
+			console.log('Done ', res);
+			setBooknowLoading(false);
+			toast({
+				title: 'Success',
+				description: 'Package is Booked.',
+				status: 'success',
+				duration: 3000,
+				isClosable: true,
+			});
+		} catch (error) {}
+	};
 
 	const handleDate = (e) => {
 		if (e !== undefined) {
@@ -188,6 +215,7 @@ const AboutPackage = () => {
 	};
 
 	const handleBookNow = async () => {
+		setBooknowLoading(true);
 		const res = await initializeRazorpay();
 		if (!res) {
 			alert('Razorpay failed to load');
@@ -211,6 +239,7 @@ const AboutPackage = () => {
 			image: logo,
 			handler: function (response) {
 				// validate payment through server
+				handleBookedPackage(response);
 				alert('Yeaaahhh!! payment is successfull.');
 				alert(response.razorpay_payment_id);
 				alert(response.razorpay_order_id);
@@ -236,8 +265,8 @@ const AboutPackage = () => {
 				const res = await getPackageById(got.id);
 				console.log('got => ', res);
 				setPkgData(res.data.package);
-				setSDate(new Date(res.data.package.stayPeriod[0].start));
-				setEDate(new Date(res.data.package.stayPeriod[0].end));
+				setSDate(new Date(res.data.package.stayPeriod[0]));
+				setEDate(new Date(res.data.package.stayPeriod[1]));
 				setLoading(false);
 			} catch (error) {
 				console.log('found some error : ', error);
@@ -694,37 +723,6 @@ const AboutPackage = () => {
 							</Box>
 						</Box>
 
-						<Box
-							position={'absolute'}
-							bg='black'
-							bottom={0}
-							right={{ lg: '10vw' }}
-							display={{ base: 'none', lg: 'flex' }}
-							borderRadius='5px 5px 0 0'
-							zIndex={1000}
-						>
-							<Box
-								px={{ base: '10px', lg: '20px' }}
-								py='25px'
-								fontSize={{ base: 10, lg: 20 }}
-								display='flex'
-								alignItems={'center'}
-								gap={3}
-							>
-								<Icon as={FcGoogle} fontSize={20} /> 4.5/5
-							</Box>
-							<Box
-								px='20px'
-								py='25px'
-								fontSize={10}
-								display='flex'
-								alignItems={'center'}
-								gap={3}
-							>
-								<Icon as={FaTripadvisor} fontSize={20} /> on
-								Tripadvisor
-							</Box>
-						</Box>
 						<Splide aria-label='images' className='splide-slide'>
 							{pkgData.image.map((data, index) => {
 								return (
@@ -851,7 +849,9 @@ const AboutPackage = () => {
 									w='100%'
 									gap={'20px'}
 								>
-									<Box
+									<Button
+										h='100%'
+										isLoading={booknowLoading}
 										bg='#0e87f6'
 										py='20px'
 										fontSize={20}
@@ -860,9 +860,10 @@ const AboutPackage = () => {
 										flexGrow={1}
 										cursor='pointer'
 										onClick={handleBookNow}
+										_hover={{ background: '#0e87f6' }}
 									>
 										Book Now
-									</Box>
+									</Button>
 									<Box
 										bg='transparent'
 										py='20px'
