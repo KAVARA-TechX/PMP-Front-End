@@ -34,6 +34,8 @@ const Profile = () => {
 	const cancleRef = useRef();
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const userDetails = async () => {
 			const response = await getUserinfoApi();
 			setName(response.data.name);

@@ -15,6 +15,9 @@ const Footer = React.lazy(() => {
 const Blog = ({ data }) => {
 	const navigate = useNavigate();
 	const ca = new Date(data.createdAt);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	const monthName = [
 		'Jan',
 		'Feb',

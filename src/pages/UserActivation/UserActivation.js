@@ -9,6 +9,8 @@ const UserActivation = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const activateUser = async () => {
 			try {
 				const response = await UserActivationApi(token);
@@ -21,7 +23,7 @@ const UserActivation = () => {
 		};
 
 		activateUser();
-	});
+	}, []);
 
 	return (
 		<Box

@@ -41,3 +41,71 @@
 .left {
 	transform: translateX(-100%);
 }
+
+.hero .splide__arrows,
+.hero .splide__arrows--ltr {
+	z-index: 10;
+	position: absolute;
+	width: 180px;
+	height: fit-content;
+	background: rgba(8, 32, 50, 0.65);
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	border-radius: 32px 0 0 32px;
+	padding: 20px 20px;
+}
+.hero .splide__arrows .orange_bar {
+	width: 50px;
+	height: 5px;
+	background: orange;
+	border-radius: 20px;
+	float: right;
+}
+
+.hero .slider_controls {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 40px;
+	width: 100%;
+	float: right;
+}
+.hero .splide__arrow {
+}
+.hero .splide__arrow svg {
+	fill: #fff;
+}
+.hero .slider_city {
+	margin-top: 10px;
+	font-size: 20px;
+	text-align: end;
+}
+.hero .slider_location {
+	font-size: 24px;
+	font-weight: 600;
+	text-align: end;
+}
+
+.hero .splide__arrow--prev {
+	background: transparent;
+	position: relative !important;
+	height: 30px;
+	width: 30px;
+}
+.hero .splide__arrow--prev svg {
+	transform: rotateZ(0deg) !important;
+	font-size: 30px;
+}
+.hero .splide__arrow--next {
+	background: transparent;
+	position: relative !important;
+	height: 30px;
+	width: 30px;
+	padding: 0 !important;
+	margin: 0 !important;
+
+	right: 0 !important;
+}
+.hero .splide__arrow--next svg {
+	font-size: 30px;
+}

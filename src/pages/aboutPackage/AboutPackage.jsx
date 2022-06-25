@@ -48,6 +48,7 @@ import { AccessLoginContext } from '../../context/LoginContext';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import logo from '../../assets/logo/logo.png';
+import createOrderApi from '../../apis/createOrderApi';
 
 const days = ['Mon', 'Tus', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
 const months = [
@@ -115,22 +116,30 @@ const AboutPackage = () => {
 	const toast = useToast();
 
 	const handleDate = (e) => {
-		setEndDateFromMonth(e);
-		setChoosed(e);
+		if (e !== undefined) {
+			setEndDateFromMonth(e);
+			setChoosed(e);
+		} else {
+			setEndDateFromMonth(new Date());
+			setChoosed(new Date());
+		}
+
 		setShowDate((prev) => !prev);
-		// setShowCity(true);
 		setShowEndDate(true);
 	};
+
 	const handleEndDate = (e) => {
 		setEndDate(e);
 		setShowEndDate(false);
 		setShowCity(true);
 	};
+
 	const handleCity = (cn) => {
 		setCityName(cn);
 		setShowCity(false);
 		setShowConfigRoom(true);
 	};
+
 	const handlePackageRequest = async () => {
 		setLoading(true);
 		try {
@@ -184,21 +193,25 @@ const AboutPackage = () => {
 			alert('Razorpay failed to load');
 		}
 
-		// const data = await fetch('/api/razorpay', { method: 'POST' }).then(
-		// (t) => t.json()
-		// );
+		const data = await createOrderApi(
+			pkgData.startingPrice * 100,
+			'iiii',
+			'uuuu'
+		).then((res) => res);
+		console.log('we get data from razorpay is ', data);
 
-		// console.log('we get from rzr : ', data);
+		console.log('id is :  ', data.data.id);
 
 		var options = {
 			key: process.env.REACT_APP_KEY_ID,
 			name: 'Plan my leisure',
 			currency: 'INR',
-			order_id: 'dfdf2ereraasdfsf',
-			description: 'Thankyou for you whatever',
+			order_id: data.data.id,
+			description: 'Thankyou for whatever',
 			image: logo,
 			handler: function (response) {
 				// validate payment through server
+				alert('Yeaaahhh!! payment is successfull.');
 				alert(response.razorpay_payment_id);
 				alert(response.razorpay_order_id);
 				alert(response.razorpay_signature);
@@ -216,13 +229,15 @@ const AboutPackage = () => {
 	//-----------------------------------
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const getData = async () => {
 			try {
 				const res = await getPackageById(got.id);
 				console.log('got => ', res);
-				setPkgData(res.data.package[0]);
-				setSDate(new Date(res.data.package[0].stayPeriod.start));
-				setEDate(new Date(res.data.package[0].stayPeriod.end));
+				setPkgData(res.data.package);
+				setSDate(new Date(res.data.package.stayPeriod[0].start));
+				setEDate(new Date(res.data.package.stayPeriod[0].end));
 				setLoading(false);
 			} catch (error) {
 				console.log('found some error : ', error);
@@ -948,4 +963,4 @@ const AboutPackage = () => {
 	);
 };
 
-export default AboutPackage;
+export default React.memo(AboutPackage);
