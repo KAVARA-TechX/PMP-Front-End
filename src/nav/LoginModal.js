@@ -52,6 +52,7 @@ const LoginModal = ({ open, setOpen }) => {
 	};
 
 	const failure = (response) => {
+		console.log(response);
 		toast({
 			title: 'Error',
 			description:

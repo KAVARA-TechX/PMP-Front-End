@@ -270,10 +270,13 @@ const UpcomingCard = ({ data }) => {
 								gap='10px'
 							>
 								<Box
-									colorScheme={'green'}
 									fontSize='20px'
 									display={'inline-block'}
-									bg='rgba(255,240,0,.3)'
+									bg={
+										data.paymentStatus === 'Done'
+											? 'green.500'
+											: 'rgba(255,240,0,.3)'
+									}
 									color='#fff'
 									backdropFilter={'Blur(10px)'}
 									px='20px'
@@ -281,7 +284,11 @@ const UpcomingCard = ({ data }) => {
 									borderRadius={'10px'}
 									fontWeight={600}
 								>
-									Processing...
+									{data.paymentStatus === undefined
+										? 'Processing'
+										: data.paymentStatus === 'Done'
+										? 'Booked'
+										: 'Processing'}
 								</Box>
 								{/* <Text fontSize={'16px'}>Payment Plan</Text>
 								<Select
