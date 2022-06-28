@@ -1,4 +1,4 @@
-import { Box, Button, Icon, Text } from '@chakra-ui/react';
+import { Box, Button, Icon, Skeleton, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
@@ -30,7 +30,6 @@ const Hero = () => {
 
 	const makeItMove = (len) => {
 		let slides = document.querySelector('.slides');
-		// const allSlide = document.querySelectorAll('.slide');
 
 		let index = 0;
 
@@ -54,131 +53,140 @@ const Hero = () => {
 		const getImages = async () => {
 			try {
 				const response = await getAllHeroImage();
-				// 		// setLength((prev) => response.data.heroImages.length);
 				console.log('hero response is : ', response);
 				setImages((prev) => response.data.heroImages);
 				setLoading(false);
-				// 		interval = makeItMove(response.data.heroImages.length);
 			} catch (error) {
 				console.log('something went wrong');
 			}
 		};
 		getImages();
-		// return () => {
-		// 	clearInterval(interval);
-		// };
 	}, []);
-
-	// useEffect(() => {
-	// 	console.log(splide_ref.current.splide.index);
-	// }, [splide_ref]);
 
 	return (
 		<>
-			<Box className='hero'>
-				<Box pos={'absolute'} zIndex={100}>
-					<Nav />
-				</Box>
-				{/* <Box pos={'absolute'} zindex={102}></Box> */}
-				<Splide
-					aria-label='images'
-					options={{
-						type: 'loop',
-						gap: '1rem',
-						autoplay: true,
-						pauseOnHover: false,
-						resetProgress: false,
-						height: '500px',
-						interval: 2000,
-						transition: 'slide',
-					}}
-					hasTrack={false}
-					ref={splide_ref}
-					onMove={(e) => {
-						console.log('move is great', e);
-						setCurrentIndex(e.index);
-					}}
-				>
-					<div className='splide__arrows'>
-						<div className='orange_bar'></div>
-						<p className='slider_city'>
-							{names[currentIndex].city}
-						</p>
-						<p className='slider_location'>
-							{names[currentIndex].location}
-						</p>
-						<div className='slider_controls'>
-							<button
-								className='splide__arrow splide__arrow--prev'
-								ref={prev}
-							>
-								<Icon
-									as={AiOutlineLeftCircle}
-									transform='rotate(180deg)'
-									fontSize='24px'
-									color='#fff !important'
-								/>
-							</button>
-							<button
-								className='splide__arrow splide__arrow--next'
-								ref={next}
-							>
-								<Icon
-									as={AiOutlineRightCircle}
-									fontSize='24px'
-									fill='#fff'
-								/>
-							</button>
-						</div>
-					</div>
-					<Search />
-					<Box>
-						<SplideTrack>
-							{images.map((data, index) => {
-								return (
-									<SplideSlide key={index}>
-										<Box
-											w='100vw'
-											h='500px'
-											bgImage={data.imageUrl[0].url}
-											bgSize='cover'
-										>
-											<Text
-												zindex='10'
-												w={{ base: '100%', lg: '50%' }}
-												bg='rgba(0,0,0,.1)'
-												boxShadow={
-													'0 0 0 10000px rgba(0,0,0,.1)'
-												}
-												color={'rgba(255,255,255,1)'}
-												position='absolute'
-												top={{ base: '40%', lg: '30%' }}
-												left={{
-													base: '50%',
-													lg: '30px',
-												}}
-												transform={{
-													base: 'translateX(-50%) translateY(-50%)',
-													lg: 'none',
-												}}
-												fontSize={50}
-												fontWeight={500}
-												lineHeight={1}
-												textAlign={{
-													base: 'center',
-													lg: 'start',
-												}}
-											>
-												{data.title}
-											</Text>
-										</Box>
-									</SplideSlide>
-								);
-							})}
-						</SplideTrack>
+			{loading ? (
+				<Skeleton h='500px' />
+			) : (
+				<Box className='hero'>
+					<Box pos={'absolute'} zIndex={100}>
+						<Nav />
 					</Box>
-				</Splide>
-			</Box>
+					{/* <Box pos={'absolute'} zindex={102}></Box> */}
+					<Splide
+						aria-label='images'
+						options={{
+							type: 'loop',
+							gap: '1rem',
+							autoplay: true,
+							pauseOnHover: false,
+							resetProgress: false,
+							height: '500px',
+							interval: 2000,
+							transition: 'slide',
+						}}
+						hasTrack={false}
+						ref={splide_ref}
+						onMove={(e) => {
+							console.log('move is great', e);
+							setCurrentIndex(e.index);
+						}}
+					>
+						<div className='splide__arrows'>
+							<div className='orange_bar'></div>
+							<p className='slider_city'>
+								{names[currentIndex].city}
+							</p>
+							<p className='slider_location'>
+								{names[currentIndex].location}
+							</p>
+							<div className='slider_controls'>
+								<button
+									className='splide__arrow splide__arrow--prev'
+									ref={prev}
+								>
+									<Icon
+										as={AiOutlineLeftCircle}
+										transform='rotate(180deg)'
+										fontSize='24px'
+										color='#fff !important'
+									/>
+								</button>
+								<button
+									className='splide__arrow splide__arrow--next'
+									ref={next}
+								>
+									<Icon
+										as={AiOutlineRightCircle}
+										fontSize='24px'
+										fill='#fff'
+									/>
+								</button>
+							</div>
+						</div>
+						<Search />
+						<Box>
+							<SplideTrack>
+								{images.map((data, index) => {
+									return (
+										<SplideSlide key={index}>
+											<Box
+												w='100vw'
+												h='500px'
+												position={'relative'}
+												overflowX='hidden'
+											>
+												<Box
+													w='100%'
+													h='100%'
+													bgImage={
+														data.imageUrl[0].url
+													}
+													bgSize='cover'
+													bgPos={'50% 50%'}
+												></Box>
+												<Text
+													w={{
+														base: '100%',
+														lg: '50%',
+													}}
+													bg='rgba(0,0,0,.1)'
+													boxShadow={
+														'0 0 0  1000px rgba(0,0,0,.1)'
+													}
+													color={'white'}
+													position='absolute'
+													top={{
+														base: '40%',
+														lg: '30%',
+													}}
+													left={{
+														base: '50%',
+														lg: '30px',
+													}}
+													transform={{
+														base: 'translateX(-50%) translateY(-50%)',
+														lg: 'none',
+													}}
+													fontSize={50}
+													fontWeight={500}
+													lineHeight={1}
+													textAlign={{
+														base: 'center',
+														lg: 'start',
+													}}
+												>
+													{data.title}
+												</Text>
+											</Box>
+										</SplideSlide>
+									);
+								})}
+							</SplideTrack>
+						</Box>
+					</Splide>
+				</Box>
+			)}
 		</>
 		// <>
 		// 	<Box

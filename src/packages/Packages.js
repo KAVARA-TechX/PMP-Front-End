@@ -94,7 +94,11 @@ const Packages = () => {
 								display={'inline-block'}
 								h='350px'
 								w='230px'
-								bgImg={data.image[0].url}
+								bgImg={
+									data.image[0] === undefined
+										? 'https://source.unsplash.com/random'
+										: data.image[0].url
+								}
 								bgSize='cover'
 								bgPos={'50%'}
 								borderRadius={'xl'}

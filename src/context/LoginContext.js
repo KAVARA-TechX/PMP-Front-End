@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import getUserinfoApi from '../apis/getUserInfoApi';
 
 const LoginContext = createContext();
 
@@ -12,9 +13,29 @@ const LoginProvider = ({ children }) => {
 	useEffect(() => {
 		if (window.localStorage.getItem('loginStatus') === 'true') {
 			setLoginState(window.localStorage.getItem('loginStatus'));
-			setToken(window.localStorage.getItem('token'));
-			setUsed(window.localStorage.getItem('used'));
-			setProfileurl(window.localStorage.getItem('profileImg'));
+			setToken(
+				window.localStorage.getItem('token')
+					? window.localStorage.getItem('token')
+					: 'empty'
+			);
+			setUsed(
+				window.localStorage.getItem('used')
+					? window.localStorage.getItem('used')
+					: 'empty'
+			);
+
+			console.log(
+				'in localStorage profileImg is ',
+				window.localStorage.getItem('profileImg')
+			);
+
+			if (window.localStorage.getItem('profileImg') === null) {
+				const res = getUserinfoApi().then((res) => {
+					setProfileurl(res.data.avatar);
+				});
+			} else {
+				setProfileurl(window.localStorage.getItem('profileImg'));
+			}
 		}
 	}, []);
 

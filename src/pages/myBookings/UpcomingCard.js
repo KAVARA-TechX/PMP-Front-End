@@ -22,6 +22,7 @@ const UpcomingCard = ({ data }) => {
 	const [pkgData, setPkgData] = useState();
 	const [loading, setLoading] = useState(true);
 	const [sDate, setSDate] = useState(new Date());
+	const [parts, setParts] = useState([]);
 
 	const eDate = new Date(data.endDate);
 
@@ -85,14 +86,24 @@ const UpcomingCard = ({ data }) => {
 		const getPackageData = async () => {
 			try {
 				const res = await getPackageById(data.packageId);
-				console.log(res);
+				console.log('package is : ', res);
 				setPkgData(
 					res.data.package === null
 						? { packageTitle: 'package is Deleted' }
 						: res.data.package
 				);
+				try {
+					setParts(
+						data.paymentType.split(',')[0].split(':')[1].split('-')
+					);
+				} catch (error) {
+					setParts([]);
+				}
 				setLoading(false);
-			} catch (error) {}
+			} catch (error) {
+				console.log('areeee errror aareee hai', error);
+				// setPkgData({ packageTitle: 'package is Deleted' });
+			}
 		};
 
 		getPackageData();
@@ -100,13 +111,17 @@ const UpcomingCard = ({ data }) => {
 
 	// -------------------------------------------------------
 
+	useEffect(() => {
+		console.log('pkd data is ', pkgData);
+	}, [pkgData]);
+
 	return (
 		<>
-			{console.log('we get data as : ', data)}
+			{console.log('data is : ', data)}
 			{loading ? (
 				<></>
 			) : pkgData.packageTitle === 'package is Deleted' ? (
-				<></>
+				<>{console.log('i will not show it')}</>
 			) : (
 				<Box
 					w='100%'
@@ -196,13 +211,13 @@ const UpcomingCard = ({ data }) => {
 							<Box>
 								<Text>Resorts :</Text>
 								<UnorderedList>
-									{pkgData.resorts.map((data, index) => {
+									{/* {pkgData.resorts.map((data, index) => {
 										return (
 											<ListItem key={index}>
 												{data}
 											</ListItem>
 										);
-									})}
+									})} */}
 								</UnorderedList>
 							</Box>
 							<Box>
@@ -271,7 +286,11 @@ const UpcomingCard = ({ data }) => {
 							>
 								<Box
 									fontSize='20px'
-									display={'inline-block'}
+									display={
+										data.paymentStatus === 'Confirmed'
+											? 'none'
+											: 'inline-block'
+									}
 									bg={
 										data.paymentStatus === 'Done'
 											? 'green.500'
@@ -290,26 +309,41 @@ const UpcomingCard = ({ data }) => {
 										? 'Booked'
 										: 'Processing'}
 								</Box>
-								{/* <Text fontSize={'16px'}>Payment Plan</Text>
-								<Select
-									w='130px'
-									value={payOption}
-									onChange={(e) => {
-										setPayOption(e.target.value);
-									}}
+								<Box
+									display={
+										data.paymentStatus === 'Confirmed'
+											? 'inline-block'
+											: 'none'
+									}
 								>
-									<option value={'pay now'}>pay now</option>
-									<option value='pay in parts'>
-										pay in parts
-									</option>
-								</Select> */}
+									<Text fontSize={'16px'}>Payment Plan</Text>
+									<Select
+										w='130px'
+										value={payOption}
+										onChange={(e) => {
+											setPayOption(e.target.value);
+										}}
+									>
+										<option value={'pay now'}>
+											pay now
+										</option>
+										<option value='pay in parts'>
+											pay in parts
+										</option>
+									</Select>
+								</Box>
 							</Box>
 						</Box>
 						{payOption === 'pay now' ? (
 							<Box
 								pb='20px'
-								// display={'flex'}
-								display={'none'}
+								display={
+									data.paymentStatus === 'Requested'
+										? 'none'
+										: data.paymentStatus === 'Done'
+										? 'none'
+										: 'flex'
+								}
 								flexGrow={1}
 								flexDir='column'
 								justifyContent='flex-end'
@@ -350,28 +384,38 @@ const UpcomingCard = ({ data }) => {
 									gap='10px 10px'
 									pl='20px'
 								>
-									<Box
-										border={'1px solid rgba(0,0,0,.6)'}
-										borderRadius={'10px'}
-										overflow='hidden'
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-1
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box>
-									<Box
+									{parts.map((data, index) => {
+										return (
+											<Box
+												border={
+													'1px solid rgba(0,0,0,.6)'
+												}
+												borderRadius={'10px'}
+												overflow='hidden'
+											>
+												<Text
+													bg='rgba(0,0,0,.6)'
+													textAlign={'center'}
+												>
+													Month-{index + 1}
+												</Text>
+												<Box
+													display={'flex'}
+													justifyContent='center'
+													py='5px'
+												>
+													<Button
+														bg='#32BAC9'
+														w='80%'
+													>
+														Pay - {data}
+													</Button>
+												</Box>
+											</Box>
+										);
+									})}
+
+									{/* <Box
 										border={'1px solid rgba(0,0,0,.6)'}
 										borderRadius={'10px'}
 										overflow='hidden'
@@ -391,8 +435,8 @@ const UpcomingCard = ({ data }) => {
 												Pay
 											</Button>
 										</Box>
-									</Box>
-									<Box
+									</Box> */}
+									{/* <Box
 										borderRadius={'10px'}
 										overflow='hidden'
 										border={'1px solid rgba(0,0,0,.6)'}
@@ -413,7 +457,7 @@ const UpcomingCard = ({ data }) => {
 												Pay
 											</Button>
 										</Box>
-									</Box>
+									</Box> */}
 								</Box>
 								<Box>
 									<Text

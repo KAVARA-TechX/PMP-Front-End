@@ -2,7 +2,6 @@ import {
 	ArrowBackIcon,
 	CheckCircleIcon,
 	CloseIcon,
-	EmailIcon,
 	StarIcon,
 } from '@chakra-ui/icons';
 import {
@@ -788,7 +787,7 @@ const AboutPackage = () => {
 									Resorts
 								</Text>
 								<UnorderedList fontSize={'20px'}>
-									{pkgData.resorts.map((data, index) => {
+									{/* {pkgData.resorts.map((data, index) => {
 										return data === '' ? (
 											<></>
 										) : (
@@ -796,7 +795,7 @@ const AboutPackage = () => {
 												{data}
 											</ListItem>
 										);
-									})}
+									})} */}
 								</UnorderedList>
 							</Box>
 							<Box mt='30px'>

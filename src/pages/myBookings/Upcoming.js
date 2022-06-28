@@ -15,12 +15,10 @@ const Upcoming = () => {
 			try {
 				const res = await getUserinfoApi();
 
-				console.log('res is id : ', res);
 				if (res.data._id.length > 10) {
 					const response = await GetUserRequestedPackages(
 						res.data._id
 					);
-					console.log('requests is : ', response.data.requests);
 					setRequests(response.data.requests);
 					setLoading(false);
 				}

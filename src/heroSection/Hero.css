@@ -17,17 +17,6 @@
 	height: 100%;
 }
 
-.slide {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 40px;
-	color: rgba(0, 0, 0, 0.3);
-	flex-shrink: 0;
-}
-
 .slides div:nth-child(1) {
 	background-color: orange;
 }
@@ -55,10 +44,18 @@
 	border-radius: 32px 0 0 32px;
 	padding: 20px 20px;
 }
+
+@media screen and (max-width: 992px) {
+	.hero .splide__arrows,
+	.hero .splide__arrows--ltr {
+		display: none;
+	}
+}
+
 .hero .splide__arrows .orange_bar {
 	width: 50px;
 	height: 5px;
-	background: orange;
+	background: #0e87f6;
 	border-radius: 20px;
 	float: right;
 }

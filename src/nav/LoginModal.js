@@ -55,8 +55,7 @@ const LoginModal = ({ open, setOpen }) => {
 		console.log(response);
 		toast({
 			title: 'Error',
-			description:
-				'Please allow third party cookies to login through google.',
+			description: response.error,
 			status: 'warning',
 			duration: 6000,
 			isClosable: true,
