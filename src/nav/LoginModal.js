@@ -11,12 +11,11 @@ import {
 	Input,
 	useToast,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { GoogleLogin } from 'react-google-login';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AccessLoginContext } from '../context/LoginContext';
 import LoginApi from '../apis/LoginApi';
 import googleLoginApi from '../apis/googleLoginApi';
+import jwt_decode from 'jwt-decode';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,38 +28,56 @@ const LoginModal = ({ open, setOpen }) => {
 	const [loading, setLoading] = useState(false);
 	const toast = useToast();
 
-	useEffect(() => {
-		if (open) {
-			onOpen();
-		}
-	});
+	const gLoginButton = useCallback((node) => {
+		if (node !== null) {
+			/* global google */
+			google.accounts.id.initialize({
+				client_id: process.env.REACT_APP_CLIENT_ID,
+				callback: handleCallbackResponse,
+			});
 
-	const success = async (response) => {
-		let tokenId = response.tokenId;
+			google.accounts.id.renderButton(node, {
+				theme: 'outline',
+				size: 'large',
+			});
+		}
+	}, []);
+
+	const handleCallbackResponse = async (response) => {
+		console.log('google response is : ', response);
+		var userObj = jwt_decode(response.credential);
+		console.log(userObj);
+
+		// this is what we do when user login
 		try {
-			const res = await googleLoginApi(tokenId);
+			const res = await googleLoginApi(response.credential);
+			console.log('server se ye aaya : ', res);
 			setLoginState(true);
 			setToken(res.data.token);
 			setUsed('google');
 			setOpen(false);
+			onClose();
 			setProfileurl(res.data.msg.avatar);
 		} catch (error) {
-			console.log('some error occured', error);
+			toast({
+				title: 'Error',
+				description: error.response.data.msg,
+				status: 'error',
+				isClosable: true,
+				duration: 3000,
+			});
 		}
-
-		onClose();
 	};
 
-	const failure = (response) => {
-		console.log(response);
-		toast({
-			title: 'Error',
-			description: response.error,
-			status: 'warning',
-			duration: 6000,
-			isClosable: true,
-		});
-	};
+	if (open) {
+	}
+
+	useEffect(() => {
+		if (open) {
+			onOpen();
+			console.log('this is running');
+		}
+	}, [open]);
 
 	const handleLogin = async () => {
 		if (email !== '' && password !== '') {
@@ -180,44 +197,12 @@ const LoginModal = ({ open, setOpen }) => {
 							textAlign: 'center',
 						}}
 					></Box>
-					<GoogleLogin
-						// demo
-						clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com'
-						buttonText=''
-						autoLoad={false}
-						cookiePolicy={'single_host_origin'}
-						onSuccess={success}
-						onFailure={failure}
-						render={(renderProps) => (
-							<Box
-								width='80%'
-								fontSize={20}
-								fontWeight={600}
-								bg='#fff'
-								color='black'
-								px='auto'
-								display={'flex'}
-								justifyContent='center'
-								py='5px'
-								borderRadius={'lg'}
-								cursor='pointer'
-							>
-								<Text
-									display={'inline-flex'}
-									gap={5}
-									alignItems='center'
-									onClick={renderProps.onClick}
-								>
-									<Icon as={FcGoogle} />
-									Continue with Google
-								</Text>
-							</Box>
-						)}
-					/>
+
+					<Box id='google_login_button' ref={gLoginButton}></Box>
 				</Box>
 			</ModalContent>
 		</Modal>
 	);
 };
 
-export default LoginModal;
+export default React.memo(LoginModal);

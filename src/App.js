@@ -22,9 +22,35 @@ import Profile from './pages/profile/Profile';
 import Faq from './Faq';
 import Tac from './Tac';
 import AboutUs from './AboutUs';
+import { useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
+
+	const handleCallbackResponse = (response) => {
+		console.log('response is : ', response);
+		var userObj = jwt_decode(response.credential);
+		console.log(userObj);
+	};
+
+	// useEffect(() => {
+	// 	/* global google */
+	// 	google.accounts.id.initialize({
+	// 		client_id:
+	// 			'427138300277-14ld1qfqaqqqmaoegpbsgvkd9l7haa02.apps.googleusercontent.com',
+	// 		callback: handleCallbackResponse,
+	// 	});
+
+	// 	google.accounts.id.renderButton(
+	// 		document.getElementById('google_login_button'),
+	// 		{
+	// 			theme: 'outline',
+	// 			size: 'large',
+	// 		}
+	// 	);
+	// }, []);
+
 	return (
 		<Routes>
 			<Route path='/' element={<Homepage />} />
