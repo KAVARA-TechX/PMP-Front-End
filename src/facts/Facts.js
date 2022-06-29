@@ -9,7 +9,7 @@ const Facts = () => {
 			w='100vw'
 			h='fit-content'
 			display='flex'
-			mt={{ base: '30px', lg: '100px' }}
+			mt={{ base: '200px', lg: '100px' }}
 			mb={10}
 			className='facts'
 			px={{ base: '10px', lg: '5vw' }}
@@ -22,7 +22,6 @@ const Facts = () => {
 				bgImage={image}
 				bgSize='cover'
 				bgPosition={'50% 50%'}
-				// flexGrow={1}
 			></Box>
 			<Box
 				w={{ base: '100%', lg: '35.57%' }}

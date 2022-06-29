@@ -53,7 +53,7 @@ const Footer = () => {
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
-						<Image src={logo} h='100%' />3
+						<Image src={logo} h='100%' />
 					</Box>
 					<Text mb='10px'>Leisure away with Plan My Leisure</Text>
 					<Box
@@ -175,7 +175,6 @@ const Footer = () => {
 							>
 								Privacy Policy
 							</Text>
-							<Text>About</Text>
 							<Text
 								cursor='pointer'
 								onClick={() => {
