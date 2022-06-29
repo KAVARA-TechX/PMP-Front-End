@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
 import Footer from './footer/Footer';
 import SpaceBetween from './spaceBetween/SpaceBetween';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/src/ScrollTrigger';
 
 const Facts = lazy(() => {
 	return import('./facts/Facts');

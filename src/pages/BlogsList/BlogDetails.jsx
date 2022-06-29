@@ -19,7 +19,15 @@ const BlogDetails = () => {
 	return (
 		<>
 			<Nav />
-			<Box pl='5vw' pr='5vw' pt='50px' overflow={'hidden'}>
+			<Box
+				pl='5vw'
+				pr='5vw'
+				pt='50px'
+				overflow={'hidden'}
+				bg='#f5f5f5'
+				color='#222'
+				pb='50px'
+			>
 				<Text fontSize={40} fontWeight={600} pb='30px'>
 					{blogData.blogHeading}
 				</Text>

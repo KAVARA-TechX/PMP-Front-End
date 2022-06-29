@@ -49,7 +49,7 @@ const Footer = () => {
 				gap={{ base: '20px', lg: '0' }}
 				py='30px'
 				px='5vw'
-				mt='50px'
+				//
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>

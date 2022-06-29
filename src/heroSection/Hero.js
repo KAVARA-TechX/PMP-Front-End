@@ -88,7 +88,6 @@ const Hero = () => {
 						hasTrack={false}
 						ref={splide_ref}
 						onMove={(e) => {
-							console.log('move is great', e);
 							setCurrentIndex(e.index);
 						}}
 					>

@@ -22,7 +22,7 @@ import logo from '../assets/logo/logo.png';
 import { BsPersonCircle } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import LoginModal from './LoginModal';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SignupModal from './SignupModal';
 import { AccessLoginContext } from '../context/LoginContext';
 import { GoogleLogout } from 'react-google-login';
@@ -40,10 +40,10 @@ const Nav = () => {
 
 	useEffect(() => {
 		setLoginclick(lgclick.current);
-	});
+	}, []);
 
 	const handleLoignClick = () => {
-		setOpen(true);
+		setOpen((prev) => true);
 	};
 
 	const handleSignupClick = () => {
@@ -52,7 +52,7 @@ const Nav = () => {
 
 	const { loginState } = AccessLoginContext();
 
-	// this will logout the use
+	// this will logout the user
 	const timeToLogout = () => {
 		window.localStorage.clear();
 		document.location.reload();
@@ -174,23 +174,9 @@ const Nav = () => {
 											Account
 										</MenuItem>
 										{used === 'google' ? (
-											<GoogleLogout
-												clientId='578238801386-o3n24ar3oogm9bknj2lo9vpmj4c77heb.apps.googleusercontent.com'
-												render={(renderProps) => (
-													<MenuItem
-														_focus={{
-															bg: 'rgba(0,0,0,.3)',
-														}}
-														onClick={
-															renderProps.onClick
-														}
-													>
-														Logout
-													</MenuItem>
-												)}
-												buttonText='Logout'
-												onLogoutSuccess={timeToLogout}
-											></GoogleLogout>
+											<MenuItem onClick={timeToLogout}>
+												Logout
+											</MenuItem>
 										) : (
 											<MenuItem
 												_focus={{
@@ -319,4 +305,4 @@ const Nav = () => {
 		</>
 	);
 };
-export default Nav;
+export default React.memo(Nav);

@@ -11,7 +11,7 @@ import {
 	Input,
 	useToast,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
@@ -32,37 +32,72 @@ const SignupModal = ({ open, setOpen }) => {
 	const [mailsend, setMailsend] = useState(false);
 	const toast = useToast();
 
-	useEffect(() => {
-		if (open) {
-			onOpen();
-		}
-	});
+	const handleCallbackResponse = async (response) => {
+		console.log('response is : ', response);
 
-	const success = async (response) => {
-		let tokenId = response.tokenId;
+		// this is what we do when user login
 		try {
-			const res = await googleLoginApi(tokenId);
+			const res = await googleLoginApi(response.credential);
+			console.log('server se ye aaya : ', res);
 			setLoginState(true);
 			setToken(res.data.token);
 			setUsed('google');
 			setOpen(false);
+			onClose();
 			setProfileurl(res.data.msg.avatar);
 		} catch (error) {
 			console.log('some error occured', error);
 		}
-
-		onClose();
 	};
 
-	const failure = (response) => {
-		toast({
-			title: 'Error',
-			description: 'Something went wrong, Please try again later.',
-			status: 'error',
-			duration: 6000,
-			isClosable: true,
-		});
-	};
+	const gSigupButton = useCallback((node) => {
+		if (node !== null) {
+			/* global google */
+			google.accounts.id.initialize({
+				client_id:
+					'578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com',
+				callback: handleCallbackResponse,
+			});
+
+			google.accounts.id.renderButton(node, {
+				theme: 'outline',
+				size: 'large',
+			});
+		}
+	}, []);
+
+	useEffect(() => {
+		if (open) {
+			onOpen();
+		}
+	}, [open]);
+
+	// const success = async (response) => {
+	// 	let tokenId = response.tokenId;
+	// 	try {
+	// 		const res = await googleLoginApi(tokenId);
+	// 		setLoginState(true);
+	// 		setToken(res.data.token);
+	// 		setUsed('google');
+	// 		setOpen(false);
+	// 		onClose();
+	// 		setProfileurl(res.data.msg.avatar);
+	// 	} catch (error) {
+	// 		console.log('some error occured', error);
+	// 	}
+
+	// 	onClose();
+	// };
+
+	// const failure = (response) => {
+	// 	toast({
+	// 		title: 'Error',
+	// 		description: 'Something went wrong, Please try again later.',
+	// 		status: 'error',
+	// 		duration: 6000,
+	// 		isClosable: true,
+	// 	});
+	// };
 
 	const handleSignupRequest = async () => {
 		setLoading(true);
@@ -209,38 +244,7 @@ const SignupModal = ({ open, setOpen }) => {
 								textAlign: 'center',
 							}}
 						></Box>
-						<GoogleLogin
-							clientId='578238801386-kf4dnau6t00190pd4pkten5ke97r5jet.apps.googleusercontent.com'
-							render={(renderProps) => (
-								<Box
-									width='80%'
-									fontSize={20}
-									fontWeight={600}
-									bg='#fff'
-									color='black'
-									px='auto'
-									display={'flex'}
-									justifyContent='center'
-									py='5px'
-									borderRadius={'lg'}
-									cursor='pointer'
-								>
-									<Text
-										display={'inline-flex'}
-										gap={5}
-										alignItems='center'
-										onClick={renderProps.onClick}
-									>
-										<Icon as={FcGoogle} />
-										Continue with Google
-									</Text>
-								</Box>
-							)}
-							buttonText='Login'
-							onSuccess={success}
-							onFailure={failure}
-							cookiePolicy={'single_host_origin'}
-						/>
+						<Box ref={gSigupButton}></Box>
 					</>
 				</Box>
 			</ModalContent>
