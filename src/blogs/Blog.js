@@ -16,6 +16,7 @@ const Blog = () => {
 			try {
 				const response = await getBlogsByCount(1, 5);
 				setLatestBlogs(response.data.blogs);
+				console.log('blog response is : ', response.data.blogs);
 				setLoading(false);
 			} catch (error) {
 				console.log(error);
@@ -115,7 +116,7 @@ const Blog = () => {
 							{latestBlogs[1].blogHeading}
 						</Box>
 					</Box>
-					<Box
+					{/* <Box
 						bgImage={latestBlogs[2].imageUrl}
 						bgSize='cover'
 						w='100%'
@@ -242,7 +243,7 @@ const Blog = () => {
 						>
 							Read More
 						</Box>
-					</Box>
+					</Box> */}
 				</Box>
 			)}
 		</Box>
