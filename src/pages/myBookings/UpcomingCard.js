@@ -88,9 +88,9 @@ const UpcomingCard = ({ data }) => {
 				const res = await getPackageById(data.packageId);
 				console.log('package is : ', res);
 				setPkgData(
-					res.data.package === null
+					res.data.package[0] === null
 						? { packageTitle: 'package is Deleted' }
-						: res.data.package
+						: res.data.package[0]
 				);
 				try {
 					setParts(

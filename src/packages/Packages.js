@@ -105,7 +105,9 @@ const Packages = () => {
 								mx={5}
 								cursor='pointer'
 								onClick={() => {
-									navigate(`/about-package/${data._id}`);
+									navigate(
+										`/about-package/${data.packageId}`
+									);
 								}}
 								transition='.2s'
 								_hover={{

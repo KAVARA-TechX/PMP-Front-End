@@ -121,7 +121,7 @@ const AboutPackage = () => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await CreatePackageRequest(
-				pkgData._id,
+				pkgData.packageId,
 				sDate,
 				eDate,
 				2,
@@ -171,7 +171,7 @@ const AboutPackage = () => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await CreatePackageRequest(
-				pkgData._id,
+				pkgData.packageId,
 				choosed,
 				endDate,
 				numberOfAdults + numberOfChilds,
@@ -263,9 +263,9 @@ const AboutPackage = () => {
 			try {
 				const res = await getPackageById(got.id);
 				console.log('got => ', res);
-				setPkgData(res.data.package);
-				setSDate(new Date(res.data.package.stayPeriod[0]));
-				setEDate(new Date(res.data.package.stayPeriod[1]));
+				setPkgData(res.data.package[0]);
+				setSDate(new Date(res.data.package[0].stayPeriod[0]));
+				setEDate(new Date(res.data.package[0].stayPeriod[1]));
 				setLoading(false);
 			} catch (error) {
 				console.log('found some error : ', error);
@@ -847,6 +847,7 @@ const AboutPackage = () => {
 									display={'flex'}
 									w='100%'
 									gap={'20px'}
+									boxSizing='border-box'
 								>
 									<Button
 										h='100%'
@@ -863,15 +864,16 @@ const AboutPackage = () => {
 									>
 										Book Now
 									</Button>
-									<Box
+									<Button
+										h='100%'
 										bg='transparent'
-										py='20px'
+										color='#0e87f6'
+										border='3px solid #0e87f6'
+										py='18px'
 										fontSize={20}
 										borderRadius='xl'
 										textAlign={'center'}
 										flexGrow={1}
-										color='#000'
-										border='3px solid #0e87f6'
 										cursor='pointer'
 										_hover={{
 											background: '#0e87f6',
@@ -884,7 +886,7 @@ const AboutPackage = () => {
 										}}
 									>
 										Customize
-									</Box>
+									</Button>
 								</Box>
 							</Box>
 							<Box
