@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import getUserinfoApi from '../../apis/getUserInfoApi';
+import updateProfile from '../../apis/updateProfile';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
@@ -26,25 +27,81 @@ const Profile = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [value, setValue] = useState();
 	const [name, setName] = useState('');
-	// const [gender, setGender] = useState('');
-	// const [dob, setDob] = useState('');
+	const [gender, setGender] = useState('');
+	const [dob, setDob] = useState('');
 	const [email, setEmail] = useState('');
-	// const [phone, setPhone] = useState('');
-	// const [address, setAddress] = useState('');
+	const [phone, setPhone] = useState('');
+	const [hnumber, setHnumber] = useState('');
+	const [city, setCity] = useState('');
+	const [state, setState] = useState('');
+	const [pincode, setPincode] = useState('');
 	const cancleRef = useRef();
+	const [avatar, setAvatar] = useState('');
+	const [uLoading, setULoading] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
 		const userDetails = async () => {
 			const response = await getUserinfoApi();
+			console.log('response for profile : ', response);
 			setName(response.data.name);
 			setEmail(response.data.email);
+			setGender(response.data.gender);
+			setDob(response.data.dob);
+			setPhone(response.data.phone);
+			setHnumber(
+				response.data.address === undefined
+					? ''
+					: response.data.address.houseNumber
+			);
+			setCity(
+				response.data.address === undefined
+					? ''
+					: response.data.address.city
+			);
+			setState(
+				response.data.address === undefined
+					? ''
+					: response.data.address.state
+			);
+			setPincode(
+				response.data.address === undefined
+					? ''
+					: response.data.address.pincode
+			);
+			setAvatar(response.data.avatar);
 			setLoading(false);
 		};
 
 		userDetails();
 	}, []);
+
+	const handleUpdate = async () => {
+		setULoading(true);
+		try {
+			const res = await updateProfile(
+				name,
+				email,
+				gender,
+				dob,
+				phone,
+				{
+					houseNumber: hnumber,
+					city: city,
+					state: state,
+					pincode: pincode,
+				},
+				avatar
+			);
+			console.log(res);
+			setULoading(false);
+			setIsEditing(false);
+		} catch (error) {
+			console.log('error is : ', error);
+			setULoading(false);
+		}
+	};
 
 	return (
 		<>
@@ -105,7 +162,7 @@ const Profile = () => {
 				</Box>
 			) : (
 				<>
-					<Box px='5vw'>
+					<Box px='5vw' pb='50px'>
 						<Box
 							display={'flex'}
 							alignItems='end'
@@ -163,20 +220,29 @@ const Profile = () => {
 									</Text>
 									{isEditing ? (
 										<RadioGroup
-											onChange={setValue}
+											// onChange={setValue}
 											value={value}
 											display='flex'
 											flexDir={'column'}
+											onChange={(e) => {
+												setGender(e);
+											}}
 										>
-											<Radio value='1'>Male</Radio>
-											<Radio value='2'>Female</Radio>
-											<Radio value='3'>Genderqueer</Radio>
-											<Radio value='4'>
+											<Radio value='Male'>Male</Radio>
+											<Radio value='Female'>Female</Radio>
+											<Radio value='Genderqueer'>
+												Genderqueer
+											</Radio>
+											<Radio value="i'd prefer not to say">
 												i'd prefer not to say
 											</Radio>
 										</RadioGroup>
 									) : (
-										<Text fontWeight={300}>Male</Text>
+										<Text fontWeight={300}>
+											{gender === ''
+												? 'undefined'
+												: gender}
+										</Text>
 									)}
 								</Box>
 							</Box>
@@ -192,9 +258,17 @@ const Profile = () => {
 										Date of birth
 									</Text>
 									{isEditing ? (
-										<Input type='date' />
+										<Input
+											value={dob}
+											type='date'
+											onChange={(e) => {
+												setDob(e.target.value);
+											}}
+										/>
 									) : (
-										<Text fontWeight={300}>00-00-0000</Text>
+										<Text fontWeight={300}>
+											{dob === '' ? 'undefined' : dob}
+										</Text>
 									)}
 								</Box>
 							</Box>
@@ -211,7 +285,13 @@ const Profile = () => {
 									</Text>
 
 									{isEditing ? (
-										<Input type='email' value={email} />
+										<Input
+											type='email'
+											value={email}
+											onChange={(e) => {
+												setEmail(e.target.value);
+											}}
+										/>
 									) : (
 										<Text fontWeight={300}>{email}</Text>
 									)}
@@ -229,9 +309,17 @@ const Profile = () => {
 										Phone no.
 									</Text>
 									{isEditing ? (
-										<Input type='number' />
+										<Input
+											type='number'
+											value={phone}
+											onChange={(e) => {
+												setPhone(e.target.value);
+											}}
+										/>
 									) : (
-										<Text fontWeight={300}>0000000000</Text>
+										<Text fontWeight={300}>
+											{phone === '' ? 'undefined' : phone}
+										</Text>
 									)}
 								</Box>
 							</Box>
@@ -247,10 +335,62 @@ const Profile = () => {
 										Address
 									</Text>
 									{isEditing ? (
-										<Input type='text' />
+										<Box
+											pl='20px'
+											display={'flex'}
+											gap='20px'
+										>
+											<Box>
+												<Text>House no.</Text>
+												<Input
+													type='text'
+													value={hnumber}
+													onChange={(e) => {
+														setHnumber(
+															e.target.value
+														);
+													}}
+												/>
+											</Box>
+											<Box>
+												<Text>City</Text>
+												<Input
+													type='text'
+													value={city}
+													onChange={(e) => {
+														setCity(e.target.value);
+													}}
+												/>
+											</Box>
+											<Box>
+												<Text>State</Text>
+												<Input
+													type='text'
+													value={state}
+													onChange={(e) => {
+														setState(
+															e.target.value
+														);
+													}}
+												/>
+											</Box>
+											<Box>
+												<Text>Pincode</Text>
+												<Input
+													type='number'
+													value={pincode}
+													onChange={(e) => {
+														setPincode(
+															e.target.value
+														);
+													}}
+												/>
+											</Box>
+										</Box>
 									) : (
 										<Text fontWeight={300}>
-											user address
+											{hnumber}, {city}, {state},{' '}
+											{pincode}
 										</Text>
 									)}
 								</Box>
@@ -283,7 +423,13 @@ const Profile = () => {
 								>
 									Cancel
 								</Button>
-								<Button colorScheme={'green'}>Save</Button>
+								<Button
+									colorScheme={'green'}
+									onClick={handleUpdate}
+									isLoading={uLoading}
+								>
+									Save
+								</Button>
 							</Box>
 						</Box>
 					</Box>
