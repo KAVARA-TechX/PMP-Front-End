@@ -38,6 +38,10 @@ const Packages = () => {
 							fontWeight={700}
 							position='relative'
 							className='packages-heading'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate('/packages');
+							}}
 						>
 							Packages
 						</Text>
