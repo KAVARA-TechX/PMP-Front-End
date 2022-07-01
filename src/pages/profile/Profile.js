@@ -201,7 +201,13 @@ const Profile = () => {
 										Legal name
 									</Text>
 									{isEditing ? (
-										<Input type='text' value={name} />
+										<Input
+											type='text'
+											value={name}
+											onChange={(e) => {
+												setName(e.target.value);
+											}}
+										/>
 									) : (
 										<Text fontWeight={300}>{name}</Text>
 									)}

@@ -7,6 +7,7 @@ import {
 	Select,
 	Button,
 	Badge,
+	useToast,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { IoAirplaneSharp } from 'react-icons/io5';
@@ -16,14 +17,18 @@ import { BsFillFileEarmarkPdfFill } from 'react-icons/bs';
 import createOrderApi from '../../apis/createOrderApi';
 import logo from '../../assets/logo/logo.png';
 import getPackageById from '../../apis/getPackageById';
+import getUserinfoApi from '../../apis/getUserInfoApi';
+import CreatePackageRequest from '../../apis/CreatePackageRequest';
+import axios from 'axios';
 
-const UpcomingCard = ({ data }) => {
+const UpcomingCard = ({ data, changeState }) => {
 	const [payOption, setPayOption] = useState('pay now');
 	const [pkgData, setPkgData] = useState();
 	const [loading, setLoading] = useState(true);
 	const [sDate, setSDate] = useState(new Date());
+	const [payLoading, setPayLoading] = useState(false);
 	const [parts, setParts] = useState([]);
-
+	const toast = useToast();
 	const eDate = new Date(data.endDate);
 
 	const initializeRazorpay = () => {
@@ -43,15 +48,18 @@ const UpcomingCard = ({ data }) => {
 	};
 
 	const handleBookNow = async () => {
+		setPayLoading(true);
+
 		const res = await initializeRazorpay();
+
 		if (!res) {
 			alert('Razorpay failed to load');
 		}
 
 		const data = await createOrderApi(
 			pkgData.startingPrice * 100,
-			'iiii',
-			'uuuu'
+			'',
+			''
 		).then((res) => res);
 		console.log('we get data from razorpay is ', data);
 
@@ -66,6 +74,7 @@ const UpcomingCard = ({ data }) => {
 			image: logo,
 			handler: function (response) {
 				// validate payment through server
+				handleBookedPackage(response);
 				alert('Yeaaahhh!! payment is successfull.');
 				alert('razorpay payment id :', response.razorpay_payment_id);
 				alert('razorpay order id : ', response.razorpay_order_id);
@@ -111,9 +120,30 @@ const UpcomingCard = ({ data }) => {
 
 	// -------------------------------------------------------
 
-	useEffect(() => {
-		console.log('pkd data is ', pkgData);
-	}, [pkgData]);
+	const handleBookedPackage = async (response) => {
+		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
+
+		try {
+			const response = await getUserinfoApi();
+			const res = await axios.patch(
+				'https://planmy.herokuapp.com/package/update-request-package',
+				{
+					packageId: data._id,
+					paymentStatus: 'Done',
+				}
+			);
+			console.log('resssssssssss : ', res);
+			setPayLoading(false);
+			toast({
+				title: 'Success',
+				description: 'Package is Booked.',
+				status: 'success',
+				duration: 3000,
+				isClosable: true,
+			});
+			changeState((prev) => !prev);
+		} catch (error) {}
+	};
 
 	return (
 		<>
@@ -211,13 +241,15 @@ const UpcomingCard = ({ data }) => {
 							<Box>
 								<Text>Resorts :</Text>
 								<UnorderedList>
-									{/* {pkgData.resorts.map((data, index) => {
-										return (
-											<ListItem key={index}>
-												{data}
-											</ListItem>
-										);
-									})} */}
+									{pkgData.resorts.values.map(
+										(data, index) => {
+											return (
+												<ListItem key={index}>
+													{data}
+												</ListItem>
+											);
+										}
+									)}
 								</UnorderedList>
 							</Box>
 							<Box>
@@ -240,14 +272,24 @@ const UpcomingCard = ({ data }) => {
 								Room Type :<br /> {pkgData.roomType}
 							</Text>
 						</Box>
-						{/* <Box display={'flex'} alignItems='center' gap='10px'>
-							<Text>See complete package : </Text>
-							<Icon
-								as={BsFillFileEarmarkPdfFill}
-								color='red.500'
-								cursor={'pointer'}
-							/>
-						</Box> */}
+						{data.pdf !== undefined ? (
+							<Box
+								display={'flex'}
+								alignItems='center'
+								gap='10px'
+							>
+								<Text>See complete package : </Text>
+								<a href={data.pdf} target='blank'>
+									<Icon
+										as={BsFillFileEarmarkPdfFill}
+										color='red.500'
+										cursor={'pointer'}
+									/>
+								</a>
+							</Box>
+						) : (
+							<></>
+						)}
 					</Box>
 					<Box
 						h='100%'
@@ -354,6 +396,7 @@ const UpcomingCard = ({ data }) => {
 									bg='#32BAC9'
 									w='80%'
 									onClick={handleBookNow}
+									isLoading={payLoading}
 								>
 									Pay Now
 								</Button>

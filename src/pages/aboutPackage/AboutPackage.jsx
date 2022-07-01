@@ -222,8 +222,8 @@ const AboutPackage = () => {
 
 		const data = await createOrderApi(
 			pkgData.startingPrice * 100,
-			'iiii',
-			'uuuu'
+			'',
+			''
 		).then((res) => res);
 		console.log('we get data from razorpay is ', data);
 
