@@ -10,12 +10,6 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './Hero.css';
 
-const names = [
-	{ city: 'Delhi', location: 'india' },
-	{ city: 'Gujarat', location: 'Gandhidham' },
-	{ city: 'xyz', location: 'moon' },
-];
-
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
 	const [images, setImages] = useState([]);
@@ -94,10 +88,10 @@ const Hero = () => {
 						<div className='splide__arrows'>
 							<div className='orange_bar'></div>
 							<p className='slider_city'>
-								{names[currentIndex].city}
+								{images[currentIndex].city}
 							</p>
 							<p className='slider_location'>
-								{names[currentIndex].location}
+								{images[currentIndex].location}
 							</p>
 							<div className='slider_controls'>
 								<button

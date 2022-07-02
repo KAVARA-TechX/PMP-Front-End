@@ -38,6 +38,10 @@ const Packages = () => {
 							fontWeight={700}
 							position='relative'
 							className='packages-heading'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate('/packages');
+							}}
 						>
 							Packages
 						</Text>
@@ -105,7 +109,9 @@ const Packages = () => {
 								mx={5}
 								cursor='pointer'
 								onClick={() => {
-									navigate(`/about-package/${data._id}`);
+									navigate(
+										`/about-package/${data.packageId}`
+									);
 								}}
 								transition='.2s'
 								_hover={{

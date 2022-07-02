@@ -22,7 +22,7 @@ const IconSection = () => {
 				textAlign='center'
 				fontSize={{ base: '30px', lg: '35px' }}
 			>
-				Our Gurantee
+				Our Guarantee
 			</Text>
 			<Box
 				display={'grid'}
@@ -128,7 +128,7 @@ const IconSection = () => {
 						fontSize={{ base: '22px', lg: '24px' }}
 						textAlign={'center'}
 					>
-						Easy Pay
+						Easy Pricing
 					</Text>
 				</Box>
 			</Box>

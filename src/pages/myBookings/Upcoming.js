@@ -9,6 +9,7 @@ const Upcoming = () => {
 	const navigate = useNavigate();
 	const [requests, setRequests] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [state, setState] = useState(false);
 
 	useEffect(() => {
 		const requestedPackages = async () => {
@@ -28,7 +29,7 @@ const Upcoming = () => {
 			}
 		};
 		requestedPackages();
-	}, []);
+	}, [state]);
 
 	return (
 		<>
@@ -53,7 +54,13 @@ const Upcoming = () => {
 							mb='50px'
 						>
 							{requests.map((data, index) => {
-								return <UpcomingCard data={data} key={index} />;
+								return (
+									<UpcomingCard
+										data={data}
+										key={index}
+										changeState={setState}
+									/>
+								);
 							})}
 						</Box>
 					) : (

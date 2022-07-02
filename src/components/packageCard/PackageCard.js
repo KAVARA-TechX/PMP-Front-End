@@ -177,7 +177,7 @@ const PackageCard = (data) => {
 							color: 'rgba(0,0,0,.8)',
 						}}
 						onClick={() => {
-							navigate(`/about-package/${data.data._id}`);
+							navigate(`/about-package/${data.data.packageId}`);
 						}}
 					>
 						View Package
