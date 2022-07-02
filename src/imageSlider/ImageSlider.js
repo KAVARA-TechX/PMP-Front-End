@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../style.css';
 import '../index.css';
 import beach from '../assets/thingsToDo/beach.png';
@@ -11,20 +11,59 @@ import sunset from '../assets/thingsToDo/sunset.png';
 import surf from '../assets/thingsToDo/skiing.png';
 import surfing from '../assets/thingsToDo/Surfing.png';
 import './ImageSlider.css';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const ImageSlider = () => {
+	gsap.registerPlugin(ScrollTrigger);
+	let f_and_e_heading_container = useRef(null);
+	let fun_and_explore_card_container = useRef(null);
+	const f_and_e_cards = gsap.utils.selector(fun_and_explore_card_container);
+	const f_and_e_heading = gsap.utils.selector(f_and_e_heading_container);
+
+	const animate = () => {
+		gsap.from(f_and_e_heading('.f_and_e_heading'), {
+			scrollTrigger: {
+				trigger: f_and_e_heading_container.current,
+				start: 'Top 65%',
+			},
+			x: -100,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.1,
+		});
+
+		gsap.from(f_and_e_cards('.f_and_e_card'), {
+			scrollTrigger: {
+				trigger: fun_and_explore_card_container.current,
+				start: 'Top 65%',
+			},
+			y: '+=100',
+			stagger: 0.2,
+			opacity: 0,
+			ease: 'smooth_ease',
+			duration: 1.5,
+			delay: 0.9,
+		});
+	};
+
+	useEffect(() => {
+		animate();
+	}, []);
+
 	return (
 		<Box
 			w={{ base: '100vw', lg: '100vw' }}
 			// className='show-scroll-when-scrolling'
 			className='hide-scroll-bar ImageSlider'
 			mb={7}
-			px='5.7%'
+			px={{ base: '0', lg: '7.5vw' }}
+			ref={f_and_e_heading_container}
 		>
 			{/* slider heading */}
-			<Box className='hide-scroll-bar'>
+			<Box className='hide-scroll-bar f_and_e_heading'>
 				<Text
-					fontSize={{ base: 25, lg: 40 }}
+					fontSize={{ base: 25, lg: 32 }}
 					fontWeight={700}
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
@@ -44,6 +83,7 @@ const ImageSlider = () => {
 				pb={10}
 				color='white'
 				className='show-scroll-when-scrolling'
+				ref={fun_and_explore_card_container}
 			>
 				{/* card */}
 				<Box
@@ -56,7 +96,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='.2s'
 					_hover={{
 						boxShadow:
@@ -96,7 +136,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='0.5s'
 					_hover={{
 						boxShadow:
@@ -136,7 +176,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='.2s'
 					_hover={{
 						boxShadow:
@@ -174,7 +214,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='0.5s'
 					_hover={{
 						boxShadow:
@@ -214,7 +254,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='0.5s'
 					_hover={{
 						boxShadow:
@@ -254,7 +294,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='0.5s'
 					_hover={{
 						boxShadow:
@@ -295,7 +335,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='.2s'
 					_hover={{
 						boxShadow:
@@ -324,6 +364,7 @@ const ImageSlider = () => {
 						</Text>
 					</Box>
 				</Box>
+
 				<Box
 					bgImage={surf}
 					display='inline-block'
@@ -334,7 +375,7 @@ const ImageSlider = () => {
 					borderRadius={'xl'}
 					position={'relative'}
 					overflow='hidden'
-					className='hide-scroll-bar'
+					className='hide-scroll-bar f_and_e_card'
 					transition='.2s'
 					_hover={{
 						boxShadow:

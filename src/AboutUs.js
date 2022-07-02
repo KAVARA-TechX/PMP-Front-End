@@ -1,8 +1,13 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import Footer from './footer/Footer';
 import Nav from './nav/Nav';
 
 const AboutUs = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<>
 			<Nav />

@@ -428,15 +428,13 @@ const Homepage = () => {
 	});
 
 	useEffect(() => {
-		setTimeout(() => {
-			setLoad(true);
-		}, 100);
+		window.scrollTo(0, 0);
 	}, []);
 
 	return (
 		<Box overflow='hidden'>
 			<Hero /> {/* Responsive Done */}
-			{load ? (
+			{true ? (
 				<>
 					<Suspense fallback={<LoadingForFacts />}>
 						<Facts />

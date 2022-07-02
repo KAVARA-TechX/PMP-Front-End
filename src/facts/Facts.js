@@ -12,7 +12,7 @@ const Facts = () => {
 			mt={{ base: '200px', lg: '100px' }}
 			mb={10}
 			className='facts'
-			px={{ base: '10px', lg: '5vw' }}
+			px={{ base: '10px', lg: '7.5vw' }}
 			gap='20px'
 		>
 			<Box
@@ -29,11 +29,11 @@ const Facts = () => {
 				flexGrow={1}
 			>
 				<Box ml={{ base: 0, lg: 5 }}>
-					<Text fontSize={20} fontWeight={500} mb={1}>
+					<Text fontSize={18} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>
 					<Text
-						fontSize={38}
+						fontSize={32}
 						fontWeight={800}
 						lineHeight={1}
 						mb={5}
@@ -44,6 +44,7 @@ const Facts = () => {
 					<Text
 						lineHeight={1.4}
 						textAlign='start'
+						fontSize={16}
 						// pr={{ base: '', lg: '10px' }}
 					>
 						We make sure you enjoy your leisure to the fullest .
@@ -66,7 +67,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
 							100+
 						</Text>
 
@@ -80,7 +81,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
 							1000+
 						</Text>
 						<Text>Travellers</Text>
@@ -93,7 +94,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
 							15+
 						</Text>
 						<Text>Destinations</Text>
@@ -106,7 +107,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={40} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
 							1500+
 						</Text>
 						<Text>Satisfied Clients</Text>

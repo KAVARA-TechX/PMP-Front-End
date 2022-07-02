@@ -13,14 +13,14 @@ const IconSection = () => {
 			w='100vw'
 			h='fit-content'
 			bg='rgba(14, 135, 246,.25)'
-			px='30px'
+			px={{ base: '10px', lg: '7.5vw' }}
 			py='30px'
 			mb={'60px'}
 		>
 			<Text
 				fontWeight={700}
 				textAlign='center'
-				fontSize={{ base: '30px', lg: '35px' }}
+				fontSize={{ base: '30px', lg: '32px' }}
 			>
 				Our Guarantee
 			</Text>
@@ -32,8 +32,8 @@ const IconSection = () => {
 			>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -45,12 +45,12 @@ const IconSection = () => {
 					>
 						<Image
 							src={clipboard}
-							h={{ base: '30px', lg: '40px' }}
+							h={{ base: '30px', lg: '30px' }}
 						/>
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						24/7 Assistance
@@ -58,8 +58,8 @@ const IconSection = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -69,11 +69,11 @@ const IconSection = () => {
 						border='3px solid #0e87f6'
 						mb='20px'
 					>
-						<Image src={message} h={{ base: '30px', lg: '40px' }} />
+						<Image src={message} h={{ base: '30px', lg: '30px' }} />
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						One-Stop Shop
@@ -81,8 +81,8 @@ const IconSection = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -94,12 +94,12 @@ const IconSection = () => {
 					>
 						<Image
 							src={cardtick}
-							h={{ base: '30px', lg: '40px' }}
+							h={{ base: '30px', lg: '30px' }}
 						/>
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						All Round Expertise
@@ -107,8 +107,8 @@ const IconSection = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -120,12 +120,12 @@ const IconSection = () => {
 					>
 						<Image
 							src={cardtick}
-							h={{ base: '30px', lg: '40px' }}
+							h={{ base: '30px', lg: '30px' }}
 						/>
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						Easy Pricing

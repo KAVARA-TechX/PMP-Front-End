@@ -6,19 +6,59 @@ import '../../node_modules/react-day-picker/dist/style.css';
 import './day-picker.css';
 import { useNavigate } from 'react-router-dom';
 import './Packages.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import getPackageApi from '../apis/getPackageApi';
 import { BiChevronRight } from 'react-icons/bi';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const Packages = () => {
 	const navigate = useNavigate();
 	const [pkg, setPkg] = useState([]);
+	let cardsParentRef = useRef(null);
+	const pkg_heading_container = useRef(null);
+	const ref_cards = gsap.utils.selector(cardsParentRef);
+	const ref_pkd_heading = gsap.utils.selector(pkg_heading_container);
+	gsap.registerPlugin(ScrollTrigger);
+
+	const animateCards = () => {
+		gsap.from(ref_pkd_heading('.pkg_heading_from_left'), {
+			scrollTrigger: {
+				trigger: pkg_heading_container.current,
+				start: 'Top 65%',
+			},
+
+			x: -100,
+			opacity: 0,
+			duration: 0.5,
+		});
+		gsap.from(ref_pkd_heading('.pkg_heading_from_right'), {
+			scrollTrigger: {
+				trigger: pkg_heading_container.current,
+				start: 'Top 65%',
+			},
+			x: 100,
+			opacity: 0,
+			duration: 0.5,
+		});
+		gsap.from(ref_cards('.pkg_card'), {
+			scrollTrigger: {
+				trigger: cardsParentRef.current,
+				start: 'Top 65%',
+			},
+			y: 100,
+			stagger: 0.3,
+			opacity: 0,
+			delay: 0.5,
+		});
+	};
 
 	useEffect(() => {
 		const getData = async () => {
 			try {
 				const res = await getPackageApi();
 				setPkg(res.data.packages);
+				animateCards();
 			} catch (error) {}
 		};
 		getData();
@@ -26,15 +66,20 @@ const Packages = () => {
 
 	return (
 		<>
-			<Box w='100vw' className='packages' px='5vw'>
+			<Box
+				w='100vw'
+				className='packages'
+				px={{ base: '10px', lg: '7.5vw' }}
+			>
 				<Box
 					display={'flex'}
 					justifyContent='space-between'
 					alignItems={'center'}
+					ref={pkg_heading_container}
 				>
-					<Box>
+					<Box className='pkg_heading_from_left'>
 						<Text
-							fontSize={{ base: 25, lg: 40 }}
+							fontSize={{ base: 25, lg: 32 }}
 							fontWeight={700}
 							position='relative'
 							className='packages-heading'
@@ -47,7 +92,7 @@ const Packages = () => {
 						</Text>
 						<Text
 							textAlign={{ base: 'start', lg: 'start' }}
-							fontSize='20px'
+							fontSize='18px'
 						>
 							Discover your ideal Experience
 						</Text>
@@ -70,6 +115,7 @@ const Packages = () => {
 						onClick={() => {
 							navigate('/packages');
 						}}
+						className='pkg_heading_from_right'
 					>
 						<Text>See all packages</Text>
 						<Icon
@@ -90,10 +136,13 @@ const Packages = () => {
 					mt='20px'
 					overflowX={{ base: 'scroll', lg: 'scroll' }}
 					className='hide-scroll-bar'
+					ref={cardsParentRef}
+					id='pkg_cards_parent'
 				>
 					{pkg.map((data, index) => {
 						return (
 							<Box
+								className='pkg_card'
 								key={index}
 								display={'inline-block'}
 								h='350px'
