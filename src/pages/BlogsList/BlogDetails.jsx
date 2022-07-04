@@ -20,8 +20,8 @@ const BlogDetails = () => {
 		<>
 			<Nav />
 			<Box
-				pl='5vw'
-				pr='5vw'
+				pl='9vw'
+				pr='9vw'
 				pt='50px'
 				overflow={'hidden'}
 				bg='#f5f5f5'

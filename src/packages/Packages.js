@@ -69,7 +69,7 @@ const Packages = () => {
 			<Box
 				w='100vw'
 				className='packages'
-				px={{ base: '10px', lg: '7.5vw' }}
+				px={{ base: '10px', lg: '9vw' }}
 			>
 				<Box
 					display={'flex'}

@@ -14,6 +14,17 @@ import './ImageSlider.css';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+const cardsData = [
+	{ title: 'Indulge in Spa', img: spa },
+	{ title: 'Water Bungalow', img: house },
+	{ title: 'Surfing', img: surfing },
+	{ title: 'Scuba Diving', img: scuba },
+	{ title: 'Stroll at a Beach', img: beach },
+	{ title: 'Glowing Beach', img: glow },
+	{ title: 'Enjoy Sunset Cruise', img: sunset },
+	{ title: 'Water Skiing', img: surf },
+];
+
 const ImageSlider = () => {
 	gsap.registerPlugin(ScrollTrigger);
 	let f_and_e_heading_container = useRef(null);
@@ -57,7 +68,7 @@ const ImageSlider = () => {
 			// className='show-scroll-when-scrolling'
 			className='hide-scroll-bar ImageSlider'
 			mb={7}
-			px={{ base: '0', lg: '7.5vw' }}
+			px={{ base: '0px', lg: '9vw' }}
 			ref={f_and_e_heading_container}
 		>
 			{/* slider heading */}
@@ -86,6 +97,49 @@ const ImageSlider = () => {
 				ref={fun_and_explore_card_container}
 			>
 				{/* card */}
+				{cardsData.map((data, index) => (
+					<Box
+						key={index}
+						bgImage={data.img}
+						display='inline-block'
+						bgSize='cover'
+						height='450px'
+						mx={5}
+						w='300px'
+						borderRadius={'xl'}
+						position={'relative'}
+						overflow='hidden'
+						className='hide-scroll-bar f_and_e_card'
+						transition='.2s'
+						_hover={{
+							boxShadow:
+								'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
+						}}
+					>
+						<Box
+							w={'100%'}
+							h='100%'
+							bg='linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.8) 100%)'
+						>
+							<Text
+								w='100%'
+								h='100%'
+								display={'flex'}
+								alignItems='end'
+								fontFamily={'Mansalva'}
+								fontSize={'40px'}
+								whiteSpace={'pre-wrap'}
+								fontWeight={400}
+								textAlign='center'
+								pb={10}
+								justifyContent={'center'}
+							>
+								{data.title}
+							</Text>
+						</Box>
+					</Box>
+				))}
+
 				<Box
 					bgImage={spa}
 					display='inline-block'
@@ -113,13 +167,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
-							textAlign='start'
-							mx={'5px'}
-							fontWeight={700}
+							fontWeight={400}
+							textAlign='center'
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Indulge in Spa
 						</Text>
@@ -153,13 +207,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
+							fontWeight={400}
 							textAlign='center'
-							mx={'5px'}
-							fontWeight={700}
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Water Bungalow
 						</Text>
@@ -193,11 +247,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
-							mx={'5px'}
-							fontWeight={700}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
+							whiteSpace={'pre-wrap'}
+							fontWeight={400}
+							textAlign='center'
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Surfing
 						</Text>
@@ -231,13 +287,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
+							fontWeight={400}
 							textAlign='center'
-							mx={'5px'}
-							fontWeight={700}
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Scuba Diving
 						</Text>
@@ -271,13 +327,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
+							fontWeight={400}
 							textAlign='center'
-							mx={'5px'}
-							fontWeight={700}
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Stroll at a Beach
 						</Text>
@@ -311,13 +367,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
+							fontWeight={400}
 							textAlign='center'
-							mx={'5px'}
-							fontWeight={700}
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Glowing Beach
 						</Text>
@@ -352,13 +408,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
 							whiteSpace={'pre-wrap'}
+							fontWeight={400}
 							textAlign='center'
-							mx={'5px'}
-							fontWeight={700}
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Enjoy Sunset Cruise
 						</Text>
@@ -392,11 +448,13 @@ const ImageSlider = () => {
 							h='100%'
 							display={'flex'}
 							alignItems='end'
-							fontSize={27}
-							mx={'5px'}
-							fontWeight={700}
+							fontFamily={'Mansalva'}
+							fontSize={'40px'}
+							whiteSpace={'pre-wrap'}
+							fontWeight={400}
+							textAlign='center'
 							pb={10}
-							pl='10px'
+							justifyContent={'center'}
 						>
 							Water Skiing
 						</Text>

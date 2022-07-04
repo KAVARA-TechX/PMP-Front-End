@@ -28,3 +28,7 @@ body {
 .new-font {
 	font-family: 'Source Sans Pro' !important;
 }
+
+#easy-pricing-icon svg {
+	fill: rgba(14, 135, 246, 1) !important;
+}

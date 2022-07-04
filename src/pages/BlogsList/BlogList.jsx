@@ -125,8 +125,8 @@ const BlogList = () => {
 			<Nav />
 			<Box
 				w='100vw'
-				pl='5vw'
-				pr='5vw'
+				pl='9vw'
+				pr='9vw'
 				pt='7vw'
 				position={'relative'}
 				bg='#222222'

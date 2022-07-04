@@ -752,7 +752,7 @@ const AboutPackage = () => {
 						w='100vw'
 						minH='100vh'
 						position={'relative'}
-						px={{ base: '10px', lg: '7.5vw' }}
+						px={{ base: '10px', lg: '9vw' }}
 						pt='50px'
 					>
 						<Box w='calc(100vw - 590px)'>
