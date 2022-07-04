@@ -12,7 +12,7 @@ const Facts = () => {
 			mt={{ base: '200px', lg: '100px' }}
 			mb={10}
 			className='facts'
-			px={{ base: '10px', lg: '7.5vw' }}
+			px={{ base: '10px', lg: '9vw' }}
 			gap='20px'
 		>
 			<Box

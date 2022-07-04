@@ -45,10 +45,10 @@ const Footer = () => {
 				className='hide-scroll-bar'
 				bg='#082032'
 				display={'grid'}
-				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1.3fr .7fr' }}
+				gridTemplateColumns={{ base: '1fr', lg: '1fr 1.5fr .5fr' }}
 				gap={{ base: '20px', lg: '0' }}
 				py='30px'
-				px='5vw'
+				px='9vw'
 				//
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>

@@ -7,11 +7,11 @@ const DreamVacation = () => {
 	return (
 		<Box
 			w='100vw'
-			h='fit-content'
+			h='360px'
 			bg='rgba(14, 135, 246,.25)'
-			px={{ base: '10px', lg: '7.5vw' }}
-			py='30px'
+			px={{ base: '10px', lg: '9vw' }}
 			mb={10}
+			py='30px'
 		>
 			<Text
 				fontWeight={700}
@@ -26,7 +26,7 @@ const DreamVacation = () => {
 				mt='50px'
 				gap={{ base: '30px', lg: '0' }}
 			>
-				<Box w='300px' mx='auto'>
+				<Box w='300px' mx='auto' overflow={'hidden'}>
 					<Box
 						w={{ base: '60px', lg: '70px' }}
 						h={{ base: '60px', lg: '70px' }}

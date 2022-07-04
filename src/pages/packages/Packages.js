@@ -119,7 +119,7 @@ const PackagesPage = () => {
 			</Box>
 			<Box
 				w='100vw'
-				px={{ base: '10px', lg: '7.5vw' }}
+				px={{ base: '10px', lg: '9vw' }}
 				pt='50px'
 				overflow={'hidden'}
 			>
@@ -127,22 +127,10 @@ const PackagesPage = () => {
 					Maldives Tour Package
 				</Text>
 				<Text lineHeight={7}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Cras vulputate, sapien id eleifend tincidunt, massa risus
-					vehicula diam, ac ornare sapien est at elit. Interdum et
-					malesuada fames ac ante ipsum primis in faucibus. Nunc at
-					nunc sem. Quisque consequat ligula in odio maximus molestie.
-					Aliquam placerat ex nulla, eget pretium magna accumsan a.
-					Vestibulum diam libero, vulputate et aliquet pulvinar,
-					pulvinar vel lorem. Vestibulum finibus ex sit amet ligula
-					dapibus pretium. Proin consectetur est et porttitor lacinia.
-					Curabitur bibendum, orci ut mollis luctus, ligula nisi
-					aliquet quam, a fringilla lorem magna et eros. Sed sed
-					turpis ac erat commodo porta. Integer consequat efficitur
-					mauris, sed suscipit ante mattis eget. Fusce vehicula nec
-					lacus in lobortis. Duis mattis lacus vel tortor semper
-					porttitor. Quisque commodo magna sit amet erat vulputate
-					consequat.
+					Travel to the Maldives and witness the most surreal and
+					stunning white-sand beaches and magnificent underwater
+					world. Get exclusive Maldives Tour Packages to experience a
+					true holiday of a lifetime in the tropical paradise.
 				</Text>
 				{/* package cards */}
 				<Box pt={'40px'} pb='40px'>

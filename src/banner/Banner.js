@@ -31,7 +31,7 @@ const Banner = () => {
 	return (
 		<>
 			<UserForm state={modalState} setState={setModalState} />
-			<Box px={{ base: '0', lg: '7.5vw' }}>
+			<Box px={{ base: '0px', lg: '9vw' }}>
 				<Box
 					w={{ base: '100vw', lg: '100%' }}
 					h={{ base: '350px', lg: '250px' }}
