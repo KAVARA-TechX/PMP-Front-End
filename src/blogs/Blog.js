@@ -27,7 +27,7 @@ const Blog = () => {
 	}, []);
 
 	return (
-		<Box w={{ base: '100vw', lg: '90vw' }} mx='auto' className='Blog'>
+		<Box w={{ base: '100vw', lg: '85vw' }} mx='auto' className='Blog'>
 			<Text
 				fontSize={30}
 				fontWeight={600}
@@ -116,7 +116,8 @@ const Blog = () => {
 							{latestBlogs[1].blogHeading}
 						</Box>
 					</Box>
-					{/* <Box
+					{/*
+					<Box
 						bgImage={latestBlogs[2].imageUrl}
 						bgSize='cover'
 						w='100%'
@@ -148,6 +149,7 @@ const Blog = () => {
 							{latestBlogs[2].blogHeading}
 						</Box>
 					</Box>
+					
 					<Box
 						bgImage={latestBlogs[3].imageUrl}
 						bgSize='cover'
@@ -243,7 +245,7 @@ const Blog = () => {
 						>
 							Read More
 						</Box>
-					</Box> */}
+					</Box>*/}
 				</Box>
 			)}
 		</Box>

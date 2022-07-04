@@ -76,7 +76,7 @@ const Hero = () => {
 							pauseOnHover: false,
 							resetProgress: false,
 							height: '500px',
-							interval: 2000,
+							interval: 5000,
 							transition: 'slide',
 						}}
 						hasTrack={false}

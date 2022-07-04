@@ -25,6 +25,7 @@ const Who = ({ setGuest }) => {
 	useOutsideClick({
 		ref: ref,
 		handler: () => {
+			setGuest(numberOfAdults + numberOfChilds);
 			onClose();
 		},
 	});

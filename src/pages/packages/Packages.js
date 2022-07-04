@@ -117,7 +117,12 @@ const PackagesPage = () => {
 					</Box>
 				</Box>
 			</Box>
-			<Box w='100vw' px='5vw' pt='50px' overflow={'hidden'}>
+			<Box
+				w='100vw'
+				px={{ base: '10px', lg: '7.5vw' }}
+				pt='50px'
+				overflow={'hidden'}
+			>
 				<Text fontSize={30} mb={4}>
 					Maldives Tour Package
 				</Text>

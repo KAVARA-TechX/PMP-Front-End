@@ -48,6 +48,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import logo from '../../assets/logo/logo.png';
 import createOrderApi from '../../apis/createOrderApi';
+import BookModal from './BookModal';
 
 const days = ['Mon', 'Tus', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
 const months = [
@@ -114,6 +115,7 @@ const AboutPackage = () => {
 	const [isFilled, setIsFilled] = useState(false);
 	const toast = useToast();
 	const [booknowLoading, setBooknowLoading] = useState(false);
+	const [book_modal_state, set_book_modal_state] = useState(false);
 
 	const handleBookedPackage = async (response) => {
 		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
@@ -240,9 +242,12 @@ const AboutPackage = () => {
 				// validate payment through server
 				handleBookedPackage(response);
 				alert('Yeaaahhh!! payment is successfull.');
-				alert(response.razorpay_payment_id);
-				alert(response.razorpay_order_id);
-				alert(response.razorpay_signature);
+				setBooknowLoading(false);
+			},
+			modal: {
+				ondismiss: function () {
+					setBooknowLoading(false);
+				},
 			},
 			prefill: {
 				name: 'MY name',
@@ -278,6 +283,11 @@ const AboutPackage = () => {
 
 	return (
 		<>
+			<BookModal
+				state={book_modal_state}
+				changeState={set_book_modal_state}
+				pkgData={pkgData}
+			/>
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}
@@ -742,7 +752,7 @@ const AboutPackage = () => {
 						w='100vw'
 						minH='100vh'
 						position={'relative'}
-						px='5vw'
+						px={{ base: '10px', lg: '7.5vw' }}
 						pt='50px'
 					>
 						<Box w='calc(100vw - 590px)'>
@@ -859,7 +869,11 @@ const AboutPackage = () => {
 										textAlign={'center'}
 										flexGrow={1}
 										cursor='pointer'
-										onClick={handleBookNow}
+										onClick={() => {
+											loginState
+												? set_book_modal_state(true)
+												: loginclick.click();
+										}}
 										_hover={{ background: '#0e87f6' }}
 									>
 										Book Now
@@ -891,7 +905,7 @@ const AboutPackage = () => {
 							</Box>
 							<Box
 								mt='50px'
-								display={'flex'}
+								display={'none'}
 								justifyContent='space-between'
 								alignItems={'center'}
 								px='30px'

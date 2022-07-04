@@ -1,15 +1,37 @@
 import { Box, Text, Icon } from '@chakra-ui/react';
 import { BiChevronRight } from 'react-icons/bi';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import banner from '../assets/VisitMaldives.png';
 import UserForm from '../modal/UserForm';
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const Banner = () => {
+	gsap.registerPlugin(ScrollTrigger);
 	const [modalState, setModalState] = useState(false);
+	const banner_container = useRef(null);
+	const banner_pls = gsap.utils.selector(banner_container);
+
+	const animate = () => {
+		gsap.from(banner_pls('.banner'), {
+			scrollTrigger: {
+				trigger: banner_container.current,
+				start: '0% 65%',
+			},
+			y: 100,
+			opacity: 0,
+			duration: 1,
+			delay: 0.5,
+		});
+	};
+
+	useEffect(() => {
+		animate();
+	}, []);
 	return (
 		<>
 			<UserForm state={modalState} setState={setModalState} />
-			<Box px={{ base: '0', lg: '5vw' }}>
+			<Box px={{ base: '0', lg: '7.5vw' }}>
 				<Box
 					w={{ base: '100vw', lg: '100%' }}
 					h={{ base: '350px', lg: '250px' }}
@@ -18,7 +40,7 @@ const Banner = () => {
 					overflow={'hidden'}
 					mb={'50px'}
 					flexDir={{ base: 'column', lg: 'row' }}
-					bg='green'
+					ref={banner_container}
 				>
 					<Box
 						w={{ base: '100%', lg: '100%' }}
@@ -26,6 +48,7 @@ const Banner = () => {
 						bgImage={banner}
 						bgSize={'cover'}
 						bgPosition='left'
+						className='banner'
 					>
 						<Box
 							w='100%'
@@ -47,7 +70,7 @@ const Banner = () => {
 							>
 								<Text
 									textAlign='center'
-									fontSize={35}
+									fontSize={32}
 									fontWeight={700}
 									whiteSpace='nowrap'
 								>

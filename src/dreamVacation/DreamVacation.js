@@ -9,14 +9,14 @@ const DreamVacation = () => {
 			w='100vw'
 			h='fit-content'
 			bg='rgba(14, 135, 246,.25)'
-			px='5vw'
+			px={{ base: '10px', lg: '7.5vw' }}
 			py='30px'
 			mb={10}
 		>
 			<Text
 				fontWeight={700}
 				textAlign='center'
-				fontSize={{ base: '30px', lg: '35px' }}
+				fontSize={{ base: '30px', lg: '32px' }}
 			>
 				Let’s find you your dream vacation
 			</Text>
@@ -28,8 +28,8 @@ const DreamVacation = () => {
 			>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -41,19 +41,19 @@ const DreamVacation = () => {
 					>
 						<Image
 							src={clipboard}
-							h={{ base: '30px', lg: '40px' }}
+							h={{ base: '30px', lg: '30px' }}
 						/>
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						Select a Package
 					</Text>
 					<Text
 						textAlign={'center'}
-						fontSize={'15px'}
+						fontSize={'16px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>
@@ -63,8 +63,8 @@ const DreamVacation = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -74,11 +74,11 @@ const DreamVacation = () => {
 						border='3px solid #0e87f6'
 						mb='20px'
 					>
-						<Image src={message} h={{ base: '30px', lg: '40px' }} />
+						<Image src={message} h={{ base: '30px', lg: '30px' }} />
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						Get it Customised
@@ -86,7 +86,7 @@ const DreamVacation = () => {
 					<Text
 						textAlign={'center'}
 						px='10px'
-						fontSize={'15px'}
+						fontSize={'16px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>
@@ -96,8 +96,8 @@ const DreamVacation = () => {
 				</Box>
 				<Box w='300px' mx='auto'>
 					<Box
-						w={{ base: '60px', lg: '80px' }}
-						h={{ base: '60px', lg: '80px' }}
+						w={{ base: '60px', lg: '70px' }}
+						h={{ base: '60px', lg: '70px' }}
 						mx='auto'
 						display={'flex'}
 						justifyContent='center'
@@ -109,19 +109,19 @@ const DreamVacation = () => {
 					>
 						<Image
 							src={cardtick}
-							h={{ base: '30px', lg: '40px' }}
+							h={{ base: '30px', lg: '30px' }}
 						/>
 					</Box>
 					<Text
 						fontWeight={700}
-						fontSize={{ base: '22px', lg: '24px' }}
+						fontSize={{ base: '22px', lg: '20px' }}
 						textAlign={'center'}
 					>
 						Pay Securely
 					</Text>
 					<Text
 						textAlign={'center'}
-						fontSize={'15px'}
+						fontSize={'16px'}
 						lineHeight='24px'
 						fontWeight={500}
 					>
