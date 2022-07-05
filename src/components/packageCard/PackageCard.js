@@ -38,18 +38,13 @@ const PackageCard = (data) => {
 					h={{ base: '200px', lg: '100%' }}
 					w={{ base: '100%', lg: '30%' }}
 				>
-					<Box
-						position={'absolute'}
-						zIndex='100000'
-						fontSize={'30px '}
-					></Box>
 					<Splide aria-label='images' className='splide-slide'>
 						{data.data.image.map((data, index) => {
 							return (
 								<SplideSlide key={index}>
 									<Box
 										w='100%'
-										h='400px'
+										h={{ base: '200px', lg: '400px' }}
 										bgImage={data.url}
 										bgSize={'cover'}
 										bgPos='50% 50%'
@@ -65,7 +60,7 @@ const PackageCard = (data) => {
 				pl='30px'
 				mr={{ base: '30px', lg: '0px' }}
 				pt='30px'
-				display={'flex'}
+				display={{ base: 'none', lg: 'flex' }}
 				flexDir='column'
 				w={{ base: '100%', lg: '40%' }}
 			>
@@ -113,36 +108,47 @@ const PackageCard = (data) => {
 				<Box flexGrow={2} mt={5} />
 			</Box>
 			<Box
-				h='100%'
+				h={{ base: 'fit-content', lg: '400px' }}
 				w={{ base: '100%', lg: '30%' }}
 				bg='gray.700'
 				pt='30px'
 				pl='30px'
+				pr='30px'
 				display={'flex'}
 				flexDir='column'
 			>
-				<Text textAlign={'start'}>PACKAGE INCLUDES</Text>
-				{String(data.data.inclusion)
-					.split(',')
-					.map((item, index) => {
-						return (
-							<>
-								{item === '' ? (
-									''
-								) : (
-									<Text
-										textAlign={'start'}
-										ml='10px'
-										mt='10px'
-										fontWeight={300}
-										key={index}
-									>
-										<CheckIcon color={'green.200'} /> {item}
-									</Text>
-								)}
-							</>
-						);
-					})}
+				<Box display={{ base: 'none', lg: 'inline-block' }}>
+					<Text textAlign={'start'}>PACKAGE INCLUDES</Text>
+				</Box>
+				<Box display={{ base: 'inline-block', lg: 'none' }}>
+					<Text textAlign={'start'} fontWeight={600}>
+						{data.data.packageTitle}
+					</Text>
+				</Box>
+				<Box display={'flex'} flexWrap='wrap'>
+					{String(data.data.inclusion)
+						.split(',')
+						.map((item, index) => {
+							return (
+								<>
+									{item === '' ? (
+										''
+									) : (
+										<Text
+											textAlign={'start'}
+											ml='10px'
+											mt='10px'
+											fontWeight={300}
+											key={index}
+										>
+											<CheckIcon color={'green.200'} />{' '}
+											{item}
+										</Text>
+									)}
+								</>
+							);
+						})}
+				</Box>
 				<Box flexGrow={2}></Box>
 				<Box mr='30px' mb='20px' mt='30px'>
 					<Text>

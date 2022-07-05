@@ -7,7 +7,7 @@ const DreamVacation = () => {
 	return (
 		<Box
 			w='100vw'
-			h='360px'
+			h={{ base: 'fit-content', lg: '360px' }}
 			bg='rgba(14, 135, 246,.25)'
 			px={{ base: '10px', lg: '9vw' }}
 			mb={10}

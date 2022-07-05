@@ -12,12 +12,14 @@ const IconSection = () => {
 	return (
 		<Box
 			w='100vw'
-			h='360px'
+			h={{ base: 'fit-content', lg: '360px' }}
 			bg='rgba(14, 135, 246,.25)'
 			px={{ base: '10px', lg: '9vw' }}
 			mb={10}
 			display={'flex'}
 			alignItems='center'
+			justifyContent={'center'}
+			py={{ base: '30px', lg: 'none' }}
 		>
 			<Box>
 				<Text
