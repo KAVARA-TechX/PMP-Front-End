@@ -46,6 +46,7 @@ const PackagesPage = () => {
 						fontSize={{ base: 40, lg: 50 }}
 						fontWeight={700}
 						textAlign={{ base: 'center' }}
+						color='#fff'
 					>
 						Maldives Tour Packages
 					</Text>
@@ -63,6 +64,7 @@ const PackagesPage = () => {
 					px='5vw'
 					py='20px'
 					boxShadow={'-10px -70px 1000px  black'}
+					color='#fff'
 				>
 					<Box>
 						<Text fontSize={15} color='gray.500'>

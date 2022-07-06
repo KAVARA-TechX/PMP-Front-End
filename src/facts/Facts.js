@@ -1,9 +1,35 @@
 // import { lazy, Suspense } from 'react';
 import { Box, Text } from '@chakra-ui/react';
+import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 import image from '../assets/thingsToDo/dream-vacation.png';
 import './Facts.css';
 
 const Facts = () => {
+	const container_ref = useRef(null);
+	const container = gsap.utils.selector(container_ref);
+
+	const animate = () => {
+		gsap.from(container('.facts_img'), {
+			x: -100,
+			opacity: 0,
+			duration: 1,
+			delay: 0.5,
+		});
+		gsap.from(container('.facts_data'), {
+			x: +100,
+			opacity: 0,
+			duration: 1,
+			delay: 0.5,
+		});
+	};
+
+	useEffect(() => {
+		if (window.innerWidth >= 992) {
+			animate();
+		}
+	}, []);
+
 	return (
 		<Box
 			w='100vw'
@@ -14,8 +40,10 @@ const Facts = () => {
 			className='facts'
 			px={{ base: '10px', lg: '9vw' }}
 			gap='20px'
+			ref={container_ref}
 		>
 			<Box
+				className='facts_img'
 				w={{ base: '0%', lg: '45%' }}
 				mb={10}
 				borderRadius='20px'
@@ -27,6 +55,7 @@ const Facts = () => {
 				w={{ base: '100%', lg: '35.57%' }}
 				h='fit-content'
 				flexGrow={1}
+				className='facts_data'
 			>
 				<Box ml={{ base: 0, lg: 5 }}>
 					<Text fontSize={18} fontWeight={500} mb={1}>
@@ -38,6 +67,7 @@ const Facts = () => {
 						lineHeight={1}
 						mb={5}
 						className='facts-heading'
+						color='#090841'
 					>
 						We help you find your dream vacation
 					</Text>
@@ -67,7 +97,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#090841'>
 							100+
 						</Text>
 
@@ -81,7 +111,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#090841'>
 							1000+
 						</Text>
 						<Text>Travellers</Text>
@@ -94,7 +124,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#090841'>
 							15+
 						</Text>
 						<Text>Destinations</Text>
@@ -107,7 +137,7 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#0e87f6'>
+						<Text fontSize={38} fontWeight={600} color='#090841'>
 							1500+
 						</Text>
 						<Text>Satisfied Clients</Text>

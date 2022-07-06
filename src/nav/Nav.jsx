@@ -154,7 +154,11 @@ const Nav = () => {
 									)}
 								</Box>
 							</MenuButton>
-							<MenuList bg='#222222' border='none'>
+							<MenuList
+								bg='#FFFDF7'
+								border='none'
+								color='#696969'
+							>
 								{loginState ? (
 									<>
 										<MenuItem

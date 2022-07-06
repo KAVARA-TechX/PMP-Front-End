@@ -76,11 +76,13 @@
 	margin-top: 10px;
 	font-size: 20px;
 	text-align: end;
+	color: #fff;
 }
 .hero .slider_location {
 	font-size: 24px;
 	font-weight: 600;
 	text-align: end;
+	color: #fff;
 }
 
 .hero .splide__arrow--prev {
@@ -88,6 +90,7 @@
 	position: relative !important;
 	height: 30px;
 	width: 30px;
+	color: #fff;
 }
 .hero .splide__arrow--prev svg {
 	transform: rotateZ(0deg) !important;

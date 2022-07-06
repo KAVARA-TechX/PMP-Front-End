@@ -77,7 +77,7 @@ const Search = () => {
 			zIndex={9}
 			minW={{ base: '80vw', lg: '70vw' }}
 			h='fit-content'
-			bg='#222222'
+			bg='#fffdf7'
 			borderRadius={{ base: 'md', lg: 'full' }}
 			left='50%'
 			bottom={{ base: '-10%', lg: '0%' }}
@@ -112,7 +112,7 @@ const Search = () => {
 						setLocation(e.target.value);
 					}}
 					_placeholder={{
-						color: '#f5f5f5',
+						color: '#696969',
 					}}
 				/>
 			</Box>
@@ -129,7 +129,7 @@ const Search = () => {
 				<Button
 					h='40px'
 					w={{ base: '100%', lg: 'fit-content' }}
-					bg='#0e87f6'
+					bg='#141177'
 					color='white'
 					onClick={handleForm}
 					disabled={submitButton}

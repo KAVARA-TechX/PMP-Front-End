@@ -151,13 +151,12 @@ const BookModal = ({ state, changeState, pkgData }) => {
 		}
 
 		const data = await createOrderApi(
-			pkgData.startingPrice * 100,
+			pkgData.startingPrice * 100 * (numberOfAdults + numberOfChilds),
 			'',
 			''
 		).then((res) => res);
-		console.log('we get data from razorpay is ', data);
 
-		console.log('id is :  ', data.data.id);
+		// console.log('id is :  ', data.data.id);
 
 		var options = {
 			key: process.env.REACT_APP_KEY_ID,
@@ -204,7 +203,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 					w='fit-content'
 					h='500px'
 					position={'absolute'}
-					bg='#222222'
+					bg='#FFFDF7'
 					top='50%'
 					left='50%'
 					transform={'translate(-50%,-50%)'}
@@ -229,7 +228,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 								alignItems={'center'}
 							>
 								<Box></Box>
-								Choose your start date
+								Check-in date
 								<CloseIcon
 									fontSize={13}
 									cursor='pointer'
@@ -276,7 +275,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 										setShowDate(true);
 									}}
 								/>
-								Choose your end date
+								Check-out date
 								<CloseIcon
 									fontSize={13}
 									cursor='pointer'
