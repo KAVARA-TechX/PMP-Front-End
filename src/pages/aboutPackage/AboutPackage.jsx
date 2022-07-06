@@ -750,12 +750,15 @@ const AboutPackage = () => {
 					</Box>
 					<Box
 						w='100vw'
+						display={{ base: 'flex', lg: '' }}
+						flexDir='column-reverse'
 						minH='100vh'
 						position={'relative'}
-						px={{ base: '10px', lg: '9vw' }}
+						px={{ base: '20px', lg: '9vw' }}
 						pt='50px'
+						pb='50px'
 					>
-						<Box w='calc(100vw - 590px)'>
+						<Box w={{ base: '100%', lg: 'calc(100vw - 590px)' }}>
 							<Box mt='30px'>
 								<Text fontSize={'24px'} fontWeight={600}>
 									Details

@@ -161,7 +161,7 @@ const PackageCardd = ({ data }) => {
 				<ModalContent bg='transparent' overflow={'hidden'}>
 					<Box
 						w='fit-content'
-						h='500px'
+						h={'500px'}
 						position={'absolute'}
 						bg='#222222'
 						top='50%'

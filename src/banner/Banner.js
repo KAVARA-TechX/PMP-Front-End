@@ -26,7 +26,9 @@ const Banner = () => {
 	};
 
 	useEffect(() => {
-		animate();
+		if (window.innerWidth >= 992) {
+			animate();
+		}
 	}, []);
 	return (
 		<>
@@ -69,8 +71,9 @@ const Banner = () => {
 								alignItems={'center'}
 							>
 								<Text
+									fontFamily={'Mansalva'}
 									textAlign='center'
-									fontSize={32}
+									fontSize={35}
 									fontWeight={700}
 									whiteSpace='nowrap'
 								>

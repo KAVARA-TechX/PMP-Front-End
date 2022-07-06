@@ -32,6 +32,7 @@ const Packages = () => {
 			opacity: 0,
 			duration: 0.5,
 		});
+
 		gsap.from(ref_pkd_heading('.pkg_heading_from_right'), {
 			scrollTrigger: {
 				trigger: pkg_heading_container.current,
@@ -41,6 +42,7 @@ const Packages = () => {
 			opacity: 0,
 			duration: 0.5,
 		});
+
 		gsap.from(ref_cards('.pkg_card'), {
 			scrollTrigger: {
 				trigger: cardsParentRef.current,
@@ -58,7 +60,9 @@ const Packages = () => {
 			try {
 				const res = await getPackageApi();
 				setPkg(res.data.packages);
-				animateCards();
+				if (window.innerWidth >= 992) {
+					animateCards();
+				}
 			} catch (error) {}
 		};
 		getData();
