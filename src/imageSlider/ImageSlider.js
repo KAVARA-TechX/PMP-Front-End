@@ -107,7 +107,7 @@ const ImageSlider = () => {
 						bgSize='cover'
 						height='450px'
 						mx={5}
-						w='300px'
+						w='260px'
 						borderRadius={'xl'}
 						position={'relative'}
 						overflow='hidden'
@@ -121,7 +121,7 @@ const ImageSlider = () => {
 						<Box
 							w={'100%'}
 							h='100%'
-							bg='linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.8) 100%)'
+							bg='linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.2) 100%)'
 						>
 							<Text
 								w='100%'

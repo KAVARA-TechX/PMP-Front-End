@@ -49,6 +49,7 @@ import '@splidejs/react-splide/css';
 import logo from '../../assets/logo/logo.png';
 import createOrderApi from '../../apis/createOrderApi';
 import BookModal from './BookModal';
+import IndianCities from '../../indianCities';
 
 const days = ['Mon', 'Tus', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
 const months = [
@@ -116,6 +117,8 @@ const AboutPackage = () => {
 	const toast = useToast();
 	const [booknowLoading, setBooknowLoading] = useState(false);
 	const [book_modal_state, set_book_modal_state] = useState(false);
+	const [dep_city, set_dep_city] = useState('');
+	const [cities, set_cities] = useState(IndianCities);
 
 	const handleBookedPackage = async (response) => {
 		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
@@ -281,6 +284,24 @@ const AboutPackage = () => {
 		getData();
 	}, []);
 
+	// useEffect to update the list
+	useEffect(() => {
+		set_cities((prev) => {
+			if (dep_city !== '') {
+				return IndianCities.filter((val) => {
+					return (
+						val.cityName
+							.toLowerCase()
+							.indexOf(dep_city.toLowerCase()) > -1 ||
+						val.airportCode.indexOf(dep_city.toUpperCase()) > -1
+					);
+				});
+			} else {
+				return IndianCities;
+			}
+		});
+	}, [dep_city]);
+
 	return (
 		<>
 			<BookModal
@@ -301,7 +322,7 @@ const AboutPackage = () => {
 						w='fit-content'
 						h='500px'
 						position={'absolute'}
-						bg='#222222'
+						bg='#FFFDF7'
 						top='50%'
 						left='50%'
 						transform={'translate(-50%,-50%)'}
@@ -326,7 +347,7 @@ const AboutPackage = () => {
 									alignItems={'center'}
 								>
 									<Box></Box>
-									Choose your start date
+									Check-in date
 									<CloseIcon
 										fontSize={13}
 										cursor='pointer'
@@ -372,7 +393,7 @@ const AboutPackage = () => {
 											setShowDate(true);
 										}}
 									/>
-									Choose your end date
+									Check-out date
 									<CloseIcon
 										fontSize={13}
 										cursor='pointer'
@@ -435,7 +456,13 @@ const AboutPackage = () => {
 									/>
 								</Text>
 								<Box mx='20px' mt='20px'>
-									<Input type='text' />
+									<Input
+										type='text'
+										value={dep_city}
+										onChange={(e) => {
+											set_dep_city(e.target.value);
+										}}
+									/>
 								</Box>
 								<Box
 									flexGrow={2}
@@ -443,40 +470,51 @@ const AboutPackage = () => {
 									mx='20px'
 									overflowX={'scroll'}
 								>
-									{city.map((item, index) => {
-										return (
-											<Text
-												display={'flex'}
-												justifyContent='space-between'
-												borderBottom={'1px solid gray'}
-												py='10px'
-												cursor={'pointer'}
-												onClick={() => {
-													handleCity(item.name);
-												}}
-												key={index}
-												_hover={{
-													background:
-														'rgba(255,255,255,.2)',
-												}}
-											>
-												<Text>{item.name}</Text>
-												<Text>{item.code}</Text>
-											</Text>
-										);
-									})}
+									{cities === undefined ? (
+										<></>
+									) : (
+										cities.map((item, index) => {
+											return (
+												<Text
+													display={'flex'}
+													justifyContent='space-between'
+													borderBottom={
+														'1px solid gray'
+													}
+													py='10px'
+													cursor={'pointer'}
+													onClick={() => {
+														handleCity(
+															item.cityName
+														);
+													}}
+													key={index}
+													_hover={{
+														background:
+															'rgba(255,255,255,.2)',
+													}}
+												>
+													<Text>{item.cityName}</Text>
+													<Text>
+														{item.airportCode}
+													</Text>
+												</Text>
+											);
+										})
+									)}
 								</Box>
 								<Box w='100%' display={'flex'}>
 									<Box
 										pb='10px'
 										bg='gray'
 										borderRight={'1px solid black'}
+										color='white'
 									>
 										<Text textAlign={'center'}>
 											I'm departing from Outside India
 										</Text>
 									</Box>
-									<Box pb='10px' bg='gray'>
+									<Box pb='10px' bg='gray' color='white'>
 										<Text textAlign={'center'}>
 											I have booked my flights already
 										</Text>
@@ -679,6 +717,7 @@ const AboutPackage = () => {
 						// bgSize='cover'
 						// bgPos={'50% 90%'}
 						position={'relative'}
+						color='#fff'
 					>
 						<Box position={'absolute'} top={0} zIndex={10}>
 							<Nav />
@@ -750,7 +789,7 @@ const AboutPackage = () => {
 					</Box>
 					<Box
 						w='100vw'
-						display={{ base: 'flex', lg: '' }}
+						display={{ base: 'flex', lg: 'inline-block' }}
 						flexDir='column-reverse'
 						minH='100vh'
 						position={'relative'}

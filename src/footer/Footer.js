@@ -49,6 +49,7 @@ const Footer = () => {
 				gap={{ base: '20px', lg: '0' }}
 				py='30px'
 				px='9vw'
+				color='#fff'
 				//
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>

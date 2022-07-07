@@ -47,6 +47,58 @@ const UpcomingCard = ({ data, changeState }) => {
 		});
 	};
 
+	const handlePayInParts = async (amount_to_be_paid, parts_index) => {
+		if (
+			parts_index === 0
+				? true
+				: parts[parts_index - 1].split('_').length === 2
+				? true
+				: false
+		) {
+			const res = await initializeRazorpay();
+
+			if (!res) {
+				alert('Razorpay failed to load');
+			}
+
+			const order_data = await createOrderApi(
+				amount_to_be_paid * 100,
+				'',
+				''
+			).then((res) => res);
+
+			var options = {
+				key: process.env.REACT_APP_KEY_ID,
+				name: 'Plan my leisure',
+				currency: 'INR',
+				order_id: order_data.data.id,
+				description: 'Thankyou for whatever',
+				image: logo,
+				handler: function (response) {
+					setParts((prev) => {
+						prev[parts_index] = `${amount_to_be_paid}_paid`;
+						return [...prev];
+					});
+					handlePartsPackagePaid();
+					alert('Yeaaahhh! payment done');
+				},
+				modal: {
+					ondismiss: function () {},
+				},
+				prefill: {
+					name: 'MY name',
+					email: 'myemail@gmail.com',
+					contact: '9898997790',
+				},
+			};
+
+			const payment_object = new window.Razorpay(options);
+			payment_object.open();
+		} else {
+			alert('Please pay in sequence.');
+		}
+	};
+
 	const handleBookNow = async () => {
 		setPayLoading(true);
 
@@ -56,29 +108,31 @@ const UpcomingCard = ({ data, changeState }) => {
 			alert('Razorpay failed to load');
 		}
 
-		const data = await createOrderApi(
-			pkgData.startingPrice * 100,
+		const order_data = await createOrderApi(
+			pkgData.startingPrice * 100 * data.numberOfPeople,
 			'',
 			''
 		).then((res) => res);
-		console.log('we get data from razorpay is ', data);
+		console.log('we get data from razorpay is ', order_data);
 
-		console.log('id is :  ', data.data.id);
+		console.log('id is :  ', order_data.data.id);
 
 		var options = {
 			key: process.env.REACT_APP_KEY_ID,
 			name: 'Plan my leisure',
 			currency: 'INR',
-			order_id: data.data.id,
+			order_id: order_data.data.id,
 			description: 'Thankyou for whatever',
 			image: logo,
 			handler: function (response) {
 				// validate payment through server
 				handleBookedPackage(response);
 				alert('Yeaaahhh!! payment is successfull.');
-				alert('razorpay payment id :', response.razorpay_payment_id);
-				alert('razorpay order id : ', response.razorpay_order_id);
-				alert('razorpay signature : ', response.razorpay_signature);
+			},
+			modal: {
+				ondismiss: function () {
+					setPayLoading(false);
+				},
 			},
 			prefill: {
 				name: 'MY name',
@@ -105,10 +159,11 @@ const UpcomingCard = ({ data, changeState }) => {
 					setParts(
 						data.paymentType.split(',')[0].split(':')[1].split('-')
 					);
+					setLoading(false);
 				} catch (error) {
 					setParts([]);
+					setLoading(false);
 				}
-				setLoading(false);
 			} catch (error) {
 				console.log('areeee errror aareee hai', error);
 				// setPkgData({ packageTitle: 'package is Deleted' });
@@ -119,6 +174,20 @@ const UpcomingCard = ({ data, changeState }) => {
 	}, []);
 
 	// -------------------------------------------------------
+
+	const handlePartsPackagePaid = async (response) => {
+		try {
+			const response = await getUserinfoApi();
+			const res = await axios.patch(
+				'https://planmy.herokuapp.com/package/update-request-package',
+				{
+					packageId: data._id,
+					paymentStatus: 'Confirmed',
+					paymentType: `parts:${parts.join('-')}`,
+				}
+			);
+		} catch (error) {}
+	};
 
 	const handleBookedPackage = async (response) => {
 		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
@@ -298,6 +367,7 @@ const UpcomingCard = ({ data, changeState }) => {
 						pr='20px'
 						display={'flex'}
 						flexDir='column'
+						color='#fff'
 					>
 						<Box
 							pr='20px'
@@ -359,7 +429,32 @@ const UpcomingCard = ({ data, changeState }) => {
 									}
 								>
 									<Text fontSize={'16px'}>Payment Plan</Text>
-									<Select
+									{parts.length === 0 ? (
+										<></>
+									) : parts[0].split('_').length === 2 ? (
+										<Text
+											color='gray.400'
+											textAlign={'end'}
+										>
+											pay in parts
+										</Text>
+									) : (
+										<Select
+											w='130px'
+											value={payOption}
+											onChange={(e) => {
+												setPayOption(e.target.value);
+											}}
+										>
+											<option value={'pay now'}>
+												pay now
+											</option>
+											<option value='pay in parts'>
+												pay in parts
+											</option>
+										</Select>
+									)}
+									{/* <Select
 										w='130px'
 										value={payOption}
 										onChange={(e) => {
@@ -372,41 +467,173 @@ const UpcomingCard = ({ data, changeState }) => {
 										<option value='pay in parts'>
 											pay in parts
 										</option>
-									</Select>
+									</Select> */}
 								</Box>
 							</Box>
 						</Box>
 						{payOption === 'pay now' ? (
-							<Box
-								pb='20px'
-								display={
-									data.paymentStatus === 'Requested'
-										? 'none'
-										: data.paymentStatus === 'Done'
-										? 'none'
-										: 'flex'
-								}
-								flexGrow={1}
-								flexDir='column'
-								justifyContent='flex-end'
-								mt='20px'
-								alignItems={'center'}
-							>
-								<Button
-									bg='#32BAC9'
-									w='80%'
-									onClick={handleBookNow}
-									isLoading={payLoading}
+							parts.length === 0 ? (
+								<></>
+							) : parts[0].split('_').length === 2 ? (
+								<Box
+									flexGrow={1}
+									display='flex'
+									flexDir={'column'}
+									justifyContent='center'
+									alignItems={'center'}
+									pb='20px'
 								>
-									Pay Now
-								</Button>
-								<Text
-									textDecor={'underline'}
-									color='rgba(255,255,255,.5)'
+									<Box
+										w='100%'
+										pb='20px'
+										display={'grid'}
+										flexGrow={1}
+										gridTemplateColumns='repeat(3,1fr)'
+										mt='20px'
+										alignItems={'center'}
+										gap='10px 10px'
+										pl='20px'
+									>
+										{parts.map((data, index) => {
+											return (
+												<Box
+													border={
+														'1px solid rgba(0,0,0,.6)'
+													}
+													borderRadius={'10px'}
+													overflow='hidden'
+												>
+													<Text
+														bg='rgba(0,0,0,.6)'
+														textAlign={'center'}
+													>
+														Month-{index + 1}
+													</Text>
+													<Box
+														display={'flex'}
+														justifyContent='center'
+														py='5px'
+													>
+														{data.split('_')
+															.length === 2 ? (
+															<Button
+																bg='green.400'
+																w='80%'
+																_hover={{
+																	background:
+																		'green.400',
+																}}
+																cursor={
+																	'not-allowed'
+																}
+															>
+																Paid
+															</Button>
+														) : (
+															<Button
+																bg='#0e87f6'
+																w='80%'
+																onClick={() => {
+																	handlePayInParts(
+																		data,
+																		index
+																	);
+																}}
+															>
+																Pay - {data}
+															</Button>
+														)}
+													</Box>
+												</Box>
+											);
+										})}
+
+										{/* <Box
+										border={'1px solid rgba(0,0,0,.6)'}
+										borderRadius={'10px'}
+										overflow='hidden'
+									>
+										<Text
+											bg='rgba(0,0,0,.6)'
+											textAlign={'center'}
+										>
+											Month-2
+										</Text>
+										<Box
+											display={'flex'}
+											justifyContent='center'
+											py='5px'
+										>
+											<Button bg='#32BAC9' w='80%'>
+												Pay
+											</Button>
+										</Box>
+									</Box> */}
+										{/* <Box
+										borderRadius={'10px'}
+										overflow='hidden'
+										border={'1px solid rgba(0,0,0,.6)'}
+									>
+										<Text
+											bg='rgba(0,0,0,.6)'
+											textAlign={'center'}
+										>
+											Month-3
+										</Text>
+										<Box
+											display={'flex'}
+											justifyContent='center'
+											py='5px'
+											bg='transparent'
+										>
+											<Button bg='#32BAC9' w='80%'>
+												Pay
+											</Button>
+										</Box>
+									</Box> */}
+									</Box>
+									<Box>
+										<Text
+											textDecor={'underline'}
+											textAlign='center'
+											color='rgba(255,255,255,.5)'
+										>
+											Cancel Booking
+										</Text>
+									</Box>
+								</Box>
+							) : (
+								<Box
+									pb='20px'
+									display={
+										data.paymentStatus === 'Requested'
+											? 'none'
+											: data.paymentStatus === 'Done'
+											? 'none'
+											: 'flex'
+									}
+									flexGrow={1}
+									flexDir='column'
+									justifyContent='flex-end'
+									mt='20px'
+									alignItems={'center'}
 								>
-									Cancel Booking
-								</Text>
-							</Box>
+									<Button
+										bg='#0e87f6'
+										w='80%'
+										onClick={handleBookNow}
+										isLoading={payLoading}
+									>
+										Pay Now
+									</Button>
+									<Text
+										textDecor={'underline'}
+										color='rgba(255,255,255,.5)'
+									>
+										Cancel Booking
+									</Text>
+								</Box>
+							)
 						) : (
 							<Box
 								flexGrow={1}
@@ -447,60 +674,39 @@ const UpcomingCard = ({ data, changeState }) => {
 													justifyContent='center'
 													py='5px'
 												>
-													<Button
-														bg='#32BAC9'
-														w='80%'
-													>
-														Pay - {data}
-													</Button>
+													{data.split('_').length ===
+													2 ? (
+														<Button
+															bg='green.400'
+															w='80%'
+															_hover={{
+																background:
+																	'green.400',
+															}}
+															cursor={
+																'not-allowed'
+															}
+														>
+															Paid
+														</Button>
+													) : (
+														<Button
+															bg='#0e87f6'
+															w='80%'
+															onClick={() => {
+																handlePayInParts(
+																	data,
+																	index
+																);
+															}}
+														>
+															Pay - {data}
+														</Button>
+													)}
 												</Box>
 											</Box>
 										);
 									})}
-
-									{/* <Box
-										border={'1px solid rgba(0,0,0,.6)'}
-										borderRadius={'10px'}
-										overflow='hidden'
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-2
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
-									{/* <Box
-										borderRadius={'10px'}
-										overflow='hidden'
-										border={'1px solid rgba(0,0,0,.6)'}
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-3
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-											bg='transparent'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
 								</Box>
 								<Box>
 									<Text

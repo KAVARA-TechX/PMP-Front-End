@@ -13,7 +13,6 @@ const PackageCard = (data) => {
 		<Box
 			w={'100%'}
 			h={{ base: 'fit-content', lg: '400px' }}
-			bg='gray.600'
 			border={'1px solid rgba(255,255,255,0.1)'}
 			borderRadius={'2xl'}
 			mt='20px'
@@ -56,7 +55,7 @@ const PackageCard = (data) => {
 				</Box>
 			)}
 			<Box
-				bg='#222'
+				bg='transparent'
 				pl='30px'
 				mr={{ base: '30px', lg: '0px' }}
 				pt='30px'
@@ -78,31 +77,23 @@ const PackageCard = (data) => {
 					pl={5}
 					pr={5}
 				>
-					<Text as='li' color='whiteAlpha.700'>
-						{data.data.packageDetail1}
-					</Text>
+					<Text as='li'>{data.data.packageDetail1}</Text>
 					{data.data.packageDetail2 === '' ? (
 						<></>
 					) : (
-						<Text as='li' color='whiteAlpha.700'>
-							{data.data.packageDetail2}
-						</Text>
+						<Text as='li'>{data.data.packageDetail2}</Text>
 					)}
 
 					{data.data.packageDetail3 === '' ? (
 						<></>
 					) : (
-						<Text as='li' color='whiteAlpha.700'>
-							{data.data.packageDetail3}
-						</Text>
+						<Text as='li'>{data.data.packageDetail3}</Text>
 					)}
 					{data.data.packageDetail4 === '' ||
 					data.data.packageDetail4 === undefined ? (
 						<></>
 					) : (
-						<Text as='li' color='whiteAlpha.700'>
-							{data.data.packageDetail4}
-						</Text>
+						<Text as='li'>{data.data.packageDetail4}</Text>
 					)}
 				</Box>
 				<Box flexGrow={2} mt={5} />
@@ -116,6 +107,7 @@ const PackageCard = (data) => {
 				pr='30px'
 				display={'flex'}
 				flexDir='column'
+				color='#fff'
 			>
 				<Box display={{ base: 'none', lg: 'inline-block' }}>
 					<Text textAlign={'start'}>PACKAGE INCLUDES</Text>

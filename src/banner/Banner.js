@@ -76,11 +76,12 @@ const Banner = () => {
 									fontSize={35}
 									fontWeight={700}
 									whiteSpace='nowrap'
+									color='#fff'
 								>
 									Visit Maldives <br /> A Fantasy Fulfilled
 								</Text>
 								<Box
-									bg='rgba(14, 135, 246, 0.5);'
+									bg='#141177'
 									py={3}
 									px={5}
 									w='fit-content'

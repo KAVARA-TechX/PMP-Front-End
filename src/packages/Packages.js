@@ -91,6 +91,7 @@ const Packages = () => {
 							onClick={() => {
 								navigate('/packages');
 							}}
+							color='#141177'
 						>
 							Packages
 						</Text>
@@ -102,7 +103,7 @@ const Packages = () => {
 						</Text>
 					</Box>
 					<Box
-						bg='rgba(14, 135, 246,.7)'
+						bg='#141177'
 						color='#fff'
 						px='15px'
 						py={'10px'}
@@ -142,6 +143,7 @@ const Packages = () => {
 					className='hide-scroll-bar'
 					ref={cardsParentRef}
 					id='pkg_cards_parent'
+					color='#fff'
 				>
 					{pkg.map((data, index) => {
 						return (

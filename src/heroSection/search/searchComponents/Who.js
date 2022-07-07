@@ -52,8 +52,8 @@ const Who = ({ setGuest }) => {
 				</PopoverTrigger>
 				<Box zIndex={110}>
 					<Portal zIndex={10000} w='full' h='full'>
-						<PopoverContent bg='#222222' zIndex={10000} ref={ref}>
-							<PopoverArrow bg='#222222' />
+						<PopoverContent bg='#FFFDF7' zIndex={10000} ref={ref}>
+							<PopoverArrow bg='#FFFDF7' />
 							<Box
 								zIndex={110}
 								h='fit-contnet'

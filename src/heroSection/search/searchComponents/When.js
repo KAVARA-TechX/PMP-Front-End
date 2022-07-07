@@ -75,7 +75,7 @@ const When = ({ setStartDate, setEndDate }) => {
 				<Box zIndex={110}>
 					<Portal zIndex={10000} w='full' h='full'>
 						<PopoverContent
-							bg='#222222'
+							bg='#FFFDF7'
 							zIndex={10000}
 							ref={popoverRef}
 						>
