@@ -9,6 +9,7 @@ import Search from './search/Search';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './Hero.css';
+import MobileSearch from './mobileSearch/MobileSearch';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
@@ -117,7 +118,11 @@ const Hero = () => {
 								</button>
 							</div>
 						</div>
-						<Search />
+						{window.innerWidth <= 991 ? (
+							<MobileSearch />
+						) : (
+							<Search />
+						)}
 						<Box>
 							<SplideTrack>
 								{images.map((data, index) => {
@@ -181,163 +186,6 @@ const Hero = () => {
 				</Box>
 			)}
 		</>
-		// <>
-		// 	<Box
-		// 		h='500px'
-		// 		w='100vw'
-		// 		mb={{ base: '170px', lg: '100px' }}
-		// 		position={'relative'}
-		// 	>
-		// 		<UserForm state={modalState} setState={setModalState} />
-		// 		<Box position={'absolute'} top='0' zIndex={10}>
-		// 			<Nav />
-		// 		</Box>
-		// 		<Box className='slides' display={'flex'} ref={imgRef}>
-		// 			{loading ? (
-		// 				<></>
-		// 			) : (
-		// 				<>
-		// 					{images.map((data, index) => {
-		// 						return (
-		// 							<Box
-		// 								className='slide'
-		// 								w={'100vw'}
-		// 								h='500px'
-		// 								bgImage={data.imageUrl[0].url}
-		// 								bgSize='cover'
-		// 								bgPos={'50% 50%'}
-		// 								flexShrink={'0'}
-		// 								pt={{ base: 100, lg: 130 }}
-		// 								position='relative'
-		// 								overflow={'hidden'}
-		// 								key={index}
-		// 							>
-		// 								<Text
-		// 									w={{ base: '100%', lg: '50%' }}
-		// 									bg='rgba(0,0,0,.3)'
-		// 									boxShadow={
-		// 										'0 0 0 10000px rgba(0,0,0,.3)'
-		// 									}
-		// 									color={'white'}
-		// 									position='absolute'
-		// 									top={{ base: '40%', lg: '30%' }}
-		// 									left={{ base: '50%', lg: '30px' }}
-		// 									transform={{
-		// 										base: 'translateX(-50%) translateY(-50%)',
-		// 										lg: 'none',
-		// 									}}
-		// 									fontSize={50}
-		// 									fontWeight={300}
-		// 									lineHeight={1}
-		// 									textAlign={{
-		// 										base: 'center',
-		// 										lg: 'start',
-		// 									}}
-		// 								>
-		// 									{data.title}
-		// 								</Text>
-		// 							</Box>
-		// 						);
-		// 					})}
-		// 					<Box
-		// 						className='slide'
-		// 						w={'100vw'}
-		// 						h='500px'
-		// 						bgImage={images[0].imageUrl[0].url}
-		// 						bgSize='cover'
-		// 						bgPos={'50% 50%'}
-		// 						flexShrink={'0'}
-		// 						pt={{ base: 100, lg: 130 }}
-		// 						position='relative'
-		// 						overflow={'hidden'}
-		// 					>
-		// 						<Text
-		// 							w={{ base: '100%', lg: '50%' }}
-		// 							bg='rgba(0,0,0,.3)'
-		// 							boxShadow={'0 0 0 10000px rgba(0,0,0,.3)'}
-		// 							color={'white'}
-		// 							position='absolute'
-		// 							top={{ base: '40%', lg: '30%' }}
-		// 							left={{ base: '50%', lg: '30px' }}
-		// 							transform={{
-		// 								base: 'translateX(-50%) translateY(-50%)',
-		// 								lg: 'none',
-		// 							}}
-		// 							fontSize={50}
-		// 							fontWeight={300}
-		// 							lineHeight={1}
-		// 							textAlign={{ base: 'center', lg: 'start' }}
-		// 						>
-		// 							{images[0].title}
-		// 						</Text>
-		// 					</Box>
-		// 				</>
-		// 			)}
-		// 		</Box>
-		// 		<Box
-		// 			mt={{ base: 10, lg: 5 }}
-		// 			w={{ base: '100%', lg: '70%' }}
-		// 			h='100px'
-		// 			borderRadius={{ base: '0', lg: 'xl' }}
-		// 			display={{
-		// 				base: modalState ? 'none' : 'flex',
-		// 				lg: 'flex',
-		// 			}}
-		// 			justifyContent={{ base: 'center', lg: 'start' }}
-		// 			alignItems={{ base: 'center' }}
-		// 			position={{ base: 'fixed', lg: 'absolute' }}
-		// 			bottom={{ base: 1, lg: '120px' }}
-		// 			right={0}
-		// 			left={{ lg: '50px' }}
-		// 			zIndex={{ base: 10000000, lg: 1 }}
-		// 		></Box>
-		// 		<Search />
-		// 		<Box
-		// 			display={{ base: 'none', lg: 'inline-block' }}
-		// 			position={'absolute'}
-		// 			right='0'
-		// 			top='50%'
-		// 			transform='translateY(-50%)'
-		// 			h='190px'
-		// 			w='200px'
-		// 			bg='rgba(8, 32, 50,.65)'
-		// 			borderRadius={'32px 0 0 32px'}
-		// 			pr='50px'
-		// 			pt='40px'
-		// 		>
-		// 			<Box
-		// 				h='3px'
-		// 				w='50px'
-		// 				bg=' #0E87F6'
-		// 				float={'right'}
-		// 				borderRadius={'full'}
-		// 			></Box>
-		// 			<Text textAlign={'end'} fontSize='20px' mt='7px'>
-		// 				city
-		// 			</Text>
-		// 			<Text textAlign={'end'} fontSize='24px' fontWeight={600}>
-		// 				location
-		// 			</Text>
-		// 			<Box float={'right'} mt='20px'>
-		// 				<Icon
-		// 					h='fit-content'
-		// 					w='fit-content'
-		// 					as={AiOutlineLeftCircle}
-		// 					fontSize='40px'
-		// 					mx={5}
-		// 					cursor='pointer'
-		// 					borderRadius='full'
-		// 					p={0}
-		// 				/>
-		// 				<Icon
-		// 					as={AiOutlineRightCircle}
-		// 					fontSize='40px'
-		// 					cursor='pointer'
-		// 				/>
-		// 			</Box>
-		// 		</Box>
-		// 	</Box>
-		// </>
 	);
 };
 

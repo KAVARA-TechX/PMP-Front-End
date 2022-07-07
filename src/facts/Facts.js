@@ -35,7 +35,7 @@ const Facts = () => {
 			w='100vw'
 			h='fit-content'
 			display='flex'
-			mt={{ base: '200px', lg: '100px' }}
+			mt={{ base: '100px', lg: '100px' }}
 			mb={10}
 			className='facts'
 			px={{ base: '10px', lg: '9vw' }}

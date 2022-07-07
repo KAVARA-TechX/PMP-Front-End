@@ -34,6 +34,7 @@ const Blog = () => {
 				mb={5}
 				textAlign={{ base: 'center', lg: 'start' }}
 				className='Blog-heading'
+				color={'#141177'}
 			>
 				Blogs
 			</Text>

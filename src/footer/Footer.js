@@ -166,7 +166,7 @@ const Footer = () => {
 								}}
 								cursor='pointer'
 							>
-								Frequently asked questions
+								Frequently Asked Questions (FAQs)
 							</Text>
 							<Text
 								onClick={() => {

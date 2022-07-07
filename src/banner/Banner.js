@@ -81,7 +81,7 @@ const Banner = () => {
 									Visit Maldives <br /> A Fantasy Fulfilled
 								</Text>
 								<Box
-									bg='#141177'
+									bg='rgba(20, 17, 119,.7)'
 									py={3}
 									px={5}
 									w='fit-content'
@@ -94,8 +94,14 @@ const Banner = () => {
 									textAlign='center'
 									color='#fff'
 									fontWeight={600}
+									transition={'.5s'}
+									transform='translate(0)'
 									display='flex'
 									alignItems={'center'}
+									_hover={{
+										background: 'rgba(20, 17, 119,.9)',
+										svg: { transform: 'translate(5px)' },
+									}}
 								>
 									<Text>Customize your trip</Text>
 									<Icon as={BiChevronRight} fontSize='20px' />
