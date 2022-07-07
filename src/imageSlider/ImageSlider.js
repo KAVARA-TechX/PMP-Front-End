@@ -81,6 +81,7 @@ const ImageSlider = () => {
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
 					className='ImageSlider-heading'
+					color='#141177'
 				>
 					Fun and Explore
 				</Text>

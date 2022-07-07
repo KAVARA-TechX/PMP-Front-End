@@ -103,7 +103,7 @@ const Packages = () => {
 						</Text>
 					</Box>
 					<Box
-						bg='#141177'
+						bg='rgba(20, 17, 119,.7)'
 						color='#fff'
 						px='15px'
 						py={'10px'}
@@ -113,7 +113,7 @@ const Packages = () => {
 						gap='5px'
 						transition={'.5s'}
 						_hover={{
-							background: 'rgba(14, 135, 246,.9)',
+							background: 'rgba(20, 17, 119,.9)',
 							svg: { transform: 'translate(5px)' },
 						}}
 						cursor='pointer'

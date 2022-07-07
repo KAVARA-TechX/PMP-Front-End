@@ -30,14 +30,15 @@ const SearchResult = () => {
 		window.scrollTo(0, 0);
 
 		const getData = async () => {
+			console.log('use parms valu is ', value);
 			try {
 				const res = await searchApi(
 					value.location,
-					value.startDate,
-					value.endDate
+					value.checkInDate,
+					value.checkOutDate
 				);
-				setResults(res.data.packages);
-				console.log(res.data.packages);
+				setResults(res.data.result);
+				console.log('response is : ', res.data.result);
 				setLoading(false);
 			} catch (error) {
 				console.log('error is ', error);

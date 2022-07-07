@@ -12,7 +12,7 @@
 .rdp-day_selected:focus:not([disabled]),
 .rdp-day_selected:active:not([disabled]),
 .rdp-day_selected:hover:not([disabled]) {
-	background-color: #32bac9;
+	background-color: #141177;
 	border: none;
 }
 

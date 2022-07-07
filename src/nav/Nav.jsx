@@ -80,8 +80,8 @@ const Nav = () => {
 				display={'flex'}
 				justifyContent={{ base: 'center', lg: 'space-between' }}
 				alignItems='center'
-				pl={10}
-				pr={10}
+				pl={{ base: 0, lg: 10 }}
+				pr={{ base: 0, lg: 10 }}
 				bg={
 					path === '' ||
 					path === 'about-package' ||
@@ -92,7 +92,7 @@ const Nav = () => {
 				overflow={'hidden'}
 			>
 				{/* logo */}
-				<Box flexGrow={{ base: 'none', lg: 1 }}>
+				<Box flexGrow={{ base: '1', lg: 1 }}>
 					<Image
 						src={logo}
 						h='100px'
