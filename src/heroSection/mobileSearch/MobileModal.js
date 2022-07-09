@@ -162,7 +162,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 										/>
 										<Input
 											h='50px'
-											type='tel'
+											type='text'
 											placeholder='Search Destination'
 											value={location}
 											onChange={(e) => {
