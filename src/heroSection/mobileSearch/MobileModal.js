@@ -145,7 +145,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												fontSize={'23px'}
 												fontWeight={900}
 											>
-												Where to?
+												Destination
 											</Text>
 										</Box>
 										<AccordionIcon />
@@ -194,7 +194,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												fontSize={'23px'}
 												fontWeight={900}
 											>
-												When's your trip?
+												Travel Dates
 											</Text>
 										</Box>
 										<AccordionIcon
@@ -294,7 +294,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												fontSize={'23px'}
 												fontWeight={900}
 											>
-												Who's coming?
+												No. of travellers
 											</Text>
 										</Box>
 										<AccordionIcon />

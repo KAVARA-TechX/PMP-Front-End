@@ -47,7 +47,7 @@ const Who = ({ setGuest }) => {
 										? 'guests'
 										: 'guest'
 							  }`
-							: 'Who'}
+							: 'No. of travellers'}
 					</Text>
 				</PopoverTrigger>
 				<Box zIndex={110}>

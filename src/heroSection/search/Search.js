@@ -101,7 +101,7 @@ const Search = () => {
 					w='100%'
 					fontSize={20}
 					type='text'
-					placeholder='Where'
+					placeholder='Destination'
 					outline={'none'}
 					border='none'
 					pl={0}

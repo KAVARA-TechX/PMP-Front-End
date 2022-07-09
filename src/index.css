@@ -32,3 +32,7 @@ body {
 #easy-pricing-icon svg {
 	fill: rgba(14, 135, 246, 1) !important;
 }
+
+#google_login_button {
+	background: green;
+}
