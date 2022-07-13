@@ -1,0 +1,41 @@
+.facebook:hover svg {
+	color: rgb(29, 112, 236);
+}
+.facebook:hover {
+	background: #333333;
+}
+
+.twitter:hover svg {
+	color: #00acee;
+}
+.twitter:hover {
+	background: #333333;
+}
+
+.youtube:hover svg {
+	color: #ff0000;
+}
+.youtube:hover {
+	background: #333333;
+}
+
+.linkedin:hover svg {
+	color: #0072b1;
+}
+
+.linkedin:hover {
+	background: #333333;
+}
+
+.ilogo {
+	filter: grayscale(100%);
+	filter: brightness(40%);
+}
+
+.instagram:hover svg {
+	color: rgb(239, 55, 55);
+}
+
+.instagram:hover {
+	background: #333333;
+}
