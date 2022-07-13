@@ -14,8 +14,9 @@ import {
 	PopoverBody,
 	PopoverFooter,
 	useDisclosure,
+	useOutsideClick,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
@@ -23,12 +24,17 @@ import CheckInDate from './searchComponents/CheckInDate';
 import CheckOutDate from './searchComponents/CheckOutDate';
 import Who from './searchComponents/Who';
 import When from './searchComponents/When';
+import c_list from './list.json';
 
 const Search = () => {
 	const [location, setLocation] = useState('');
-
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [guest, setGuest] = useState(0);
 	const [submitButton, setSubmitButton] = useState(true);
+
+	const initialFocusRef = useRef();
+	const popoverRef = useRef();
+	const ref = useRef();
 
 	const navigate = useNavigate();
 
@@ -71,6 +77,13 @@ const Search = () => {
 		}
 	}, [location, startDate, endDate, guest]);
 
+	useOutsideClick({
+		ref: ref,
+		handler: () => {
+			onClose();
+		},
+	});
+
 	return (
 		<Box
 			position='absolute'
@@ -95,26 +108,76 @@ const Search = () => {
 		>
 			{/* location */}
 			<Box w={{ base: '100%', lg: '100px' }}>
-				<Input
-					value={location}
-					textAlign={{ base: 'center', lg: 'start' }}
-					w='100%'
-					fontSize={20}
-					type='text'
-					placeholder='Destination'
-					outline={'none'}
-					border='none'
-					pl={0}
-					pr={0}
-					_focus={{ outline: 'none' }}
-					pb={{ base: 3, lg: 0 }}
-					onChange={(e) => {
-						setLocation(e.target.value);
-					}}
-					_placeholder={{
-						color: '#696969',
-					}}
-				/>
+				<Popover
+					placement='bottom'
+					zIndex={10000}
+					isOpen={isOpen}
+					onClose={onClose}
+					isLazy
+					initialFocusRef={initialFocusRef}
+				>
+					<PopoverTrigger zIndex={10000}>
+						<Input
+							ref={initialFocusRef}
+							value={location}
+							textAlign={{ base: 'center', lg: 'start' }}
+							w='100%'
+							fontSize={20}
+							type='text'
+							placeholder='Destination'
+							outline={'none'}
+							border='none'
+							pl={0}
+							pr={0}
+							_focus={{ outline: 'none' }}
+							pb={{ base: 3, lg: 0 }}
+							onChange={(e) => {
+								onOpen();
+								setLocation(e.target.value);
+							}}
+							_placeholder={{
+								color: '#696969',
+							}}
+						/>
+					</PopoverTrigger>
+					<PopoverContent
+						w={'200px'}
+						maxH='250px'
+						overflowY={'scroll'}
+						ref={ref}
+						position='relative'
+						top='-10px'
+						bg='#fffdf7'
+					>
+						<PopoverBody>
+							{c_list
+								.filter((val) =>
+									val.name.toLowerCase().indexOf(location) !==
+									-1
+										? true
+										: false
+								)
+								.map((loc, index) => {
+									return (
+										<Text
+											px='10px'
+											_hover={{
+												background: 'rgba(0,0,0,.1)',
+												cursor: 'pointer',
+											}}
+											key={index}
+											onClick={() => {
+												setLocation(loc.name);
+												onClose();
+											}}
+										>
+											{loc.name}
+										</Text>
+									);
+								})}
+						</PopoverBody>
+					</PopoverContent>
+				</Popover>
 			</Box>
 			<When setStartDate={setStartDate} setEndDate={setEndDate} />
 			<Who setGuest={setGuest} />

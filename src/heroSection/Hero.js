@@ -145,7 +145,7 @@ const Hero = () => {
 												></Box>
 												<Text
 													w={{
-														base: '100%',
+														base: 'calc(100vw - 20px)',
 														lg: '50%',
 													}}
 													bg='rgba(0,0,0,.1)'

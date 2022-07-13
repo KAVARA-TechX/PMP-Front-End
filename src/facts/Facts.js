@@ -1,9 +1,10 @@
 // import { lazy, Suspense } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { AspectRatio, Box, Text } from '@chakra-ui/react';
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 import image from '../assets/thingsToDo/dream-vacation.png';
 import './Facts.css';
+import vid from '../assets/videos/production ID_4782135.mp4';
 
 const Facts = () => {
 	const container_ref = useRef(null);
@@ -16,18 +17,36 @@ const Facts = () => {
 			duration: 1,
 			delay: 0.5,
 		});
+
 		gsap.from(container('.facts_data'), {
 			x: +100,
 			opacity: 0,
 			duration: 1,
 			delay: 0.5,
 		});
+
+		gsap.from(
+			[
+				container('#fact-n1'),
+				container('#fact-n2'),
+				container('#fact-n3'),
+				container('#fact-n4'),
+			],
+			{
+				textContent: 0,
+				duration: 4,
+				ease: 'Power1.easeIn',
+				snap: { textContent: 1 },
+				// stagger: 1,
+				delay: 1.5,
+			}
+		);
 	};
 
 	useEffect(() => {
-		if (window.innerWidth >= 992) {
-			animate();
-		}
+		// if (window.innerWidth >= 992) {
+		animate();
+		// }
 	}, []);
 
 	return (
@@ -38,8 +57,8 @@ const Facts = () => {
 			mt={{ base: '100px', lg: '100px' }}
 			mb={10}
 			className='facts'
-			px={{ base: '10px', lg: '9vw' }}
-			gap='20px'
+			px={{ base: '20px', lg: '9vw' }}
+			gap={{ base: 0, lg: '20px' }}
 			ref={container_ref}
 		>
 			<Box
@@ -50,14 +69,19 @@ const Facts = () => {
 				bgImage={image}
 				bgSize='cover'
 				bgPosition={'50% 50%'}
-			></Box>
+				overflow='hidden'
+			>
+				<video loop autoPlay muted id='facts_video'>
+					<source src={vid} type='video/mp4' autoPlay={true}></source>
+				</video>
+			</Box>
 			<Box
 				w={{ base: '100%', lg: '35.57%' }}
 				h='fit-content'
 				flexGrow={1}
 				className='facts_data'
 			>
-				<Box ml={{ base: 0, lg: 5 }}>
+				<Box ml={{ lg: 5 }}>
 					<Text fontSize={18} fontWeight={500} mb={1}>
 						Plan My Leisure
 					</Text>
@@ -97,10 +121,15 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#090841'>
-							100+
+						<Text
+							fontSize={38}
+							fontWeight={600}
+							color='#090841'
+							display={'flex'}
+							gap='2px'
+						>
+							<Text id='fact-n1'>100</Text>+
 						</Text>
-
 						<Text>Holiday Packages</Text>
 					</Box>
 					<Box
@@ -111,8 +140,14 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#090841'>
-							1000+
+						<Text
+							fontSize={38}
+							fontWeight={600}
+							color='#090841'
+							display={'flex'}
+							gap='2px'
+						>
+							<Text id='fact-n2'>1000</Text>+
 						</Text>
 						<Text>Travellers</Text>
 					</Box>
@@ -124,8 +159,14 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#090841'>
-							15+
+						<Text
+							fontSize={38}
+							fontWeight={600}
+							color='#090841'
+							display={'flex'}
+							gap='2px'
+						>
+							<Text id='fact-n3'>15</Text>+
 						</Text>
 						<Text>Destinations</Text>
 					</Box>
@@ -137,8 +178,14 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-						<Text fontSize={38} fontWeight={600} color='#090841'>
-							1500+
+						<Text
+							fontSize={38}
+							fontWeight={600}
+							color='#090841'
+							display={'flex'}
+							gap='2px'
+						>
+							<Text id='fact-n4'>1500</Text>+
 						</Text>
 						<Text>Satisfied Clients</Text>
 					</Box>

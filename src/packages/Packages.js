@@ -60,9 +60,9 @@ const Packages = () => {
 			try {
 				const res = await getPackageApi();
 				setPkg(res.data.packages);
-				if (window.innerWidth >= 992) {
-					animateCards();
-				}
+				// if (window.innerWidth >= 992) {
+				animateCards();
+				// }
 			} catch (error) {}
 		};
 		getData();
@@ -73,7 +73,7 @@ const Packages = () => {
 			<Box
 				w='100vw'
 				className='packages'
-				px={{ base: '10px', lg: '9vw' }}
+				px={{ base: '20px', lg: '9vw' }}
 			>
 				<Box
 					display={'flex'}
@@ -122,7 +122,11 @@ const Packages = () => {
 						}}
 						className='pkg_heading_from_right'
 					>
-						<Text>See all packages</Text>
+						<Text>
+							{window.innerWidth < 992
+								? 'See all'
+								: 'See all packages'}
+						</Text>
 						<Icon
 							as={BiChevronRight}
 							transform='translateX(0)'
