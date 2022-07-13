@@ -41,13 +41,33 @@ const PackageCard = (data) => {
 						{data.data.image.map((data, index) => {
 							return (
 								<SplideSlide key={index}>
-									<Box
-										w='100%'
-										h={{ base: '200px', lg: '400px' }}
-										bgImage={data.url}
-										bgSize={'cover'}
-										bgPos='50% 50%'
-									></Box>
+									{data.resource_type === 'video' ? (
+										<Box
+											w='100%'
+											h={{ base: '200px', lg: '400px' }}
+										>
+											<video
+												autoPlay
+												muted
+												loop
+												style={{
+													height: '100%',
+													width: '100%',
+													objectFit: 'cover',
+												}}
+											>
+												<source src={data.url} />
+											</video>
+										</Box>
+									) : (
+										<Box
+											w='100%'
+											h={{ base: '200px', lg: '400px' }}
+											bgImage={data.url}
+											bgSize={'cover'}
+											bgPos='50% 50%'
+										></Box>
+									)}
 								</SplideSlide>
 							);
 						})}

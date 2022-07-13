@@ -48,7 +48,7 @@ const Footer = () => {
 				gridTemplateColumns={{ base: '1fr', lg: '1fr 1.5fr .5fr' }}
 				gap={{ base: '20px', lg: '0' }}
 				py='30px'
-				px='9vw'
+				px={{ base: '20px', lg: '9vw' }}
 				color='#fff'
 				//
 			>
@@ -109,7 +109,12 @@ const Footer = () => {
 						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
-					<Text pt='20px'>© Plan My Leisure 2020</Text>
+					<Text
+						pt='20px'
+						display={{ base: 'none', lg: 'inline-block' }}
+					>
+						© Plan My Leisure 2020
+					</Text>
 				</Box>
 				<Box display={'flex'} justifyContent='space-around' pt='30px'>
 					<Box>
@@ -166,7 +171,9 @@ const Footer = () => {
 								}}
 								cursor='pointer'
 							>
-								Frequently Asked Questions (FAQs)
+								{window.innerWidth < 992
+									? 'FAQ'
+									: 'Frequently Asked Questions (FAQs)'}
 							</Text>
 							<Text
 								onClick={() => {
@@ -196,39 +203,7 @@ const Footer = () => {
 						</Box>
 					</Box>
 				</Box>
-				<Box pl='20px' pr='20px'>
-					{/* <Text fontWeight={700} fontSize='28px' mb='10px'>
-						Subscribe to hear news
-					</Text>
-					<InputGroup w={{ base: '90%', lg: '70%' }} size={'lg'}>
-						<Input
-							bg='white'
-							pr='50px'
-							h='60px'
-							type='email'
-							placeholder='Email address'
-							borderRadius={'18px'}
-							color='#000'
-						/>
-						<InputRightElement width='100px' h='50px'>
-							<Button
-								mt='10px'
-								h='100%'
-								w='100%'
-								px={'10px'}
-								onClick={handleEmailSubmit}
-								bg='#0E87F6'
-								position={'relative'}
-								right='5px'
-								borderRadius={'18px'}
-								_hover={{
-									background: '#0E87F6',
-								}}
-							>
-								Send
-							</Button>
-						</InputRightElement>
-					</InputGroup> */}
+				<Box pl='20px' pr='20px' mx={{ base: 'auto', lg: '' }}>
 					<Box display={'flex'} mt='30px' gap='30px'>
 						<Box
 							as='a'
@@ -258,12 +233,6 @@ const Footer = () => {
 							border='1px solid rgba(255,255,255,.2)'
 						>
 							<Icon as={FaInstagram} color='rgb(255,255,255)' />
-							{/* <Image
-								h='20px'
-								w='20px'
-								src={instagram}
-								className='ilogo'
-							/> */}
 						</Box>
 						<Box
 							as='a'
@@ -311,6 +280,15 @@ const Footer = () => {
 							<Icon as={FaYoutube} color='rgb(255,255,255)' />
 						</Box>
 					</Box>
+				</Box>
+				<Box>
+					<Text
+						pt='20px'
+						textAlign={'center'}
+						display={{ lg: 'none' }}
+					>
+						© Plan My Leisure 2020
+					</Text>
 				</Box>
 			</Box>
 		</>

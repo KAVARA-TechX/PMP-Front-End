@@ -32,6 +32,7 @@ const Blog = () => {
 			mx='auto'
 			mb={10}
 			className='Blog'
+			px={{ base: '20px', lg: 0 }}
 		>
 			<Text
 				fontSize={30}

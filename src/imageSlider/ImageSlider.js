@@ -31,37 +31,64 @@ const ImageSlider = () => {
 	let fun_and_explore_card_container = useRef(null);
 	const f_and_e_cards = gsap.utils.selector(fun_and_explore_card_container);
 	const f_and_e_heading = gsap.utils.selector(f_and_e_heading_container);
+	ScrollTrigger.refresh();
 
 	const animate = () => {
+		const windowWidth = window.innerWidth;
+		const padding = (windowWidth * 9) / 100;
+		const portion_we_can_see = windowWidth - padding * 2;
+		const widht_of_cards_container = 2320;
+		const scroll_amount = widht_of_cards_container - portion_we_can_see;
+		const height_of_container =
+			fun_and_explore_card_container.current.offsetHeight;
+
+		const stop_at = (window.innerHeight - height_of_container) / 2;
+
+		console.log(
+			windowWidth,
+			padding,
+			portion_we_can_see,
+			widht_of_cards_container,
+			scroll_amount,
+			height_of_container
+		);
+
 		gsap.from(f_and_e_heading('.f_and_e_heading'), {
 			scrollTrigger: {
 				trigger: f_and_e_heading_container.current,
-				start: 'Top 65%',
+				start: 'top 65%',
+				end: 'top top',
 			},
 			x: -100,
 			opacity: 0,
 			duration: 0.8,
 			delay: 0.1,
+			onComplete: function () {
+				ScrollTrigger.refresh();
+			},
 		});
 
-		gsap.from(f_and_e_cards('.f_and_e_card'), {
+		gsap.to(f_and_e_cards('.f_and_e_card'), {
 			scrollTrigger: {
 				trigger: fun_and_explore_card_container.current,
-				start: 'Top 65%',
+				start: `end ${stop_at}px`,
+				// end: '+=2000',
+				// end: '100',
+				// markers: true,
+				scrub: 0.1,
+				// pin: true,
+				pin: '.ImageSlider',
 			},
-			y: '+=100',
-			stagger: 0.2,
-			opacity: 0,
-			ease: 'smooth_ease',
-			duration: 1.5,
-			delay: 0.9,
+			x: `-=${scroll_amount}`,
+			duration: 5,
 		});
 	};
 
 	useEffect(() => {
-		if (window.innerWidth >= 992) {
-			animate();
-		}
+		// if (window.innerWidth >= 992) {
+
+		animate();
+		// }
 	}, []);
 
 	return (
@@ -72,6 +99,7 @@ const ImageSlider = () => {
 			mb={7}
 			px={{ base: '0px', lg: '9vw' }}
 			ref={f_and_e_heading_container}
+			// bg='green'
 		>
 			{/* slider heading */}
 			<Box className='hide-scroll-bar f_and_e_heading'>
@@ -107,7 +135,7 @@ const ImageSlider = () => {
 						display='inline-block'
 						bgSize='cover'
 						height='450px'
-						mx={5}
+						mx={'15px'}
 						w='260px'
 						borderRadius={'xl'}
 						position={'relative'}

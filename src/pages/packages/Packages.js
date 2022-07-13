@@ -48,7 +48,7 @@ const PackagesPage = () => {
 						textAlign={{ base: 'center' }}
 						color='#fff'
 					>
-						Maldives Tour Packages
+						Tour Packages
 					</Text>
 					<Text></Text>
 				</Box>

@@ -16,19 +16,22 @@ const Banner = () => {
 		gsap.from(banner_pls('.banner'), {
 			scrollTrigger: {
 				trigger: banner_container.current,
-				start: '0% 65%',
+				start: 'top 65%',
 			},
 			y: 100,
 			opacity: 0,
 			duration: 1,
 			delay: 0.5,
+			onComplete: function () {
+				ScrollTrigger.refresh();
+			},
 		});
 	};
 
 	useEffect(() => {
-		if (window.innerWidth >= 992) {
-			animate();
-		}
+		// if (window.innerWidth >= 992) {
+		animate();
+		// }
 	}, []);
 	return (
 		<>
