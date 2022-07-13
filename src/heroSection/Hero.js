@@ -134,15 +134,35 @@ const Hero = () => {
 												position={'relative'}
 												overflowX='hidden'
 											>
-												<Box
-													w='100%'
-													h='100%'
-													bgImage={
-														data.imageUrl[0].url
-													}
-													bgSize='cover'
-													bgPos={'50% 50%'}
-												></Box>
+												{data.imageUrl[0]
+													.resource_type ===
+												'video' ? (
+													<Box w='100%' h='100%'>
+														<video
+															autoPlay
+															muted
+															loop
+														>
+															<source
+																src={
+																	data
+																		.imageUrl[0]
+																		.url
+																}
+															/>
+														</video>
+													</Box>
+												) : (
+													<Box
+														w='100%'
+														h='100%'
+														bgImage={
+															data.imageUrl[0].url
+														}
+														bgSize='cover'
+														bgPos={'50% 50%'}
+													></Box>
+												)}
 												<Text
 													w={{
 														base: 'calc(100vw - 20px)',

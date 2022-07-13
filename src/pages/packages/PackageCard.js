@@ -30,29 +30,6 @@ import CreatePackageRequest from '../../apis/CreatePackageRequest';
 import { useNavigate } from 'react-router-dom';
 import PackageCard from '../../components/packageCard/PackageCard';
 
-// const ImageSlider = (imgLink) => {
-// 	try {
-// 		console.log('image we got : ', imgLink[0].url);
-// 		return (
-// 			<Box
-// 				h={{ base: '200px', lg: '100%' }}
-// 				w={{ base: '100%', lg: '30%' }}
-// 				bgImg={`url(${imgLink.imgLink[0].url})`}
-// 				bgSize='cover'
-// 			></Box>
-// 		);
-// 	} catch (e) {
-// 		return (
-// 			<Box
-// 				h={{ base: '200px', lg: '100%' }}
-// 				w={{ base: '100%', lg: '30%' }}
-// 				bgImg={img}
-// 				bgSize='cover'
-// 			></Box>
-// 		);
-// 	}
-// };
-
 const city = [
 	{ name: 'Bengaluru,IN', code: 'BLR' },
 	{ name: 'Trivandrum,IN', code: 'TRV' },
