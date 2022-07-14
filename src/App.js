@@ -12,7 +12,7 @@ import AboutPackage from './pages/aboutPackage/AboutPackage';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
-import Cancellation from './pages/Cancellation/Cancellation';
+import Cancellation from './pages/cancellation/Cancellation';
 import RefundPage from './pages/RefundPage/RefundPage';
 import MyBookings from './pages/myBookings/MyBookings';
 import Upcoming from './pages/myBookings/Upcoming';

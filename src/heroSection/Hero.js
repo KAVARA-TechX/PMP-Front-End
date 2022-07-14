@@ -142,6 +142,12 @@ const Hero = () => {
 															autoPlay
 															muted
 															loop
+															style={{
+																height: '100%',
+																width: '100%',
+																objectFit:
+																	'cover',
+															}}
 														>
 															<source
 																src={
