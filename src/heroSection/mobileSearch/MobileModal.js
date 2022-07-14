@@ -21,6 +21,10 @@ import {
 	Button,
 	useDisclosure,
 	Icon,
+	PopoverContent,
+	Popover,
+	PopoverTrigger,
+	PopoverBody,
 } from '@chakra-ui/react';
 
 import gsap from 'gsap';
@@ -29,6 +33,8 @@ import { DayPicker } from 'react-day-picker';
 import { addDays } from 'date-fns';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import c_list from '../search/list.json';
+import SearchResultPopover from './SearchResultPopover';
 
 const MobileModal = ({ state, changeState, handleStart }) => {
 	const search_modal = useRef(null);
@@ -43,6 +49,8 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 	const who_accordion_btn = useRef();
 	const [search_status, set_search_status] = useState(true);
 	const navigate = useNavigate();
+	const ref = useRef();
+	const initialFocusRef = useRef();
 
 	const handleSearch = () => {
 		console.log('in home star and end is ', startDate, endDate);
@@ -152,7 +160,11 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 									</AccordionButton>
 								</h2>
 								<AccordionPanel pb={4}>
-									<InputGroup h='50px'>
+									<SearchResultPopover
+										location={location}
+										setLocation={setLocation}
+									/>
+									{/* <InputGroup h='50px'>
 										<InputLeftElement
 											h='50px'
 											pointerEvents='none'
@@ -169,7 +181,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												setLocation(e.target.value);
 											}}
 										/>
-									</InputGroup>
+									</InputGroup> */}
 								</AccordionPanel>
 							</AccordionItem>
 						</Box>

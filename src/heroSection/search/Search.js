@@ -174,7 +174,37 @@ const Search = () => {
 											{loc.name}
 										</Text>
 									);
-								})}
+								}).length !== 0 ? (
+								c_list
+									.filter((val) =>
+										val.name
+											.toLowerCase()
+											.indexOf(location) !== -1
+											? true
+											: false
+									)
+									.map((loc, index) => {
+										return (
+											<Text
+												px='10px'
+												_hover={{
+													background:
+														'rgba(0,0,0,.1)',
+													cursor: 'pointer',
+												}}
+												key={index}
+												onClick={() => {
+													setLocation(loc.name);
+													onClose();
+												}}
+											>
+												{loc.name}
+											</Text>
+										);
+									})
+							) : (
+								<Text px='10px'>No Matches Found</Text>
+							)}
 						</PopoverBody>
 					</PopoverContent>
 				</Popover>
