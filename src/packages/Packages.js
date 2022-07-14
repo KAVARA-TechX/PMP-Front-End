@@ -75,32 +75,6 @@ const Packages = () => {
 				className='packages'
 				px={{ base: '20px', lg: '9vw' }}
 			>
-<<<<<<< HEAD
-				<Box>
-					<Text
-						fontSize={{ base: 25, lg: 30 }}
-						fontWeight={600}
-						position='relative'
-						_after={{
-							base: {
-								content: '""',
-								position: 'absolute',
-								left: 0,
-								bottom: 0,
-								height: '2px',
-								width: '100%',
-								background: '#32BAC9',
-							},
-							lg: {
-								content: '""',
-								position: 'absolute',
-								left: 0,
-								bottom: 0,
-								height: '2px',
-								width: '85%',
-								background: 'orange',
-							},
-=======
 				<Box
 					display={'flex'}
 					justifyContent='space-between'
@@ -141,7 +115,6 @@ const Packages = () => {
 						_hover={{
 							background: 'rgba(20, 17, 119,.9)',
 							svg: { transform: 'translate(5px)' },
->>>>>>> development
 						}}
 						cursor='pointer'
 						onClick={() => {

@@ -61,6 +61,8 @@ const UpcomingCard = ({ data, changeState }) => {
 				alert('Razorpay failed to load');
 			}
 
+			const pay_status = parts_index + 1 === parts.length;
+
 			const order_data = await createOrderApi(
 				amount_to_be_paid * 100,
 				'',
@@ -79,7 +81,7 @@ const UpcomingCard = ({ data, changeState }) => {
 						prev[parts_index] = `${amount_to_be_paid}_paid`;
 						return [...prev];
 					});
-					handlePartsPackagePaid();
+					handlePartsPackagePaid(pay_status);
 					alert('Yeaaahhh! payment done');
 				},
 				modal: {
@@ -175,14 +177,14 @@ const UpcomingCard = ({ data, changeState }) => {
 
 	// -------------------------------------------------------
 
-	const handlePartsPackagePaid = async (response) => {
+	const handlePartsPackagePaid = async (pay_status) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
 				'https://planmy.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
-					paymentStatus: 'Confirmed',
+					paymentStatus: pay_status ? 'Done' : 'Confirmed',
 					paymentType: `parts:${parts.join('-')}`,
 				}
 			);

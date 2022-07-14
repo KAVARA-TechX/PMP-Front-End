@@ -12,19 +12,9 @@ const IconSection = () => {
 	return (
 		<Box
 			w='100vw'
-<<<<<<< HEAD
-			h='130px'
-			bg='#32BAC9'
-			display={'grid'}
-			gridTemplateColumns={'repeat(4, 1fr)'}
-			alignItems='center'
-			textAlign={'center'}
-			color='white'
-=======
 			h={{ base: 'fit-content', lg: '360px' }}
 			bg='rgba(14, 135, 246,.25)'
 			px={{ base: '10px', lg: '9vw' }}
->>>>>>> development
 			mb={10}
 			display={'flex'}
 			alignItems='center'

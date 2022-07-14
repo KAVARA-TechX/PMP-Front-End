@@ -55,39 +55,11 @@ const Banner = () => {
 						bgPosition='left'
 						className='banner'
 					>
-<<<<<<< HEAD
-						<Text
-							textAlign={'center'}
-							fontSize={20}
-							fontWeight={500}
-						></Text>
-						<Text
-							textAlign='center'
-							fontSize={35}
-							fontWeight={500}
-							whiteSpace='nowrap'
-						>
-							<Text fontWeight={500}>Visit Maldives</Text>A
-							Fantasy Fulfilled
-						</Text>
-						<Box
-							bg='#32BAC9'
-							mx='auto'
-							py={3}
-							px={5}
-							borderRadius={'xl'}
-							cursor='pointer'
-							mt={5}
-							onClick={() => {
-								setModalState(true);
-							}}
-=======
 						<Box
 							w='100%'
 							h='100%'
 							bg='linear-gradient(270deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)'
 							position='relative'
->>>>>>> development
 						>
 							<Box
 								position={'absolute'}
