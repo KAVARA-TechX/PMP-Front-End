@@ -69,15 +69,6 @@ const Facts = () => {
 				bgImage={image}
 				bgSize='cover'
 				bgPosition={'50% 50%'}
-<<<<<<< HEAD
-			></Box>
-			<Box w={{ base: '100%', lg: '50%' }}>
-				<Box ml={5}>
-					<Text color='#32BAC9' fontSize={20} fontWeight={500} mb={1}>
-						Plan My Leisure
-					</Text>
-					<Text fontSize={40} fontWeight={800} lineHeight={1} mb={5}>
-=======
 				overflow='hidden'
 			>
 				<video loop autoPlay muted id='facts_video'>
@@ -102,7 +93,6 @@ const Facts = () => {
 						className='facts-heading'
 						color='#090841'
 					>
->>>>>>> development
 						We help you find your dream vacation
 					</Text>
 					<Text
@@ -131,12 +121,6 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-<<<<<<< HEAD
-						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
-							100+
-						</Text>
-
-=======
 						<Text
 							fontSize={38}
 							fontWeight={600}
@@ -146,7 +130,6 @@ const Facts = () => {
 						>
 							<Text id='fact-n1'>100</Text>+
 						</Text>
->>>>>>> development
 						<Text>Holiday Packages</Text>
 					</Box>
 					<Box
@@ -157,10 +140,6 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-<<<<<<< HEAD
-						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
-							1000+
-=======
 						<Text
 							fontSize={38}
 							fontWeight={600}
@@ -169,7 +148,6 @@ const Facts = () => {
 							gap='2px'
 						>
 							<Text id='fact-n2'>1000</Text>+
->>>>>>> development
 						</Text>
 						<Text>Travellers</Text>
 					</Box>
@@ -181,10 +159,6 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-<<<<<<< HEAD
-						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
-							15+
-=======
 						<Text
 							fontSize={38}
 							fontWeight={600}
@@ -193,7 +167,6 @@ const Facts = () => {
 							gap='2px'
 						>
 							<Text id='fact-n3'>15</Text>+
->>>>>>> development
 						</Text>
 						<Text>Destinations</Text>
 					</Box>
@@ -205,10 +178,6 @@ const Facts = () => {
 						alignItems='center'
 						position={'relative'}
 					>
-<<<<<<< HEAD
-						<Text fontSize={40} fontWeight={600} color='#32BAC9'>
-							1500+
-=======
 						<Text
 							fontSize={38}
 							fontWeight={600}
@@ -217,7 +186,6 @@ const Facts = () => {
 							gap='2px'
 						>
 							<Text id='fact-n4'>1500</Text>+
->>>>>>> development
 						</Text>
 						<Text>Satisfied Clients</Text>
 					</Box>

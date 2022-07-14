@@ -10,8 +10,6 @@ import spa from '../assets/thingsToDo/spa.png';
 import sunset from '../assets/thingsToDo/sunset.png';
 import surf from '../assets/thingsToDo/skiing.png';
 import surfing from '../assets/thingsToDo/Surfing.png';
-<<<<<<< HEAD
-=======
 import './ImageSlider.css';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -26,7 +24,6 @@ const cardsData = [
 	{ title: 'Enjoy Sunset Cruise', img: sunset },
 	{ title: 'Water Skiing', img: surf },
 ];
->>>>>>> development
 
 const ImageSlider = () => {
 	gsap.registerPlugin(ScrollTrigger);
@@ -98,27 +95,17 @@ const ImageSlider = () => {
 		<Box
 			w={{ base: '100vw', lg: '100vw' }}
 			// className='show-scroll-when-scrolling'
-<<<<<<< HEAD
-			className='hide-scroll-bar'
-			mb={7}
-=======
 			className='hide-scroll-bar ImageSlider'
 			mb={7}
 			px={{ base: '0px', lg: '9vw' }}
 			ref={f_and_e_heading_container}
 			// bg='green'
->>>>>>> development
 		>
 			{/* slider heading */}
 			<Box className='hide-scroll-bar f_and_e_heading'>
 				<Text
-<<<<<<< HEAD
-					fontSize={30}
-					fontWeight={600}
-=======
 					fontSize={{ base: 25, lg: 32 }}
 					fontWeight={700}
->>>>>>> development
 					mb={5}
 					textAlign={{ base: 'center', lg: 'start' }}
 					className='ImageSlider-heading'
@@ -141,229 +128,6 @@ const ImageSlider = () => {
 				ref={fun_and_explore_card_container}
 			>
 				{/* card */}
-<<<<<<< HEAD
-				<Box
-					bgImage={beach}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Stroll at a Beach
-					</Text>
-				</Box>
-				<Box
-					bgImage={glow}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Glowing Beach
-					</Text>
-				</Box>
-				<Box
-					bgImage={house}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Overwater Bungalow
-					</Text>
-				</Box>
-				<Box
-					bgImage={scuba}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Scuba Diving
-					</Text>
-				</Box>
-				<Box
-					bgImage={spa}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Indulge in Spa Treatment
-					</Text>
-				</Box>
-				<Box
-					bgImage={sunset}
-					display='inline-block'
-					bgSize='cover'
-					bgPos={'50% 50%'}
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						whiteSpace={'pre-wrap'}
-						textAlign='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Enjoy Sunset Cruise
-					</Text>
-				</Box>
-				<Box
-					bgImage={surf}
-					display='inline-block'
-					bgSize='cover'
-					height='400px'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Water Skiing
-					</Text>
-				</Box>
-				<Box
-					bgImage={surfing}
-					bgSize='cover'
-					height='400px'
-					display='inline-block'
-					mx={5}
-					w='250px'
-					borderRadius={'xl'}
-					boxShadow='0 3px 10px rgb(0,0,0,0.2), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-					position={'relative'}
-					overflow='hidden'
-					className='hide-scroll-bar'
-				>
-					<Text
-						w='100%'
-						h='100%'
-						display={'flex'}
-						alignItems='end'
-						fontSize={27}
-						justifyContent='center'
-						mx={'5px'}
-						pb={3}
-					>
-						Surfing
-					</Text>
-				</Box>
-=======
 				{cardsData.map((data, index) => (
 					<Box
 						key={index}
@@ -406,7 +170,6 @@ const ImageSlider = () => {
 						</Box>
 					</Box>
 				))}
->>>>>>> development
 			</Box>
 		</Box>
 	);

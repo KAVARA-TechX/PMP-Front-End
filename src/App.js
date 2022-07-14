@@ -1,27 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AccessLoginContext } from './context/LoginContext';
 
-<<<<<<< HEAD
-const Facts = lazy(() => {
-	return import('./facts/Facts');
-});
-const Packages = lazy(() => {
-	return import('./packages/Packages');
-});
-const SpaceBetween = lazy(() => {
-	return import('./spaceBetween/SpaceBetween');
-});
-const ImageSlider = lazy(() => {
-	return import('./imageSlider/ImageSlider');
-});
-const IconSection = lazy(() => {
-	return import('./iconSection/IconSection');
-});
-
-const Footer = lazy(() => {
-	return import('./footer/Footer');
-});
-=======
 import Homepage from './Homepage';
 import SearchResult from './pages/SearchResult/SearchResult';
 import BlogList from './pages/BlogsList/BlogList';
@@ -33,7 +12,7 @@ import AboutPackage from './pages/aboutPackage/AboutPackage';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
-import Cancellation from './pages/Cancellation/Cancellation';
+import Cancellation from './pages/cancellation/Cancellation';
 import RefundPage from './pages/RefundPage/RefundPage';
 import MyBookings from './pages/myBookings/MyBookings';
 import Upcoming from './pages/myBookings/Upcoming';
@@ -45,7 +24,6 @@ import Tac from './Tac';
 import AboutUs from './AboutUs';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
->>>>>>> development
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
@@ -74,41 +52,6 @@ const App = () => {
 	// }, []);
 
 	return (
-<<<<<<< HEAD
-		<Box overflow='hidden'>
-			<Hero /> {/* Responsive Done */}
-			{load ? (
-				<>
-					<Suspense fallback={<div>Loading...</div>}>
-						<Facts /> {/* Responsive Done */}
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						<Packages /> {/* Responsive Done*/}
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						<SpaceBetween space='50px' />
-					</Suspense>
-					<Suspense>
-						<Banner />
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						<ImageSlider /> {/* Responsive Done */}
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						{/*<Partners /> {/* Responsive Done */}
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						<IconSection />
-					</Suspense>
-					<Suspense fallback={<div>Loading...</div>}>
-						<Footer /> {/* Responsive Done */}
-					</Suspense>
-				</>
-			) : (
-				<></>
-			)}
-		</Box>
-=======
 		<Routes>
 			<Route path='/' element={<Homepage />} />
 			<Route path='search'>
@@ -148,7 +91,6 @@ const App = () => {
 			<Route path='/terms-and-conditions' element={<Tac />} />
 			<Route path='/about-us' element={<AboutUs />} />
 		</Routes>
->>>>>>> development
 	);
 };
 
