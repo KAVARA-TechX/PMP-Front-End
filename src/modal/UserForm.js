@@ -47,6 +47,7 @@ const UserForm = ({ state, setState }) => {
 			if (phone.length === 10) {
 				try {
 					const response = await createLead(name, email, phone);
+					console.log(response);
 					SetIsSubmitted(true);
 					SetLoading(false);
 				} catch (err) {

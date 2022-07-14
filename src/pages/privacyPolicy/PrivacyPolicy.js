@@ -1,11 +1,15 @@
 import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import Footer from '../../footer/Footer';
-// import Nav from '../../nav/Nav';
+import Nav from '../../nav/Nav';
 
 const PrivacyPolicy = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<>
-			{/* <Nav /> */}
+			<Nav />
 			<Box>
 				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
 					<Text

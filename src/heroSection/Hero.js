@@ -1,186 +1,216 @@
-import { Box, Button, Text, Image } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
-import hero from '../assets/header.jpeg';
+import { Box, Button, Icon, Skeleton, Text } from '@chakra-ui/react';
+import React, { useEffect, useRef } from 'react';
 import UserForm from '../modal/UserForm';
 import { useState } from 'react';
-import one from '../assets/header2.jpeg';
-import logo from '../assets/logo/logo.png';
+import Nav from '../nav/Nav';
+import getAllHeroImage from '../apis/getAllHeroImage';
+import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
+import Search from './search/Search';
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+import './Hero.css';
+import MobileSearch from './mobileSearch/MobileSearch';
 
 const Hero = () => {
 	const [modalState, setModalState] = useState(false);
+	const [images, setImages] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [city, setCity] = useState('');
+	const [location, setLocation] = useState('');
+	const imgRef = useRef();
+	const splide_ref = useRef();
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const prev = useRef();
+	const next = useRef();
 
-	useEffect(() => {
+	const makeItMove = (len) => {
 		let slides = document.querySelector('.slides');
-		const allSlide = document.querySelectorAll('.slide');
 
 		let index = 0;
 
-		setInterval(() => {
+		const interval = setInterval(() => {
 			index++;
 			slides.style.transform = `translateX(-${100 * index}vw)`;
 			slides.style.transition = '1s';
-			if (index === 3) {
+			if (index === len + 1) {
 				slides.style.transition = 'none';
 				slides = document.querySelector('.slides');
 				index = 0;
 				slides.style.transform = `translateX(-${100 * index}vw)`;
 			}
 		}, 3000);
-	});
+
+		return interval;
+	};
+
+	useEffect(() => {
+		// let interval = undefined;
+		const getImages = async () => {
+			try {
+				const response = await getAllHeroImage();
+				console.log('hero response is : ', response);
+				setImages((prev) => response.data.heroImages);
+				setLoading(false);
+			} catch (error) {
+				console.log('something went wrong');
+			}
+		};
+		getImages();
+	}, []);
 
 	return (
 		<>
-			<Box
-				h='500px'
-				w='100vw'
-				mb={{ base: '130px', lg: '100px' }}
-				position={'relative'}
-			>
-				<Box
-					position={'absolute'}
-					top='0'
-					left={{ base: '50%', lg: '0' }}
-					transform={{ base: 'translateX(-50%)', lg: 'none' }}
-					zIndex={100}
-				>
-					<Image src={logo} h='100px' />
-				</Box>
-				<UserForm state={modalState} setState={setModalState} />
-				<Box className='slides' display={'flex'}>
-					<Box
-						className='slide'
-						w={'100vw'}
-						h='500px'
-						bgImage={hero}
-						bgSize='cover'
-						bgPos={'50% 50%'}
-						flexShrink={'0'}
-						pt={{ base: 100, lg: 130 }}
-						position='relative'
-						textTransform={'uppercase'}
-						overflow='hidden'
-					>
-						<Text
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
-							bg='rgba(0,0,0,.1)'
-							className='font'
-							color={'white'}
-							position='absolute'
-							top={{ base: '50%', lg: '30%' }}
-							left={{ base: '50%', lg: '30px' }}
-							transform={{
-								base: 'translateY(-50%) translateX(-50%)',
-								lg: 'none',
-							}}
-							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 400 }}
-							lineHeight={1}
-							textAlign={{ base: 'center', lg: 'start' }}
-						>
-							It's time for you to <br />
-							experience the inexperienced
-						</Text>
+			{loading ? (
+				<Skeleton h='500px' />
+			) : (
+				<Box className='hero'>
+					<Box pos={'absolute'} zIndex={100}>
+						<Nav />
 					</Box>
-					<Box
-						className='slide'
-						w={'100vw'}
-						h='500px'
-						bgImage={one}
-						bgSize='cover'
-						bgPos={'50% 50%'}
-						flexShrink={'0'}
-						pt={{ base: 100, lg: 130 }}
-						position='relative'
-						overflow='hidden'
-					>
-						<Text
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
-							bg='rgba(0,0,0,.1)'
-							color={'white'}
-							position='absolute'
-							top={{ base: '50%', lg: '30%' }}
-							left={{ base: '50%', lg: '30px' }}
-							transform={{
-								base: 'translateY(-50%) translateX(-50%)',
-								lg: 'none',
-							}}
-							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 400 }}
-							lineHeight={1}
-							textAlign={{ base: 'center', lg: 'start' }}
-							textTransform={'uppercase'}
-						>
-							A wishful escape to <br /> your desired destination
-						</Text>
-					</Box>
-					<Box
-						className='slide'
-						w={'100vw'}
-						h='500px'
-						bgImage={hero}
-						bgSize='cover'
-						bgPos={'50% 50%'}
-						flexShrink={'0'}
-						pt={{ base: 100, lg: 130 }}
-						position='relative'
-						overflow='hidden'
-					>
-						<Text
-							boxShadow={'0 0 0 1000px rgba(0,0,0,.1)'}
-							bg='rgba(0,0,0,.1)'
-							color={'white'}
-							position='absolute'
-							top={{ base: '50%', lg: '30%' }}
-							left={{ base: '50%', lg: '30px' }}
-							transform={{
-								base: 'translateY(-50%) translateX(-50%)',
-								lg: 'none',
-							}}
-							fontSize={{ base: 50, lg: 60 }}
-							fontWeight={{ base: 400, lg: 400 }}
-							lineHeight={1}
-							textAlign={{ base: 'center', lg: 'start' }}
-							textTransform={'uppercase'}
-						>
-							It's time for you to <br /> experience the
-							inexperienced
-						</Text>
-					</Box>
-				</Box>
-				<Box
-					mt={{ base: 10, lg: 5 }}
-					w={{ base: '100%', lg: '70%' }}
-					h='100px'
-					borderRadius={{ base: '0', lg: 'xl' }}
-					display={{
-						base: modalState ? 'none' : 'flex',
-						lg: 'flex',
-					}}
-					justifyContent={{ base: 'center', lg: 'start' }}
-					alignItems={{ base: 'center' }}
-					position={{ base: 'fixed', lg: 'absolute' }}
-					bottom={{ base: 1, lg: '120px' }}
-					right={0}
-					left={{ lg: '50px' }}
-					zIndex={{ base: 10000000, lg: 1 }}
-				>
-					<Button
-						fontSize={20}
-						color='white'
-						bg='#32BAC9'
-						w={{ base: '90%', lg: '150px' }}
-						h='50px'
-						_hover={{
-							background: '#32BAC9',
+					{/* <Box pos={'absolute'} zindex={102}></Box> */}
+					<Splide
+						aria-label='images'
+						options={{
+							type: 'loop',
+							gap: '1rem',
+							autoplay: true,
+							pauseOnHover: false,
+							resetProgress: false,
+							height: '500px',
+							interval: 5000,
+							transition: 'slide',
 						}}
-						onClick={() => {
-							setModalState(true);
+						hasTrack={false}
+						ref={splide_ref}
+						onMove={(e) => {
+							setCurrentIndex(e.index);
 						}}
 					>
-						Discover Now
-					</Button>
+						<div className='splide__arrows'>
+							<div className='orange_bar'></div>
+							<p className='slider_city'>
+								{images[currentIndex].city}
+							</p>
+							<p className='slider_location'>
+								{images[currentIndex].location}
+							</p>
+							<div className='slider_controls'>
+								<button
+									className='splide__arrow splide__arrow--prev'
+									ref={prev}
+								>
+									<Icon
+										as={AiOutlineLeftCircle}
+										transform='rotate(180deg)'
+										fontSize='24px'
+										color='#fff !important'
+									/>
+								</button>
+								<button
+									className='splide__arrow splide__arrow--next'
+									ref={next}
+								>
+									<Icon
+										as={AiOutlineRightCircle}
+										fontSize='24px'
+										fill='#fff'
+									/>
+								</button>
+							</div>
+						</div>
+						{window.innerWidth <= 991 ? (
+							<MobileSearch />
+						) : (
+							<Search />
+						)}
+						<Box>
+							<SplideTrack>
+								{images.map((data, index) => {
+									return (
+										<SplideSlide key={index}>
+											<Box
+												w='100vw'
+												h='500px'
+												position={'relative'}
+												overflowX='hidden'
+											>
+												{data.imageUrl[0]
+													.resource_type ===
+												'video' ? (
+													<Box w='100%' h='100%'>
+														<video
+															autoPlay
+															muted
+															loop
+															style={{
+																height: '100%',
+																width: '100%',
+																objectFit:
+																	'cover',
+															}}
+														>
+															<source
+																src={
+																	data
+																		.imageUrl[0]
+																		.url
+																}
+															/>
+														</video>
+													</Box>
+												) : (
+													<Box
+														w='100%'
+														h='100%'
+														bgImage={
+															data.imageUrl[0].url
+														}
+														bgSize='cover'
+														bgPos={'50% 50%'}
+													></Box>
+												)}
+												<Text
+													w={{
+														base: 'calc(100vw - 20px)',
+														lg: '50%',
+													}}
+													bg='rgba(0,0,0,.1)'
+													boxShadow={
+														'0 0 0  1000px rgba(0,0,0,.1)'
+													}
+													color={'white'}
+													position='absolute'
+													top={{
+														base: '40%',
+														lg: '30%',
+													}}
+													left={{
+														base: '50%',
+														lg: '30px',
+													}}
+													transform={{
+														base: 'translateX(-50%) translateY(-50%)',
+														lg: 'none',
+													}}
+													fontSize={50}
+													fontWeight={500}
+													lineHeight={1}
+													textAlign={{
+														base: 'center',
+														lg: 'start',
+													}}
+												>
+													{data.title}
+												</Text>
+											</Box>
+										</SplideSlide>
+									);
+								})}
+							</SplideTrack>
+						</Box>
+					</Splide>
 				</Box>
-			</Box>
+			)}
 		</>
 	);
 };

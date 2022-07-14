@@ -1,0 +1,52 @@
+.rdp {
+	width: fit-content;
+	height: fit-content;
+	margin: 0;
+}
+
+.rdp-months {
+	display: inline-flex;
+}
+
+.rdp-day_selected:not([disabled]),
+.rdp-day_selected:focus:not([disabled]),
+.rdp-day_selected:active:not([disabled]),
+.rdp-day_selected:hover:not([disabled]) {
+	background-color: #141177;
+	border: none;
+}
+
+.rdp-day_selected:hover {
+	background: green;
+}
+
+.rdp-button:hover:not([disabled]) {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.rdp-nav_button:hover:not([disabled]) {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.rdp-button_reset .rdp-button .rdp-nav_button .rdp-nav_button_next {
+}
+
+.rdp-button {
+	border: none;
+}
+
+.rdp-button:focus {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	border: none;
+	outline: none;
+}
+
+/* .rdp-button:active {
+	border: none;
+	outline: none;
+} */
+
+.rdp-button:focus:not([disabled]),
+.rdp-button:active:not([disabled]) {
+	border: none;
+}
