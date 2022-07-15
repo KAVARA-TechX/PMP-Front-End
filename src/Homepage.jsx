@@ -439,11 +439,11 @@ const Homepage = () => {
 					<Suspense fallback={<LoadingForFacts />}>
 						<Facts />
 					</Suspense>
-					<Suspense fallback={<LoadingDreamVacation />}>
-						<DreamVacation />
-					</Suspense>
 					<Suspense fallback={<LoadingPackages />}>
 						<Packages />
+					</Suspense>
+					<Suspense fallback={<LoadingDreamVacation />}>
+						<DreamVacation />
 					</Suspense>
 					<SpaceBetween space='50px' />
 					<Suspense fallback={<LoadingBanner />}>

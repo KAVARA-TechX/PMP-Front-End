@@ -84,6 +84,12 @@ const Search = () => {
 		},
 	});
 
+	useEffect(() => {
+		if (location.length === 0) {
+			onClose();
+		}
+	}, [location]);
+
 	return (
 		<Box
 			position='absolute'
@@ -141,13 +147,15 @@ const Search = () => {
 						/>
 					</PopoverTrigger>
 					<PopoverContent
-						w={'200px'}
+						w={'250px'}
 						maxH='250px'
 						overflowY={'scroll'}
 						ref={ref}
 						position='relative'
 						top='-10px'
 						bg='#fffdf7'
+						left='55px'
+						borderRadius={'8px'}
 					>
 						<PopoverBody>
 							{c_list

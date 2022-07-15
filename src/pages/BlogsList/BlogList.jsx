@@ -67,11 +67,6 @@ const Blog = ({ data }) => {
 				</Text>
 				{/* chunck of blog body */}
 				<Text display={'inline-block'}>
-					{/* Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's
-					standard dummy text ever since the 1500s, when an unknown
-					printer took a galley of type and scrambled it to make a
-					type specimen book. */}
 					{data.blogBody
 						? data.blogBody.replace(/(<([^>]+)>)/gi, '').length >
 						  200
@@ -82,9 +77,6 @@ const Blog = ({ data }) => {
 						: ''}
 				</Text>
 				<Box position={'absolute'} bottom={0}>
-					{/* <Text display={'inline-block'} pr={5} color='gray.600'>
-						3 min Read
-					</Text> */}
 					<Text display={'inline-block'} color='gray.600'>
 						{monthName[ca.getMonth()]} {ca.getDate()}
 					</Text>
@@ -129,7 +121,7 @@ const BlogList = () => {
 				pr='9vw'
 				pt='7vw'
 				position={'relative'}
-				bg='#222222'
+				pb='50px'
 			>
 				{/* heading */}
 				<Box pb={5}>

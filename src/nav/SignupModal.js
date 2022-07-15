@@ -10,6 +10,7 @@ import {
 	Icon,
 	Input,
 	useToast,
+	Image,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
@@ -17,6 +18,7 @@ import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
 import SignupApi from '../apis/SignupApi';
 import googleLoginApi from '../apis/googleLoginApi';
+import googleIcon from '../assets/logo/icons8-google.svg';
 
 const SignupModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure(open);
@@ -134,9 +136,9 @@ const SignupModal = ({ open, setOpen }) => {
 			<ModalOverlay />
 			<ModalContent bg='transparent' position={'relative'}>
 				<Box
-					w='500px'
+					w={{ base: '95vw', lg: '500px' }}
 					h='fit-content'
-					bg='#222222'
+					bg='#fffdf7'
 					position={'absolute'}
 					top='50%'
 					left='50%'
@@ -217,10 +219,11 @@ const SignupModal = ({ open, setOpen }) => {
 								}}
 							/>
 							<Button
-								bg='#32BAC9'
-								_hover={{ backgroundColor: '#32BAC9' }}
+								bg='#141177'
+								_hover={{ backgroundColor: '#141177' }}
 								onClick={handleSignupRequest}
 								isLoading={loading}
+								color='white'
 							>
 								Signup
 							</Button>
@@ -238,13 +241,42 @@ const SignupModal = ({ open, setOpen }) => {
 								top: '0',
 								left: '50%',
 								transform: 'translateY(-50%) translateX(-50%)',
-								background: '#222',
+								background: '#fffdf7',
 								paddingLeft: '5px',
 								paddingRight: '5px',
 								textAlign: 'center',
 							}}
 						></Box>
-						<Box ref={gSigupButton}></Box>
+						<Box w='100%' display={'flex'} justifyContent='center'>
+							<Button
+								w='80%'
+								bg='white'
+								p='5px'
+								color='black'
+								fontWeight={400}
+								border='1px solid rgba(0,0,0,.1)'
+								display={'flex'}
+								gap='10px'
+								alignItems={'center'}
+								onClick={() => {
+									console.log(
+										document
+											.getElementById(
+												'google_signup_button'
+											)
+											.childNodes[0].childNodes[0].childNodes[0].click()
+									);
+								}}
+							>
+								<Image h='20px' src={googleIcon} />{' '}
+								<Text>Sign in with Google</Text>
+							</Button>
+						</Box>
+						<Box
+							id='google_signup_button'
+							display={'none'}
+							ref={gSigupButton}
+						></Box>
 					</>
 				</Box>
 			</ModalContent>

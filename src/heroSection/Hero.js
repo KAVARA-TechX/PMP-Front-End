@@ -22,6 +22,7 @@ const Hero = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const prev = useRef();
 	const next = useRef();
+	const video = useRef(null);
 
 	const makeItMove = (len) => {
 		let slides = document.querySelector('.slides');
@@ -44,6 +45,8 @@ const Hero = () => {
 	};
 
 	useEffect(() => {
+		// this is to autoplay video on safari
+
 		// let interval = undefined;
 		const getImages = async () => {
 			try {
@@ -57,6 +60,35 @@ const Hero = () => {
 		};
 		getImages();
 	}, []);
+
+	useEffect(() => {
+		let isSafari = /^((?!chrome|android).)*safari/i.test(
+			navigator.userAgent
+		);
+
+		if (isSafari && video.current) {
+			console.log('we got the element : ', video.current);
+			// video.current.controls = false;
+			// video.current.playsinline = true;
+			// video.current.muted = true;
+			// video.current.autoPlay = true;
+			video.current.click();
+
+			// if (promise !== undefined) {
+			// 	promise
+			// 		.catch((error) => {
+			// 			console.log('auto play was prevented');
+			// 		})
+			// 		.then(() => {
+			// 			console.log('video play should start');
+			// 		});
+			// }
+
+			// setTimeout(() => {
+			// 	const promise = video.current.play();
+			// }, 0);
+		}
+	});
 
 	return (
 		<>
@@ -77,7 +109,7 @@ const Hero = () => {
 							pauseOnHover: false,
 							resetProgress: false,
 							height: '500px',
-							interval: 5000,
+							interval: 15000,
 							transition: 'slide',
 						}}
 						hasTrack={false}
@@ -139,9 +171,11 @@ const Hero = () => {
 												'video' ? (
 													<Box w='100%' h='100%'>
 														<video
-															autoPlay
-															muted
+															ref={video}
+															autoPlay='autoplay'
 															loop
+															muted
+															playsInline
 															style={{
 																height: '100%',
 																width: '100%',
