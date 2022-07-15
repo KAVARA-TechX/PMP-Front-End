@@ -11,9 +11,9 @@ const Cancellation = () => {
 		<>
 			<Nav />
 			<Box>
-				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+				<Box bg='rgba(14, 135, 246,.25)' pt={'50px'} pb='100px'>
 					<Text
-						fontSize={30}
+						fontSize={{ base: 24, lg: 30 }}
 						fontWeight={700}
 						color='#222'
 						textAlign={'center'}
@@ -22,21 +22,22 @@ const Cancellation = () => {
 					</Text>
 				</Box>
 				<Text
-					mx='15vw'
-					px='50px'
+					mx={{ base: '20px', lg: '15vw' }}
+					px={{ base: '10px', lg: '50px' }}
 					py='50px'
 					borderRadius={'10px'}
 					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
-					fontSize={18}
+					fontSize={{ base: 14, lg: 16 }}
 					fontWeight={400}
 					textAlign='justify'
 					position={'relative'}
 					bottom='50px'
-					background='#222'
+					background='#fffdf7'
+					boxShadow={'lg'}
 					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						General
 					</Text>
 					<Text>
@@ -59,7 +60,7 @@ const Cancellation = () => {
 						date. Any change in refund amount will be communicated
 						to customers by their respective account owners.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Flights
 					</Text>
 					<UnorderedList>
@@ -133,7 +134,7 @@ const Cancellation = () => {
 							completely by the airline carrier.
 						</ListItem>
 					</UnorderedList>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Hotels
 					</Text>
 					<UnorderedList>
@@ -172,7 +173,7 @@ const Cancellation = () => {
 							requests.
 						</ListItem>
 					</UnorderedList>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Activities
 					</Text>
 					<UnorderedList>
@@ -195,7 +196,7 @@ const Cancellation = () => {
 							rates.
 						</ListItem>
 					</UnorderedList>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Transfers
 					</Text>
 					<UnorderedList>
@@ -211,7 +212,7 @@ const Cancellation = () => {
 							rates.
 						</ListItem>
 					</UnorderedList>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Visa & Insurance
 					</Text>
 					<UnorderedList>
