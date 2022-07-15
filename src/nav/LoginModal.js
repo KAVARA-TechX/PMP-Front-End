@@ -10,12 +10,14 @@ import {
 	Icon,
 	Input,
 	useToast,
+	Image,
 } from '@chakra-ui/react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AccessLoginContext } from '../context/LoginContext';
 import LoginApi from '../apis/LoginApi';
 import googleLoginApi from '../apis/googleLoginApi';
 import jwt_decode from 'jwt-decode';
+import googleIcon from '../assets/logo/icons8-google.svg';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -112,9 +114,9 @@ const LoginModal = ({ open, setOpen }) => {
 			<ModalOverlay />
 			<ModalContent bg='transparent' position={'relative'}>
 				<Box
-					w='500px'
+					w={{ base: '95vw', lg: '500px' }}
 					h='fit-content'
-					bg='#222222'
+					bg='#fffdf7'
 					position={'absolute'}
 					top='50%'
 					left='50%'
@@ -125,6 +127,7 @@ const LoginModal = ({ open, setOpen }) => {
 					alignItems={'center'}
 					pb='30px'
 					pt='20px'
+					px='20px'
 				>
 					<Box
 						position={'absolute'}
@@ -170,10 +173,11 @@ const LoginModal = ({ open, setOpen }) => {
 							}}
 						/>
 						<Button
-							bg='#32BAC9'
-							_hover={{ backgroundColor: '#32BAC9' }}
+							bg='#141177'
+							_hover={{ backgroundColor: '#141177' }}
 							onClick={handleLogin}
 							isLoading={loading}
+							color='white'
 						>
 							Login
 						</Button>
@@ -181,7 +185,7 @@ const LoginModal = ({ open, setOpen }) => {
 					<Box
 						w='70%'
 						h='2px'
-						bg='rgba(255,255,255,.2)'
+						bg='#fffdf7'
 						mb='30px'
 						position={'relative'}
 						_after={{
@@ -191,14 +195,43 @@ const LoginModal = ({ open, setOpen }) => {
 							top: '0',
 							left: '50%',
 							transform: 'translateY(-50%) translateX(-50%)',
-							background: '#222',
+							background: '#fffdf7',
 							paddingLeft: '5px',
 							paddingRight: '5px',
 							textAlign: 'center',
 						}}
 					></Box>
 
-					<Box id='google_login_button' ref={gLoginButton}></Box>
+					<Box w='100%' display={'flex'} justifyContent='center'>
+						<Button
+							w='80%'
+							bg='white'
+							p='5px'
+							color='black'
+							fontWeight={400}
+							border='1px solid rgba(0,0,0,.1)'
+							display={'flex'}
+							gap='10px'
+							alignItems={'center'}
+							onClick={() => {
+								console.log(
+									document
+										.getElementById('google_login_button')
+										.childNodes[0].childNodes[0].childNodes[0].click()
+								);
+							}}
+						>
+							<Image h='20px' src={googleIcon} />{' '}
+							<Text>Sign in with Google</Text>
+						</Button>
+					</Box>
+
+					<div
+						id='google_login_button'
+						ref={gLoginButton}
+						bg='#fffdf7'
+						dataWidth='328'
+					></div>
 				</Box>
 			</ModalContent>
 		</Modal>

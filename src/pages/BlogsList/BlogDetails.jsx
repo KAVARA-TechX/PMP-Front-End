@@ -20,7 +20,7 @@ const BlogDetails = () => {
 		<>
 			<Nav />
 			<Box
-				px={{ base: '2vw', lg: '9vw' }}
+				px={{ base: '20px', lg: '9vw' }}
 				pt='50px'
 				overflow={'hidden'}
 				bg='#f5f5f5'

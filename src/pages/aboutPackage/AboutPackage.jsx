@@ -578,7 +578,7 @@ const AboutPackage = () => {
 											color={
 												numberOfAdults === 1
 													? 'gray'
-													: '#32BAC9'
+													: 'rgba(20, 17, 119,1)'
 											}
 											onClick={() => {
 												if (numberOfAdults !== 1) {
@@ -593,7 +593,7 @@ const AboutPackage = () => {
 										<Icon
 											as={AiOutlinePlusCircle}
 											cursor='pointer'
-											color={'#32BAC9'}
+											color={'rgba(20, 17, 119,1)'}
 											onClick={() => {
 												setNumberOfAdults(
 													(prev) => prev + 1
@@ -618,7 +618,7 @@ const AboutPackage = () => {
 											color={
 												numberOfChilds === 0
 													? 'gray'
-													: '#32BAC9'
+													: 'rgba(20, 17, 119,1)'
 											}
 											onClick={() => {
 												if (numberOfChilds !== 0) {
@@ -632,7 +632,7 @@ const AboutPackage = () => {
 										<Icon
 											as={AiOutlinePlusCircle}
 											cursor='pointer'
-											color={'#32BAC9'}
+											color={'rgba(20, 17, 119,1)'}
 											onClick={() => {
 												setNumberOfChlids(
 													(prev) => prev + 1
@@ -642,17 +642,18 @@ const AboutPackage = () => {
 									</Text>
 									<Box flexGrow={2}></Box>
 									<Button
-										bg='#32BAC9'
+										bg='rgba(20, 17, 119,1)'
 										px='15px'
 										py='10px'
 										w='80%'
 										fontWeight={600}
+										color='white'
 										borderRadius={'md'}
 										textAlign='center'
 										onClick={handlePackageRequest}
 										cursor='pointer'
 										_hover={{
-											background: '#32bac9',
+											background: 'rgba(20, 17, 119,1)',
 										}}
 										isLoading={loading}
 									>
@@ -711,14 +712,7 @@ const AboutPackage = () => {
 				<></>
 			) : (
 				<>
-					<Box
-						h='500px'
-						// bgImage={pkgData.image[0].url}
-						// bgSize='cover'
-						// bgPos={'50% 90%'}
-						position={'relative'}
-						color='#fff'
-					>
+					<Box h='500px' position={'relative'} color='#fff'>
 						<Box position={'absolute'} top={0} zIndex={10}>
 							<Nav />
 						</Box>
@@ -739,19 +733,25 @@ const AboutPackage = () => {
 										display={'inline-flex'}
 										alignItems='center'
 									>
-										<StarIcon color='gold' />
-										<StarIcon color='gold' />
-										<StarIcon color='gold' />
-										<Icon
-											as={AiOutlineStar}
-											color='gold'
-											fontSize={20}
-										/>
-										<Icon
-											as={AiOutlineStar}
-											color='gold'
-											fontSize={20}
-										/>
+										{[1, 2, 3, 4, 5].map((val, index) => {
+											if (val <= pkgData.star) {
+												return (
+													<StarIcon
+														key={index}
+														color='gold'
+													/>
+												);
+											} else {
+												return (
+													<Icon
+														key={index}
+														as={AiOutlineStar}
+														color='gold'
+														fontSize={20}
+													/>
+												);
+											}
+										})}
 									</Box>
 									<Box
 										display={'inline-flex'}
@@ -764,7 +764,7 @@ const AboutPackage = () => {
 											p={0}
 										/>
 										<Text display={'inline-block'}>
-											Somewhere . 40m from airport
+											{pkgData.destination}
 										</Text>
 									</Box>
 								</Text>
@@ -817,10 +817,10 @@ const AboutPackage = () => {
 						minH='100vh'
 						position={'relative'}
 						px={{ base: '20px', lg: '9vw' }}
-						pt='50px'
+						pt={{ base: '5px', lg: '50px' }}
 						pb='50px'
 					>
-						<Box w={{ base: '100%', lg: 'calc(100vw - 590px)' }}>
+						<Box w={{ base: '100%', lg: '50vw' }}>
 							<Box mt='30px'>
 								<Text fontSize={'24px'} fontWeight={600}>
 									Details
@@ -862,15 +862,17 @@ const AboutPackage = () => {
 									Resorts
 								</Text>
 								<UnorderedList fontSize={'20px'}>
-									{/* {pkgData.resorts.map((data, index) => {
-										return data === '' ? (
-											<></>
-										) : (
-											<ListItem key={index}>
-												{data}
-											</ListItem>
-										);
-									})} */}
+									{pkgData.resorts.values.map(
+										(data, index) => {
+											return data === '' ? (
+												<></>
+											) : (
+												<ListItem key={index}>
+													{data}
+												</ListItem>
+											);
+										}
+									)}
 								</UnorderedList>
 							</Box>
 							<Box mt='30px'>
@@ -879,6 +881,14 @@ const AboutPackage = () => {
 								</Text>
 								<Text fontSize={'20px'} pl='5px'>
 									{pkgData.roomType}
+								</Text>
+							</Box>
+							<Box mt='30px'>
+								<Text fontSize={'24px'} fontWeight={600}>
+									Itinerary
+								</Text>
+								<Text fontSize={'20px'} pl='5px'>
+									{pkgData.itinerary}
 								</Text>
 							</Box>
 						</Box>
@@ -927,7 +937,7 @@ const AboutPackage = () => {
 									<Button
 										h='100%'
 										isLoading={booknowLoading}
-										bg='#0e87f6'
+										bg='rgba(20, 17, 119,1)'
 										py='20px'
 										fontSize={20}
 										borderRadius='xl'
@@ -939,15 +949,17 @@ const AboutPackage = () => {
 												? set_book_modal_state(true)
 												: loginclick.click();
 										}}
-										_hover={{ background: '#0e87f6' }}
+										_hover={{
+											background: 'rgba(20, 17, 119,1)',
+										}}
 									>
 										Book Now
 									</Button>
 									<Button
 										h='100%'
 										bg='transparent'
-										color='#0e87f6'
-										border='3px solid #0e87f6'
+										color='rgba(20, 17, 119,1)'
+										border='3px solid rgba(20, 17, 119,1)'
 										py='18px'
 										fontSize={20}
 										borderRadius='xl'
@@ -955,7 +967,7 @@ const AboutPackage = () => {
 										flexGrow={1}
 										cursor='pointer'
 										_hover={{
-											background: '#0e87f6',
+											background: 'rgba(20, 17, 119,1)',
 											color: 'white',
 										}}
 										onClick={() => {

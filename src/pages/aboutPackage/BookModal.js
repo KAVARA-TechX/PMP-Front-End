@@ -442,7 +442,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 										color={
 											numberOfAdults === 1
 												? 'gray'
-												: '#32BAC9'
+												: 'rgba(20, 17, 119,1)'
 										}
 										onClick={() => {
 											if (numberOfAdults !== 1) {
@@ -457,7 +457,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 									<Icon
 										as={AiOutlinePlusCircle}
 										cursor='pointer'
-										color={'#32BAC9'}
+										color={'rgba(20, 17, 119,1)'}
 										onClick={() => {
 											setNumberOfAdults(
 												(prev) => prev + 1
@@ -482,7 +482,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 										color={
 											numberOfChilds === 0
 												? 'gray'
-												: '#32BAC9'
+												: 'rgba(20, 17, 119,1)'
 										}
 										onClick={() => {
 											if (numberOfChilds !== 0) {
@@ -496,7 +496,7 @@ const BookModal = ({ state, changeState, pkgData }) => {
 									<Icon
 										as={AiOutlinePlusCircle}
 										cursor='pointer'
-										color={'#32BAC9'}
+										color={'rgba(20, 17, 119,1)'}
 										onClick={() => {
 											setNumberOfChlids(
 												(prev) => prev + 1
@@ -506,18 +506,19 @@ const BookModal = ({ state, changeState, pkgData }) => {
 								</Text>
 								<Box flexGrow={2}></Box>
 								<Button
-									bg='#32BAC9'
+									bg='rgba(20, 17, 119,1)'
 									px='15px'
 									py='10px'
 									w='80%'
 									fontWeight={600}
 									borderRadius={'md'}
+									color='white'
 									textAlign='center'
 									// onClick={handlePackageRequest}
 									onClick={handleBookNow}
 									cursor='pointer'
 									_hover={{
-										background: '#32bac9',
+										background: 'rgba(20, 17, 119,1)',
 									}}
 									isLoading={loading}
 								>

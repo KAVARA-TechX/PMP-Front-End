@@ -40,7 +40,8 @@ body {
 }
 
 #google_login_button {
-	background: green;
+	/*  */
+	display: none;
 }
 
 #facts_video {
