@@ -11,9 +11,9 @@ const PrivacyPolicy = () => {
 		<>
 			<Nav />
 			<Box>
-				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+				<Box bg='rgba(14, 135, 246,.25)' pt={'50px'} pb='100px'>
 					<Text
-						fontSize={30}
+						fontSize={{ base: 24, lg: 30 }}
 						fontWeight={700}
 						color='#222'
 						textAlign={'center'}
@@ -22,18 +22,19 @@ const PrivacyPolicy = () => {
 					</Text>
 				</Box>
 				<Text
-					mx='15vw'
-					px='50px'
+					mx={{ base: '20px', lg: '15vw' }}
+					px={{ base: '10px', lg: '50px' }}
 					py='50px'
 					borderRadius={'10px'}
 					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
-					fontSize={18}
+					fontSize={{ base: 14, lg: 16 }}
 					fontWeight={400}
 					textAlign='justify'
 					position={'relative'}
 					bottom='50px'
-					background='#222'
+					background='#fffdf7'
+					boxShadow={'lg'}
 					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
 					<Text>
@@ -62,7 +63,7 @@ const PrivacyPolicy = () => {
 						this Privacy Policy at the time you provided us with
 						your personal information.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						What personal information we collect from you and how we
 						use it?
 					</Text>
@@ -72,7 +73,7 @@ const PrivacyPolicy = () => {
 						make a purchase or sign up for one of our e-mail
 						newsletters or other services as described below.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Making a Purchase
 					</Text>
 					<Text>
@@ -92,7 +93,7 @@ const PrivacyPolicy = () => {
 						each of these other travellers have agreed, in advance,
 						that you may disclose their personal information to us.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Member Registration
 					</Text>
 					<Text>
@@ -125,7 +126,7 @@ const PrivacyPolicy = () => {
 							</ListItem>
 						</UnorderedList>
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Access to information
 					</Text>
 					<Text>
@@ -153,7 +154,7 @@ const PrivacyPolicy = () => {
 						no longer receive these types of e-mail messages. Please
 						see our Opt-out Policy described below for details.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Member Profile
 					</Text>
 					<Text>
@@ -166,7 +167,7 @@ const PrivacyPolicy = () => {
 						reservations quickly without having to type in the same
 						information repeatedly.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Online Surveys
 					</Text>
 					<Text>
@@ -180,7 +181,7 @@ const PrivacyPolicy = () => {
 						participants are anonymous unless otherwise stated in
 						the survey.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Promotions & Sweepstakes
 					</Text>
 					<Text>
@@ -193,7 +194,7 @@ const PrivacyPolicy = () => {
 						information to develop promotions and product
 						improvements to the planmyleisure.com site.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Automatic Logging of Session Data
 					</Text>
 					<Text>
@@ -217,7 +218,7 @@ const PrivacyPolicy = () => {
 						the approximate geographic location of his or her point
 						of connectivity.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Cookies
 					</Text>
 					<Text>
@@ -284,7 +285,7 @@ const PrivacyPolicy = () => {
 						possible to block cookie activity from certain websites
 						while permitting cookies from sites you trust, like PML.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Other
 					</Text>
 					<Text>
@@ -298,7 +299,7 @@ const PrivacyPolicy = () => {
 						store such information to assist us in making the site
 						the better and easier to use.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						With whom (if anyone) is your personal information is
 						shared?
 					</Text>
@@ -331,7 +332,7 @@ const PrivacyPolicy = () => {
 						confidentiality agreement and is to be used solely for
 						completing the specific project.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						How you can opt-out of receiving our promotional
 						communications?
 					</Text>
@@ -351,7 +352,7 @@ const PrivacyPolicy = () => {
 						membership to those who will accept e-mails. Members
 						will be notified via e-mail prior to any actions taken.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						What safeguards we have in place to protect your
 						personal information?
 					</Text>
@@ -364,7 +365,7 @@ const PrivacyPolicy = () => {
 						you send it to us. The same process happens when you
 						make travel purchases on the planmyleisure.com site.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						What other information should I know about my privacy?
 					</Text>
 					<Text>
