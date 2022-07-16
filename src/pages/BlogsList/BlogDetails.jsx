@@ -10,11 +10,10 @@ import './blogDetails.css';
 const BlogDetails = () => {
 	const val = useLocation();
 	const blogData = val.state;
-	console.log(blogData);
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-	console.log(blogData.blogBody);
 
 	return (
 		<>
@@ -45,7 +44,7 @@ const BlogDetails = () => {
 					lineHeight={1.9}
 					className='blog-details-container'
 				>
-					{parse(blogData.blogBody)}
+					{parse(blogData.blogBody.blogBody)}
 				</Box>
 			</Box>
 			<Footer />

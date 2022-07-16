@@ -123,106 +123,116 @@ const Blog = () => {
 							{latestBlogs[1].blogHeading}
 						</Box>
 					</Box>
-					{/*
-					<Box
-						bgImage={latestBlogs[2].imageUrl}
-						bgSize='cover'
-						w='100%'
-						h='200px'
-						borderRadius='md'
-						gridColumnStart={{ lg: 4 }}
-						gridColumnEnd={{ lg: 5 }}
-						display={'flex'}
-						alignItems='end'
-						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-						cursor={'pointer'}
-						onClick={() => {
-							navigate(`blogs/${latestBlogs[2]._id}`, {
-								state: latestBlogs[2],
-							});
-						}}
-						className='show'
-					>
+					{latestBlogs[2] === undefined ? (
+						<></>
+					) : (
 						<Box
+							bgImage={latestBlogs[2].imageUrl}
+							bgSize='cover'
 							w='100%'
-							h='100%'
-							display={'none'}
-							justifyContent='start'
-							alignItems={'end'}
-							fontSize='14px'
-							px='5px'
-							bg='rgba(0,0,0,.3)'
+							h='200px'
+							borderRadius='md'
+							gridColumnStart={{ lg: 4 }}
+							gridColumnEnd={{ lg: 5 }}
+							display={'flex'}
+							alignItems='end'
+							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate(`blogs/${latestBlogs[2]._id}`, {
+									state: latestBlogs[2],
+								});
+							}}
+							className='show'
 						>
-							{latestBlogs[2].blogHeading}
+							<Box
+								w='100%'
+								h='100%'
+								display={'none'}
+								justifyContent='start'
+								alignItems={'end'}
+								fontSize='14px'
+								px='5px'
+								bg='rgba(0,0,0,.3)'
+							>
+								{latestBlogs[2].blogHeading}
+							</Box>
 						</Box>
-					</Box>
-					
-					<Box
-						bgImage={latestBlogs[3].imageUrl}
-						bgSize='cover'
-						w='100%'
-						minH='200px'
-						borderRadius='md'
-						gridColumnStart={{ lg: 1 }}
-						gridColumnEnd={{ lg: 3 }}
-						gridRowStart={{ lg: 2 }}
-						gridRowEnd={{ lg: 3 }}
-						overflow='hidden'
-						display={'flex'}
-						alignItems='end'
-						cursor={'pointer'}
-						onClick={() => {
-							navigate(`blogs/${latestBlogs[3]._id}`, {
-								state: latestBlogs[3],
-							});
-						}}
-						className='show'
-					>
+					)}
+					{latestBlogs[3] === undefined ? (
+						<></>
+					) : (
 						<Box
+							bgImage={latestBlogs[3].imageUrl}
+							bgSize='cover'
 							w='100%'
-							h='100%'
-							display={'none'}
-							justifyContent='start'
-							alignItems={'end'}
-							fontSize='14px'
-							px='5px'
-							bg='rgba(0,0,0,.3)'
+							minH='200px'
+							borderRadius='md'
+							gridColumnStart={{ lg: 1 }}
+							gridColumnEnd={{ lg: 3 }}
+							gridRowStart={{ lg: 2 }}
+							gridRowEnd={{ lg: 3 }}
+							overflow='hidden'
+							display={'flex'}
+							alignItems='end'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate(`blogs/${latestBlogs[3]._id}`, {
+									state: latestBlogs[3],
+								});
+							}}
+							className='show'
 						>
-							{latestBlogs[3].blogHeading}
+							<Box
+								w='100%'
+								h='100%'
+								display={'none'}
+								justifyContent='start'
+								alignItems={'end'}
+								fontSize='14px'
+								px='5px'
+								bg='rgba(0,0,0,.3)'
+							>
+								{latestBlogs[3].blogHeading}
+							</Box>
 						</Box>
-					</Box>
-					<Box
-						bgImage={latestBlogs[4].imageUrl}
-						bgSize='cover'
-						w='100%'
-						h='200px'
-						gridColumn={{ lg: '3 / 5' }}
-						gridRow={{ lg: '2 / 3' }}
-						borderRadius='md'
-						display={'flex'}
-						alignItems='end'
-						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-						cursor={'pointer'}
-						onClick={() => {
-							navigate(`blogs/${latestBlogs[4]._id}`, {
-								state: latestBlogs[4],
-							});
-						}}
-						className='show'
-					>
+					)}
+					{latestBlogs[4] === undefined ? (
+						<></>
+					) : (
 						<Box
+							bgImage={latestBlogs[4].imageUrl}
+							bgSize='cover'
 							w='100%'
-							h='100%'
-							display={'none'}
-							justifyContent='start'
-							alignItems={'end'}
-							fontSize='14px'
-							px='5px'
-							bg='rgba(0,0,0,.3)'
+							h='200px'
+							gridColumn={{ lg: '3 / 5' }}
+							gridRow={{ lg: '2 / 3' }}
+							borderRadius='md'
+							display={'flex'}
+							alignItems='end'
+							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate(`blogs/${latestBlogs[4]._id}`, {
+									state: latestBlogs[4],
+								});
+							}}
+							className='show'
 						>
-							{latestBlogs[4].blogHeading}
+							<Box
+								w='100%'
+								h='100%'
+								display={'none'}
+								justifyContent='start'
+								alignItems={'end'}
+								fontSize='14px'
+								px='5px'
+								bg='rgba(0,0,0,.3)'
+							>
+								{latestBlogs[4].blogHeading}
+							</Box>
 						</Box>
-					</Box>
+					)}
 					<Box
 						bgImage={img4}
 						bgSize='cover'
@@ -231,7 +241,7 @@ const Blog = () => {
 						gridColumn={{ lg: '5 / 6' }}
 						gridRow={{ lg: '1 / 3' }}
 						borderRadius='md'
-						display={'flex'}
+						display={latestBlogs.length < 4 ? 'none' : 'flex'}
 						alignItems='end'
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 					>
@@ -252,7 +262,7 @@ const Blog = () => {
 						>
 							Read More
 						</Box>
-					</Box>*/}
+					</Box>
 				</Box>
 			)}
 		</Box>
