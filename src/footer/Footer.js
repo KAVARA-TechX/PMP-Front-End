@@ -1,13 +1,4 @@
-import {
-	Box,
-	Icon,
-	Text,
-	Image,
-	InputGroup,
-	Input,
-	InputRightElement,
-	Button,
-} from '@chakra-ui/react';
+import { Box, Icon, Text, Image } from '@chakra-ui/react';
 import {
 	FaFacebookF,
 	FaLinkedinIn,
@@ -113,7 +104,7 @@ const Footer = () => {
 						pt='20px'
 						display={{ base: 'none', lg: 'inline-block' }}
 					>
-						© Plan My Leisure 2020
+						© Plan My Leisure 2019
 					</Text>
 				</Box>
 				<Box display={'flex'} justifyContent='space-around' pt='30px'>
@@ -151,8 +142,15 @@ const Footer = () => {
 							>
 								For Brands
 							</Text>
-							<Text>Blog</Text>
-							<Text>Careers</Text>
+							<Text
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/blogs');
+								}}
+							>
+								Blog
+							</Text>
+							{/* <Text>Careers</Text> */}
 						</Box>
 					</Box>
 					<Box>
@@ -199,7 +197,7 @@ const Footer = () => {
 							>
 								Terms & Conditions
 							</Text>
-							<Text>Contact Us</Text>
+							{/* <Text>Contact Us</Text> */}
 						</Box>
 					</Box>
 				</Box>
@@ -287,7 +285,7 @@ const Footer = () => {
 						textAlign={'center'}
 						display={{ lg: 'none' }}
 					>
-						© Plan My Leisure 2020
+						© Plan My Leisure 2019
 					</Text>
 				</Box>
 			</Box>

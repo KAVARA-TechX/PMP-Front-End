@@ -44,6 +44,7 @@ const Nav = () => {
 
 	const handleLoignClick = () => {
 		setOpen((prev) => true);
+		onClose();
 	};
 
 	const handleSignupClick = () => {
@@ -81,7 +82,7 @@ const Nav = () => {
 				justifyContent={{ base: 'center', lg: 'space-between' }}
 				alignItems='center'
 				pl={{ base: 0, lg: 10 }}
-				pr={{ base: 0, lg: 10 }}
+				pr={{ base: 5, lg: 10 }}
 				bg={
 					path === '' ||
 					path === 'about-package' ||
@@ -105,7 +106,7 @@ const Nav = () => {
 
 				{/* options */}
 				<Box
-					display={{ base: 'none', lg: 'flex' }}
+					display={{ base: 'flex', lg: 'flex' }}
 					justifyContent='space-between'
 					// w={'20vw'}
 					textTransform='uppercase'
@@ -221,7 +222,7 @@ const Nav = () => {
 						</Menu>
 					</Box>
 				</Box>
-				<Box
+				{/* <Box
 					position={'absolute'}
 					display={{ base: 'inline-block', lg: 'none' }}
 					top={'20px'}
@@ -254,11 +255,13 @@ const Nav = () => {
 										display={'inline-block'}
 										cursor={'pointer'}
 										color={
-											path === '' ? '#32BAC9' : '#f5f5f5'
+											path === ''
+												? 'rgb(69, 64, 203)'
+												: '#f5f5f5'
 										}
 										borderBottom={
 											path === ''
-												? '1px solid #32bac9'
+												? '1px solid rgb(69, 64, 203)'
 												: 'none'
 										}
 										onClick={() => {
@@ -273,12 +276,12 @@ const Nav = () => {
 											cursor={'pointer'}
 											color={
 												path === 'blogs'
-													? '#32BAC9'
+													? 'rgb(69, 64, 203)'
 													: '#f5f5f5'
 											}
 											borderBottom={
 												path === 'blogs'
-													? '1px solid #32bac9'
+													? '1px solid  rgb(69, 64, 203)'
 													: 'none'
 											}
 											onClick={() => {
@@ -290,9 +293,33 @@ const Nav = () => {
 											Blogs
 										</Text>
 									</Box>
+									<Box>
+										<Text
+											cursor={'pointer'}
+											color={
+												path === 'packages'
+													? 'rgb(69, 64, 203)'
+													: '#f5f5f5'
+											}
+											borderBottom={
+												path === 'packages'
+													? '1px solid  rgb(69, 64, 203)'
+													: 'none'
+											}
+											onClick={() => {
+												navigate('/packages');
+											}}
+											fontSize={40}
+											flexGrow={2}
+										>
+											Packages
+										</Text>
+									</Box>
 									<Button
-										bg='#32BAC9'
-										_hover={{ backgroundColor: '#32bac9' }}
+										bg='rgb(69, 64, 203)'
+										_hover={{
+											backgroundColor: 'rgb(69, 64, 203)',
+										}}
 										color='white'
 										mt={'100px'}
 										fontSize={20}
@@ -304,7 +331,7 @@ const Nav = () => {
 							</DrawerContent>
 						</DrawerOverlay>
 					</Drawer>
-				</Box>
+				</Box> */}
 			</Box>
 		</>
 	);

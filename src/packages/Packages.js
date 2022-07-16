@@ -155,8 +155,8 @@ const Packages = () => {
 								className='pkg_card'
 								key={index}
 								display={'inline-block'}
-								h='350px'
-								w='230px'
+								h='370px'
+								w='255px'
 								bgImg={
 									data.image[0] === undefined
 										? 'https://source.unsplash.com/random'
