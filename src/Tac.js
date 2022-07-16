@@ -11,9 +11,9 @@ const Tac = () => {
 		<>
 			<Nav />
 			<Box>
-				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+				<Box bg='rgba(14, 135, 246,.25)' pt={'50px'} pb='100px'>
 					<Text
-						fontSize={30}
+						fontSize={{ base: 24, lg: 30 }}
 						fontWeight={700}
 						color='#222'
 						textAlign={'center'}
@@ -22,21 +22,22 @@ const Tac = () => {
 					</Text>
 				</Box>
 				<Text
-					mx='15vw'
-					px='50px'
+					mx={{ base: '20px', lg: '15vw' }}
+					px={{ base: '10px', lg: '50px' }}
 					py='50px'
 					borderRadius={'10px'}
 					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
-					fontSize={18}
+					fontSize={{ base: 14, lg: 16 }}
 					fontWeight={400}
 					textAlign='justify'
 					position={'relative'}
 					bottom='50px'
-					background='#222'
+					background='#fffdf7'
+					boxShadow={'lg'}
 					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Applicability of The Agreement
 					</Text>
 					<Text>
@@ -51,7 +52,7 @@ const Tac = () => {
 						PML are individually referred as 'party' to the
 						agreement and collective referred to as 'parties'.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						User's Responsibility of Cognizance
 					</Text>
 					<Text>
@@ -111,7 +112,7 @@ const Tac = () => {
 						Terms or other terms and guidelines contained within any
 						other PML document, then these terms shall control.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Third Party Account Information
 					</Text>
 					<Text>
@@ -135,7 +136,7 @@ const Tac = () => {
 						or without his knowledge. The User shall not use anyone
 						else's password at any time.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Confidentiality
 					</Text>
 					<Text>
@@ -145,7 +146,7 @@ const Tac = () => {
 						by law or to serve the purpose of this agreement and the
 						obligations of both the parties therein.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Website And Mobile App Usage
 					</Text>
 					<Text>
@@ -168,7 +169,7 @@ const Tac = () => {
 						revise, and delete any of the contents without giving
 						prior notice to any person.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Usage Of The Mobile Number Of The User By PML
 					</Text>
 					<Text>
@@ -198,7 +199,7 @@ const Tac = () => {
 						above or due to a wrong number or email id being
 						provided by the User for any reason whatsoever.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Onus Of The User
 					</Text>
 					<Text>
@@ -219,7 +220,7 @@ const Tac = () => {
 						regarding use of the services with respect to the
 						jurisdiction concerned for each transaction.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Insurance
 					</Text>
 					<Text>
@@ -237,7 +238,7 @@ const Tac = () => {
 						undertakings for acceptance of the claims by the
 						insurance company.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Force Majure Circumstances
 					</Text>
 					<Text>
@@ -313,7 +314,7 @@ const Tac = () => {
 						on any of its pages or on any links or on any of the
 						linked website pages.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Safety Of Data Downloaded
 					</Text>
 					<Text>
@@ -330,7 +331,7 @@ const Tac = () => {
 						information channels are free of any virus or such other
 						malwares.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Feedback From Customer And Solicitation
 					</Text>
 					<Text>
@@ -350,7 +351,7 @@ const Tac = () => {
 						on its website in accordance of which PML contacts,
 						solicits the user or shares the user's information.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Proprietary Rights
 					</Text>
 					<Text>
@@ -383,7 +384,7 @@ const Tac = () => {
 						could subject the User to personal liability or criminal
 						prosecution.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Visa Obligations of the User
 					</Text>
 					<Text>
@@ -395,7 +396,7 @@ const Tac = () => {
 						refund for the untraveled bookings due to any such
 						reason.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Indemnification
 					</Text>
 					<Text>
@@ -419,7 +420,7 @@ const Tac = () => {
 						general code of conduct and PML cannot be held
 						responsible for the same.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						PML at its sole discretion reserves the right to not to
 						accept any customer order without assigning any reason
 						thereof. Any contract to provide any service by PML is
@@ -470,7 +471,7 @@ const Tac = () => {
 						provider and to take strict legal action as PML deems
 						necessary.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Right To Cancellation In Case Of Invalid User
 						Information
 					</Text>
@@ -504,7 +505,7 @@ const Tac = () => {
 						denying/cancelling any bookings on account of suspected
 						fraud transactions.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Severability
 					</Text>
 					<Text>
@@ -515,7 +516,7 @@ const Tac = () => {
 						part of such provision and all other provisions of this
 						Agreement shall continue to be in full force and effect.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Headings
 					</Text>
 					<Text>
@@ -534,7 +535,7 @@ const Tac = () => {
 						Terms or other terms and guidelines contained within any
 						particular PML website, then these terms shall control.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Relationship
 					</Text>
 					<Text>
@@ -546,7 +547,7 @@ const Tac = () => {
 						no party shall have any authority to bind or shall be
 						deemed to be the agent of the other in any way.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Updation Of The Information By PML
 					</Text>
 					<Text>
@@ -566,7 +567,7 @@ const Tac = () => {
 						PML via the PML websites should not be relied upon for
 						any decisions.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Modification Of These Terms Of Use
 					</Text>
 					<Text>
@@ -576,7 +577,7 @@ const Tac = () => {
 						responsible for regularly reviewing these terms and
 						conditions.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Jurisdiction
 					</Text>
 					<Text>
@@ -586,7 +587,7 @@ const Tac = () => {
 						considers itself and intends to be subject to the
 						jurisdiction only of the courts of Chennai, India.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Responsibilities Of User Vis-a-Vis The Agreement
 					</Text>
 					<Text>
@@ -617,7 +618,7 @@ const Tac = () => {
 						the user agreement, is to discontinue using the services
 						after notifying PML in writing.
 					</Text>
-					<Text fontWeight={600} pt={10} fontSize={20}>
+					<Text fontWeight={600} pt={10} fontSize={18}>
 						Usage Of Customer's Holiday Pictures
 					</Text>
 					<Text>

@@ -12,9 +12,9 @@ const AboutUs = () => {
 		<>
 			<Nav />
 			<Box>
-				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+				<Box bg='rgba(14, 135, 246,.25)' pt={'50px'} pb='100px'>
 					<Text
-						fontSize={30}
+						fontSize={{ base: 24, lg: 30 }}
 						fontWeight={700}
 						color='#222'
 						textAlign={'center'}
@@ -23,18 +23,19 @@ const AboutUs = () => {
 					</Text>
 				</Box>
 				<Text
-					mx='15vw'
-					px='50px'
+					mx={{ base: '20px', lg: '15vw' }}
+					px={{ base: '10px', lg: '50px' }}
 					py='50px'
 					borderRadius={'10px'}
 					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
-					fontSize={18}
+					fontSize={16}
 					fontWeight={400}
 					textAlign='justify'
 					position={'relative'}
 					bottom='50px'
-					background='#222'
+					background='#fffdf7'
+					boxShadow={'lg'}
 					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
 					Plan My Leisure, started in 2020, is India’s smoothest

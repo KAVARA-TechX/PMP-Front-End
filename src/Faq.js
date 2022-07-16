@@ -18,9 +18,9 @@ const Faq = () => {
 		<>
 			<Nav />
 			<Box>
-				<Box bg='#32BAC9' pt={'50px'} pb='100px'>
+				<Box bg='rgba(14, 135, 246,.25)' pt={'50px'} pb='100px'>
 					<Text
-						fontSize={30}
+						fontSize={{ base: 24, lg: 30 }}
 						fontWeight={700}
 						color='#222'
 						textAlign={'center'}
@@ -29,18 +29,19 @@ const Faq = () => {
 					</Text>
 				</Box>
 				<Text
-					mx='15vw'
-					px='50px'
+					mx={{ base: '20px', lg: '15vw' }}
+					px={{ base: '10px', lg: '50px' }}
 					py='50px'
 					borderRadius={'10px'}
 					border='1px solid rgba(255,255,255,.4)'
 					lineHeight={2}
-					fontSize={18}
+					fontSize={16}
 					fontWeight={400}
 					textAlign='justify'
 					position={'relative'}
 					bottom='50px'
-					background='#222'
+					background='#fffdf7'
+					boxShadow={'lg'}
 					box-shadow='rgba(0, 0, 0, 0.35) 0px 5px 15px'
 				>
 					<OrderedList spacing={5}>
@@ -49,7 +50,7 @@ const Faq = () => {
 								<Text fontWeight={600}>
 									How do you stand out from the crowd?
 								</Text>
-								<UnorderedList fontSize={16}>
+								<UnorderedList fontSize={{ base: 14, lg: 16 }}>
 									<ListItem>24X7 Assistance</ListItem>
 									<ListItem>Easy Pricing</ListItem>
 									<ListItem>All Rounder Expertise</ListItem>
@@ -63,7 +64,7 @@ const Faq = () => {
 									You are a young company, how do we trust you
 									with our holiday ?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									We have helped more than 10000 travellers
 									find their perfect holiday. Not only are the
 									satisfied with our services, but have also
@@ -80,7 +81,7 @@ const Faq = () => {
 								<Text fontWeight={600}>
 									Can i change the itinerary on mobile ?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									Yes, you can go ahead change your itinerary
 									as well as explore payment options on your
 									smartphones just with a click. We are easily
@@ -95,7 +96,7 @@ const Faq = () => {
 									I want a quote on my email, how can I get
 									that?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									All you need to do is send us an email on
 									the mentioned email address and you can
 									check out quotes easily from your mail.
@@ -108,7 +109,7 @@ const Faq = () => {
 									What are the documents that I need to submit
 									when initiating a booking?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									You should keep your passport handy while
 									you are at a booking and in addition to
 									that, your PAN card. Kindly ensure that you
@@ -123,7 +124,7 @@ const Faq = () => {
 									Can i freeze my rates once I have finalized
 									the itinerary?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									Yes, after you have paid a token amount on
 									the overall trip, you can definitely freeze
 									the rates.
@@ -135,7 +136,7 @@ const Faq = () => {
 								<Text fontWeight={600}>
 									Will you be helping me with Visa too?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									Yes, we will assist you with Visa issuance
 									for a fee to ensure all documents are in
 									place and correct. Please note that, we do
@@ -152,7 +153,7 @@ const Faq = () => {
 									reasons, but there is no cancel button. How
 									can I go about it?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									Fret not! You can drop us a mail mentioning
 									the reason for cancellation and we can take
 									it forward from there.
@@ -165,7 +166,7 @@ const Faq = () => {
 									How can I get in touch with you during my
 									vacation?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									We provide 24X7 assistance, so you can reach
 									out to us directly even from your trip or
 									call us on the hotline number provided to
@@ -180,7 +181,7 @@ const Faq = () => {
 								<Text fontWeight={600}>
 									Where do I report any issues?
 								</Text>
-								<Text fontSize={16}>
+								<Text fontSize={{ base: 14, lg: 16 }}>
 									You can reach out to our team at
 									info@planmyleisure.com and your issues will
 									be addressed.
