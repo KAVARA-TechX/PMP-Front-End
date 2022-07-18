@@ -28,7 +28,7 @@ const PackageCard = (data) => {
 				<Box
 					h={{ base: '200px', lg: '100%' }}
 					w={{ base: '100%', lg: '30%' }}
-					bgImg={data.data.image[0].url}
+					bgImg={data.data.image[0].secure_url}
 					bgSize='cover'
 					bgPos={'50% 50%'}
 				></Box>
@@ -63,7 +63,7 @@ const PackageCard = (data) => {
 										<Box
 											w='100%'
 											h={{ base: '200px', lg: '400px' }}
-											bgImage={data.url}
+											bgImage={data.secure_url}
 											bgSize={'cover'}
 											bgPos='50% 50%'
 										></Box>

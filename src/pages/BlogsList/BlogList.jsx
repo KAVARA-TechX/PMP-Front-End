@@ -84,7 +84,11 @@ const Blog = ({ data }) => {
 			</Box>
 			{/* this box is for image */}
 			<Box w={{ base: '100%', lg: '40%' }} order={{ base: 1, lg: 2 }}>
-				<Image src={data.imageUrl} />
+				<Image
+					src={data.imageUrl
+						.replace('https', 'http')
+						.replace('http', 'https')}
+				/>
 			</Box>
 		</Box>
 	);

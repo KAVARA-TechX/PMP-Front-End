@@ -60,7 +60,9 @@ const Blog = () => {
 					fontWeight={'bold'}
 				>
 					<Box
-						bgImage={latestBlogs[0].imageUrl}
+						bgImage={latestBlogs[0].imageUrl
+							.replace('https', 'http')
+							.replace('http', 'https')}
 						bgSize='cover'
 						w='100%'
 						minH='200px'
@@ -92,7 +94,9 @@ const Blog = () => {
 						</Box>
 					</Box>
 					<Box
-						bgImage={latestBlogs[1].imageUrl}
+						bgImage={latestBlogs[1].imageUrl
+							.replace('https', 'http')
+							.replace('http', 'https')}
 						bgSize='cover'
 						w='100%'
 						h='200px'
@@ -127,7 +131,9 @@ const Blog = () => {
 						<></>
 					) : (
 						<Box
-							bgImage={latestBlogs[2].imageUrl}
+							bgImage={latestBlogs[2].imageUrl
+								.replace('https', 'http')
+								.replace('http', 'https')}
 							bgSize='cover'
 							w='100%'
 							h='200px'
@@ -163,7 +169,9 @@ const Blog = () => {
 						<></>
 					) : (
 						<Box
-							bgImage={latestBlogs[3].imageUrl}
+							bgImage={latestBlogs[3].imageUrl
+								.replace('https', 'http')
+								.replace('http', 'https')}
 							bgSize='cover'
 							w='100%'
 							minH='200px'
@@ -201,7 +209,9 @@ const Blog = () => {
 						<></>
 					) : (
 						<Box
-							bgImage={latestBlogs[4].imageUrl}
+							bgImage={latestBlogs[4].imageUrl
+								.replace('https', 'http')
+								.replace('http', 'https')}
 							bgSize='cover'
 							w='100%'
 							h='200px'
