@@ -236,7 +236,7 @@ const Packages = () => {
 								bgImg={
 									data.image[0] === undefined
 										? 'https://source.unsplash.com/random'
-										: data.image[0].url
+										: data.image[0].secure_url
 								}
 								bgSize='cover'
 								bgPos={'50%'}

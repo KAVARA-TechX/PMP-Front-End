@@ -802,7 +802,7 @@ const AboutPackage = () => {
 											<Box
 												w='100%'
 												h='500px'
-												bgImage={data.url}
+												bgImage={data.secure_url}
 												bgSize={'cover'}
 												bgPos='50% 50%'
 											></Box>
