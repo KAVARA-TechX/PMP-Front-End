@@ -34,7 +34,9 @@ const BlogDetails = () => {
 					h='600px'
 					pb='30px'
 					overflow={'hidden'}
-					bgImage={blogData.imageUrl}
+					bgImage={blogData.imageUrl
+						.replace('https', 'http')
+						.replace('http', 'https')}
 					bgSize='cover'
 					bgPos={'50% 50%'}
 				>

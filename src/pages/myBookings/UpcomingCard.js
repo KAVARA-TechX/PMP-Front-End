@@ -236,7 +236,7 @@ const UpcomingCard = ({ data, changeState }) => {
 					<Box
 						w='30%'
 						h='100%'
-						bgImage={pkgData.image[0].url}
+						bgImage={pkgData.image[0].secure_url}
 						bgSize='cover'
 						bgPos={'50% 50%'}
 					></Box>
