@@ -187,7 +187,7 @@ const Hero = () => {
 																src={
 																	data
 																		.imageUrl[0]
-																		.url
+																		.secure_url
 																}
 															/>
 														</video>
@@ -197,7 +197,8 @@ const Hero = () => {
 														w='100%'
 														h='100%'
 														bgImage={
-															data.imageUrl[0].url
+															data.imageUrl[0]
+																.secure_url
 														}
 														bgSize='cover'
 														bgPos={'50% 50%'}

@@ -197,7 +197,14 @@ const Footer = () => {
 							>
 								Terms & Conditions
 							</Text>
-							{/* <Text>Contact Us</Text> */}
+							<Text
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/contactUs');
+								}}
+							>
+								Contact Us
+							</Text>
 						</Box>
 					</Box>
 				</Box>

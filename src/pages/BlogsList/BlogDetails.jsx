@@ -10,6 +10,7 @@ import './blogDetails.css';
 const BlogDetails = () => {
 	const val = useLocation();
 	const blogData = val.state;
+	console.log(blogData);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

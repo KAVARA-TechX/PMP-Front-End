@@ -56,7 +56,7 @@ const PackageCard = (data) => {
 													objectFit: 'cover',
 												}}
 											>
-												<source src={data.url} />
+												<source src={data.secure_url} />
 											</video>
 										</Box>
 									) : (
