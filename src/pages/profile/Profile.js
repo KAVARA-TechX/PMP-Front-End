@@ -111,7 +111,7 @@ const Profile = () => {
 				leastDestructiveRef={cancleRef}
 			>
 				<AlertDialogOverlay>
-					<AlertDialogContent bg='#222'>
+					<AlertDialogContent bg='#fffdf7'>
 						<AlertDialogHeader fontSize={'lg'} fontWeight={'bold'}>
 							Change Password
 						</AlertDialogHeader>
@@ -126,12 +126,7 @@ const Profile = () => {
 							<Input type='password' />
 						</AlertDialogBody>
 						<AlertDialogFooter>
-							<Button
-								ref={cancleRef}
-								onClick={onClose}
-								bg='#444'
-								_hover={{ background: '#444' }}
-							>
+							<Button ref={cancleRef} onClick={onClose}>
 								Cancel
 							</Button>
 							<Button

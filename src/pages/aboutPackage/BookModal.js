@@ -114,7 +114,8 @@ const BookModal = ({ state, changeState, pkgData }) => {
 				numberOfAdults + numberOfChilds,
 				'',
 				response.data._id,
-				'Done'
+				'Done',
+				pkgData.startingPrice
 			);
 			console.log('Done ', res);
 			toast({

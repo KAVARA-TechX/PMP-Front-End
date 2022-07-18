@@ -24,6 +24,7 @@ import Tac from './Tac';
 import AboutUs from './AboutUs';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import ContactUs from './pages/contactUs/ContactUs';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();
@@ -90,6 +91,7 @@ const App = () => {
 			<Route path='/faq' element={<Faq />} />
 			<Route path='/terms-and-conditions' element={<Tac />} />
 			<Route path='/about-us' element={<AboutUs />} />
+			<Route path='/contactUs' element={<ContactUs />} />
 		</Routes>
 	);
 };

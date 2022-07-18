@@ -79,7 +79,7 @@ const BrandsModal = ({ state, setState }) => {
 					position={'absolute'}
 					w='600px'
 					h='fit-content'
-					bg='#222'
+					bg='#fffdf7'
 					left='50%'
 					top='50%'
 					transform={'translate(-50%,-50%)'}
@@ -177,8 +177,9 @@ const BrandsModal = ({ state, setState }) => {
 					</Box>
 					<Box display={'flex'} justifyContent='center' pt='30px'>
 						<Button
-							bg='#32BAC9'
-							_hover={{ background: '#32BAC9' }}
+							bg='#141177'
+							color='#fff'
+							_hover={{ background: '#141177' }}
 							onClick={handleSubmit}
 							isLoading={loading}
 						>

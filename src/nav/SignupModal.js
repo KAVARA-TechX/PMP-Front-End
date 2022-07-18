@@ -128,6 +128,7 @@ const SignupModal = ({ open, setOpen }) => {
 			if (password === '') {
 				setCheckPassword(true);
 			}
+			setLoading(false);
 		}
 	};
 
@@ -178,9 +179,8 @@ const SignupModal = ({ open, setOpen }) => {
 						>
 							{mailsend ? (
 								<Text
-									bg='rgba(255,255,0,0.2)'
+									bg='rgba(14, 135, 246,.25)'
 									borderRadius={'10px'}
-									color='rgba(255,255,255,.8)'
 									px='10px'
 									py='5px'
 								>
