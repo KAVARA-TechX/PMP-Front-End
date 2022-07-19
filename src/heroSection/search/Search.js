@@ -24,13 +24,14 @@ import CheckInDate from './searchComponents/CheckInDate';
 import CheckOutDate from './searchComponents/CheckOutDate';
 import Who from './searchComponents/Who';
 import When from './searchComponents/When';
-import c_list from './list.json';
+// import c_list from './list.json';
 
 const Search = () => {
 	const [location, setLocation] = useState('');
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [guest, setGuest] = useState(0);
 	const [submitButton, setSubmitButton] = useState(true);
+	const [c_list, set_c_list] = useState([]);
 
 	const initialFocusRef = useRef();
 	const popoverRef = useRef();
@@ -54,6 +55,10 @@ const Search = () => {
 			}
 		}
 	};
+
+	useEffect(() => {
+		set_c_list(localStorage.getItem('destination_list').split(','));
+	}, []);
 
 	useEffect(() => {
 		console.log(location, startDate, endDate, guest);
@@ -89,6 +94,11 @@ const Search = () => {
 			onClose();
 		}
 	}, [location]);
+
+	const handlePopoverTrigger = (e) => {
+		onOpen();
+		setLocation(e.target.value);
+	};
 
 	return (
 		<Box
@@ -137,10 +147,7 @@ const Search = () => {
 							pr={0}
 							_focus={{ outline: 'none' }}
 							pb={{ base: 3, lg: 0 }}
-							onChange={(e) => {
-								onOpen();
-								setLocation(e.target.value);
-							}}
+							onChange={handlePopoverTrigger}
 							_placeholder={{
 								color: '#696969',
 							}}
@@ -160,8 +167,7 @@ const Search = () => {
 						<PopoverBody>
 							{c_list
 								.filter((val) =>
-									val.name.toLowerCase().indexOf(location) !==
-									-1
+									val.toLowerCase().indexOf(location) !== -1
 										? true
 										: false
 								)
@@ -175,19 +181,18 @@ const Search = () => {
 											}}
 											key={index}
 											onClick={() => {
-												setLocation(loc.name);
+												setLocation(loc);
 												onClose();
 											}}
 										>
-											{loc.name}
+											{loc}
 										</Text>
 									);
 								}).length !== 0 ? (
 								c_list
 									.filter((val) =>
-										val.name
-											.toLowerCase()
-											.indexOf(location) !== -1
+										val.toLowerCase().indexOf(location) !==
+										-1
 											? true
 											: false
 									)
@@ -202,11 +207,11 @@ const Search = () => {
 												}}
 												key={index}
 												onClick={() => {
-													setLocation(loc.name);
+													setLocation(loc);
 													onClose();
 												}}
 											>
-												{loc.name}
+												{loc}
 											</Text>
 										);
 									})
