@@ -74,9 +74,7 @@ const Blog = () => {
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
-							navigate(`blogs/${latestBlogs[0]._id}`, {
-								state: latestBlogs[0],
-							});
+							navigate(`blogs/${latestBlogs[0]._id}`);
 						}}
 						className='show'
 					>
@@ -108,9 +106,7 @@ const Blog = () => {
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 						cursor={'pointer'}
 						onClick={() => {
-							navigate(`blogs/${latestBlogs[1]._id}`, {
-								state: latestBlogs[1],
-							});
+							navigate(`blogs/${latestBlogs[1]._id}`);
 						}}
 						className='show'
 					>
@@ -145,9 +141,7 @@ const Blog = () => {
 							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 							cursor={'pointer'}
 							onClick={() => {
-								navigate(`blogs/${latestBlogs[2]._id}`, {
-									state: latestBlogs[2],
-								});
+								navigate(`blogs/${latestBlogs[2]._id}`);
 							}}
 							className='show'
 						>
@@ -185,9 +179,7 @@ const Blog = () => {
 							alignItems='end'
 							cursor={'pointer'}
 							onClick={() => {
-								navigate(`blogs/${latestBlogs[3]._id}`, {
-									state: latestBlogs[3],
-								});
+								navigate(`blogs/${latestBlogs[3]._id}`);
 							}}
 							className='show'
 						>
@@ -223,9 +215,7 @@ const Blog = () => {
 							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
 							cursor={'pointer'}
 							onClick={() => {
-								navigate(`blogs/${latestBlogs[4]._id}`, {
-									state: latestBlogs[4],
-								});
+								navigate(`blogs/${latestBlogs[4]._id}`);
 							}}
 							className='show'
 						>

@@ -724,7 +724,7 @@ const AboutPackage = () => {
 							left={0}
 							zIndex={10}
 						>
-							<Box position={'absolute'} bottom={0} left='5vw'>
+							{/* <Box position={'absolute'} bottom={0} left='5vw'>
 								<Text fontSize={30} fontWeight={700}>
 									{pkgData.packageTitle}
 								</Text>
@@ -768,7 +768,7 @@ const AboutPackage = () => {
 										</Text>
 									</Box>
 								</Text>
-							</Box>
+							</Box> */}
 						</Box>
 
 						<Splide aria-label='images' className='splide-slide'>
@@ -823,8 +823,55 @@ const AboutPackage = () => {
 						pb='50px'
 					>
 						<Box w={{ base: '100%', lg: '50vw' }}>
-							<Box mt='30px'>
-								<Text fontSize={'24px'} fontWeight={600}>
+							<Box mt='0px'>
+								<Text fontSize={30} fontWeight={700}>
+									{pkgData.packageTitle}
+								</Text>
+								<Text display='flex' mb='10px' gap={3}>
+									<Box
+										display={'inline-flex'}
+										alignItems='center'
+									>
+										{[1, 2, 3, 4, 5].map((val, index) => {
+											if (val <= pkgData.star) {
+												return (
+													<StarIcon
+														key={index}
+														color='gold'
+													/>
+												);
+											} else {
+												return (
+													<Icon
+														key={index}
+														as={AiOutlineStar}
+														color='gold'
+														fontSize={20}
+													/>
+												);
+											}
+										})}
+									</Box>
+									<Box
+										display={'inline-flex'}
+										alignItems='start'
+									>
+										<Icon
+											as={MdLocationOn}
+											color='white'
+											fontSize={20}
+											p={0}
+										/>
+										<Text display={'inline-block'}>
+											{pkgData.destination}
+										</Text>
+									</Box>
+								</Text>
+								<Text
+									mt='30px'
+									fontSize={'24px'}
+									fontWeight={600}
+								>
 									Details
 								</Text>
 								<Text fontSize={'20px'} pl='5px'>

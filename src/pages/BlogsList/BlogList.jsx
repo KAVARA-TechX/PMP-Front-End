@@ -50,7 +50,7 @@ const Blog = ({ data }) => {
 				pr={4}
 				position='relative'
 				onClick={() => {
-					navigate(`/blogs/${data._id}`, { state: data });
+					navigate(`/blogs/${data._id}`);
 				}}
 				order={{ base: 2, lg: 1 }}
 			>
@@ -67,13 +67,16 @@ const Blog = ({ data }) => {
 				</Text>
 				{/* chunck of blog body */}
 				<Text display={'inline-block'}>
-					{data.blogBody
-						? data.blogBody.replace(/(<([^>]+)>)/gi, '').length >
-						  200
-							? data.blogBody
+					{data.blogBody !== undefined
+						? data.blogBody.blogBody.replace(/(<([^>]+)>)/gi, '')
+								.length > 200
+							? data.blogBody.blogBody
 									.replace(/(<([^>]+)>)/gi, '')
 									.slice(0, 200) + '...'
-							: data.blogBody.replace(/(<([^>]+)>)/gi, '')
+							: data.blogBody.blogBody.replace(
+									/(<([^>]+)>)/gi,
+									''
+							  )
 						: ''}
 				</Text>
 				<Box position={'absolute'} bottom={0}>
@@ -105,7 +108,7 @@ const BlogList = () => {
 		const getBlogs = async () => {
 			try {
 				const response = await axios.get(
-					'https://planmyleisure.herokuapp.com/blog/get-blogs'
+					'https://planmy.herokuapp.com/blog/get-blogs'
 				);
 				console.log(response);
 				setBlogList(response.data);
