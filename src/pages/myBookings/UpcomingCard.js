@@ -191,7 +191,7 @@ const UpcomingCard = ({ data, changeState }) => {
 
 	// -------------------------------------------------------
 
-	const handlePartsPackagePaid = async (pay_status) => {
+	const handlePartsPackagePaid = async (pay_status, parts_index) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
@@ -619,7 +619,7 @@ const UpcomingCard = ({ data, changeState }) => {
 											);
 										})}
 									</Box>
-									<Box>
+									{/* <Box>
 										<Text
 											textDecor={'underline'}
 											textAlign='center'
@@ -627,11 +627,11 @@ const UpcomingCard = ({ data, changeState }) => {
 										>
 											Cancel Booking
 										</Text>
-									</Box>
+									</Box> */}
 								</Box>
 							) : (
 								<Box
-									pb='20px'
+									pb='40px'
 									display={
 										data.paymentStatus === 'Requested'
 											? 'none'

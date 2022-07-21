@@ -34,6 +34,7 @@ const Upcoming = (props) => {
 							gap='20px'
 							mt='30px'
 							mb='50px'
+							minH={'50vh'}
 						>
 							{requests
 								.filter((data) => {

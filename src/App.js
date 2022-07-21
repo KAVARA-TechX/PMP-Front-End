@@ -22,9 +22,10 @@ import Profile from './pages/profile/Profile';
 import Faq from './Faq';
 import Tac from './Tac';
 import AboutUs from './AboutUs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import ContactUs from './pages/contactUs/ContactUs';
+import { Box, Spinner } from '@chakra-ui/react';
 
 const App = () => {
 	const { loginState } = AccessLoginContext();

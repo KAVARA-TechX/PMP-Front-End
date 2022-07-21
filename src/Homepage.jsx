@@ -440,7 +440,7 @@ const Homepage = () => {
 
 	return (
 		<Box overflow='hidden'>
-			<Suspense fallback={'loading'}>
+			<Suspense fallback={''}>
 				<Hero onLoad={set_sec_1} />
 			</Suspense>
 			{sec_1 ? (
