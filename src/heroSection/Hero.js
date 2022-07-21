@@ -87,10 +87,14 @@ const Hero = ({ onLoad }) => {
 						<div className='splide__arrows'>
 							<div className='orange_bar'></div>
 							<p className='slider_city'>
-								{images[currentIndex].city}
+								{images.length === 0
+									? ''
+									: images[currentIndex].city}
 							</p>
 							<p className='slider_location'>
-								{images[currentIndex].location}
+								{images.length === 0
+									? ''
+									: images[currentIndex].location}
 							</p>
 							<div className='slider_controls'>
 								<button
@@ -123,23 +127,26 @@ const Hero = ({ onLoad }) => {
 						)}
 						<Box>
 							<SplideTrack>
-								{images.map((data, index) => {
-									return (
-										<SplideSlide key={index}>
-											<Box
-												w='100vw'
-												h='500px'
-												position={'relative'}
-												overflowX='hidden'
-											>
-												{data.imageUrl[0]
-													.resource_type ===
-												'video' ? (
-													<Box
-														w='100%'
-														h='100%'
-														dangerouslySetInnerHTML={{
-															__html: `<video
+								{images.length === 0 ? (
+									<></>
+								) : (
+									images.map((data, index) => {
+										return (
+											<SplideSlide key={index}>
+												<Box
+													w='100vw'
+													h='500px'
+													position={'relative'}
+													overflowX='hidden'
+												>
+													{data.imageUrl[0]
+														.resource_type ===
+													'video' ? (
+														<Box
+															w='100%'
+															h='100%'
+															dangerouslySetInnerHTML={{
+																__html: `<video
 															autoPlay='autoplay'
 															loop
 															muted='true'
@@ -154,57 +161,58 @@ const Hero = ({ onLoad }) => {
 																src=${data.imageUrl[0].secure_url}
 															/>
 														</video>`,
+															}}
+														></Box>
+													) : (
+														<Box
+															w='100%'
+															h='100%'
+															bgImage={
+																data.imageUrl[0]
+																	.secure_url
+															}
+															bgSize='cover'
+															bgPos={'50% 50%'}
+														></Box>
+													)}
+													<Text
+														w={{
+															base: 'calc(100vw - 20px)',
+															lg: '50%',
 														}}
-													></Box>
-												) : (
-													<Box
-														w='100%'
-														h='100%'
-														bgImage={
-															data.imageUrl[0]
-																.secure_url
+														bg='rgba(0,0,0,.1)'
+														boxShadow={
+															'0 0 0  1000px rgba(0,0,0,.1)'
 														}
-														bgSize='cover'
-														bgPos={'50% 50%'}
-													></Box>
-												)}
-												<Text
-													w={{
-														base: 'calc(100vw - 20px)',
-														lg: '50%',
-													}}
-													bg='rgba(0,0,0,.1)'
-													boxShadow={
-														'0 0 0  1000px rgba(0,0,0,.1)'
-													}
-													color={'white'}
-													position='absolute'
-													top={{
-														base: '40%',
-														lg: '30%',
-													}}
-													left={{
-														base: '50%',
-														lg: '30px',
-													}}
-													transform={{
-														base: 'translateX(-50%) translateY(-50%)',
-														lg: 'none',
-													}}
-													fontSize={50}
-													fontWeight={500}
-													lineHeight={1}
-													textAlign={{
-														base: 'center',
-														lg: 'start',
-													}}
-												>
-													{data.title}
-												</Text>
-											</Box>
-										</SplideSlide>
-									);
-								})}
+														color={'white'}
+														position='absolute'
+														top={{
+															base: '40%',
+															lg: '30%',
+														}}
+														left={{
+															base: '50%',
+															lg: '30px',
+														}}
+														transform={{
+															base: 'translateX(-50%) translateY(-50%)',
+															lg: 'none',
+														}}
+														fontSize={50}
+														fontWeight={500}
+														lineHeight={1}
+														textAlign={{
+															base: 'center',
+															lg: 'start',
+														}}
+													>
+														{data.title}
+													</Text>
+												</Box>
+											</SplideSlide>
+										);
+									})
+								)}
 							</SplideTrack>
 						</Box>
 					</Splide>

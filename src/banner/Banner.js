@@ -112,10 +112,11 @@ const Banner = ({ onLoad }) => {
 								base: 'translateX(50%) translateY(-50%)',
 								lg: 'translateY(-50%)',
 							}}
-							right={{ base: '50%', lg: '0%' }}
+							right={{ base: '50%', lg: '10%' }}
 							display={'flex'}
 							flexDir='column'
 							alignItems={'center'}
+							width={'30%'}
 						>
 							<Box display={'flex'} justifyContent='center'>
 								<Text
@@ -125,7 +126,7 @@ const Banner = ({ onLoad }) => {
 									fontWeight={700}
 									whiteSpace='wrap'
 									color='#fff'
-									w={{ base: '', lg: '55%' }}
+									// w={{ base: '', lg: '55%' }}
 								>
 									{quote}
 									{/* Visit Maldives <br /> A Fantasy Fulfilled */}
