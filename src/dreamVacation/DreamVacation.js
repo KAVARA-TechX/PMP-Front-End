@@ -2,8 +2,13 @@ import { Box, Text, Image } from '@chakra-ui/react';
 import clipboard from './clipboard-text.svg';
 import message from '../assets/icons/messages.png';
 import cardtick from '../assets/icons/card-tick.png';
+import { useEffect } from 'react';
 
-const DreamVacation = () => {
+const DreamVacation = ({ onLoad }) => {
+	useEffect(() => {
+		onLoad(true);
+	}, []);
+
 	return (
 		<Box
 			w='100vw'

@@ -7,7 +7,7 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import getBannerApi from '../apis/getBannerApi';
 
-const Banner = () => {
+const Banner = ({ onLoad }) => {
 	gsap.registerPlugin(ScrollTrigger);
 	const [modalState, setModalState] = useState(false);
 	const banner_container = useRef(null);
@@ -20,7 +20,8 @@ const Banner = () => {
 		gsap.from(banner_pls('.banner'), {
 			scrollTrigger: {
 				trigger: banner_container.current,
-				start: 'top 65%',
+				start: 'top 85%',
+				// markers: true,
 			},
 			y: 100,
 			opacity: 0,
@@ -41,6 +42,7 @@ const Banner = () => {
 				console.log('media is : ', res.data.bannerImages[0].imageUrl);
 				set_quote(res.data.bannerImages[0].quote);
 				set_type(res.data.bannerImages[0].imageUrl.resource_type);
+				onLoad(true);
 			} catch (error) {}
 		};
 
@@ -67,21 +69,23 @@ const Banner = () => {
 							w={{ base: '100%', lg: '100%' }}
 							h='100%'
 							// className='banner'
-						>
-							<video
-								autoPlay
+							dangerouslySetInnerHTML={{
+								__html: `<video
+								autoplay
 								muted
 								loop
-								style={{
-									height: '100%',
-									width: '100%',
-									objectFit: 'cover',
-									objectPosition: 'center',
-								}}
+								playsinline
+								style="
+									height: 100%;
+									width: 100%;
+									object-fit: cover;
+									object-position: center;
+								"
 							>
-								<source src={media ? media.secure_url : ''} />
-							</video>
-						</Box>
+								<source src=${media ? media.secure_url : ''} />
+							</video>`,
+							}}
+						></Box>
 					) : (
 						<Box
 							w={{ base: '100%', lg: '100%' }}

@@ -1,24 +1,23 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import Hero from './heroSection/Hero';
 import { Box, Icon, Skeleton, Text, useToast } from '@chakra-ui/react';
-import Banner from './banner/Banner';
 import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
-import Footer from './footer/Footer';
-import SpaceBetween from './spaceBetween/SpaceBetween';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/src/ScrollTrigger';
 
+const Hero = lazy(() => {
+	return import('./heroSection/Hero');
+});
 const Facts = lazy(() => {
 	return import('./facts/Facts');
-});
-const DreamVacation = lazy(() => {
-	return import('./dreamVacation/DreamVacation');
 });
 const Packages = lazy(() => {
 	return import('./packages/Packages');
 });
-
+const DreamVacation = lazy(() => {
+	return import('./dreamVacation/DreamVacation');
+});
+const Banner = lazy(() => {
+	return import('./banner/Banner');
+});
 const ImageSlider = lazy(() => {
 	return import('./imageSlider/ImageSlider');
 });
@@ -28,9 +27,9 @@ const IconSection = lazy(() => {
 const Blog = lazy(() => {
 	return import('./blogs/Blog');
 });
-// const Partners = lazy(() => {
-// 	return import('./partners/Partners');
-// });
+const Footer = lazy(() => {
+	return import('./footer/Footer');
+});
 
 //  loading for facts
 const LoadingForFacts = () => {
@@ -407,9 +406,17 @@ const LoadingBlogs = () => {
 };
 
 const Homepage = () => {
-	const [load, setLoad] = useState(false);
 	const location = useLocation();
 	const toast = useToast();
+
+	const [sec_1, set_sec_1] = useState(false);
+	const [sec_2, set_sec_2] = useState(false);
+	const [sec_3, set_sec_3] = useState(false);
+	const [sec_4, set_sec_4] = useState(false);
+	const [sec_5, set_sec_5] = useState(false);
+	const [sec_6, set_sec_6] = useState(false);
+	const [sec_7, set_sec_7] = useState(false);
+	const [sec_8, set_sec_8] = useState(false);
 
 	useEffect(() => {
 		try {
@@ -433,32 +440,106 @@ const Homepage = () => {
 
 	return (
 		<Box overflow='hidden'>
-			<Hero /> {/* Responsive Done */}
-			{true ? (
+			<Suspense fallback={'loading'}>
+				<Hero onLoad={set_sec_1} />
+			</Suspense>
+			{sec_1 ? (
 				<>
 					<Suspense fallback={<LoadingForFacts />}>
-						<Facts />
+						<Facts onLoad={set_sec_2} />
 					</Suspense>
-					<Suspense fallback={<LoadingPackages />}>
-						<Packages />
-					</Suspense>
-					<Suspense fallback={<LoadingDreamVacation />}>
-						<DreamVacation />
-					</Suspense>
-					<SpaceBetween space='50px' />
-					<Suspense fallback={<LoadingBanner />}>
-						<Banner />
-					</Suspense>
-					<Suspense fallback={<LoadingImageSlider />}>
-						<ImageSlider />
-					</Suspense>
-					<Suspense fallback={<LoadingDreamVacation />}>
-						<IconSection />
-					</Suspense>
-					<Suspense fallback={<LoadingBlogs />}>
-						<Blog />
-					</Suspense>
-					<Footer />
+					{sec_2 ? (
+						<>
+							<Suspense fallback={<LoadingPackages />}>
+								<Packages onLoad={set_sec_3} />
+							</Suspense>
+							{sec_3 ? (
+								<>
+									<Suspense
+										fallback={<LoadingDreamVacation />}
+									>
+										<DreamVacation onLoad={set_sec_4} />
+									</Suspense>
+									{sec_4 ? (
+										<>
+											<Suspense
+												fallback={<LoadingBanner />}
+											>
+												<Banner onLoad={set_sec_5} />
+											</Suspense>
+											{sec_5 ? (
+												<>
+													<Suspense
+														fallback={
+															<LoadingImageSlider />
+														}
+													>
+														<ImageSlider
+															onLoad={set_sec_6}
+														/>
+													</Suspense>
+													{sec_6 ? (
+														<>
+															<Suspense
+																fallback={
+																	<LoadingDreamVacation />
+																}
+															>
+																<IconSection
+																	onLoad={
+																		set_sec_7
+																	}
+																/>
+															</Suspense>
+															{sec_7 ? (
+																<>
+																	<Suspense
+																		fallback={
+																			<LoadingBlogs />
+																		}
+																	>
+																		<Blog
+																			onLoad={
+																				set_sec_8
+																			}
+																		/>
+																	</Suspense>
+
+																	{sec_8 ? (
+																		<Suspense
+																			fallback={
+																				''
+																			}
+																		>
+																			<Footer />
+																		</Suspense>
+																	) : (
+																		<></>
+																	)}
+																</>
+															) : (
+																<></>
+															)}
+														</>
+													) : (
+														<></>
+													)}
+												</>
+											) : (
+												<></>
+											)}
+										</>
+									) : (
+										<></>
+									)}
+								</>
+							) : (
+								<></>
+							)}
+						</>
+					) : (
+						<></>
+					)}
 				</>
 			) : (
 				<></>

@@ -16,6 +16,7 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
+import changePasswordApi from '../../apis/changePasswordApi';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import updateProfile from '../../apis/updateProfile';
 import Footer from '../../footer/Footer';
@@ -38,6 +39,12 @@ const Profile = () => {
 	const cancleRef = useRef();
 	const [avatar, setAvatar] = useState('');
 	const [uLoading, setULoading] = useState(false);
+	const [password, set_password] = useState('');
+	const [check_p1, set_check_p1] = useState(false);
+	const [reenter_password, set_reenter_password] = useState('');
+	const [check_p2, set_check_p2] = useState(false);
+	const [activate_reset, set_activate_reset] = useState(true);
+	const [reset_loading, set_reset_Loading] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -103,6 +110,28 @@ const Profile = () => {
 		}
 	};
 
+	const handlePasswordReset = async () => {
+		if (password === reenter_password) {
+			// send the password reset request
+			try {
+				const res = await changePasswordApi(password);
+				console.log('response from the change password is : ', res);
+			} catch (error) {}
+		} else {
+			// show the error
+			set_check_p1(true);
+			set_check_p2(true);
+		}
+	};
+
+	useEffect(() => {
+		if (password !== '' && reenter_password !== '') {
+			set_activate_reset(false);
+		} else {
+			set_activate_reset(true);
+		}
+	}, [password, reenter_password]);
+
 	return (
 		<>
 			<AlertDialog
@@ -121,9 +150,24 @@ const Profile = () => {
 								password.
 							</Text>
 							<Text>Password</Text>
-							<Input type='password' mb='20px' />
+							<Input
+								isInvalid={check_p1}
+								type='password'
+								mb='20px'
+								value={password}
+								onChange={(e) => {
+									set_password(e.target.value);
+								}}
+							/>
 							<Text>Re-enter new password</Text>
-							<Input type='password' />
+							<Input
+								isInvalid={check_p2}
+								type='password'
+								value={reenter_password}
+								onChange={(e) => {
+									set_reenter_password(e.target.value);
+								}}
+							/>
 						</AlertDialogBody>
 						<AlertDialogFooter>
 							<Button ref={cancleRef} onClick={onClose}>
@@ -131,8 +175,9 @@ const Profile = () => {
 							</Button>
 							<Button
 								colorScheme='orange'
-								onClick={onClose}
+								onClick={handlePasswordReset}
 								ml={3}
+								isDisabled={activate_reset}
 							>
 								Reset Password
 							</Button>
@@ -231,9 +276,7 @@ const Profile = () => {
 										>
 											<Radio value='Male'>Male</Radio>
 											<Radio value='Female'>Female</Radio>
-											<Radio value='Genderqueer'>
-												Genderqueer
-											</Radio>
+											<Radio value='Other'>Other</Radio>
 											<Radio value="i'd prefer not to say">
 												i'd prefer not to say
 											</Radio>

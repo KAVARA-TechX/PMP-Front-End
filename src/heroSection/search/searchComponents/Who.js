@@ -1,4 +1,3 @@
-import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
 	Box,
 	Text,
@@ -110,7 +109,7 @@ const Who = ({ setGuest }) => {
 												color={
 													numberOfAdults === 0
 														? 'gray'
-														: '#32BAC9'
+														: '#090841'
 												}
 												onClick={() => {
 													if (numberOfAdults !== 0) {
@@ -125,7 +124,7 @@ const Who = ({ setGuest }) => {
 											<Icon
 												as={AiOutlinePlusCircle}
 												cursor='pointer'
-												color={'#32BAC9'}
+												color={'#090841'}
 												onClick={() => {
 													setNumberOfAdults(
 														(prev) => prev + 1
@@ -150,7 +149,7 @@ const Who = ({ setGuest }) => {
 												color={
 													numberOfChilds === 0
 														? 'gray'
-														: '#32BAC9'
+														: '#090841'
 												}
 												onClick={() => {
 													if (numberOfChilds != 0) {
@@ -164,7 +163,7 @@ const Who = ({ setGuest }) => {
 											<Icon
 												as={AiOutlinePlusCircle}
 												cursor='pointer'
-												color={'#32BAC9'}
+												color={'#090841'}
 												onClick={() => {
 													setNumberOfChlids(
 														(prev) => prev + 1

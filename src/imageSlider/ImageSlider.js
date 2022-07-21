@@ -25,7 +25,7 @@ const cardsData = [
 	{ title: 'Water Skiing', img: surf },
 ];
 
-const ImageSlider = () => {
+const ImageSlider = ({ onLoad }) => {
 	gsap.registerPlugin(ScrollTrigger);
 	let f_and_e_heading_container = useRef(null);
 	let fun_and_explore_card_container = useRef(null);
@@ -56,13 +56,27 @@ const ImageSlider = () => {
 		gsap.from(f_and_e_heading('.f_and_e_heading'), {
 			scrollTrigger: {
 				trigger: f_and_e_heading_container.current,
-				start: 'top 65%',
+				start: 'top 85%',
 				end: 'top top',
 			},
 			x: -100,
 			opacity: 0,
 			duration: 0.8,
-			delay: 0.1,
+			onComplete: function () {
+				ScrollTrigger.refresh();
+			},
+		});
+
+		gsap.from(f_and_e_heading('#scrollbar'), {
+			scrollTrigger: {
+				trigger: f_and_e_heading_container.current,
+				start: 'top 85%',
+				end: 'top top',
+			},
+			y: 100,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.6,
 			onComplete: function () {
 				ScrollTrigger.refresh();
 			},
@@ -72,23 +86,16 @@ const ImageSlider = () => {
 			scrollTrigger: {
 				trigger: fun_and_explore_card_container.current,
 				start: `end ${stop_at}px`,
-				// end: '+=2000',
-				// end: '100',
-				// markers: true,
-				scrub: 0.1,
-				// pin: true,
+				scrub: 0.05,
 				pin: '.ImageSlider',
 			},
 			x: `-=${scroll_amount}`,
-			duration: 5,
 		});
 	};
 
 	useEffect(() => {
-		// if (window.innerWidth >= 992) {
-
 		animate();
-		// }
+		onLoad(true);
 	}, []);
 
 	return (
@@ -118,13 +125,11 @@ const ImageSlider = () => {
 			<Box
 				as='div'
 				id='scrollbar'
-				// overflowX={'scroll'}
-				// overflowY='hidden'
 				display='block'
 				whiteSpace='nowrap'
 				pb={10}
 				color='white'
-				className='show-scroll-when-scrolling'
+				overflow={'hidden'}
 				ref={fun_and_explore_card_container}
 			>
 				{/* card */}

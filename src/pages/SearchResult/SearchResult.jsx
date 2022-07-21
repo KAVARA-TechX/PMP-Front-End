@@ -1,31 +1,16 @@
-import {
-	Box,
-	Text,
-	Icon,
-	Badge,
-	Checkbox,
-	Stack,
-	Spinner,
-} from '@chakra-ui/react';
-import { CheckIcon, StarIcon } from '@chakra-ui/icons';
-import { useNavigate, useParams } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
-import img from '../../assets/thingsToDo/dream-vacation.png';
+import { Box, Text, Checkbox, Stack, Spinner } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import Nav from '../../nav/Nav';
 import Footer from '../../footer/Footer';
 import { useEffect, useState } from 'react';
 import searchApi from '../../apis/searchApi';
 import PackageCard from '../../components/packageCard/PackageCard';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
 
 const SearchResult = () => {
 	const value = useParams();
-	const navigate = useNavigate();
 	const [results, setResults] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [notFound, setNotFound] = useState(false);
-
 	const [filter_price, set_filter_price] = useState([]);
 	const [filter_star, set_filter_star] = useState([]);
 
@@ -73,7 +58,7 @@ const SearchResult = () => {
 				<Box
 					display={{ base: 'none', lg: 'block' }}
 					w='20%'
-					h='300px'
+					h='fit-content'
 					pl='30px'
 					pt='30px'
 				>
@@ -287,7 +272,19 @@ const SearchResult = () => {
 							justifyContent='center'
 							alignItems={'center'}
 							fontSize='50px'
-							color='rgba(255,255,255,.3)'
+							color='gray.300'
+						>
+							No Result Found
+						</Box>
+					) : results.length === 0 ? (
+						<Box
+							h='100%'
+							w='100%'
+							display={'flex'}
+							justifyContent='center'
+							alignItems={'center'}
+							fontSize='50px'
+							color='gray.300'
 						>
 							No Result Found
 						</Box>
@@ -355,7 +352,14 @@ const SearchResult = () => {
 								})
 								.map((data, index) => {
 									return (
-										<PackageCard data={data} key={index} />
+										<PackageCard
+											data={data}
+											key={index}
+											fromSearchPage={true}
+											checkInDate={value.checkInDate}
+											checkOutDate={value.checkOutDate}
+											guests={value.guests}
+										/>
 									);
 								})}
 						</Box>

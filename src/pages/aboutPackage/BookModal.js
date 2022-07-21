@@ -53,7 +53,13 @@ const city = [
 	{ name: 'Mangalore,IN', code: 'IXE' },
 ];
 
-const BookModal = ({ state, changeState, pkgData }) => {
+const BookModal = ({
+	state,
+	changeState,
+	pkgData,
+	data,
+	bookNowButtonLoading,
+}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [showDate, setShowDate] = useState(true);
 	const [showEndDate, setShowEndDate] = useState(false);
@@ -67,12 +73,20 @@ const BookModal = ({ state, changeState, pkgData }) => {
 	const [numberOfChilds, setNumberOfChlids] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [isFilled, setIsFilled] = useState(false);
-
 	const toast = useToast();
+	console.log('data from previous page : ', data);
 
 	useEffect(() => {
 		if (state) {
-			onOpen();
+			if (data) {
+				setChoosed(data.checkInDate);
+				setEndDate(data.checkOutDate);
+				setNumberOfAdults(data.guests);
+				handleBookNow();
+				bookNowButtonLoading(true);
+			} else {
+				onOpen();
+			}
 		}
 	}, [state]);
 
@@ -146,48 +160,69 @@ const BookModal = ({ state, changeState, pkgData }) => {
 
 	const handleBookNow = async () => {
 		setLoading(true);
+
 		const res = await initializeRazorpay();
+
 		if (!res) {
 			alert('Razorpay failed to load');
 		}
+		try {
+			const data = await createOrderApi(
+				pkgData.startingPrice * 100 * (numberOfAdults + numberOfChilds),
+				'',
+				''
+			);
 
-		const data = await createOrderApi(
-			pkgData.startingPrice * 100 * (numberOfAdults + numberOfChilds),
-			'',
-			''
-		).then((res) => res);
-
-		// console.log('id is :  ', data.data.id);
-
-		var options = {
-			key: process.env.REACT_APP_KEY_ID,
-			name: 'Plan my leisure',
-			currency: 'INR',
-			order_id: data.data.id,
-			description: 'Thankyou for whatever',
-			image: logo,
-			handler: function (response) {
-				// validate payment through server
-				handleBookedPackage(response);
-				alert('Yeaaahhh!! payment is successfull.');
+			console.log('response is data', data);
+			if (data.data.statusCode === 400) {
+				toast({
+					title: 'Error',
+					description: data.data.error.description,
+					status: 'error',
+					duration: 3000,
+					isClosable: true,
+				});
 				setLoading(false);
-				setShowConfigRoom(false);
-				setIsFilled(true);
-			},
-			modal: {
-				ondismiss: function () {
-					setLoading(false);
-				},
-			},
-			prefill: {
-				name: 'MY name',
-				email: 'myemail@gmail.com',
-				contact: '9898997790',
-			},
-		};
+			} else {
+				var options = {
+					key: process.env.REACT_APP_KEY_ID,
+					name: 'Plan my leisure',
+					currency: 'INR',
+					order_id: data.data.id,
+					description: 'Thankyou for whatever',
+					image: logo,
+					handler: function (response) {
+						// validate payment through server
+						console.log('response from razor pay is : ', response);
+						handleBookedPackage(response);
+						alert('Yeaaahhh!! payment is successfull.');
+						setLoading(false);
+						setShowConfigRoom(false);
+						setIsFilled(true);
+					},
+					modal: {
+						ondismiss: function () {
+							setLoading(false);
+							bookNowButtonLoading(false);
+						},
+					},
+					// prefill: {},
+				};
 
-		const payment_object = new window.Razorpay(options);
-		payment_object.open();
+				const payment_object = new window.Razorpay(options);
+				payment_object.open();
+			}
+		} catch (error) {
+			console.log('error', error);
+			toast({
+				title: 'Error',
+				description: 'Something went wrong.',
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			});
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -307,87 +342,6 @@ const BookModal = ({ state, changeState, pkgData }) => {
 					) : (
 						<></>
 					)}
-					{/* choose your departure city */}
-					{/* {showCity ? (
-						<Box w='400px' display={'flex'} flexDir='column'>
-							<Text
-								fontSize={20}
-								fontWeight={600}
-								textAlign='center'
-								pt='40px'
-								display={'flex'}
-								justifyContent='space-around'
-								alignItems={'center'}
-							>
-								<ArrowBackIcon
-									fontSize={20}
-									cursor='pointer'
-									onClick={() => {
-										setShowCity(false);
-										setShowEndDate(true);
-									}}
-								/>
-								Choose your departure city
-								<CloseIcon
-									fontSize={13}
-									cursor='pointer'
-									onClick={() => {
-										onClose();
-									}}
-								/>
-							</Text>
-							<Box mx='20px' mt='20px'>
-								<Input type='text' />
-							</Box>
-							<Box
-								flexGrow={2}
-								mt='10px'
-								mx='20px'
-								overflowX={'scroll'}
-							>
-								{city.map((item, index) => {
-									return (
-										<Text
-											display={'flex'}
-											justifyContent='space-between'
-											borderBottom={'1px solid gray'}
-											py='10px'
-											cursor={'pointer'}
-											onClick={() => {
-												handleCity(item.name);
-											}}
-											key={index}
-											_hover={{
-												background:
-													'rgba(255,255,255,.2)',
-											}}
-										>
-											<Text>{item.name}</Text>
-											<Text>{item.code}</Text>
-										</Text>
-									);
-								})}
-							</Box>
-							<Box w='100%' display={'flex'}>
-								<Box
-									pb='10px'
-									bg='gray'
-									borderRight={'1px solid black'}
-								>
-									<Text textAlign={'center'}>
-										I'm departing from Outside India
-									</Text>
-								</Box>
-								<Box pb='10px' bg='gray'>
-									<Text textAlign={'center'}>
-										I have booked my flights already
-									</Text>
-								</Box>
-							</Box>
-						</Box>
-					) : (
-						<></>
-					)} */}
 					{showConfigRoom ? (
 						<Box w='400px' display={'flex'} flexDir='column'>
 							<Text
