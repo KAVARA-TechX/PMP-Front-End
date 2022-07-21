@@ -34,7 +34,7 @@ import Nav from '../../nav/Nav';
 import './AboutPackage.css';
 import Footer from '../../footer/Footer';
 import getPackageById from '../../apis/getPackageById';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { setDay } from 'date-fns';
 import sideImg from '../../assets/thingsToDo/skiing.png';
@@ -50,6 +50,7 @@ import logo from '../../assets/logo/logo.png';
 import createOrderApi from '../../apis/createOrderApi';
 import BookModal from './BookModal';
 import IndianCities from '../../indianCities';
+import PhoneNumberModal from './PhoneNumberModal';
 
 const days = ['Mon', 'Tus', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
 const months = [
@@ -101,6 +102,7 @@ const AboutPackage = () => {
 	const [sDate, setSDate] = useState();
 	const [eDate, setEDate] = useState();
 	const { loginState, loginclick } = AccessLoginContext();
+	const data_from_prev_page = useLocation().state;
 
 	// for modal ------------------------
 	const [showDate, setShowDate] = useState(true);
@@ -119,6 +121,8 @@ const AboutPackage = () => {
 	const [book_modal_state, set_book_modal_state] = useState(false);
 	const [dep_city, set_dep_city] = useState('');
 	const [cities, set_cities] = useState(IndianCities);
+	const [phone_modal, set_phone_modal] = useState(false);
+	const [clicked_on, set_clicked_on] = useState(null);
 
 	const handleBookedPackage = async (response) => {
 		// here i have to create a request with the default settings and set it's status to booked and call the save_order api
@@ -302,12 +306,66 @@ const AboutPackage = () => {
 		});
 	}, [dep_city]);
 
+	const handleUnknownCity = (e) => {
+		if (e.key === 'Enter') {
+			if (dep_city === '') {
+				// don't do anything
+			} else {
+				// next page
+				handleCity(dep_city);
+			}
+		}
+	};
+
+	const checkForMobileNumber = async () => {
+		set_clicked_on('book_now');
+		try {
+			const res = await getUserinfoApi();
+			if (String(res.data.phone).length === 10) {
+				set_book_modal_state(true);
+			} else {
+				set_phone_modal(true);
+			}
+		} catch (error) {
+			console.log('error occured ');
+		}
+	};
+
+	const handleCustomise = async () => {
+		set_clicked_on('Customise');
+		try {
+			const res = await getUserinfoApi();
+			if (String(res.data.phone).length === 10) {
+				onOpen();
+			} else {
+				set_phone_modal(true);
+			}
+		} catch (error) {
+			console.log('error occured ');
+		}
+	};
+
 	return (
 		<>
+			{clicked_on === 'book_now' ? (
+				<PhoneNumberModal
+					state={phone_modal}
+					changeState={set_phone_modal}
+					nextModal={set_book_modal_state}
+				/>
+			) : (
+				<PhoneNumberModal
+					state={phone_modal}
+					changeState={set_phone_modal}
+					anotherModal={onOpen}
+				/>
+			)}
 			<BookModal
 				state={book_modal_state}
 				changeState={set_book_modal_state}
 				pkgData={pkgData}
+				data={data_from_prev_page}
+				bookNowButtonLoading={setBooknowLoading}
 			/>
 			<Modal
 				isOpen={isOpen}
@@ -462,6 +520,7 @@ const AboutPackage = () => {
 										onChange={(e) => {
 											set_dep_city(e.target.value);
 										}}
+										onKeyPress={handleUnknownCity}
 									/>
 								</Box>
 								<Box
@@ -491,7 +550,7 @@ const AboutPackage = () => {
 													key={index}
 													_hover={{
 														background:
-															'rgba(255,255,255,.2)',
+															'rgba(0,0,0,.1)',
 													}}
 												>
 													<Text>{item.cityName}</Text>
@@ -503,7 +562,7 @@ const AboutPackage = () => {
 										})
 									)}
 								</Box>
-								<Box w='100%' display={'flex'}>
+								<Box w='100%' display={'none'}>
 									<Box
 										pb='10px'
 										bg='gray'
@@ -723,53 +782,7 @@ const AboutPackage = () => {
 							right={0}
 							left={0}
 							zIndex={10}
-						>
-							{/* <Box position={'absolute'} bottom={0} left='5vw'>
-								<Text fontSize={30} fontWeight={700}>
-									{pkgData.packageTitle}
-								</Text>
-								<Text display='flex' mb='10px' gap={3}>
-									<Box
-										display={'inline-flex'}
-										alignItems='center'
-									>
-										{[1, 2, 3, 4, 5].map((val, index) => {
-											if (val <= pkgData.star) {
-												return (
-													<StarIcon
-														key={index}
-														color='gold'
-													/>
-												);
-											} else {
-												return (
-													<Icon
-														key={index}
-														as={AiOutlineStar}
-														color='gold'
-														fontSize={20}
-													/>
-												);
-											}
-										})}
-									</Box>
-									<Box
-										display={'inline-flex'}
-										alignItems='start'
-									>
-										<Icon
-											as={MdLocationOn}
-											color='white'
-											fontSize={20}
-											p={0}
-										/>
-										<Text display={'inline-block'}>
-											{pkgData.destination}
-										</Text>
-									</Box>
-								</Text>
-							</Box> */}
-						</Box>
+						></Box>
 
 						<Splide aria-label='images' className='splide-slide'>
 							{pkgData.image.map((data, index) => {
@@ -782,22 +795,23 @@ const AboutPackage = () => {
 													base: '200px',
 													lg: '500px',
 												}}
-											>
-												<video
-													autoPlay
+												dangerouslySetInnerHTML={{
+													__html: `<video
+													autoplay
 													muted
 													loop
-													style={{
-														height: '100%',
-														width: '100%',
-														objectFit: 'cover',
-													}}
+													style="
+														height:100%;
+														width:100%;
+														objectFit:cover;
+													"
 												>
 													<source
-														src={data.secure_url}
+														src=${data.secure_url}
 													/>
-												</video>
-											</Box>
+												</video>`,
+												}}
+											></Box>
 										) : (
 											<Box
 												w='100%'
@@ -858,7 +872,7 @@ const AboutPackage = () => {
 									>
 										<Icon
 											as={MdLocationOn}
-											color='white'
+											color='gray.500'
 											fontSize={20}
 											p={0}
 										/>
@@ -995,7 +1009,7 @@ const AboutPackage = () => {
 										cursor='pointer'
 										onClick={() => {
 											loginState
-												? set_book_modal_state(true)
+												? checkForMobileNumber()
 												: loginclick.click();
 										}}
 										_hover={{
@@ -1021,7 +1035,7 @@ const AboutPackage = () => {
 										}}
 										onClick={() => {
 											loginState
-												? onOpen()
+												? handleCustomise()
 												: loginclick.click();
 										}}
 									>
@@ -1057,45 +1071,6 @@ const AboutPackage = () => {
 									</Text>
 								</Box>
 							</Box>
-							{/* <Box display={'flex'} justifyContent='center' mt='50px'>
-						<Box
-							w='90%'
-							bg='green.300'
-							textAlign={'center'}
-							display='flex'
-							alignItems={'center'}
-							gap={3}
-							px='10px'
-							py='15px'
-							borderRadius={'md'}
-							justifyContent='center'
-						>
-							<Icon as={IoLogoWhatsapp} color='green' />{' '}
-							<Text color='green'>Contact us on Whatsapp</Text>
-						</Box>
-					</Box> */}
-							{/* <Box display={'flex'} mt='50px' color={'black'}>
-						<Box
-							display={'flex'}
-							alignItems='center'
-							gap='10px'
-							flexGrow={1}
-							justifyContent='center'
-						>
-							<EmailIcon />
-							<Text>Mail this Quote</Text>
-						</Box>
-						<Box
-							display={'flex'}
-							alignItems='center'
-							gap='10px'
-							flexGrow={1}
-							justifyContent='center'
-						>
-							<Icon as={GiCancel} />
-							<Text>cancelation policy</Text>
-						</Box>
-					</Box> */}
 						</Box>
 					</Box>
 					<Footer />

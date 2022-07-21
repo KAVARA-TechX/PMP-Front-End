@@ -6,9 +6,6 @@ import {
 	FaYoutube,
 	FaInstagram,
 } from 'react-icons/fa';
-import instagram from './instagram.png';
-import cftlogo from '../assets/logo.png';
-import footer from '../assets/footer4.jpg';
 import './Footer.css';
 import { useNavigate } from 'react-router-dom';
 import TravelAgentModal from './TravelAgentModal';

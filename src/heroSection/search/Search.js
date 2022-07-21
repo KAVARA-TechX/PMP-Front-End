@@ -6,25 +6,17 @@ import {
 	Button,
 	Popover,
 	PopoverTrigger,
-	Portal,
 	PopoverContent,
-	PopoverArrow,
-	PopoverHeader,
-	PopoverCloseButton,
 	PopoverBody,
 	PopoverFooter,
 	useDisclosure,
 	useOutsideClick,
 } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
-import { DayPicker } from 'react-day-picker';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
-import CheckInDate from './searchComponents/CheckInDate';
-import CheckOutDate from './searchComponents/CheckOutDate';
 import Who from './searchComponents/Who';
 import When from './searchComponents/When';
-// import c_list from './list.json';
 
 const Search = () => {
 	const [location, setLocation] = useState('');
@@ -57,7 +49,9 @@ const Search = () => {
 	};
 
 	useEffect(() => {
-		set_c_list(localStorage.getItem('destination_list').split(','));
+		if (localStorage.getItem('destination_list')) {
+			set_c_list(localStorage.getItem('destination_list').split(','));
+		}
 	}, []);
 
 	useEffect(() => {

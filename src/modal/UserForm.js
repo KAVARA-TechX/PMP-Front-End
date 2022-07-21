@@ -148,6 +148,7 @@ const UserForm = ({ state, setState }) => {
 						</Box>
 					</ModalHeader>
 					<ModalCloseButton
+						color='white'
 						onClick={() => {
 							setState(false);
 						}}
@@ -182,7 +183,7 @@ const UserForm = ({ state, setState }) => {
 							<FormLabel>Mobile No.</FormLabel>
 							<Input
 								isInvalid={checkPhone}
-								placeholder='+91 0000000000'
+								placeholder='0000000000'
 								type='number'
 								value={phone}
 								onChange={(e) => {

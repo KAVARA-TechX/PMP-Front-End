@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import getBlogsByCount from '../apis/getBlogsByCount';
 import './Blog.css';
 
-const Blog = () => {
+const Blog = ({ onLoad }) => {
 	const [latestBlogs, setLatestBlogs] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
@@ -18,6 +18,7 @@ const Blog = () => {
 				setLatestBlogs(response.data.blogs);
 				console.log('blog response is : ', response.data.blogs);
 				setLoading(false);
+				onLoad(true);
 			} catch (error) {
 				console.log(error);
 				setLoading(false);

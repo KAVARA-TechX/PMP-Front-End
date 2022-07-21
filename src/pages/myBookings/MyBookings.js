@@ -1,16 +1,127 @@
 import { Box, Text } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import getUserinfoApi from '../../apis/getUserInfoApi';
+import GetUserRequestedPackages from '../../apis/GetUserRequestedPackages';
 import Footer from '../../footer/Footer';
 import Nav from '../../nav/Nav';
 
 const MyBookings = () => {
+	const [upcoming, set_upcoming] = useState([]);
+	const [completed, set_completed] = useState([]);
+	const [cancelled, set_cancelled] = useState([]);
+	const path = useLocation().pathname.split('/');
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		getData();
 	}, []);
-	const path = useLocation().pathname.split('/');
-	console.log(path);
-	const navigate = useNavigate();
+
+	const getData = async () => {
+		try {
+			const res = await getUserinfoApi();
+
+			if (res.data._id.length > 10) {
+				const response = await GetUserRequestedPackages(res.data._id);
+
+				for (let i = 0; i < response.data.requests.length; i++) {
+					console.log(`${i + 1} => `, response.data.requests[i]);
+
+					if (response.data.requests[i].status === 'Cancelled') {
+						set_cancelled((prev) => {
+							prev.push(response.data.requests[i]);
+							return [...prev];
+						});
+					} else {
+						// check for date
+						const todaysDate = new Date();
+
+						if (
+							todaysDate.getFullYear() >
+							parseInt(
+								response.data.requests[i].endDate.split('-')[0]
+							)
+						) {
+							set_completed((prev) => {
+								prev.push(response.data.requests[i]);
+								return [...prev];
+							});
+						} else {
+							if (
+								todaysDate.getFullYear() ===
+								parseInt(
+									response.data.requests[i].endDate.split(
+										'-'
+									)[0]
+								)
+							) {
+								if (
+									todaysDate.getMonth() + 1 >
+									parseInt(
+										response.data.requests[i].endDate.split(
+											'-'
+										)[1]
+									)
+								) {
+									set_completed((prev) => {
+										prev.push(response.data.requests[i]);
+										return [...prev];
+									});
+								} else {
+									if (
+										todaysDate.getMonth() + 1 ===
+										parseInt(
+											response.data.requests[
+												i
+											].endDate.split('-')[1]
+										)
+									) {
+										if (
+											todaysDate.getDate() >
+											parseInt(
+												response.data.requests[
+													i
+												].endDate.split('-')[2]
+											)
+										) {
+											set_completed((prev) => {
+												prev.push(
+													response.data.requests[i]
+												);
+												return [...prev];
+											});
+										} else {
+											set_upcoming((prev) => {
+												prev.push(
+													response.data.requests[i]
+												);
+												return [...prev];
+											});
+										}
+									} else {
+										set_upcoming((prev) => {
+											prev.push(
+												response.data.requests[i]
+											);
+											return [...prev];
+										});
+									}
+								}
+							} else {
+								set_upcoming((prev) => {
+									prev.push(response.data.requests[i]);
+									return [...prev];
+								});
+							}
+						}
+					}
+				}
+			}
+		} catch (error) {
+			console.log('error occurred ', error);
+		}
+	};
 
 	return (
 		<>
@@ -35,7 +146,7 @@ const MyBookings = () => {
 							path.length === 2 ? '3px solid #32BAC9' : 'none'
 						}
 						onClick={() => {
-							navigate('/mybookings');
+							navigate('/mybookings', { state: upcoming });
 						}}
 						cursor='pointer'
 					>
@@ -52,7 +163,9 @@ const MyBookings = () => {
 								: 'none'
 						}
 						onClick={() => {
-							navigate('/mybookings/completed');
+							navigate('/mybookings/completed', {
+								state: completed,
+							});
 						}}
 						cursor='pointer'
 					>
@@ -69,7 +182,9 @@ const MyBookings = () => {
 						px='13px'
 						py='5px'
 						onClick={() => {
-							navigate('/mybookings/cancelled');
+							navigate('/mybookings/cancelled', {
+								state: cancelled,
+							});
 						}}
 						cursor='pointer'
 					>
@@ -77,7 +192,13 @@ const MyBookings = () => {
 					</Text>
 				</Box>
 			</Box>
-			<Outlet />
+			<Outlet
+				context={{
+					upcoming: upcoming,
+					completed: completed,
+					cancelled: cancelled,
+				}}
+			/>
 			<Footer />
 		</>
 	);

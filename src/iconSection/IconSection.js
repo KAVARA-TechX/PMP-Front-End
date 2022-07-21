@@ -3,12 +3,17 @@ import clipboard from '../assets/icons/clipboard-text.png';
 import message from '../assets/icons/messages.png';
 import cardtick from '../assets/icons/card-tick.png';
 import { ReactComponent as EasyPricing } from '../assets/icons/hand-holding-dollar-solid.svg';
+import { useEffect } from 'react';
 // import x7 from '../assets/icons/24x7.svg';
 // import allRounder from '../assets/icons/allRound.svg';
 // import easyPrice from '../assets/icons/easyPrice.svg';
 // import oneStopShop from '../assets/icons/oneStopShop.svg';
 
-const IconSection = () => {
+const IconSection = ({ onLoad }) => {
+	useEffect(() => {
+		onLoad(true);
+	}, []);
+
 	return (
 		<Box
 			w='100vw'

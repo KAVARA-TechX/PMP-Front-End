@@ -8,8 +8,16 @@ import {
 	Button,
 	Badge,
 	useToast,
+	AlertDialog,
+	AlertDialogOverlay,
+	AlertDialogContent,
+	AlertDialogHeader,
+	AlertDialogBody,
+	Input,
+	AlertDialogFooter,
+	useDisclosure,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoAirplaneSharp } from 'react-icons/io5';
 import { MdDateRange } from 'react-icons/md';
 import { MdPeopleAlt } from 'react-icons/md';
@@ -30,6 +38,12 @@ const UpcomingCard = ({ data, changeState }) => {
 	const [parts, setParts] = useState([]);
 	const toast = useToast();
 	const eDate = new Date(data.endDate);
+	const [refetch, set_refetch] = useState(false);
+
+	// for alert
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const cancleRef = useRef();
+	const [c_loading, set_c_loading] = useState(false);
 
 	const initializeRazorpay = () => {
 		return new Promise((resolve) => {
@@ -173,7 +187,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		};
 
 		getPackageData();
-	}, []);
+	}, [refetch]);
 
 	// -------------------------------------------------------
 
@@ -216,8 +230,62 @@ const UpcomingCard = ({ data, changeState }) => {
 		} catch (error) {}
 	};
 
+	const handleFormCancelStatus = async () => {
+		set_c_loading(true);
+		try {
+			const res = await axios.patch(
+				'https://planmy.herokuapp.com/package/update-request-package',
+				{
+					packageId: data._id,
+					status:
+						data.paymentStatus === 'Done' ||
+						data.paymentStatus === 'Confirmed'
+							? 'RequestedCancellation'
+							: 'Cancelled',
+				}
+			);
+			console.log('i just want to cancel the request : ', res);
+			set_c_loading(false);
+			onClose();
+			set_refetch((prev) => !prev);
+		} catch (error) {
+			set_c_loading(false);
+		}
+	};
+
 	return (
 		<>
+			<AlertDialog
+				isOpen={isOpen}
+				onClose={onClose}
+				leastDestructiveRef={cancleRef}
+			>
+				<AlertDialogOverlay>
+					<AlertDialogContent bg='#fffdf7'>
+						<AlertDialogHeader fontSize={'lg'} fontWeight={'bold'}>
+							Are you sure?
+						</AlertDialogHeader>
+						<AlertDialogBody>
+							<Text mb='10px'>
+								Are you sure you want to cancel this trip?
+							</Text>
+						</AlertDialogBody>
+						<AlertDialogFooter>
+							<Button ref={cancleRef} onClick={onClose}>
+								Cancel
+							</Button>
+							<Button
+								colorScheme='red'
+								ml={3}
+								onClick={handleFormCancelStatus}
+								isLoading={c_loading}
+							>
+								Confirm
+							</Button>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialogOverlay>
+			</AlertDialog>
 			{console.log('data is : ', data)}
 			{loading ? (
 				<></>
@@ -343,7 +411,9 @@ const UpcomingCard = ({ data, changeState }) => {
 								Room Type :<br /> {pkgData.roomType}
 							</Text>
 						</Box>
-						{data.pdf !== undefined ? (
+						{data.pdf === undefined || data.pdf === '' ? (
+							<></>
+						) : (
 							<Box
 								display={'flex'}
 								alignItems='center'
@@ -358,8 +428,6 @@ const UpcomingCard = ({ data, changeState }) => {
 									/>
 								</a>
 							</Box>
-						) : (
-							<></>
 						)}
 					</Box>
 					<Box
@@ -370,6 +438,7 @@ const UpcomingCard = ({ data, changeState }) => {
 						display={'flex'}
 						flexDir='column'
 						color='#fff'
+						position='relative'
 					>
 						<Box
 							pr='20px'
@@ -386,9 +455,6 @@ const UpcomingCard = ({ data, changeState }) => {
 							>
 								<Text fontSize={'18px'}>Total Amount</Text>
 								<Text fontSize={'24px'} fontWeight={700}>
-									{/* {payOption === 'pay now'
-										? 'Rs 30,000/-'
-										: 'Rs 9,000/month'} */}
 									{'Rs ' + pkgData.startingPrice}
 								</Text>
 							</Box>
@@ -398,16 +464,27 @@ const UpcomingCard = ({ data, changeState }) => {
 								alignItems={'flex-end'}
 								gap='10px'
 							>
+								{/* shows payment status processing or done */}
 								<Box
 									fontSize='20px'
 									display={
-										data.paymentStatus === 'Confirmed'
+										data.status === 'Cancelled'
+											? 'inline-block'
+											: data.status ===
+											  'RequestedCancellation'
+											? 'inline-block'
+											: data.paymentStatus === 'Confirmed'
 											? 'none'
 											: 'inline-block'
 									}
 									bg={
-										data.paymentStatus === 'Done'
-											? 'green.500'
+										data.status === 'Cancelled'
+											? 'red'
+											: data.paymentStatus === 'Done'
+											? data.status ===
+											  'RequestedCancellation'
+												? 'red.500'
+												: 'green.500'
 											: 'rgba(255,240,0,.3)'
 									}
 									color='#fff'
@@ -417,12 +494,18 @@ const UpcomingCard = ({ data, changeState }) => {
 									borderRadius={'10px'}
 									fontWeight={600}
 								>
-									{data.paymentStatus === undefined
+									{data.status === 'Cancelled'
+										? 'Cancelled'
+										: data.status ===
+										  'RequestedCancellation'
+										? 'Requested Cancellation'
+										: data.paymentStatus === undefined
 										? 'Processing'
 										: data.paymentStatus === 'Done'
 										? 'Booked'
 										: 'Processing'}
 								</Box>
+
 								<Box
 									display={
 										data.paymentStatus === 'Confirmed'
@@ -456,20 +539,6 @@ const UpcomingCard = ({ data, changeState }) => {
 											</option>
 										</Select>
 									)}
-									{/* <Select
-										w='130px'
-										value={payOption}
-										onChange={(e) => {
-											setPayOption(e.target.value);
-										}}
-									>
-										<option value={'pay now'}>
-											pay now
-										</option>
-										<option value='pay in parts'>
-											pay in parts
-										</option>
-									</Select> */}
 								</Box>
 							</Box>
 						</Box>
@@ -549,50 +618,6 @@ const UpcomingCard = ({ data, changeState }) => {
 												</Box>
 											);
 										})}
-
-										{/* <Box
-										border={'1px solid rgba(0,0,0,.6)'}
-										borderRadius={'10px'}
-										overflow='hidden'
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-2
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
-										{/* <Box
-										borderRadius={'10px'}
-										overflow='hidden'
-										border={'1px solid rgba(0,0,0,.6)'}
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-3
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-											bg='transparent'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
 									</Box>
 									<Box>
 										<Text
@@ -628,12 +653,6 @@ const UpcomingCard = ({ data, changeState }) => {
 									>
 										Pay Now
 									</Button>
-									<Text
-										textDecor={'underline'}
-										color='rgba(255,255,255,.5)'
-									>
-										Cancel Booking
-									</Text>
 								</Box>
 							)
 						) : (
@@ -710,15 +729,27 @@ const UpcomingCard = ({ data, changeState }) => {
 										);
 									})}
 								</Box>
-								<Box>
-									<Text
-										textDecor={'underline'}
-										textAlign='center'
-										color='rgba(255,255,255,.5)'
-									>
-										Cancel Booking
-									</Text>
-								</Box>
+							</Box>
+						)}
+						{data.status === 'Cancelled' ||
+						data.status === 'RequestedCancellation' ? (
+							<></>
+						) : (
+							<Box
+								position={'absolute'}
+								bottom='10px'
+								left='50%'
+								transform={'translateX(-50%)'}
+							>
+								<Text
+									textDecor={'underline'}
+									textAlign='center'
+									color='rgba(255,255,255,.5)'
+									onClick={onOpen}
+									cursor='pointer'
+								>
+									Cancel Booking
+								</Text>
 							</Box>
 						)}
 					</Box>

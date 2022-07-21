@@ -1,6 +1,5 @@
-import { Box, Button, Icon, Skeleton, Text } from '@chakra-ui/react';
+import { Box, Icon, Skeleton, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
-import UserForm from '../modal/UserForm';
 import { useState } from 'react';
 import Nav from '../nav/Nav';
 import getAllHeroImage from '../apis/getAllHeroImage';
@@ -11,18 +10,13 @@ import '@splidejs/react-splide/css';
 import './Hero.css';
 import MobileSearch from './mobileSearch/MobileSearch';
 
-const Hero = () => {
-	const [modalState, setModalState] = useState(false);
+const Hero = ({ onLoad }) => {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [city, setCity] = useState('');
-	const [location, setLocation] = useState('');
-	const imgRef = useRef();
 	const splide_ref = useRef();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const prev = useRef();
 	const next = useRef();
-	const video = useRef(null);
 
 	const makeItMove = (len) => {
 		let slides = document.querySelector('.slides');
@@ -54,41 +48,13 @@ const Hero = () => {
 				console.log('hero response is : ', response);
 				setImages((prev) => response.data.heroImages);
 				setLoading(false);
+				onLoad(true);
 			} catch (error) {
 				console.log('something went wrong');
 			}
 		};
 		getImages();
 	}, []);
-
-	useEffect(() => {
-		let isSafari = /^((?!chrome|android).)*safari/i.test(
-			navigator.userAgent
-		);
-
-		if (isSafari && video.current) {
-			console.log('we got the element : ', video.current);
-			// video.current.controls = false;
-			// video.current.playsinline = true;
-			// video.current.muted = true;
-			// video.current.autoPlay = true;
-			video.current.click();
-
-			// if (promise !== undefined) {
-			// 	promise
-			// 		.catch((error) => {
-			// 			console.log('auto play was prevented');
-			// 		})
-			// 		.then(() => {
-			// 			console.log('video play should start');
-			// 		});
-			// }
-
-			// setTimeout(() => {
-			// 	const promise = video.current.play();
-			// }, 0);
-		}
-	});
 
 	return (
 		<>
@@ -169,29 +135,27 @@ const Hero = () => {
 												{data.imageUrl[0]
 													.resource_type ===
 												'video' ? (
-													<Box w='100%' h='100%'>
-														<video
-															ref={video}
+													<Box
+														w='100%'
+														h='100%'
+														dangerouslySetInnerHTML={{
+															__html: `<video
 															autoPlay='autoplay'
 															loop
-															muted
-															playsInline
-															style={{
-																height: '100%',
-																width: '100%',
-																objectFit:
-																	'cover',
-															}}
+															muted='true'
+															playsinline
+															style="
+																height: 100%;
+																width: 100%;
+																object-fit:cover;
+															"
 														>
 															<source
-																src={
-																	data
-																		.imageUrl[0]
-																		.secure_url
-																}
+																src=${data.imageUrl[0].secure_url}
 															/>
-														</video>
-													</Box>
+														</video>`,
+														}}
+													></Box>
 												) : (
 													<Box
 														w='100%'

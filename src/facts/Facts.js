@@ -7,7 +7,7 @@ import './Facts.css';
 import vid from '../assets/videos/production ID_4782135.mp4';
 import getFactsImageApi from '../apis/getFactsImageApi';
 
-const Facts = () => {
+const Facts = ({ onLoad }) => {
 	const container_ref = useRef(null);
 	const container = gsap.utils.selector(container_ref);
 	const [media, set_media] = useState(null);
@@ -51,6 +51,7 @@ const Facts = () => {
 			const res = await getFactsImageApi();
 			set_media(res.data.factImages[0].imageUrl);
 			set_type(res.data.factImages[0].imageUrl.resource_type);
+			onLoad(true);
 		};
 
 		getData();
@@ -77,13 +78,14 @@ const Facts = () => {
 					mb={10}
 					borderRadius='20px'
 					overflow='hidden'
-				>
-					<video loop autoPlay muted id='facts_video'>
+					dangerouslySetInnerHTML={{
+						__html: `<video loop autoPlay playsinline muted="true" id='facts_video'>
 						<source
-							src={media === null ? '' : media.secure_url}
+							src=${media === null ? '' : media.secure_url}
 						></source>
-					</video>
-				</Box>
+					</video>`,
+					}}
+				></Box>
 			) : (
 				<>
 					<Box

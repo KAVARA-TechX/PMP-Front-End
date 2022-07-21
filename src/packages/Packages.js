@@ -1,7 +1,4 @@
 import { Box, Icon, Text } from '@chakra-ui/react';
-import sunset from '../assets/thingsToDo/sunset.png';
-import surf from '../assets/thingsToDo/skiing.png';
-import scuba from '../assets/thingsToDo/scuba.png';
 import '../../node_modules/react-day-picker/dist/style.css';
 import './day-picker.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +10,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
-const Packages = () => {
+const Packages = ({ onLoad }) => {
 	const navigate = useNavigate();
 	const [pkg, setPkg] = useState([]);
 	let cardsParentRef = useRef(null);
@@ -22,6 +19,7 @@ const Packages = () => {
 	const ref_cards = gsap.utils.selector(cardsParentRef);
 	const ref_pkd_heading = gsap.utils.selector(pkg_heading_container);
 	const main_container = gsap.utils.selector(mainContainer);
+	const [hide_or_show, set_hide_or_show] = useState(true);
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -79,9 +77,14 @@ const Packages = () => {
 			try {
 				const res = await getPackageApi();
 				setPkg(res.data.packages);
-				// if (window.innerWidth >= 992) {
 				animateCards();
-				// }
+				onLoad(true);
+				set_hide_or_show(
+					pkg.length * 255 + (pkg.length - 1) * 15 <
+						cardsParentRef.current.offsetWidth
+						? false
+						: true
+				);
 			} catch (error) {}
 		};
 		getData();
@@ -183,7 +186,7 @@ const Packages = () => {
 					cursor='pointer'
 					onClick={leftButton}
 					_hover={{ background: 'rgba(20, 17, 119,1)' }}
-					display='flex'
+					display={hide_or_show ? 'flex' : 'none'}
 					justifyContent={'center'}
 					alignItems='center'
 					color='white'
@@ -204,7 +207,7 @@ const Packages = () => {
 					cursor='pointer'
 					onClick={rightButton}
 					_hover={{ background: 'rgba(20, 17, 119,1)' }}
-					display='flex'
+					display={hide_or_show ? 'flex' : 'none'}
 					justifyContent={'center'}
 					alignItems='center'
 					color='white'
@@ -213,11 +216,9 @@ const Packages = () => {
 				</Box>
 
 				<Box
-					// w={{ base: '100%', lg: '75%' }}
 					as='div'
 					display={'block'}
 					whiteSpace='nowrap'
-					// alignItems='center'
 					mt='20px'
 					overflowX={{ base: 'scroll', lg: 'scroll' }}
 					className='hide-scroll-bar'
@@ -242,7 +243,6 @@ const Packages = () => {
 								bgPos={'50%'}
 								borderRadius={'xl'}
 								mr={index === pkg.length - 1 ? 0 : '15px'}
-								// ml={index === 0 ? 0 : 5}
 								cursor='pointer'
 								onClick={() => {
 									navigate(
