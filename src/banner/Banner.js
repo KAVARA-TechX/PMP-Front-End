@@ -47,7 +47,7 @@ const Banner = ({ onLoad }) => {
 		};
 
 		getData();
-		animate();
+		// animate();
 	}, []);
 	return (
 		<>

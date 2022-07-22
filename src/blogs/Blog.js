@@ -20,7 +20,7 @@ const Blog = ({ onLoad }) => {
 				setLoading(false);
 				onLoad(true);
 			} catch (error) {
-				console.log(error);
+				console.log(error.response);
 				setLoading(false);
 			}
 		};
@@ -46,7 +46,7 @@ const Blog = ({ onLoad }) => {
 				Blogs
 			</Text>
 			{loading ? (
-				<Box></Box>
+				<></>
 			) : (
 				<Box
 					display={'grid'}
@@ -60,70 +60,80 @@ const Blog = ({ onLoad }) => {
 					color='white'
 					fontWeight={'bold'}
 				>
-					<Box
-						bgImage={latestBlogs[0].imageUrl
-							.replace('https', 'http')
-							.replace('http', 'https')}
-						bgSize='cover'
-						w='100%'
-						minH='200px'
-						gridColumnStart={{ lg: 1 }}
-						gridColumnEnd={{ lg: 3 }}
-						borderRadius='md'
-						display={'flex'}
-						alignItems='end'
-						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-						cursor={'pointer'}
-						onClick={() => {
-							navigate(`blogs/${latestBlogs[0]._id}`);
-						}}
-						className='show'
-					>
+					{latestBlogs[0] === undefined ? (
+						''
+					) : (
 						<Box
+							bgImage={latestBlogs[0].imageUrl
+								.replace('https', 'http')
+								.replace('http', 'https')}
+							bgSize='cover'
 							w='100%'
-							h='100%'
-							display={'none'}
-							justifyContent='start'
-							alignItems={'end'}
-							fontSize='14px'
-							px='5px'
-							bg='rgba(0,0,0,.3)'
+							minH='200px'
+							gridColumnStart={{ lg: 1 }}
+							gridColumnEnd={{ lg: 3 }}
+							borderRadius='md'
+							display={'flex'}
+							alignItems='end'
+							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate(`blogs/${latestBlogs[0]._id}`);
+							}}
+							overflow='hidden'
+							className='show'
 						>
-							{latestBlogs[0].blogHeading}
+							<Box
+								w='100%'
+								h='100%'
+								display={'none'}
+								justifyContent='start'
+								alignItems={'end'}
+								fontSize='14px'
+								px='5px'
+								bg='rgba(0,0,0,.3)'
+							>
+								{latestBlogs[0].blogHeading}
+							</Box>
 						</Box>
-					</Box>
-					<Box
-						bgImage={latestBlogs[1].imageUrl
-							.replace('https', 'http')
-							.replace('http', 'https')}
-						bgSize='cover'
-						w='100%'
-						h='200px'
-						borderRadius='md'
-						gridColumnStart={{ lg: 3 }}
-						gridColumnEnd={{ lg: 4 }}
-						display={'flex'}
-						alignItems='end'
-						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
-						cursor={'pointer'}
-						onClick={() => {
-							navigate(`blogs/${latestBlogs[1]._id}`);
-						}}
-						className='show'
-					>
+					)}
+					{latestBlogs[1] === undefined ? (
+						''
+					) : (
 						<Box
+							bgImage={latestBlogs[1].imageUrl
+								.replace('https', 'http')
+								.replace('http', 'https')}
+							bgSize='cover'
 							w='100%'
-							h='100%'
-							display={'none'}
-							justifyContent='start'
-							alignItems={'end'}
-							fontSize='14px'
-							px='5px'
-							bg='rgba(0,0,0,.3)'
+							h='200px'
+							borderRadius='md'
+							gridColumnStart={{ lg: 3 }}
+							gridColumnEnd={{ lg: 4 }}
+							display={'flex'}
+							alignItems='end'
+							boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+							cursor={'pointer'}
+							onClick={() => {
+								navigate(`blogs/${latestBlogs[1]._id}`);
+							}}
+							className='show'
+							overflow='hidden'
 						>
-							{latestBlogs[1].blogHeading}
+							<Box
+								w='100%'
+								h='100%'
+								display={'none'}
+								justifyContent='start'
+								alignItems={'end'}
+								fontSize='14px'
+								px='5px'
+								bg='rgba(0,0,0,.3)'
+							>
+								{latestBlogs[1].blogHeading}
+							</Box>
 						</Box>
-					</Box>
+					)}
 					{latestBlogs[2] === undefined ? (
 						<></>
 					) : (
@@ -145,6 +155,7 @@ const Blog = ({ onLoad }) => {
 								navigate(`blogs/${latestBlogs[2]._id}`);
 							}}
 							className='show'
+							overflow='hidden'
 						>
 							<Box
 								w='100%'
@@ -245,6 +256,7 @@ const Blog = ({ onLoad }) => {
 						display={latestBlogs.length < 4 ? 'none' : 'flex'}
 						alignItems='end'
 						boxShadow='rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset'
+						overflow='hidden'
 					>
 						<Box
 							w='100%'
