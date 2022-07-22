@@ -191,11 +191,11 @@ const UpcomingCard = ({ data, changeState }) => {
 
 	// -------------------------------------------------------
 
-	const handlePartsPackagePaid = async (pay_status) => {
+	const handlePartsPackagePaid = async (pay_status, parts_index) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/package/update-request-package',
+				'https://planmyleisure.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
 					paymentStatus: pay_status ? 'Done' : 'Confirmed',
@@ -211,7 +211,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/package/update-request-package',
+				'https://planmyleisure.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
 					paymentStatus: 'Done',
@@ -234,7 +234,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		set_c_loading(true);
 		try {
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/package/update-request-package',
+				'https://planmyleisure.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
 					status:
@@ -619,7 +619,7 @@ const UpcomingCard = ({ data, changeState }) => {
 											);
 										})}
 									</Box>
-									<Box>
+									{/* <Box>
 										<Text
 											textDecor={'underline'}
 											textAlign='center'
@@ -627,11 +627,11 @@ const UpcomingCard = ({ data, changeState }) => {
 										>
 											Cancel Booking
 										</Text>
-									</Box>
+									</Box> */}
 								</Box>
 							) : (
 								<Box
-									pb='20px'
+									pb='40px'
 									display={
 										data.paymentStatus === 'Requested'
 											? 'none'

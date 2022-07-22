@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Spinner, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import getUserinfoApi from '../../apis/getUserInfoApi';
@@ -12,6 +12,7 @@ const MyBookings = () => {
 	const [cancelled, set_cancelled] = useState([]);
 	const path = useLocation().pathname.split('/');
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -108,6 +109,7 @@ const MyBookings = () => {
 										});
 									}
 								}
+								setLoading(false);
 							} else {
 								set_upcoming((prev) => {
 									prev.push(response.data.requests[i]);
@@ -118,8 +120,10 @@ const MyBookings = () => {
 					}
 				}
 			}
+			setLoading(false);
 		} catch (error) {
 			console.log('error occurred ', error);
+			setLoading(false);
 		}
 	};
 
@@ -192,13 +196,25 @@ const MyBookings = () => {
 					</Text>
 				</Box>
 			</Box>
-			<Outlet
-				context={{
-					upcoming: upcoming,
-					completed: completed,
-					cancelled: cancelled,
-				}}
-			/>
+			{loading ? (
+				<Box
+					h='50vh'
+					w='100vw'
+					display={'flex'}
+					justifyContent='center'
+					alignItems={'center'}
+				>
+					<Spinner />
+				</Box>
+			) : (
+				<Outlet
+					context={{
+						upcoming: upcoming,
+						completed: completed,
+						cancelled: cancelled,
+					}}
+				/>
+			)}
 			<Footer />
 		</>
 	);

@@ -4,7 +4,7 @@ import getUserinfoApi from '../apis/getUserInfoApi';
 const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
-	const [loginState, setLoginState] = useState(false);
+	const [loginState, setLoginState] = useState(null);
 	const [token, setToken] = useState('');
 	const [used, setUsed] = useState('');
 	const [loginclick, setLoginclick] = useState(null);
@@ -12,7 +12,11 @@ const LoginProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (window.localStorage.getItem('loginStatus') === 'true') {
-			setLoginState(window.localStorage.getItem('loginStatus'));
+			setLoginState(
+				window.localStorage.getItem('loginStatus')
+					? window.localStorage.getItem('loginStatus')
+					: false
+			);
 			setToken(
 				window.localStorage.getItem('token')
 					? window.localStorage.getItem('token')

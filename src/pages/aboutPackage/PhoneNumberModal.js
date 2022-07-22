@@ -41,7 +41,7 @@ const PhoneNumberModal = ({ state, changeState, nextModal, anotherModal }) => {
 		try {
 			let token = localStorage.getItem('token');
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/user/update-profile',
+				'https://planmyleisure.herokuapp.com/user/update-profile',
 				{
 					phone,
 				},

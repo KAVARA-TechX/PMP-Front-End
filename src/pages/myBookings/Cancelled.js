@@ -9,8 +9,12 @@ const Cancelled = () => {
 	const navigate = useNavigate();
 	console.log('value in cancelled : ', useOutletContext().cancelled);
 	const [requests, setRequests] = useState(useOutletContext().cancelled);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [state, setState] = useState(false);
+
+	useEffect(() => {
+		setLoading(false);
+	}, []);
 
 	return (
 		<>
@@ -33,6 +37,7 @@ const Cancelled = () => {
 							gap='20px'
 							mt='30px'
 							mb='50px'
+							minH={'50vh'}
 						>
 							{requests.length === 0 ? (
 								<Box

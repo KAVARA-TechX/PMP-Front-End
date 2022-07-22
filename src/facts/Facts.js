@@ -49,8 +49,16 @@ const Facts = ({ onLoad }) => {
 	useEffect(() => {
 		const getData = async () => {
 			const res = await getFactsImageApi();
-			set_media(res.data.factImages[0].imageUrl);
-			set_type(res.data.factImages[0].imageUrl.resource_type);
+			set_media(
+				res.data.factImages.length === 0
+					? null
+					: res.data.factImages[0].imageUrl
+			);
+			set_type(
+				res.data.factImages.length === 0
+					? null
+					: res.data.factImages[0].imageUrl.resource_type
+			);
 			onLoad(true);
 		};
 
