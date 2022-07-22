@@ -77,7 +77,7 @@ const Packages = ({ onLoad }) => {
 			try {
 				const res = await getPackageApi();
 				setPkg(res.data.packages);
-				animateCards();
+				// animateCards();
 				onLoad(true);
 				set_hide_or_show(
 					pkg.length * 255 + (pkg.length - 1) * 15 <
