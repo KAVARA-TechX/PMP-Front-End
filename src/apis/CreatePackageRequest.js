@@ -24,7 +24,7 @@ const CreatePackageRequest = (
 			numberOfPeople,
 			location,
 			userId,
-			paymentStatus,
+			paymentStatus: { status: paymentStatus },
 		}
 	);
 };
