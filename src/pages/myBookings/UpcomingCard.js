@@ -198,7 +198,9 @@ const UpcomingCard = ({ data, changeState }) => {
 				'https://planmyleisure.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
-					paymentStatus: pay_status ? 'Done' : 'Confirmed',
+					paymentStatus: pay_status
+						? { status: 'Done' }
+						: { status: 'Confirmed' },
 					paymentType: `parts:${parts.join('-')}`,
 				}
 			);
@@ -214,7 +216,7 @@ const UpcomingCard = ({ data, changeState }) => {
 				'https://planmyleisure.herokuapp.com/package/update-request-package',
 				{
 					packageId: data._id,
-					paymentStatus: 'Done',
+					paymentStatus: { status: 'Done' },
 				}
 			);
 			console.log('resssssssssss : ', res);
@@ -238,8 +240,8 @@ const UpcomingCard = ({ data, changeState }) => {
 				{
 					packageId: data._id,
 					status:
-						data.paymentStatus === 'Done' ||
-						data.paymentStatus === 'Confirmed'
+						data.paymentStatus.status === 'Done' ||
+						data.paymentStatus.status === 'Confirmed'
 							? 'RequestedCancellation'
 							: 'Cancelled',
 				}
@@ -294,29 +296,33 @@ const UpcomingCard = ({ data, changeState }) => {
 			) : (
 				<Box
 					w='100%'
-					h='300px'
+					h={{ base: 'fit-content', lg: '300px' }}
 					bg='transparent'
 					border='1px solid #2d3748'
 					borderRadius={'20px'}
 					overflow='hidden'
 					display={'flex'}
+					flexDir={{ base: 'column', lg: 'row' }}
 				>
 					<Box
-						w='30%'
-						h='100%'
+						w={{ base: '100%', lg: '30%' }}
+						h={{ base: '300px', lg: '100%' }}
 						bgImage={pkgData.image[0].secure_url}
 						bgSize='cover'
 						bgPos={'50% 50%'}
 					></Box>
 					<Box
 						pl='10px'
-						w='35%'
+						w={{ base: '100%', lg: '35%' }}
 						display={'flex'}
 						flexDir='column'
 						pb='20px'
 					>
 						<Box h='fit-content'>
-							<Text fontSize={'24px'} fontWeight={700}>
+							<Text
+								fontSize={{ base: '20px', lg: '24px' }}
+								fontWeight={700}
+							>
 								{loading ? 'loading' : pkgData.packageTitle}
 							</Text>
 							<Box display={'flex'} mt='5px' pl='5px'>
@@ -328,11 +334,16 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={IoAirplaneSharp}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '16px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
 
-									<Text pl='10px'>{data.location}</Text>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
+										{data.location}
+									</Text>
 								</Box>
 								<Box
 									display={'flex'}
@@ -343,10 +354,13 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={MdDateRange}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '14px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
-									<Text pl='10px'>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
 										{`${sDate.getDate()}/${
 											sDate.getMonth() + 1
 										}/${sDate.getFullYear()}`}
@@ -363,10 +377,15 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={MdPeopleAlt}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '14px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
-									<Text pl='10px'>{data.numberOfPeople}</Text>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
+										{data.numberOfPeople}
+									</Text>
 								</Box>
 							</Box>
 						</Box>
@@ -374,7 +393,7 @@ const UpcomingCard = ({ data, changeState }) => {
 							flexGrow={1}
 							mt='20px'
 							ml='20px'
-							display={'grid'}
+							display={{ base: 'none', lg: 'grid' }}
 							gridTemplateColumns='repeat(3,1fr)'
 						>
 							<Box>
@@ -418,6 +437,7 @@ const UpcomingCard = ({ data, changeState }) => {
 								display={'flex'}
 								alignItems='center'
 								gap='10px'
+								pt={{ base: '20px', lg: '' }}
 							>
 								<Text>See complete package : </Text>
 								<a href={data.pdf} target='blank'>
@@ -431,14 +451,15 @@ const UpcomingCard = ({ data, changeState }) => {
 						)}
 					</Box>
 					<Box
-						h='100%'
-						w='35%'
+						h={{ base: 'fit-content', lg: '100%' }}
+						w={{ base: '100%', lg: '35%' }}
 						bg='gray.700'
 						pr='20px'
 						display={'flex'}
 						flexDir='column'
 						color='#fff'
 						position='relative'
+						pb={{ base: '50px', lg: '' }}
 					>
 						<Box
 							pr='20px'
@@ -453,8 +474,13 @@ const UpcomingCard = ({ data, changeState }) => {
 								flexDir={'column'}
 								alignItems={'flex-start '}
 							>
-								<Text fontSize={'18px'}>Total Amount</Text>
-								<Text fontSize={'24px'} fontWeight={700}>
+								<Text fontSize={{ base: '16px', lg: '18px' }}>
+									Total Amount
+								</Text>
+								<Text
+									fontSize={{ base: '16px', lg: '18px' }}
+									fontWeight={700}
+								>
 									{'Rs ' + pkgData.startingPrice}
 								</Text>
 							</Box>
@@ -466,21 +492,23 @@ const UpcomingCard = ({ data, changeState }) => {
 							>
 								{/* shows payment status processing or done */}
 								<Box
-									fontSize='20px'
+									fontSize={{ base: '14px', lg: '20px' }}
 									display={
 										data.status === 'Cancelled'
 											? 'inline-block'
 											: data.status ===
 											  'RequestedCancellation'
 											? 'inline-block'
-											: data.paymentStatus === 'Confirmed'
+											: data.paymentStatus.status ===
+											  'Confirmed'
 											? 'none'
 											: 'inline-block'
 									}
 									bg={
 										data.status === 'Cancelled'
 											? 'red'
-											: data.paymentStatus === 'Done'
+											: data.paymentStatus.status ===
+											  'Done'
 											? data.status ===
 											  'RequestedCancellation'
 												? 'red.500'
@@ -499,21 +527,24 @@ const UpcomingCard = ({ data, changeState }) => {
 										: data.status ===
 										  'RequestedCancellation'
 										? 'Requested Cancellation'
-										: data.paymentStatus === undefined
+										: data.paymentStatus.status ===
+										  undefined
 										? 'Processing'
-										: data.paymentStatus === 'Done'
+										: data.paymentStatus.status === 'Done'
 										? 'Booked'
 										: 'Processing'}
 								</Box>
 
 								<Box
+									fontSize={{ base: '14px', lg: '20px' }}
 									display={
-										data.paymentStatus === 'Confirmed'
+										data.paymentStatus.status ===
+										'Confirmed'
 											? 'inline-block'
 											: 'none'
 									}
 								>
-									<Text fontSize={'16px'}>Payment Plan</Text>
+									<Text>Payment Plan</Text>
 									{parts.length === 0 ? (
 										<></>
 									) : parts[0].split('_').length === 2 ? (
@@ -553,6 +584,7 @@ const UpcomingCard = ({ data, changeState }) => {
 									justifyContent='center'
 									alignItems={'center'}
 									pb='20px'
+									fontSize={{ base: '14px', lg: '20px' }}
 								>
 									<Box
 										w='100%'
@@ -631,11 +663,14 @@ const UpcomingCard = ({ data, changeState }) => {
 								</Box>
 							) : (
 								<Box
+									fontSize={{ base: '14px', lg: '20px' }}
 									pb='40px'
 									display={
-										data.paymentStatus === 'Requested'
+										data.paymentStatus.status ===
+										'Requested'
 											? 'none'
-											: data.paymentStatus === 'Done'
+											: data.paymentStatus.status ===
+											  'Done'
 											? 'none'
 											: 'flex'
 									}
@@ -663,6 +698,7 @@ const UpcomingCard = ({ data, changeState }) => {
 								justifyContent='center'
 								alignItems={'center'}
 								pb='20px'
+								fontSize={{ base: '14px', lg: '20px' }}
 							>
 								<Box
 									w='100%'

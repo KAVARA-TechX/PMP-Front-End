@@ -2,13 +2,23 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { Box, Icon, Skeleton, Text, useToast } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
-
+// import Hero from './heroSection/Hero';
+// import Facts from './facts/Facts';
+// import Packages from './packages/Packages';
+// import DreamVacation from './dreamVacation/DreamVacation';
+// import Banner from './banner/Banner';
+// import ImageSlider from './imageSlider/ImageSlider';
+// import IconSection from './iconSection/IconSection';
+// import Blog from './blogs/Blog';
+// import Footer from './footer/Footer';
 const Hero = lazy(() => {
 	return import('./heroSection/Hero');
 });
+
 const Facts = lazy(() => {
 	return import('./facts/Facts');
 });
+
 const Packages = lazy(() => {
 	return import('./packages/Packages');
 });
@@ -443,6 +453,7 @@ const Homepage = () => {
 			<Suspense fallback={''}>
 				<Hero onLoad={set_sec_1} />
 			</Suspense>
+
 			{sec_1 ? (
 				<>
 					<Suspense fallback={<LoadingForFacts />}>
@@ -514,7 +525,9 @@ const Homepage = () => {
 																			<Footer />
 																		</Suspense>
 																	) : (
-																		<></>
+																		<>
+																			{/* <LoadingBlogs /> */}
+																		</>
 																	)}
 																</>
 															) : (
@@ -522,15 +535,17 @@ const Homepage = () => {
 															)}
 														</>
 													) : (
-														<></>
+														<>
+															{/* <LoadingImageSlider /> */}
+														</>
 													)}
 												</>
 											) : (
-												<></>
+												<>{/* <LoadingBanner /> */}</>
 											)}
 										</>
 									) : (
-										<></>
+										<>{/* <LoadingDreamVacation /> */}</>
 									)}
 								</>
 							) : (
@@ -538,11 +553,11 @@ const Homepage = () => {
 							)}
 						</>
 					) : (
-						<></>
+						<>{/* <LoadingPackages /> */}</>
 					)}
 				</>
 			) : (
-				<></>
+				<>{/* <LoadingForFacts /> */}</>
 			)}
 		</Box>
 	);

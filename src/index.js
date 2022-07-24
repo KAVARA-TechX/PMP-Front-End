@@ -7,7 +7,6 @@ import App from './App';
 import { FromStateProvider } from './context/formStateContext';
 import { LoginProvider } from './context/LoginContext';
 import './index.css';
-import AllRoutes from './routes';
 
 const root_tag = document.getElementById('root');
 
