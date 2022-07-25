@@ -1,15 +1,15 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
 import '../style.css';
 import '../index.css';
-import beach from '../assets/thingsToDo/beach.png';
-import glow from '../assets/thingsToDo/glow.png';
-import house from '../assets/thingsToDo/house.png';
-import scuba from '../assets/thingsToDo/scuba.png';
-import spa from '../assets/thingsToDo/spa.png';
-import sunset from '../assets/thingsToDo/sunset.png';
-import surf from '../assets/thingsToDo/skiing.png';
-import surfing from '../assets/thingsToDo/Surfing.png';
+import beach from '../assets/thingsToDo/beach.webp';
+import glow from '../assets/thingsToDo/glow.webp';
+import house from '../assets/thingsToDo/house.webp';
+import scuba from '../assets/thingsToDo/scuba-card.webp';
+import spa from '../assets/thingsToDo/spa.webp';
+import sunset from '../assets/thingsToDo/sunset.webp';
+import surf from '../assets/thingsToDo/skiing.webp';
+import surfing from '../assets/thingsToDo/Surfing.webp';
 import './ImageSlider.css';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -136,9 +136,9 @@ const ImageSlider = ({ onLoad }) => {
 				{cardsData.map((data, index) => (
 					<Box
 						key={index}
-						bgImage={data.img}
+						// bgImage={data.img}
 						display='inline-block'
-						bgSize='cover'
+						// bgSize='cover'
 						height='450px'
 						mx={'15px'}
 						w='260px'
@@ -152,10 +152,21 @@ const ImageSlider = ({ onLoad }) => {
 								'0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset',
 						}}
 					>
+						<Image
+							src={data.img}
+							zIndex={1}
+							objectFit='cover'
+							objectPosition={'50% 50%'}
+							loading='lazy'
+						/>
 						<Box
-							w={'100%'}
-							h='100%'
+							position={'absolute'}
+							top={0}
+							bottom={0}
+							left={0}
+							right={0}
 							bg='linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.2) 100%)'
+							zIndex={5}
 						>
 							<Text
 								w='100%'

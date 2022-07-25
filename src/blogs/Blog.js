@@ -1,6 +1,6 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Skeleton, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import img4 from '../assets/thingsToDo/house.png';
+import img4 from '../assets/thingsToDo/house.webp';
 import { useEffect, useState } from 'react';
 import getBlogsByCount from '../apis/getBlogsByCount';
 import './Blog.css';
@@ -46,7 +46,59 @@ const Blog = ({ onLoad }) => {
 				Blogs
 			</Text>
 			{loading ? (
-				<></>
+				<>
+					<Box
+						display={'grid'}
+						gridTemplateColumns={{
+							base: 'repeat(1,1fr)',
+							lg: 'repeat(5,1fr)',
+						}}
+						gap={3}
+						position='relative'
+						pb={5}
+						color='white'
+						fontWeight={'bold'}
+					>
+						<Skeleton
+							h='200px'
+							w='100%'
+							gridColumnStart={{ lg: 1 }}
+							gridColumnEnd={{ lg: 3 }}
+						/>
+						<Skeleton
+							h='200px'
+							w='100%'
+							gridColumnStart={{ lg: 3 }}
+							gridColumnEnd={{ lg: 4 }}
+						/>
+						<Skeleton
+							h='200px'
+							w='100%'
+							gridColumnStart={{ lg: 4 }}
+							gridColumnEnd={{ lg: 5 }}
+						/>
+						<Skeleton
+							h='200px'
+							w='100%'
+							gridColumnStart={{ lg: 1 }}
+							gridColumnEnd={{ lg: 3 }}
+							gridRowStart={{ lg: 2 }}
+							gridRowEnd={{ lg: 3 }}
+						/>
+						<Skeleton
+							h='200px'
+							w='100%'
+							gridColumn={{ lg: '3 / 5' }}
+							gridRow={{ lg: '2 / 3' }}
+						/>
+						<Skeleton
+							minH='200px'
+							w='100%'
+							gridColumn={{ lg: '5 / 6' }}
+							gridRow={{ lg: '1 / 3' }}
+						/>
+					</Box>
+				</>
 			) : (
 				<Box
 					display={'grid'}

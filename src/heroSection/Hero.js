@@ -43,14 +43,24 @@ const Hero = ({ onLoad }) => {
 
 		// let interval = undefined;
 		const getImages = async () => {
-			try {
-				const response = await getAllHeroImage();
-				console.log('hero response is : ', response);
-				setImages((prev) => response.data.heroImages);
+			if (sessionStorage.getItem('hero_slider')) {
+				setImages(JSON.parse(sessionStorage.getItem('hero_slider')));
 				setLoading(false);
 				onLoad(true);
-			} catch (error) {
-				console.log('something went wrong');
+			} else {
+				try {
+					const response = await getAllHeroImage();
+					console.log('hero response is : ', response);
+					setImages((prev) => response.data.heroImages);
+					sessionStorage.setItem(
+						'hero_slider',
+						JSON.stringify(response.data.heroImages)
+					);
+					setLoading(false);
+					onLoad(true);
+				} catch (error) {
+					console.log('something went wrong');
+				}
 			}
 		};
 		getImages();
@@ -182,7 +192,7 @@ const Hero = ({ onLoad }) => {
 														}}
 														bg='rgba(0,0,0,.1)'
 														boxShadow={
-															'0 0 0  1000px rgba(0,0,0,.1)'
+															'0 0 0  10000px rgba(0,0,0,.1)'
 														}
 														color={'white'}
 														position='absolute'

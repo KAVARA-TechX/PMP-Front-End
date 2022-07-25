@@ -25,6 +25,7 @@ const CreatePackageRequest = (
 			location,
 			userId,
 			paymentStatus: { status: paymentStatus },
+			paymentType: { parts: [], normal: { price: '', status: false } },
 		}
 	);
 };

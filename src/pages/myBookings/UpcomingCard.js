@@ -65,7 +65,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		if (
 			parts_index === 0
 				? true
-				: parts[parts_index - 1].split('_').length === 2
+				: parts[parts_index - 1].amount === true
 				? true
 				: false
 		) {
@@ -75,10 +75,11 @@ const UpcomingCard = ({ data, changeState }) => {
 				alert('Razorpay failed to load');
 			}
 
+			// check if it's last or not
 			const pay_status = parts_index + 1 === parts.length;
 
 			const order_data = await createOrderApi(
-				amount_to_be_paid * 100,
+				amount_to_be_paid.amount * 100,
 				'',
 				''
 			).then((res) => res);
@@ -92,7 +93,10 @@ const UpcomingCard = ({ data, changeState }) => {
 				image: logo,
 				handler: function (response) {
 					setParts((prev) => {
-						prev[parts_index] = `${amount_to_be_paid}_paid`;
+						prev[parts_index] = {
+							amount: amount_to_be_paid.amount,
+							status: true,
+						};
 						return [...prev];
 					});
 					handlePartsPackagePaid(pay_status);
@@ -172,9 +176,7 @@ const UpcomingCard = ({ data, changeState }) => {
 						: res.data.package[0]
 				);
 				try {
-					setParts(
-						data.paymentType.split(',')[0].split(':')[1].split('-')
-					);
+					setParts(data.paymentType.parts);
 					setLoading(false);
 				} catch (error) {
 					setParts([]);
@@ -201,7 +203,7 @@ const UpcomingCard = ({ data, changeState }) => {
 					paymentStatus: pay_status
 						? { status: 'Done' }
 						: { status: 'Confirmed' },
-					paymentType: `parts:${parts.join('-')}`,
+					paymentType: { parts: parts, normal: {} },
 				}
 			);
 		} catch (error) {}
@@ -547,7 +549,9 @@ const UpcomingCard = ({ data, changeState }) => {
 									<Text>Payment Plan</Text>
 									{parts.length === 0 ? (
 										<></>
-									) : parts[0].split('_').length === 2 ? (
+									) : parts.filter((data) => {
+											return data.status;
+									  }).length !== 0 ? (
 										<Text
 											color='gray.400'
 											textAlign={'end'}
@@ -573,123 +577,35 @@ const UpcomingCard = ({ data, changeState }) => {
 								</Box>
 							</Box>
 						</Box>
-						{payOption === 'pay now' ? (
-							parts.length === 0 ? (
-								<></>
-							) : parts[0].split('_').length === 2 ? (
-								<Box
-									flexGrow={1}
-									display='flex'
-									flexDir={'column'}
-									justifyContent='center'
-									alignItems={'center'}
-									pb='20px'
-									fontSize={{ base: '14px', lg: '20px' }}
+						{payOption === 'pay now' &&
+						parts.filter((data) => {
+							return data.status;
+						}).length === 0 ? (
+							<Box
+								fontSize={{ base: '14px', lg: '20px' }}
+								pb='40px'
+								display={
+									data.paymentStatus.status === 'Requested'
+										? 'none'
+										: data.paymentStatus.status === 'Done'
+										? 'none'
+										: 'flex'
+								}
+								flexGrow={1}
+								flexDir='column'
+								justifyContent='flex-end'
+								mt='20px'
+								alignItems={'center'}
+							>
+								<Button
+									bg='#0e87f6'
+									w='80%'
+									onClick={handleBookNow}
+									isLoading={payLoading}
 								>
-									<Box
-										w='100%'
-										pb='20px'
-										display={'grid'}
-										flexGrow={1}
-										gridTemplateColumns='repeat(3,1fr)'
-										mt='20px'
-										alignItems={'center'}
-										gap='10px 10px'
-										pl='20px'
-									>
-										{parts.map((data, index) => {
-											return (
-												<Box
-													border={
-														'1px solid rgba(0,0,0,.6)'
-													}
-													borderRadius={'10px'}
-													overflow='hidden'
-												>
-													<Text
-														bg='rgba(0,0,0,.6)'
-														textAlign={'center'}
-													>
-														Month-{index + 1}
-													</Text>
-													<Box
-														display={'flex'}
-														justifyContent='center'
-														py='5px'
-													>
-														{data.split('_')
-															.length === 2 ? (
-															<Button
-																bg='green.400'
-																w='80%'
-																_hover={{
-																	background:
-																		'green.400',
-																}}
-																cursor={
-																	'not-allowed'
-																}
-															>
-																Paid
-															</Button>
-														) : (
-															<Button
-																bg='#0e87f6'
-																w='80%'
-																onClick={() => {
-																	handlePayInParts(
-																		data,
-																		index
-																	);
-																}}
-															>
-																Pay - {data}
-															</Button>
-														)}
-													</Box>
-												</Box>
-											);
-										})}
-									</Box>
-									{/* <Box>
-										<Text
-											textDecor={'underline'}
-											textAlign='center'
-											color='rgba(255,255,255,.5)'
-										>
-											Cancel Booking
-										</Text>
-									</Box> */}
-								</Box>
-							) : (
-								<Box
-									fontSize={{ base: '14px', lg: '20px' }}
-									pb='40px'
-									display={
-										data.paymentStatus.status ===
-										'Requested'
-											? 'none'
-											: data.paymentStatus.status ===
-											  'Done'
-											? 'none'
-											: 'flex'
-									}
-									flexGrow={1}
-									flexDir='column'
-									justifyContent='flex-end'
-									mt='20px'
-									alignItems={'center'}
-								>
-									<Button
-										bg='#0e87f6'
-										w='80%'
-										onClick={handleBookNow}
-										isLoading={payLoading}
-									>
-										Pay Now
-									</Button>
-								</Box>
-							)
+									Pay Now
+								</Button>
+							</Box>
 						) : (
 							<Box
 								flexGrow={1}
@@ -731,8 +647,7 @@ const UpcomingCard = ({ data, changeState }) => {
 													justifyContent='center'
 													py='5px'
 												>
-													{data.split('_').length ===
-													2 ? (
+													{data.status === true ? (
 														<Button
 															bg='green.400'
 															w='80%'
@@ -757,7 +672,7 @@ const UpcomingCard = ({ data, changeState }) => {
 																);
 															}}
 														>
-															Pay - {data}
+															Pay - {data.amount}
 														</Button>
 													)}
 												</Box>
