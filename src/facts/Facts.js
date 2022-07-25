@@ -48,18 +48,35 @@ const Facts = ({ onLoad }) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			const res = await getFactsImageApi();
-			set_media(
-				res.data.factImages.length === 0
-					? null
-					: res.data.factImages[0].imageUrl
-			);
-			set_type(
-				res.data.factImages.length === 0
-					? null
-					: res.data.factImages[0].imageUrl.resource_type
-			);
-			onLoad(true);
+			if (sessionStorage.getItem('fd')) {
+				set_media(JSON.parse(sessionStorage.getItem('fd')));
+				set_type(
+					JSON.parse(sessionStorage.getItem('fd')).resource_type
+				);
+				onLoad(true);
+			} else {
+				try {
+					const res = await getFactsImageApi();
+					set_media(
+						res.data.factImages.length === 0
+							? null
+							: res.data.factImages[0].imageUrl
+					);
+
+					if (res.data.factImages.length !== 0) {
+						sessionStorage.setItem(
+							'fd',
+							JSON.stringify(res.data.factImages[0].imageUrl)
+						);
+					}
+					set_type(
+						res.data.factImages.length === 0
+							? null
+							: res.data.factImages[0].imageUrl.resource_type
+					);
+					onLoad(true);
+				} catch (error) {}
+			}
 		};
 
 		getData();

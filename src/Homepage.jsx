@@ -516,7 +516,7 @@ const Homepage = () => {
 																		/>
 																	</Suspense>
 
-																	{sec_8 ? (
+																	{true ? (
 																		<Suspense
 																			fallback={
 																				''
@@ -531,21 +531,27 @@ const Homepage = () => {
 																	)}
 																</>
 															) : (
-																<></>
+																<>
+																	<LoadingBlogs />
+																</>
 															)}
 														</>
 													) : (
 														<>
-															{/* <LoadingImageSlider /> */}
+															<LoadingImageSlider />
 														</>
 													)}
 												</>
 											) : (
-												<>{/* <LoadingBanner /> */}</>
+												<>
+													<LoadingBanner />
+												</>
 											)}
 										</>
 									) : (
-										<>{/* <LoadingDreamVacation /> */}</>
+										<>
+											<LoadingDreamVacation />
+										</>
 									)}
 								</>
 							) : (
@@ -553,11 +559,15 @@ const Homepage = () => {
 							)}
 						</>
 					) : (
-						<>{/* <LoadingPackages /> */}</>
+						<>
+							<LoadingPackages />
+						</>
 					)}
 				</>
 			) : (
-				<>{/* <LoadingForFacts /> */}</>
+				<>
+					<LoadingForFacts />
+				</>
 			)}
 		</Box>
 	);

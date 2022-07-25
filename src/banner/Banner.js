@@ -67,6 +67,8 @@ const Banner = ({ onLoad }) => {
 					{type === 'video' ? (
 						<Box
 							w={{ base: '100%', lg: '100%' }}
+							borderRadius={{ base: 'none', lg: 'xl' }}
+							overflow='hidden'
 							h='100%'
 							// className='banner'
 							dangerouslySetInnerHTML={{
@@ -104,6 +106,7 @@ const Banner = ({ onLoad }) => {
 							lg: 'linear-gradient(270deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)',
 						}}
 						position='absolute'
+						borderRadius={{ base: 'none', lg: 'xl' }}
 					>
 						<Box
 							position={'absolute'}

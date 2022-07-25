@@ -16,7 +16,7 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import sideImg from '../../assets/thingsToDo/skiing.png';
+import sideImg from '../../assets/thingsToDo/skiing.webp';
 import { DayPicker } from 'react-day-picker';
 import '../../../node_modules/react-day-picker/dist/style.css';
 import { addDays } from 'date-fns';

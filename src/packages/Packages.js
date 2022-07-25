@@ -21,7 +21,7 @@ const Packages = ({ onLoad }) => {
 	const main_container = gsap.utils.selector(mainContainer);
 	const [hide_or_show, set_hide_or_show] = useState(true);
 
-	gsap.registerPlugin(ScrollTrigger);
+	// gsap.registerPlugin(ScrollTrigger);
 
 	const animateCards = () => {
 		gsap.from(ref_pkd_heading('.pkg_heading_from_left'), {
@@ -74,18 +74,35 @@ const Packages = ({ onLoad }) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			try {
-				const res = await getPackageApi();
-				setPkg(res.data.packages);
-				// animateCards();
-				onLoad(true);
+			if (sessionStorage.getItem('home_package_list')) {
+				console.log('yeeee list is present');
+				setPkg(JSON.parse(sessionStorage.getItem('home_package_list')));
 				set_hide_or_show(
 					pkg.length * 255 + (pkg.length - 1) * 15 <
 						cardsParentRef.current.offsetWidth
 						? false
 						: true
 				);
-			} catch (error) {}
+				onLoad(true);
+			} else {
+				console.log('nooooo it is not here');
+				try {
+					const res = await getPackageApi(8, 1);
+					setPkg(res.data.packages);
+					sessionStorage.setItem(
+						'home_package_list',
+						JSON.stringify(res.data.packages)
+					);
+					// animateCards();
+					set_hide_or_show(
+						pkg.length * 255 + (pkg.length - 1) * 15 <
+							cardsParentRef.current.offsetWidth
+							? false
+							: true
+					);
+					onLoad(true);
+				} catch (error) {}
+			}
 		};
 		getData();
 	}, []);

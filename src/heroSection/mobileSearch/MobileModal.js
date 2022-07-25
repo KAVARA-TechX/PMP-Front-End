@@ -114,8 +114,9 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 			>
 				<Box
 					position={'absolute'}
-					h='100vh'
+					h={`${window.innerHeight - window.innerHeight * 0.01}px`}
 					w='100vw'
+					bottom={'0'}
 					bg='#FFFDF7'
 					ref={search_modal}
 					zIndex={20000000000}

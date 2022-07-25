@@ -10,17 +10,6 @@ import './index.css';
 
 const root_tag = document.getElementById('root');
 
-window.addEventListener('load', async () => {
-	try {
-		const res = await axios.get(
-			'https://planmyleisure.herokuapp.com/package/destination-list'
-		);
-		localStorage.setItem('destination_list', res.data.destinationArray);
-	} catch (error) {
-		console.log('while loading destination something went wrong');
-	}
-});
-
 ReactDOM.render(
 	<LoginProvider>
 		<ChakraProvider>

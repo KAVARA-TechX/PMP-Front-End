@@ -10,12 +10,20 @@ const MyBookings = () => {
 	const [upcoming, set_upcoming] = useState([]);
 	const [completed, set_completed] = useState([]);
 	const [cancelled, set_cancelled] = useState([]);
+	const [main_loading, set_main_loading] = useState(true);
 	const path = useLocation().pathname.split('/');
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+
+		if (localStorage.getItem('token')) {
+			set_main_loading(false);
+		} else {
+			navigate('/');
+		}
+
 		getData();
 	}, []);
 
@@ -130,75 +138,9 @@ const MyBookings = () => {
 	return (
 		<>
 			<Nav />
-			<Box
-				w='100vw'
-				overflow={'hidden'}
-				px={{ base: '20px', lg: '5vw' }}
-				pt='50px'
-				display={'flex'}
-				flexDir={{ base: 'column', lg: 'row' }}
-				justifyContent={{ lg: 'space-between' }}
-				alignItems='center'
-			>
-				<Box display={'inline-flex'} overflow='hidden'>
-					<Text
-						fontSize={{ base: 15, lg: 20 }}
-						fontWeight={600}
-						px='13px'
-						py='5px'
-						borderBottom={
-							path.length === 2 ? '3px solid #32BAC9' : 'none'
-						}
-						onClick={() => {
-							navigate('/mybookings', { state: upcoming });
-						}}
-						cursor='pointer'
-					>
-						Upcoming
-					</Text>
-					<Text
-						fontSize={{ base: 15, lg: 20 }}
-						fontWeight={600}
-						px='13px'
-						py='5px'
-						borderBottom={
-							path.length === 3 && path[2] === 'completed'
-								? '3px solid #32BAC9'
-								: 'none'
-						}
-						onClick={() => {
-							navigate('/mybookings/completed', {
-								state: completed,
-							});
-						}}
-						cursor='pointer'
-					>
-						Completed
-					</Text>
-					<Text
-						fontSize={{ base: 15, lg: 20 }}
-						fontWeight={600}
-						borderBottom={
-							path.length === 3 && path[2] === 'cancelled'
-								? '3px solid #32BAC9'
-								: 'none'
-						}
-						px='13px'
-						py='5px'
-						onClick={() => {
-							navigate('/mybookings/cancelled', {
-								state: cancelled,
-							});
-						}}
-						cursor='pointer'
-					>
-						Cancelled
-					</Text>
-				</Box>
-			</Box>
-			{loading ? (
+			{main_loading ? (
 				<Box
-					h='50vh'
+					h='calc(100vh - 80px)'
 					w='100vw'
 					display={'flex'}
 					justifyContent='center'
@@ -207,13 +149,97 @@ const MyBookings = () => {
 					<Spinner />
 				</Box>
 			) : (
-				<Outlet
-					context={{
-						upcoming: upcoming,
-						completed: completed,
-						cancelled: cancelled,
-					}}
-				/>
+				<>
+					<Box
+						w='100vw'
+						overflow={'hidden'}
+						px={{ base: '20px', lg: '5vw' }}
+						pt='50px'
+						display={'flex'}
+						flexDir={{ base: 'column', lg: 'row' }}
+						justifyContent={{ lg: 'space-between' }}
+						alignItems='center'
+					>
+						<Box display={'inline-flex'} overflow='hidden'>
+							<Text
+								fontSize={{ base: 15, lg: 20 }}
+								fontWeight={600}
+								px='13px'
+								py='5px'
+								borderBottom={
+									path.length === 2
+										? '3px solid #32BAC9'
+										: 'none'
+								}
+								onClick={() => {
+									navigate('/mybookings', {
+										state: upcoming,
+									});
+								}}
+								cursor='pointer'
+							>
+								Upcoming
+							</Text>
+							<Text
+								fontSize={{ base: 15, lg: 20 }}
+								fontWeight={600}
+								px='13px'
+								py='5px'
+								borderBottom={
+									path.length === 3 && path[2] === 'completed'
+										? '3px solid #32BAC9'
+										: 'none'
+								}
+								onClick={() => {
+									navigate('/mybookings/completed', {
+										state: completed,
+									});
+								}}
+								cursor='pointer'
+							>
+								Completed
+							</Text>
+							<Text
+								fontSize={{ base: 15, lg: 20 }}
+								fontWeight={600}
+								borderBottom={
+									path.length === 3 && path[2] === 'cancelled'
+										? '3px solid #32BAC9'
+										: 'none'
+								}
+								px='13px'
+								py='5px'
+								onClick={() => {
+									navigate('/mybookings/cancelled', {
+										state: cancelled,
+									});
+								}}
+								cursor='pointer'
+							>
+								Cancelled
+							</Text>
+						</Box>
+					</Box>
+					{loading ? (
+						<Box
+							h='50vh'
+							w='100vw'
+							display={'flex'}
+							justifyContent='center'
+							alignItems={'center'}
+						>
+							<Spinner />
+						</Box>
+					) : (
+						<Outlet
+							context={{
+								upcoming: upcoming,
+								completed: completed,
+								cancelled: cancelled,
+							}}
+						/>
+					)}
+				</>
 			)}
 			<Footer />
 		</>

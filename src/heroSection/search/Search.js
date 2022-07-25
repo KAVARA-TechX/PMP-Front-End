@@ -8,7 +8,6 @@ import {
 	PopoverTrigger,
 	PopoverContent,
 	PopoverBody,
-	PopoverFooter,
 	useDisclosure,
 	useOutsideClick,
 } from '@chakra-ui/react';
@@ -17,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import './Search.css';
 import Who from './searchComponents/Who';
 import When from './searchComponents/When';
+import axios from 'axios';
 
 const Search = () => {
 	const [location, setLocation] = useState('');
@@ -34,6 +34,23 @@ const Search = () => {
 	const [startDate, setStartDate] = useState();
 	const [endDate, setEndDate] = useState();
 
+	const getDestinationList = async () => {
+		if (!sessionStorage.getItem('destination_list')) {
+			try {
+				const res = await axios.get(
+					'https://planmyleisure.herokuapp.com/package/destination-list'
+				);
+				set_c_list(res.data.destinationArray);
+				sessionStorage.setItem(
+					'destination_list',
+					res.data.destinationArray
+				);
+			} catch (error) {
+				console.log('while loading destination something went wrong');
+			}
+		}
+	};
+
 	const handleForm = () => {
 		if (location === '') {
 			console.log('trying to submit the wrong thing');
@@ -49,8 +66,8 @@ const Search = () => {
 	};
 
 	useEffect(() => {
-		if (localStorage.getItem('destination_list')) {
-			set_c_list(localStorage.getItem('destination_list').split(','));
+		if (sessionStorage.getItem('destination_list')) {
+			set_c_list(sessionStorage.getItem('destination_list').split(','));
 		}
 	}, []);
 
@@ -145,6 +162,7 @@ const Search = () => {
 							_placeholder={{
 								color: '#696969',
 							}}
+							onFocus={getDestinationList}
 						/>
 					</PopoverTrigger>
 					<PopoverContent

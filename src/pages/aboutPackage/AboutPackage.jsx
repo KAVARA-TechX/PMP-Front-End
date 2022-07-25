@@ -37,7 +37,7 @@ import getPackageById from '../../apis/getPackageById';
 import { useLocation, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { setDay } from 'date-fns';
-import sideImg from '../../assets/thingsToDo/skiing.png';
+import sideImg from '../../assets/thingsToDo/skiing.webp';
 import { DayPicker } from 'react-day-picker';
 import '../../../node_modules/react-day-picker/dist/style.css';
 import { addDays } from 'date-fns';

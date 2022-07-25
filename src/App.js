@@ -216,15 +216,9 @@ const App = () => {
 			<Route
 				path='/mybookings'
 				element={
-					loginState ? (
-						<Suspense fallback={''}>
-							<MyBookings />
-						</Suspense>
-					) : (
-						<Suspense fallback={''}>
-							<Navigate to='/' />
-						</Suspense>
-					)
+					<Suspense fallback={''}>
+						<MyBookings />
+					</Suspense>
 				}
 			>
 				<Route
