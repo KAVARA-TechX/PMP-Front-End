@@ -7,7 +7,6 @@ import {
 	Button,
 	Box,
 	Text,
-	Icon,
 	Input,
 	useToast,
 	Image,
