@@ -1,37 +1,15 @@
 import { Box, Text, Icon } from '@chakra-ui/react';
 import { BiChevronRight } from 'react-icons/bi';
 import React, { useEffect, useRef, useState } from 'react';
-import banner from '../assets/VisitMaldives.png';
 import UserForm from '../modal/UserForm';
-import { gsap } from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import getBannerApi from '../apis/getBannerApi';
 
-const Banner = ({ onLoad }) => {
-	gsap.registerPlugin(ScrollTrigger);
+const Banner = () => {
 	const [modalState, setModalState] = useState(false);
 	const banner_container = useRef(null);
-	const banner_pls = gsap.utils.selector(banner_container);
 	const [media, set_media] = useState(null);
 	const [quote, set_quote] = useState(null);
 	const [type, set_type] = useState(null);
-
-	const animate = () => {
-		gsap.from(banner_pls('.banner'), {
-			scrollTrigger: {
-				trigger: banner_container.current,
-				start: 'top 85%',
-				// markers: true,
-			},
-			y: 100,
-			opacity: 0,
-			duration: 1,
-			delay: 0.5,
-			onComplete: function () {
-				ScrollTrigger.refresh();
-			},
-		});
-	};
 
 	useEffect(() => {
 		// get banner image data
@@ -42,12 +20,10 @@ const Banner = ({ onLoad }) => {
 				console.log('media is : ', res.data.bannerImages[0].imageUrl);
 				set_quote(res.data.bannerImages[0].quote);
 				set_type(res.data.bannerImages[0].imageUrl.resource_type);
-				onLoad(true);
 			} catch (error) {}
 		};
 
 		getData();
-		// animate();
 	}, []);
 	return (
 		<>

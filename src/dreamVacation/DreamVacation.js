@@ -1,14 +1,7 @@
-import { Box, Text, Image } from '@chakra-ui/react';
-import clipboard from './clipboard-text.svg';
-import message from '../assets/icons/messages.png';
-import cardtick from '../assets/icons/card-tick.png';
+import { Box, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
-const DreamVacation = ({ onLoad }) => {
-	useEffect(() => {
-		onLoad(true);
-	}, []);
-
+const DreamVacation = () => {
 	return (
 		<Box
 			w='100vw'

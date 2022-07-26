@@ -8,7 +8,7 @@ import getPackageApi from '../apis/getPackageApi';
 import { BiChevronRight } from 'react-icons/bi';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
-const Packages = ({ onLoad }) => {
+const Packages = () => {
 	const navigate = useNavigate();
 	const [pkg, setPkg] = useState([]);
 	let cardsParentRef = useRef(null);
@@ -27,7 +27,6 @@ const Packages = ({ onLoad }) => {
 						? false
 						: true
 				);
-				onLoad(true);
 			} else {
 				console.log('nooooo it is not here');
 				try {
@@ -44,7 +43,6 @@ const Packages = ({ onLoad }) => {
 							? false
 							: true
 					);
-					onLoad(true);
 				} catch (error) {}
 			}
 		};

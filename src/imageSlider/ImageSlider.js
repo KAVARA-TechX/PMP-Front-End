@@ -24,13 +24,12 @@ const cardsData = [
 	{ title: 'Water Skiing', img: surf },
 ];
 
-const ImageSlider = ({ onLoad }) => {
+const ImageSlider = () => {
 	let f_and_e_heading_container = useRef(null);
 	let fun_and_explore_card_container = useRef(null);
 	const [hide_or_show, set_hide_or_show] = useState(true);
 
 	useEffect(() => {
-		onLoad(true);
 		set_hide_or_show(
 			8 * 260 + (8 - 1) * 15 <
 				fun_and_explore_card_container.current.offsetWidth

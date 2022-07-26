@@ -14,9 +14,15 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
-import Who from './searchComponents/Who';
-import When from './searchComponents/When';
 import axios from 'axios';
+
+const Who = React.lazy(() => {
+	return import('./searchComponents/Who');
+});
+
+const When = React.lazy(() => {
+	return import('./searchComponents/When');
+});
 
 const Search = () => {
 	const [location, setLocation] = useState('');
