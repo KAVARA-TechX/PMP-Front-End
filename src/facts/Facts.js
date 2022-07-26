@@ -82,7 +82,26 @@ const Facts = ({ onLoad }) => {
 		getData();
 
 		animate();
+
+		// const video = document.querySelector('.facts_video');
+		// if (video) {
+		// 	video.addEventListener('canplay', () => {
+		// 		console.log('can play the video');
+		// 	});
+		// }
 	}, []);
+
+	// useEffect(() => {
+	// 	const video = document.querySelector('.facts_video');
+	// 	if (video) {
+	// 		video.addEventListener('canplay', () => {
+	// 			console.log('can play the video');
+	// 			video.play();
+	// 		});
+	// 	} else {
+	// 		console.log('can not play the video');
+	// 	}
+	// }, [document.querySelector('.facts_video')]);
 
 	return (
 		<Box
@@ -104,7 +123,7 @@ const Facts = ({ onLoad }) => {
 					borderRadius='20px'
 					overflow='hidden'
 					dangerouslySetInnerHTML={{
-						__html: `<video loop autoPlay playsinline muted="true" id='facts_video'>
+						__html: `<video class='facts_video' loop autoPlay playsinline muted="true" id='facts_video'>
 						<source
 							src=${media === null ? '' : media.secure_url}
 						></source>

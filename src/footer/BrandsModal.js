@@ -140,7 +140,7 @@ const BrandsModal = ({ state, setState }) => {
 			<ModalContent bg='transperant' position={'relative'}>
 				<Box
 					position={'absolute'}
-					w='600px'
+					w={{ base: '95vw', lg: '600px' }}
 					h='fit-content'
 					bg='#fffdf7'
 					left='50%'

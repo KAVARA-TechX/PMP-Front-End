@@ -31,7 +31,7 @@ const ContactUs = () => {
 					lineHeight={2}
 					fontSize={{ base: 14, lg: 16 }}
 					fontWeight={400}
-					textAlign='justify'
+					textAlign={{ base: 'center', lg: 'justify' }}
 					position={'relative'}
 					bottom='50px'
 					background='#fffdf7'
@@ -42,13 +42,29 @@ const ContactUs = () => {
 						Emails
 					</Text>
 					<Box pl='10px'>
-						<Text display={'flex'} alignItems='center' gap={'5px'}>
+						<Text
+							display={'flex'}
+							alignItems='center'
+							justifyContent={{
+								base: 'center',
+								lg: 'flex-start',
+							}}
+							gap={'5px'}
+						>
 							<EmailIcon color='rgba(0,0,0,.5)' />
 							<Text as='a' href='mailto:info@planmyleisure.com'>
 								info@planmyleisure.com
 							</Text>
 						</Text>
-						<Text display={'flex'} alignItems='center' gap={'5px'}>
+						<Text
+							display={'flex'}
+							alignItems='center'
+							justifyContent={{
+								base: 'center',
+								lg: 'flex-start',
+							}}
+							gap={'5px'}
+						>
 							<EmailIcon color='rgba(0,0,0,.5)' />
 							<Text
 								as='a'
@@ -65,6 +81,7 @@ const ContactUs = () => {
 						pl='10px'
 						display={'flex'}
 						alignItems='center'
+						justifyContent={{ base: 'center', lg: 'flex-start' }}
 						gap={'5px'}
 					>
 						<PhoneIcon color='rgba(0,0,0,.5)' />

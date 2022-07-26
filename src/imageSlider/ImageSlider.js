@@ -1,5 +1,5 @@
 import { Box, Image, Text } from '@chakra-ui/react';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../style.css';
 import '../index.css';
 import beach from '../assets/thingsToDo/beach.webp';
@@ -13,6 +13,7 @@ import surfing from '../assets/thingsToDo/Surfing.webp';
 import './ImageSlider.css';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 const cardsData = [
 	{ title: 'Indulge in Spa', img: spa },
@@ -31,72 +32,91 @@ const ImageSlider = ({ onLoad }) => {
 	let fun_and_explore_card_container = useRef(null);
 	const f_and_e_cards = gsap.utils.selector(fun_and_explore_card_container);
 	const f_and_e_heading = gsap.utils.selector(f_and_e_heading_container);
+	const [hide_or_show, set_hide_or_show] = useState(true);
 	ScrollTrigger.refresh();
 
-	const animate = () => {
-		const windowWidth = window.innerWidth;
-		const padding = (windowWidth * 9) / 100;
-		const portion_we_can_see = windowWidth - padding * 2;
-		const widht_of_cards_container = 2320;
-		const scroll_amount = widht_of_cards_container - portion_we_can_see;
-		const height_of_container =
-			fun_and_explore_card_container.current.offsetHeight;
+	// const animate = () => {
+	// 	const windowWidth = window.innerWidth;
+	// 	const padding = (windowWidth * 9) / 100;
+	// 	const portion_we_can_see = windowWidth - padding * 2;
+	// 	const widht_of_cards_container = 2320;
+	// 	const scroll_amount = widht_of_cards_container - portion_we_can_see;
+	// 	const height_of_container =
+	// 		fun_and_explore_card_container.current.offsetHeight;
 
-		const stop_at = (window.innerHeight - height_of_container) / 2;
+	// 	const stop_at = (window.innerHeight - height_of_container) / 2;
 
-		console.log(
-			windowWidth,
-			padding,
-			portion_we_can_see,
-			widht_of_cards_container,
-			scroll_amount,
-			height_of_container
-		);
+	// 	console.log(
+	// 		windowWidth,
+	// 		padding,
+	// 		portion_we_can_see,
+	// 		widht_of_cards_container,
+	// 		scroll_amount,
+	// 		height_of_container
+	// 	);
 
-		gsap.from(f_and_e_heading('.f_and_e_heading'), {
-			scrollTrigger: {
-				trigger: f_and_e_heading_container.current,
-				start: 'top 85%',
-				end: 'top top',
-			},
-			x: -100,
-			opacity: 0,
-			duration: 0.8,
-			onComplete: function () {
-				ScrollTrigger.refresh();
-			},
-		});
+	// 	gsap.from(f_and_e_heading('.f_and_e_heading'), {
+	// 		scrollTrigger: {
+	// 			trigger: f_and_e_heading_container.current,
+	// 			start: 'top 85%',
+	// 			end: 'top top',
+	// 		},
+	// 		x: -100,
+	// 		opacity: 0,
+	// 		duration: 0.8,
+	// 		onComplete: function () {
+	// 			ScrollTrigger.refresh();
+	// 		},
+	// 	});
 
-		gsap.from(f_and_e_heading('#scrollbar'), {
-			scrollTrigger: {
-				trigger: f_and_e_heading_container.current,
-				start: 'top 85%',
-				end: 'top top',
-			},
-			y: 100,
-			opacity: 0,
-			duration: 0.8,
-			delay: 0.6,
-			onComplete: function () {
-				ScrollTrigger.refresh();
-			},
-		});
+	// 	gsap.from(f_and_e_heading('#scrollbar'), {
+	// 		scrollTrigger: {
+	// 			trigger: f_and_e_heading_container.current,
+	// 			start: 'top 85%',
+	// 			end: 'top top',
+	// 		},
+	// 		y: 100,
+	// 		opacity: 0,
+	// 		duration: 0.8,
+	// 		delay: 0.6,
+	// 		onComplete: function () {
+	// 			ScrollTrigger.refresh();
+	// 		},
+	// 	});
 
-		gsap.to(f_and_e_cards('.f_and_e_card'), {
-			scrollTrigger: {
-				trigger: fun_and_explore_card_container.current,
-				start: `end ${stop_at}px`,
-				scrub: 0.05,
-				pin: '.ImageSlider',
-			},
-			x: `-=${scroll_amount}`,
-		});
-	};
+	// 	gsap.to(f_and_e_cards('.f_and_e_card'), {
+	// 		scrollTrigger: {
+	// 			trigger: fun_and_explore_card_container.current,
+	// 			start: `end ${stop_at}px`,
+	// 			scrub: 0.05,
+	// 			pin: '.ImageSlider',
+	// 		},
+	// 		x: `-=${scroll_amount}`,
+	// 	});
+	// };
 
 	useEffect(() => {
-		animate();
+		// animate();
 		onLoad(true);
+		set_hide_or_show(
+			8 * 260 + (8 - 1) * 15 <
+				fun_and_explore_card_container.current.offsetWidth
+				? false
+				: true
+		);
 	}, []);
+
+	const rightButton = () => {
+		document
+			.getElementById('fun_cards_parent')
+			.scrollBy({ left: 255, top: 0, behavior: 'smooth' });
+	};
+
+	const leftButton = () => {
+		document
+			.getElementById('fun_cards_parent')
+			.scrollBy({ left: -255, top: 0, behavior: 'smooth' });
+	};
 
 	return (
 		<Box
@@ -107,6 +127,7 @@ const ImageSlider = ({ onLoad }) => {
 			px={{ base: '0px', lg: '9vw' }}
 			ref={f_and_e_heading_container}
 			// bg='green'
+			position='relative'
 		>
 			{/* slider heading */}
 			<Box className='hide-scroll-bar f_and_e_heading'>
@@ -121,16 +142,62 @@ const ImageSlider = ({ onLoad }) => {
 					Fun and Explore
 				</Text>
 			</Box>
+
+			{/* icon left */}
+			<Box
+				id='pkg_left_icon'
+				h='50px'
+				w={'50px'}
+				position='absolute'
+				borderRadius={'full'}
+				bg='rgba(20, 17, 119,.5)'
+				left={{ base: '20px', lg: 'calc(9vw - 25px)' }}
+				bottom='250px'
+				zIndex={2}
+				cursor='pointer'
+				onClick={leftButton}
+				_hover={{ background: 'rgba(20, 17, 119,1)' }}
+				display={hide_or_show ? { lg: 'flex', base: 'none' } : 'none'}
+				justifyContent={'center'}
+				alignItems='center'
+				color='white'
+			>
+				<ArrowBackIcon fontSize={'20px'} />
+			</Box>
+			{/* icon right */}
+			<Box
+				id='pkg_right_icon'
+				h='50px'
+				w={'50px'}
+				position='absolute'
+				borderRadius={'full'}
+				bg='rgba(20, 17, 119,.5)'
+				right={{ base: '20px', lg: 'calc(9vw - 25px)' }}
+				bottom='250px'
+				zIndex={2}
+				cursor='pointer'
+				onClick={rightButton}
+				_hover={{ background: 'rgba(20, 17, 119,1)' }}
+				display={hide_or_show ? { lg: 'flex', base: 'none' } : 'none'}
+				justifyContent={'center'}
+				alignItems='center'
+				color='white'
+			>
+				<ArrowForwardIcon fontSize={'20px'} />
+			</Box>
+
 			{/* slider cards */}
 			<Box
 				as='div'
-				id='scrollbar'
+				// id='scrollbar'
 				display='block'
 				whiteSpace='nowrap'
 				pb={10}
 				color='white'
-				overflow={'hidden'}
+				overflowX={'scroll'}
 				ref={fun_and_explore_card_container}
+				id='fun_cards_parent'
+				className='hide-scroll-bar'
 			>
 				{/* card */}
 				{cardsData.map((data, index) => (
@@ -140,7 +207,8 @@ const ImageSlider = ({ onLoad }) => {
 						display='inline-block'
 						// bgSize='cover'
 						height='450px'
-						mx={'15px'}
+						mx={{ base: '15px', lg: '0px' }}
+						mr={{ base: '0px', lg: '20px' }}
 						w='260px'
 						borderRadius={'xl'}
 						position={'relative'}

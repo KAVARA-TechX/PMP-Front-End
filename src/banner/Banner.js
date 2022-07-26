@@ -119,7 +119,7 @@ const Banner = ({ onLoad }) => {
 							display={'flex'}
 							flexDir='column'
 							alignItems={'center'}
-							width={'30%'}
+							width={{ base: '90%', lg: '30%' }}
 						>
 							<Box display={'flex'} justifyContent='center'>
 								<Text

@@ -166,6 +166,7 @@ const Hero = ({ onLoad }) => {
 																width: 100%;
 																object-fit:cover;
 															"
+															
 														>
 															<source
 																src=${data.imageUrl[0].secure_url}
