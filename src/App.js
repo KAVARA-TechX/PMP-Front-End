@@ -269,7 +269,14 @@ const App = () => {
 					</Suspense>
 				}
 			/>
-			<Route path='/terms-and-conditions' element={<Tac />} />
+			<Route
+				path='/terms-and-conditions'
+				element={
+					<Suspense fallback={''}>
+						<Tac />
+					</Suspense>
+				}
+			/>
 			<Route
 				path='/about-us'
 				element={

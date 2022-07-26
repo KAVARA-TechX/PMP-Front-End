@@ -51,35 +51,6 @@ const Cancelled = () => {
 										<Text fontSize={25} fontWeight={600}>
 											You have no upcoming bookings
 										</Text>
-										<Text fontSize={20} fontWeight={300}>
-											Are you looking for a{' '}
-											<Text
-												as='span'
-												color='#32bac9'
-												cursor={'pointer'}
-												onClick={() => {
-													navigate(
-														'/mybookings/completed'
-													);
-												}}
-											>
-												completed
-											</Text>{' '}
-											or{' '}
-											<Text
-												as='span'
-												color='#32bac9'
-												cursor={'pointer'}
-												onClick={() => {
-													navigate(
-														'/mybookings/cancelled'
-													);
-												}}
-											>
-												cancelled
-											</Text>{' '}
-											booking ?
-										</Text>
 									</Box>
 								</Box>
 							) : (
@@ -105,31 +76,6 @@ const Cancelled = () => {
 							<Box display={'flex'} flexDir='column'>
 								<Text fontSize={25} fontWeight={600}>
 									You have no cancelled bookings
-								</Text>
-								<Text fontSize={20} fontWeight={300}>
-									Are you looking for a
-									<Text
-										as='span'
-										color='#32bac9'
-										cursor={'pointer'}
-										onClick={() => {
-											navigate('/mybookings/completed');
-										}}
-									>
-										completed
-									</Text>{' '}
-									or{' '}
-									<Text
-										as='span'
-										color='#32bac9'
-										cursor={'pointer'}
-										onClick={() => {
-											navigate('/mybookings');
-										}}
-									>
-										upcoming
-									</Text>
-									booking ?
 								</Text>
 							</Box>
 						</Box>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import getRefereshToken from '../apis/getRefreshToken';
 import getUserinfoApi from '../apis/getUserInfoApi';
 
 const LoginContext = createContext();
@@ -10,8 +11,19 @@ const LoginProvider = ({ children }) => {
 	const [loginclick, setLoginclick] = useState(null);
 	const [profileurl, setProfileurl] = useState('');
 
+	// const refresh = async () => {
+	// 	try {
+	// 		const res = await getRefereshToken(
+	// 			window.localStorage.getItem('token')
+	// 		);
+	// 		console.log('refresh res : ', res);
+	// 	} catch (error) {
+	// 		console.log('error');
+	// 	}
+	// };
+
 	useEffect(() => {
-		if (window.localStorage.getItem('loginStatus') === 'true') {
+		if (window.localStorage.getItem('token')) {
 			setLoginState(
 				window.localStorage.getItem('loginStatus')
 					? window.localStorage.getItem('loginStatus')
@@ -40,6 +52,7 @@ const LoginProvider = ({ children }) => {
 			} else {
 				setProfileurl(window.localStorage.getItem('profileImg'));
 			}
+			// refresh();
 		}
 	}, []);
 

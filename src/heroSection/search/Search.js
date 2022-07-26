@@ -178,11 +178,19 @@ const Search = () => {
 					>
 						<PopoverBody>
 							{c_list
-								.filter((val) =>
-									val.toLowerCase().indexOf(location) !== -1
+								.filter((val) => {
+									console.log(
+										`for ${val}`,
+										val
+											.toLowerCase()
+											.indexOf(location.toLowerCase())
+									);
+									return val
+										.toLowerCase()
+										.indexOf(location.toLowerCase()) !== -1
 										? true
-										: false
-								)
+										: false;
+								})
 								.map((loc, index) => {
 									return (
 										<Text
@@ -203,7 +211,9 @@ const Search = () => {
 								}).length !== 0 ? (
 								c_list
 									.filter((val) =>
-										val.toLowerCase().indexOf(location) !==
+										val
+											.toLowerCase()
+											.indexOf(location.toLowerCase()) !==
 										-1
 											? true
 											: false
