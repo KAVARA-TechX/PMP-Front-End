@@ -11,7 +11,7 @@ import {
 	useDisclosure,
 	useOutsideClick,
 } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
 import Who from './searchComponents/Who';
@@ -273,4 +273,4 @@ const Search = () => {
 	);
 };
 
-export default Search;
+export default React.memo(Search);

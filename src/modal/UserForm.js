@@ -216,4 +216,4 @@ const UserForm = ({ state, setState }) => {
 	);
 };
 
-export default UserForm;
+export default React.memo(UserForm);

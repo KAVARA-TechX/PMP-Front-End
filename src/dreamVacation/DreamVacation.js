@@ -2,7 +2,7 @@ import { Box, Text, Image } from '@chakra-ui/react';
 import clipboard from './clipboard-text.svg';
 import message from '../assets/icons/messages.png';
 import cardtick from '../assets/icons/card-tick.png';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const DreamVacation = ({ onLoad }) => {
 	useEffect(() => {
@@ -192,4 +192,4 @@ const DreamVacation = ({ onLoad }) => {
 	);
 };
 
-export default DreamVacation;
+export default React.memo(DreamVacation);

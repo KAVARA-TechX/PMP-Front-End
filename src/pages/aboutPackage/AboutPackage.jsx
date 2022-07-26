@@ -25,18 +25,11 @@ import {
 	AiOutlinePlusCircle,
 	AiOutlineStar,
 } from 'react-icons/ai';
-import { FaTripadvisor } from 'react-icons/fa';
-import { GiCancel } from 'react-icons/gi';
-import { FcGoogle } from 'react-icons/fc';
-import { IoLogoWhatsapp } from 'react-icons/io';
-import img from '../../assets/thingsToDo/dream-vacation.png';
 import Nav from '../../nav/Nav';
 import './AboutPackage.css';
 import Footer from '../../footer/Footer';
 import getPackageById from '../../apis/getPackageById';
 import { useLocation, useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
-import { setDay } from 'date-fns';
 import sideImg from '../../assets/thingsToDo/skiing.webp';
 import { DayPicker } from 'react-day-picker';
 import '../../../node_modules/react-day-picker/dist/style.css';

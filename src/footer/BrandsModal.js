@@ -11,7 +11,7 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import brandsRequest from '../apis/brandsRequest';
 
 const BrandsModal = ({ state, setState }) => {
@@ -262,4 +262,4 @@ const BrandsModal = ({ state, setState }) => {
 	);
 };
 
-export default BrandsModal;
+export default React.memo(BrandsModal);

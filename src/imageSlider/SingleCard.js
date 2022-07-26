@@ -7,6 +7,7 @@ import spa from '../assets/thingsToDo/spa.webp';
 import sunset from '../assets/thingsToDo/sunset.webp';
 import surf from '../assets/thingsToDo/skiing.webp';
 import surfing from '../assets/thingsToDo/Surfing.webp';
+import React from 'react';
 
 const cardsData = [
 	{ title: 'Indulge in Spa', img: spa },
@@ -63,4 +64,4 @@ const SingleCard = ({ currentIndex }) => {
 	);
 };
 
-export default SingleCard;
+export default React.memo(SingleCard);

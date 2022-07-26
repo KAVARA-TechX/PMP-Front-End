@@ -1,6 +1,6 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import MobileModal from './MobileModal';
 
 const MobileSearch = () => {
@@ -62,4 +62,4 @@ const MobileSearch = () => {
 	);
 };
 
-export default MobileSearch;
+export default React.memo(MobileSearch);

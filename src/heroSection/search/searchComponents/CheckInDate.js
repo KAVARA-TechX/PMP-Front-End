@@ -8,7 +8,7 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const CheckInDate = ({ current, handleStart }) => {
 	const [checkinDate, setCheckinDate] = useState(current);
@@ -44,4 +44,4 @@ const CheckInDate = ({ current, handleStart }) => {
 	);
 };
 
-export default CheckInDate;
+export default React.memo(CheckInDate);

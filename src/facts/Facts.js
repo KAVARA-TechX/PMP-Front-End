@@ -1,10 +1,7 @@
-// import { lazy, Suspense } from 'react';
-import { AspectRatio, Box, Text, useSafeLayoutEffect } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
-import image from '../assets/thingsToDo/dream-vacation.png';
+import React, { useEffect, useRef, useState } from 'react';
 import './Facts.css';
-import vid from '../assets/videos/production ID_4782135.mp4';
 import getFactsImageApi from '../apis/getFactsImageApi';
 
 const Facts = ({ onLoad }) => {
@@ -82,26 +79,7 @@ const Facts = ({ onLoad }) => {
 		getData();
 
 		animate();
-
-		// const video = document.querySelector('.facts_video');
-		// if (video) {
-		// 	video.addEventListener('canplay', () => {
-		// 		console.log('can play the video');
-		// 	});
-		// }
 	}, []);
-
-	// useEffect(() => {
-	// 	const video = document.querySelector('.facts_video');
-	// 	if (video) {
-	// 		video.addEventListener('canplay', () => {
-	// 			console.log('can play the video');
-	// 			video.play();
-	// 		});
-	// 	} else {
-	// 		console.log('can not play the video');
-	// 	}
-	// }, [document.querySelector('.facts_video')]);
 
 	return (
 		<Box
@@ -258,17 +236,10 @@ const Facts = ({ onLoad }) => {
 						</Text>
 						<Text>Satisfied Clients</Text>
 					</Box>
-					{/* <Box
-						height='150px'
-						display='flex'
-						flexDir={'column'}
-						justifyContent={'center'}
-						alignItems='center'
-					></Box> */}
 				</Box>
 			</Box>
 		</Box>
 	);
 };
 
-export default Facts;
+export default React.memo(Facts);

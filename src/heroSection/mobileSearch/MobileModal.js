@@ -28,7 +28,7 @@ import {
 } from '@chakra-ui/react';
 
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { addDays } from 'date-fns';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
@@ -455,4 +455,4 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 	);
 };
 
-export default MobileModal;
+export default React.memo(MobileModal);

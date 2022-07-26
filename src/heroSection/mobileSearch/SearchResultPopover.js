@@ -10,7 +10,7 @@ import {
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import c_list from '../search/list.json';
 
 const SearchResultPopover = ({ location, setLocation }) => {
@@ -142,4 +142,4 @@ const SearchResultPopover = ({ location, setLocation }) => {
 	);
 };
 
-export default SearchResultPopover;
+export default React.memo(SearchResultPopover);

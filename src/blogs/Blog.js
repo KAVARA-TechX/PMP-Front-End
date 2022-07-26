@@ -1,7 +1,7 @@
 import { Box, Skeleton, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import img4 from '../assets/thingsToDo/house.webp';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import getBlogsByCount from '../apis/getBlogsByCount';
 import './Blog.css';
 
@@ -334,4 +334,4 @@ const Blog = ({ onLoad }) => {
 	);
 };
 
-export default Blog;
+export default React.memo(Blog);

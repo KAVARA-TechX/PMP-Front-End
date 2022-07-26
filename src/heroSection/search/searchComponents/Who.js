@@ -11,7 +11,7 @@ import {
 	PopoverCloseButton,
 	useOutsideClick,
 } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 const Who = ({ setGuest }) => {
@@ -182,4 +182,4 @@ const Who = ({ setGuest }) => {
 	);
 };
 
-export default Who;
+export default React.memo(Who);
