@@ -1,8 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { AccessLoginContext } from './context/LoginContext';
-import { lazy, Suspense, useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
-import { Box, Spinner } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
 // import Homepage from './Homepage';
 // import SearchResult from './pages/SearchResult/SearchResult';
@@ -95,14 +92,6 @@ const ContactUs = lazy(() => {
 });
 
 const App = () => {
-	const { loginState } = AccessLoginContext();
-
-	const handleCallbackResponse = (response) => {
-		console.log('response is : ', response);
-		var userObj = jwt_decode(response.credential);
-		console.log(userObj);
-	};
-
 	return (
 		<Routes>
 			<Route
@@ -250,14 +239,9 @@ const App = () => {
 				<Route
 					index
 					element={
-						loginState ? (
-							<Suspense fallback={''}>
-								{' '}
-								<Profile />
-							</Suspense>
-						) : (
-							<Navigate to='/' />
-						)
+						<Suspense fallback={''}>
+							<Profile />
+						</Suspense>
 					}
 				/>
 			</Route>

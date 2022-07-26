@@ -1,17 +1,27 @@
 import { Box, Icon, Skeleton, Text } from '@chakra-ui/react';
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { useState } from 'react';
-import Nav from '../nav/Nav';
+// import Nav from '../nav/Nav';
 import getAllHeroImage from '../apis/getAllHeroImage';
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
-import Search from './search/Search';
+// import Search from './search/Search';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './Hero.css';
-import MobileSearch from './mobileSearch/MobileSearch';
+
+const Nav = React.lazy(() => {
+	return import('../nav/Nav');
+});
+
+const Search = React.lazy(() => {
+	return import('./search/Search');
+});
+
+const MobileSearch = React.lazy(() => {
+	return import('./mobileSearch/MobileSearch');
+});
 
 const Hero = ({ onLoad }) => {
-	console.log('running hero-0');
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const splide_ref = useRef();
@@ -19,29 +29,9 @@ const Hero = ({ onLoad }) => {
 	const prev = useRef();
 	const next = useRef();
 
-	const makeItMove = (len) => {
-		let slides = document.querySelector('.slides');
-
-		let index = 0;
-
-		const interval = setInterval(() => {
-			index++;
-			slides.style.transform = `translateX(-${100 * index}vw)`;
-			slides.style.transition = '1s';
-			if (index === len + 1) {
-				slides.style.transition = 'none';
-				slides = document.querySelector('.slides');
-				index = 0;
-				slides.style.transform = `translateX(-${100 * index}vw)`;
-			}
-		}, 3000);
-
-		return interval;
-	};
-
 	useEffect(() => {
 		// this is to autoplay video on safari
-		console.log('running hero-1');
+
 		// let interval = undefined;
 		const getImages = async () => {
 			if (sessionStorage.getItem('hero_slider')) {
@@ -51,6 +41,7 @@ const Hero = ({ onLoad }) => {
 			} else {
 				try {
 					const response = await getAllHeroImage();
+					console.log('hero response is : ', response);
 					setImages((prev) => response.data.heroImages);
 					sessionStorage.setItem(
 						'hero_slider',
@@ -58,7 +49,9 @@ const Hero = ({ onLoad }) => {
 					);
 					setLoading(false);
 					onLoad(true);
-				} catch (error) {}
+				} catch (error) {
+					console.log('something went wrong');
+				}
 			}
 		};
 		getImages();
@@ -66,13 +59,14 @@ const Hero = ({ onLoad }) => {
 
 	return (
 		<>
-			{console.log('running hero-2')}
 			{loading ? (
 				<Skeleton h='500px' />
 			) : (
 				<Box className='hero'>
 					<Box pos={'absolute'} zIndex={100}>
-						<Nav />
+						<Suspense fallback=''>
+							<Nav />
+						</Suspense>
 					</Box>
 					{/* <Box pos={'absolute'} zindex={102}></Box> */}
 					<Splide
@@ -130,9 +124,13 @@ const Hero = ({ onLoad }) => {
 							</div>
 						</div>
 						{window.innerWidth <= 991 ? (
-							<MobileSearch />
+							<Suspense fallback=''>
+								<MobileSearch />
+							</Suspense>
 						) : (
-							<Search />
+							<Suspense fallback=''>
+								<Search />
+							</Suspense>
 						)}
 						<Box>
 							<SplideTrack>

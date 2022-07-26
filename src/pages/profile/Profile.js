@@ -14,8 +14,10 @@ import {
 	AlertDialogContent,
 	AlertDialogHeader,
 	useDisclosure,
+	Spinner,
 } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import changePasswordApi from '../../apis/changePasswordApi';
 import getUserinfoApi from '../../apis/getUserInfoApi';
 import updateProfile from '../../apis/updateProfile';
@@ -45,9 +47,17 @@ const Profile = () => {
 	const [check_p2, set_check_p2] = useState(false);
 	const [activate_reset, set_activate_reset] = useState(true);
 	const [reset_loading, set_reset_Loading] = useState(false);
+	const [main_loading, set_main_loading] = useState(true);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+
+		if (localStorage.getItem('token')) {
+			set_main_loading(false);
+		} else {
+			navigate('/');
+		}
 
 		const userDetails = async () => {
 			const response = await getUserinfoApi();
@@ -134,81 +144,78 @@ const Profile = () => {
 
 	return (
 		<>
-			<AlertDialog
-				isOpen={isOpen}
-				onClose={onClose}
-				leastDestructiveRef={cancleRef}
-			>
-				<AlertDialogOverlay>
-					<AlertDialogContent bg='#fffdf7'>
-						<AlertDialogHeader fontSize={'lg'} fontWeight={'bold'}>
-							Change Password
-						</AlertDialogHeader>
-						<AlertDialogBody>
-							<Text mb='10px'>
-								Enter a new password below to change your
-								password.
-							</Text>
-							<Text>Password</Text>
-							<Input
-								isInvalid={check_p1}
-								type='password'
-								mb='20px'
-								value={password}
-								onChange={(e) => {
-									set_password(e.target.value);
-								}}
-							/>
-							<Text>Re-enter new password</Text>
-							<Input
-								isInvalid={check_p2}
-								type='password'
-								value={reenter_password}
-								onChange={(e) => {
-									set_reenter_password(e.target.value);
-								}}
-							/>
-						</AlertDialogBody>
-						<AlertDialogFooter>
-							<Button ref={cancleRef} onClick={onClose}>
-								Cancel
-							</Button>
-							<Button
-								colorScheme='orange'
-								onClick={handlePasswordReset}
-								ml={3}
-								isDisabled={activate_reset}
-							>
-								Reset Password
-							</Button>
-						</AlertDialogFooter>
-					</AlertDialogContent>
-				</AlertDialogOverlay>
-			</AlertDialog>
-			<Nav />
-
-			{loading ? (
-				<Box px='5vw' pt={5}>
-					<Text fontSize={30} fontWeight={700} display='inline'>
-						Account
-					</Text>
-					<Stack>
-						<Skeleton height={'90px'} />
-						<Skeleton height={'90px'} />
-						<Skeleton height={'90px'} />
-						<Skeleton height={'90px'} />
-						<Skeleton height={'90px'} />
-					</Stack>
+			{main_loading ? (
+				<Box
+					h='calc(100vh - 80px)'
+					w='100vw'
+					display={'flex'}
+					justifyContent='center'
+					alignItems={'center'}
+				>
+					<Spinner />
 				</Box>
 			) : (
 				<>
-					<Box px='5vw' pb='50px'>
-						<Box
-							display={'flex'}
-							alignItems='end'
-							justifyContent={'space-between'}
-							pt={5}
-						>
+					<AlertDialog
+						isOpen={isOpen}
+						onClose={onClose}
+						leastDestructiveRef={cancleRef}
+					>
+						<AlertDialogOverlay>
+							<AlertDialogContent bg='#fffdf7'>
+								<AlertDialogHeader
+									fontSize={'lg'}
+									fontWeight={'bold'}
+								>
+									Change Password
+								</AlertDialogHeader>
+								<AlertDialogBody>
+									<Text mb='10px'>
+										Enter a new password below to change
+										your password.
+									</Text>
+									<Text>Password</Text>
+									<Input
+										isInvalid={check_p1}
+										type='password'
+										mb='20px'
+										value={password}
+										onChange={(e) => {
+											set_password(e.target.value);
+										}}
+									/>
+									<Text>Re-enter new password</Text>
+									<Input
+										isInvalid={check_p2}
+										type='password'
+										value={reenter_password}
+										onChange={(e) => {
+											set_reenter_password(
+												e.target.value
+											);
+										}}
+									/>
+								</AlertDialogBody>
+								<AlertDialogFooter>
+									<Button ref={cancleRef} onClick={onClose}>
+										Cancel
+									</Button>
+									<Button
+										colorScheme='orange'
+										onClick={handlePasswordReset}
+										ml={3}
+										isDisabled={activate_reset}
+									>
+										Reset Password
+									</Button>
+								</AlertDialogFooter>
+							</AlertDialogContent>
+						</AlertDialogOverlay>
+					</AlertDialog>
+					<Nav />
+
+					{loading ? (
+						<Box px='5vw' pt={5}>
 							<Text
 								fontSize={30}
 								fontWeight={700}
@@ -216,272 +223,344 @@ const Profile = () => {
 							>
 								Account
 							</Text>
-							<Text
-								fontSize={20}
-								textDecoration='underline'
-								cursor='pointer'
-								onClick={() => {
-									setIsEditing(true);
-								}}
-								display={isEditing ? 'none' : 'inline-block'}
-							>
-								Edit
-							</Text>
+							<Stack>
+								<Skeleton height={'90px'} />
+								<Skeleton height={'90px'} />
+								<Skeleton height={'90px'} />
+								<Skeleton height={'90px'} />
+								<Skeleton height={'90px'} />
+							</Stack>
 						</Box>
-						<Box>
-							{/* legal name */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
-								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Legal name
+					) : (
+						<>
+							<Box px='5vw' pb='50px'>
+								<Box
+									display={'flex'}
+									alignItems='end'
+									justifyContent={'space-between'}
+									pt={5}
+								>
+									<Text
+										fontSize={30}
+										fontWeight={700}
+										display='inline'
+									>
+										Account
 									</Text>
-									{isEditing ? (
-										<Input
-											type='text'
-											value={name}
-											onChange={(e) => {
-												setName(e.target.value);
-											}}
-										/>
-									) : (
-										<Text fontWeight={300}>{name}</Text>
-									)}
+									<Text
+										fontSize={20}
+										textDecoration='underline'
+										cursor='pointer'
+										onClick={() => {
+											setIsEditing(true);
+										}}
+										display={
+											isEditing ? 'none' : 'inline-block'
+										}
+									>
+										Edit
+									</Text>
 								</Box>
-							</Box>
-							{/* Gender */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
 								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Gender
-									</Text>
-									{isEditing ? (
-										<RadioGroup
-											// onChange={setValue}
-											value={value}
-											display='flex'
-											flexDir={'column'}
-											onChange={(e) => {
-												setGender(e);
-											}}
-										>
-											<Radio value='Male'>Male</Radio>
-											<Radio value='Female'>Female</Radio>
-											<Radio value='Other'>Other</Radio>
-											<Radio value="i'd prefer not to say">
-												i'd prefer not to say
-											</Radio>
-										</RadioGroup>
-									) : (
-										<Text fontWeight={300}>
-											{gender === ''
-												? 'undefined'
-												: gender}
-										</Text>
-									)}
-								</Box>
-							</Box>
-							{/* Dob */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
-								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Date of birth
-									</Text>
-									{isEditing ? (
-										<Input
-											value={dob}
-											type='date'
-											onChange={(e) => {
-												setDob(e.target.value);
-											}}
-										/>
-									) : (
-										<Text fontWeight={300}>
-											{dob === '' ? 'undefined' : dob}
-										</Text>
-									)}
-								</Box>
-							</Box>
-							{/* email */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
-								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Email
-									</Text>
+									{/* legal name */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Legal name
+											</Text>
+											{isEditing ? (
+												<Input
+													type='text'
+													value={name}
+													onChange={(e) => {
+														setName(e.target.value);
+													}}
+												/>
+											) : (
+												<Text fontWeight={300}>
+													{name}
+												</Text>
+											)}
+										</Box>
+									</Box>
+									{/* Gender */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Gender
+											</Text>
+											{isEditing ? (
+												<RadioGroup
+													// onChange={setValue}
+													value={value}
+													display='flex'
+													flexDir={'column'}
+													onChange={(e) => {
+														setGender(e);
+													}}
+												>
+													<Radio value='Male'>
+														Male
+													</Radio>
+													<Radio value='Female'>
+														Female
+													</Radio>
+													<Radio value='Other'>
+														Other
+													</Radio>
+													<Radio value="i'd prefer not to say">
+														i'd prefer not to say
+													</Radio>
+												</RadioGroup>
+											) : (
+												<Text fontWeight={300}>
+													{gender === ''
+														? 'undefined'
+														: gender}
+												</Text>
+											)}
+										</Box>
+									</Box>
+									{/* Dob */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Date of birth
+											</Text>
+											{isEditing ? (
+												<Input
+													value={dob}
+													type='date'
+													onChange={(e) => {
+														setDob(e.target.value);
+													}}
+												/>
+											) : (
+												<Text fontWeight={300}>
+													{dob === ''
+														? 'undefined'
+														: dob}
+												</Text>
+											)}
+										</Box>
+									</Box>
+									{/* email */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Email
+											</Text>
 
-									{isEditing ? (
-										<Input
-											type='email'
-											value={email}
-											onChange={(e) => {
-												setEmail(e.target.value);
-											}}
-										/>
-									) : (
-										<Text fontWeight={300}>{email}</Text>
-									)}
-								</Box>
-							</Box>
-							{/* phone no. */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
-								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Phone no.
-									</Text>
-									{isEditing ? (
-										<Input
-											type='number'
-											value={phone}
-											onChange={(e) => {
-												setPhone(e.target.value);
-											}}
-										/>
-									) : (
-										<Text fontWeight={300}>
-											{phone === '' ? 'undefined' : phone}
-										</Text>
-									)}
-								</Box>
-							</Box>
-							{/* Address */}
-							<Box
-								display={'flex'}
-								justifyContent='space-between'
-								py='30px'
-								borderBottom={'1px solid gray'}
-							>
-								<Box>
-									<Text fontSize={20} fontWeight={600}>
-										Address
-									</Text>
-									{isEditing ? (
-										<Box
-											pl='20px'
-											display={'flex'}
-											gap='20px'
-										>
-											<Box>
-												<Text>House no.</Text>
+											{isEditing ? (
 												<Input
-													type='text'
-													value={hnumber}
+													type='email'
+													value={email}
 													onChange={(e) => {
-														setHnumber(
+														setEmail(
 															e.target.value
 														);
 													}}
 												/>
-											</Box>
-											<Box>
-												<Text>City</Text>
-												<Input
-													type='text'
-													value={city}
-													onChange={(e) => {
-														setCity(e.target.value);
-													}}
-												/>
-											</Box>
-											<Box>
-												<Text>State</Text>
-												<Input
-													type='text'
-													value={state}
-													onChange={(e) => {
-														setState(
-															e.target.value
-														);
-													}}
-												/>
-											</Box>
-											<Box>
-												<Text>Pincode</Text>
+											) : (
+												<Text fontWeight={300}>
+													{email}
+												</Text>
+											)}
+										</Box>
+									</Box>
+									{/* phone no. */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Phone no.
+											</Text>
+											{isEditing ? (
 												<Input
 													type='number'
-													value={pincode}
+													value={phone}
 													onChange={(e) => {
-														setPincode(
+														setPhone(
 															e.target.value
 														);
 													}}
 												/>
-											</Box>
+											) : (
+												<Text fontWeight={300}>
+													{phone === ''
+														? 'undefined'
+														: phone}
+												</Text>
+											)}
 										</Box>
-									) : (
-										<Text fontWeight={300}>
-											{hnumber}, {city}, {state},{' '}
-											{pincode}
-										</Text>
-									)}
+									</Box>
+									{/* Address */}
+									<Box
+										display={'flex'}
+										justifyContent='space-between'
+										py='30px'
+										borderBottom={'1px solid gray'}
+									>
+										<Box>
+											<Text
+												fontSize={20}
+												fontWeight={600}
+											>
+												Address
+											</Text>
+											{isEditing ? (
+												<Box
+													pl='20px'
+													display={'flex'}
+													gap='20px'
+												>
+													<Box>
+														<Text>House no.</Text>
+														<Input
+															type='text'
+															value={hnumber}
+															onChange={(e) => {
+																setHnumber(
+																	e.target
+																		.value
+																);
+															}}
+														/>
+													</Box>
+													<Box>
+														<Text>City</Text>
+														<Input
+															type='text'
+															value={city}
+															onChange={(e) => {
+																setCity(
+																	e.target
+																		.value
+																);
+															}}
+														/>
+													</Box>
+													<Box>
+														<Text>State</Text>
+														<Input
+															type='text'
+															value={state}
+															onChange={(e) => {
+																setState(
+																	e.target
+																		.value
+																);
+															}}
+														/>
+													</Box>
+													<Box>
+														<Text>Pincode</Text>
+														<Input
+															type='number'
+															value={pincode}
+															onChange={(e) => {
+																setPincode(
+																	e.target
+																		.value
+																);
+															}}
+														/>
+													</Box>
+												</Box>
+											) : (
+												<Text fontWeight={300}>
+													{hnumber}, {city}, {state},{' '}
+													{pincode}
+												</Text>
+											)}
+										</Box>
+									</Box>
+									<Box
+										display={
+											isEditing ? 'none' : 'inline-block'
+										}
+										mt='50px'
+										bg='rgba(255,255,255,.2)'
+										px='15px'
+										py='10px'
+										borderRadius={'10px'}
+										cursor='pointer'
+										onClick={() => {
+											onOpen();
+										}}
+									>
+										Change Password
+									</Box>
+									<Box
+										display={isEditing ? 'flex' : 'none'}
+										justifyContent='center'
+										gap='50px'
+										pt='50px'
+									>
+										<Button
+											colorScheme={'red'}
+											onClick={() => {
+												setIsEditing(false);
+											}}
+										>
+											Cancel
+										</Button>
+										<Button
+											colorScheme={'green'}
+											onClick={handleUpdate}
+											isLoading={uLoading}
+										>
+											Save
+										</Button>
+									</Box>
 								</Box>
 							</Box>
-							<Box
-								display={isEditing ? 'none' : 'inline-block'}
-								mt='50px'
-								bg='rgba(255,255,255,.2)'
-								px='15px'
-								py='10px'
-								borderRadius={'10px'}
-								cursor='pointer'
-								onClick={() => {
-									onOpen();
-								}}
-							>
-								Change Password
-							</Box>
-							<Box
-								display={isEditing ? 'flex' : 'none'}
-								justifyContent='center'
-								gap='50px'
-								pt='50px'
-							>
-								<Button
-									colorScheme={'red'}
-									onClick={() => {
-										setIsEditing(false);
-									}}
-								>
-									Cancel
-								</Button>
-								<Button
-									colorScheme={'green'}
-									onClick={handleUpdate}
-									isLoading={uLoading}
-								>
-									Save
-								</Button>
-							</Box>
-						</Box>
-					</Box>
+						</>
+					)}
+					<Footer />
 				</>
 			)}
-			<Footer />
 		</>
 	);
 };
 
-export default Profile;
+export default React.memo(Profile);

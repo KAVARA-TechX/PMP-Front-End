@@ -2,32 +2,33 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { Box, Icon, Skeleton, Text, useToast } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
-// import Hero from './heroSection/Hero';
-// import Facts from './facts/Facts';
-// import Packages from './packages/Packages';
-// import DreamVacation from './dreamVacation/DreamVacation';
-// import Banner from './banner/Banner';
+import Hero from './heroSection/Hero';
+import Facts from './facts/Facts';
+import Packages from './packages/Packages';
+import DreamVacation from './dreamVacation/DreamVacation';
+import Banner from './banner/Banner';
 // import ImageSlider from './imageSlider/ImageSlider';
 // import IconSection from './iconSection/IconSection';
 // import Blog from './blogs/Blog';
 // import Footer from './footer/Footer';
-const Hero = lazy(() => {
-	return import('./heroSection/Hero');
-});
 
-const Facts = lazy(() => {
-	return import('./facts/Facts');
-});
+// const Hero = lazy(() => {
+// 	return import('./heroSection/Hero');
+// });
 
-const Packages = lazy(() => {
-	return import('./packages/Packages');
-});
-const DreamVacation = lazy(() => {
-	return import('./dreamVacation/DreamVacation');
-});
-const Banner = lazy(() => {
-	return import('./banner/Banner');
-});
+// const Facts = lazy(() => {
+// 	return import('./facts/Facts');
+// });
+
+// const Packages = lazy(() => {
+// 	return import('./packages/Packages');
+// });
+// const DreamVacation = lazy(() => {
+// 	return import('./dreamVacation/DreamVacation');
+// });
+// const Banner = lazy(() => {
+// 	return import('./banner/Banner');
+// });
 const ImageSlider = lazy(() => {
 	return import('./imageSlider/ImageSlider');
 });
@@ -450,34 +451,34 @@ const Homepage = () => {
 
 	return (
 		<Box overflow='hidden'>
-			<Suspense fallback={''}>
-				<Hero onLoad={set_sec_1} />
-			</Suspense>
+			{/* <Suspense fallback={''}> */}
+			<Hero onLoad={set_sec_1} />
+			{/* </Suspense> */}
 
 			{sec_1 ? (
 				<>
-					<Suspense fallback={<LoadingForFacts />}>
-						<Facts onLoad={set_sec_2} />
-					</Suspense>
+					{/* <Suspense fallback={<LoadingForFacts />}> */}
+					<Facts onLoad={set_sec_2} />
+					{/* </Suspense> */}
 					{sec_2 ? (
 						<>
-							<Suspense fallback={<LoadingPackages />}>
-								<Packages onLoad={set_sec_3} />
-							</Suspense>
+							{/* <Suspense fallback={<LoadingPackages />}> */}
+							<Packages onLoad={set_sec_3} />
+							{/* </Suspense> */}
 							{sec_3 ? (
 								<>
-									<Suspense
+									{/* <Suspense
 										fallback={<LoadingDreamVacation />}
-									>
-										<DreamVacation onLoad={set_sec_4} />
-									</Suspense>
+									> */}
+									<DreamVacation onLoad={set_sec_4} />
+									{/* </Suspense> */}
 									{sec_4 ? (
 										<>
-											<Suspense
+											{/* <Suspense
 												fallback={<LoadingBanner />}
-											>
-												<Banner onLoad={set_sec_5} />
-											</Suspense>
+											> */}
+											<Banner onLoad={set_sec_5} />
+											{/* </Suspense> */}
 											{sec_5 ? (
 												<>
 													<Suspense
