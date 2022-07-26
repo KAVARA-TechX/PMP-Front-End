@@ -11,8 +11,6 @@ import sunset from '../assets/thingsToDo/sunset.webp';
 import surf from '../assets/thingsToDo/skiing.webp';
 import surfing from '../assets/thingsToDo/Surfing.webp';
 import './ImageSlider.css';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 const cardsData = [
@@ -27,76 +25,11 @@ const cardsData = [
 ];
 
 const ImageSlider = ({ onLoad }) => {
-	gsap.registerPlugin(ScrollTrigger);
 	let f_and_e_heading_container = useRef(null);
 	let fun_and_explore_card_container = useRef(null);
-	const f_and_e_cards = gsap.utils.selector(fun_and_explore_card_container);
-	const f_and_e_heading = gsap.utils.selector(f_and_e_heading_container);
 	const [hide_or_show, set_hide_or_show] = useState(true);
-	ScrollTrigger.refresh();
-
-	// const animate = () => {
-	// 	const windowWidth = window.innerWidth;
-	// 	const padding = (windowWidth * 9) / 100;
-	// 	const portion_we_can_see = windowWidth - padding * 2;
-	// 	const widht_of_cards_container = 2320;
-	// 	const scroll_amount = widht_of_cards_container - portion_we_can_see;
-	// 	const height_of_container =
-	// 		fun_and_explore_card_container.current.offsetHeight;
-
-	// 	const stop_at = (window.innerHeight - height_of_container) / 2;
-
-	// 	console.log(
-	// 		windowWidth,
-	// 		padding,
-	// 		portion_we_can_see,
-	// 		widht_of_cards_container,
-	// 		scroll_amount,
-	// 		height_of_container
-	// 	);
-
-	// 	gsap.from(f_and_e_heading('.f_and_e_heading'), {
-	// 		scrollTrigger: {
-	// 			trigger: f_and_e_heading_container.current,
-	// 			start: 'top 85%',
-	// 			end: 'top top',
-	// 		},
-	// 		x: -100,
-	// 		opacity: 0,
-	// 		duration: 0.8,
-	// 		onComplete: function () {
-	// 			ScrollTrigger.refresh();
-	// 		},
-	// 	});
-
-	// 	gsap.from(f_and_e_heading('#scrollbar'), {
-	// 		scrollTrigger: {
-	// 			trigger: f_and_e_heading_container.current,
-	// 			start: 'top 85%',
-	// 			end: 'top top',
-	// 		},
-	// 		y: 100,
-	// 		opacity: 0,
-	// 		duration: 0.8,
-	// 		delay: 0.6,
-	// 		onComplete: function () {
-	// 			ScrollTrigger.refresh();
-	// 		},
-	// 	});
-
-	// 	gsap.to(f_and_e_cards('.f_and_e_card'), {
-	// 		scrollTrigger: {
-	// 			trigger: fun_and_explore_card_container.current,
-	// 			start: `end ${stop_at}px`,
-	// 			scrub: 0.05,
-	// 			pin: '.ImageSlider',
-	// 		},
-	// 		x: `-=${scroll_amount}`,
-	// 	});
-	// };
 
 	useEffect(() => {
-		// animate();
 		onLoad(true);
 		set_hide_or_show(
 			8 * 260 + (8 - 1) * 15 <
@@ -259,4 +192,4 @@ const ImageSlider = ({ onLoad }) => {
 	);
 };
 
-export default ImageSlider;
+export default React.memo(ImageSlider);

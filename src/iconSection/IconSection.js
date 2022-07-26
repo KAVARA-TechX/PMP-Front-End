@@ -192,42 +192,6 @@ const IconSection = ({ onLoad }) => {
 			</Box>
 		</Box>
 	);
-	// return (
-	// 	<Box
-	// 		w='100vw'
-	// 		h='fit-content'
-	// 		bg='#32BAC9'
-	// 		display={'grid'}
-	// 		gridTemplateColumns={{
-	// 			base: 'repeat(2,1fr)',
-	// 			lg: 'repeat(4, 1fr)',
-	// 		}}
-	// 		alignItems='center'
-	// 		textAlign={'center'}
-	// 		color='white'
-	// 		pt={'40px'}
-	// 		pb={'40px'}
-	// 		rowGap='50px'
-	// 		mb={10}
-	// 	>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={x7} h='50px' />
-	// 			24X7 Assistance
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={allRounder} h='50px' />
-	// 			All Rounder Expertise
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={easyPrice} h='50px' />
-	// 			Easy Pricing
-	// 		</Box>
-	// 		<Box display={'flex'} flexDir='column' fontWeight={500}>
-	// 			<Image src={oneStopShop} h='50px' />
-	// 			One-Stop Shop
-	// 		</Box>
-	// 	</Box>
-	// );
 };
 
 export default IconSection;

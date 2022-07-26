@@ -9,7 +9,7 @@ import {
 	useOutsideClick,
 } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { addDays, format } from 'date-fns';
 import CheckOutDate from './CheckOutDate';
 import CheckInDate from './CheckInDate';
@@ -98,4 +98,4 @@ const When = ({ setStartDate, setEndDate }) => {
 	);
 };
 
-export default When;
+export default React.memo(When);

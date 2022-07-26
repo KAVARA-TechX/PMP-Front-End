@@ -11,6 +11,7 @@ import './Hero.css';
 import MobileSearch from './mobileSearch/MobileSearch';
 
 const Hero = ({ onLoad }) => {
+	console.log('running hero-0');
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const splide_ref = useRef();
@@ -40,7 +41,7 @@ const Hero = ({ onLoad }) => {
 
 	useEffect(() => {
 		// this is to autoplay video on safari
-
+		console.log('running hero-1');
 		// let interval = undefined;
 		const getImages = async () => {
 			if (sessionStorage.getItem('hero_slider')) {
@@ -50,7 +51,6 @@ const Hero = ({ onLoad }) => {
 			} else {
 				try {
 					const response = await getAllHeroImage();
-					console.log('hero response is : ', response);
 					setImages((prev) => response.data.heroImages);
 					sessionStorage.setItem(
 						'hero_slider',
@@ -58,9 +58,7 @@ const Hero = ({ onLoad }) => {
 					);
 					setLoading(false);
 					onLoad(true);
-				} catch (error) {
-					console.log('something went wrong');
-				}
+				} catch (error) {}
 			}
 		};
 		getImages();
@@ -68,6 +66,7 @@ const Hero = ({ onLoad }) => {
 
 	return (
 		<>
+			{console.log('running hero-2')}
 			{loading ? (
 				<Skeleton h='500px' />
 			) : (
@@ -233,4 +232,4 @@ const Hero = ({ onLoad }) => {
 	);
 };
 
-export default Hero;
+export default React.memo(Hero);

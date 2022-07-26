@@ -3,11 +3,9 @@ import '../../node_modules/react-day-picker/dist/style.css';
 import './day-picker.css';
 import { useNavigate } from 'react-router-dom';
 import './Packages.css';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import getPackageApi from '../apis/getPackageApi';
 import { BiChevronRight } from 'react-icons/bi';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 const Packages = ({ onLoad }) => {
@@ -16,61 +14,7 @@ const Packages = ({ onLoad }) => {
 	let cardsParentRef = useRef(null);
 	const pkg_heading_container = useRef(null);
 	const mainContainer = useRef(null);
-	const ref_cards = gsap.utils.selector(cardsParentRef);
-	const ref_pkd_heading = gsap.utils.selector(pkg_heading_container);
-	const main_container = gsap.utils.selector(mainContainer);
 	const [hide_or_show, set_hide_or_show] = useState(true);
-
-	// gsap.registerPlugin(ScrollTrigger);
-
-	const animateCards = () => {
-		gsap.from(ref_pkd_heading('.pkg_heading_from_left'), {
-			scrollTrigger: {
-				trigger: pkg_heading_container.current,
-				start: 'Top 85%',
-			},
-
-			x: -100,
-			opacity: 0,
-			duration: 0.5,
-		});
-
-		gsap.from(ref_pkd_heading('.pkg_heading_from_right'), {
-			scrollTrigger: {
-				trigger: pkg_heading_container.current,
-				start: 'Top 85%',
-			},
-			x: 100,
-			opacity: 0,
-			duration: 0.5,
-		});
-
-		const gl = gsap.timeline({
-			scrollTrigger: {
-				trigger: cardsParentRef.current,
-				start: 'Top 85%',
-			},
-		});
-
-		gl.from(ref_cards('.pkg_card'), {
-			y: 100,
-			stagger: 0.15,
-			opacity: 0,
-			delay: 0.5,
-			ease: 'power4.out',
-			duration: 0.8,
-		});
-
-		gl.from(main_container('#pkg_left_icon'), {
-			x: -50,
-			opacity: 0,
-		});
-
-		gl.from(main_container('#pkg_right_icon'), {
-			x: 50,
-			opacity: 0,
-		});
-	};
 
 	useEffect(() => {
 		const getData = async () => {
@@ -309,4 +253,4 @@ const Packages = ({ onLoad }) => {
 	);
 };
 
-export default Packages;
+export default React.memo(Packages);

@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 import { DayPicker } from 'react-day-picker';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addDays } from 'date-fns';
 
 const CheckOutDate = ({ startWith, handleEnd }) => {
@@ -37,4 +37,4 @@ const CheckOutDate = ({ startWith, handleEnd }) => {
 	);
 };
 
-export default CheckOutDate;
+export default React.memo(CheckOutDate);

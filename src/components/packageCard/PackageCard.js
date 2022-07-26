@@ -1,10 +1,9 @@
 import { CheckIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
-// import { da } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
-import img from '../../assets/footer.jpg';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import React from 'react';
 
 const PackageCard = ({
 	data,
@@ -223,4 +222,4 @@ const PackageCard = ({
 	);
 };
 
-export default PackageCard;
+export default React.memo(PackageCard);

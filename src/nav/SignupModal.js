@@ -12,7 +12,7 @@ import {
 	useToast,
 	Image,
 } from '@chakra-ui/react';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
@@ -32,7 +32,6 @@ const SignupModal = ({ open, setOpen }) => {
 	const [checkPassword, setCheckPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [mailsend, setMailsend] = useState(false);
-	const toast = useToast();
 
 	const handleCallbackResponse = async (response) => {
 		console.log('response is : ', response);
@@ -73,33 +72,6 @@ const SignupModal = ({ open, setOpen }) => {
 			onOpen();
 		}
 	}, [open]);
-
-	// const success = async (response) => {
-	// 	let tokenId = response.tokenId;
-	// 	try {
-	// 		const res = await googleLoginApi(tokenId);
-	// 		setLoginState(true);
-	// 		setToken(res.data.token);
-	// 		setUsed('google');
-	// 		setOpen(false);
-	// 		onClose();
-	// 		setProfileurl(res.data.msg.avatar);
-	// 	} catch (error) {
-	// 		console.log('some error occured', error);
-	// 	}
-
-	// 	onClose();
-	// };
-
-	// const failure = (response) => {
-	// 	toast({
-	// 		title: 'Error',
-	// 		description: 'Something went wrong, Please try again later.',
-	// 		status: 'error',
-	// 		duration: 6000,
-	// 		isClosable: true,
-	// 	});
-	// };
 
 	const handleSignupRequest = async () => {
 		setLoading(true);
@@ -283,4 +255,4 @@ const SignupModal = ({ open, setOpen }) => {
 		</Modal>
 	);
 };
-export default SignupModal;
+export default React.memo(SignupModal);

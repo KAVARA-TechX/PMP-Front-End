@@ -9,7 +9,7 @@ import {
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import travelAgentApi from '../apis/travelAgentApi';
 
 const TravelAgentModal = ({ state, setState }) => {
@@ -210,4 +210,4 @@ const TravelAgentModal = ({ state, setState }) => {
 	);
 };
 
-export default TravelAgentModal;
+export default React.memo(TravelAgentModal);
