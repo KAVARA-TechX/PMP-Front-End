@@ -185,12 +185,6 @@ const Search = () => {
 						<PopoverBody>
 							{c_list
 								.filter((val) => {
-									console.log(
-										`for ${val}`,
-										val
-											.toLowerCase()
-											.indexOf(location.toLowerCase())
-									);
 									return val
 										.toLowerCase()
 										.indexOf(location.toLowerCase()) !== -1
