@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Facts.css';
 import getFactsImageApi from '../apis/getFactsImageApi';
 
-const Facts = ({ onLoad }) => {
+const Facts = () => {
 	const container_ref = useRef(null);
 	const container = gsap.utils.selector(container_ref);
 	const [media, set_media] = useState(null);
@@ -50,7 +50,6 @@ const Facts = ({ onLoad }) => {
 				set_type(
 					JSON.parse(sessionStorage.getItem('fd')).resource_type
 				);
-				onLoad(true);
 			} else {
 				try {
 					const res = await getFactsImageApi();
@@ -71,7 +70,6 @@ const Facts = ({ onLoad }) => {
 							? null
 							: res.data.factImages[0].imageUrl.resource_type
 					);
-					onLoad(true);
 				} catch (error) {}
 			}
 		};

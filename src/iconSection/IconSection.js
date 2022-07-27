@@ -9,11 +9,7 @@ import { useEffect } from 'react';
 // import easyPrice from '../assets/icons/easyPrice.svg';
 // import oneStopShop from '../assets/icons/oneStopShop.svg';
 
-const IconSection = ({ onLoad }) => {
-	useEffect(() => {
-		onLoad(true);
-	}, []);
-
+const IconSection = () => {
 	return (
 		<Box
 			w='100vw'

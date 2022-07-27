@@ -21,7 +21,7 @@ const MobileSearch = React.lazy(() => {
 	return import('./mobileSearch/MobileSearch');
 });
 
-const Hero = ({ onLoad }) => {
+const Hero = () => {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const splide_ref = useRef();
@@ -30,14 +30,11 @@ const Hero = ({ onLoad }) => {
 	const next = useRef();
 
 	useEffect(() => {
-		// this is to autoplay video on safari
-
 		// let interval = undefined;
 		const getImages = async () => {
 			if (sessionStorage.getItem('hero_slider')) {
 				setImages(JSON.parse(sessionStorage.getItem('hero_slider')));
 				setLoading(false);
-				onLoad(true);
 			} else {
 				try {
 					const response = await getAllHeroImage();
@@ -48,7 +45,6 @@ const Hero = ({ onLoad }) => {
 						JSON.stringify(response.data.heroImages)
 					);
 					setLoading(false);
-					onLoad(true);
 				} catch (error) {
 					console.log('something went wrong');
 				}
@@ -56,6 +52,113 @@ const Hero = ({ onLoad }) => {
 		};
 		getImages();
 	}, []);
+
+	const HVideo = React.memo(({ data }) => {
+		console.log('calling video link');
+		return (
+			<Box
+				w='100%'
+				h='100%'
+				dangerouslySetInnerHTML={{
+					__html: `<video
+								autoPlay
+								muted
+								loop
+								playsinline
+								style="
+									height: 100%;
+									width: 100%;
+									object-fit: cover;
+									object-position: center;
+								"
+
+							>
+								<source
+									src=${data.imageUrl[0].secure_url}
+								/>
+							</video>`,
+				}}
+			></Box>
+		);
+	});
+
+	const HImage = React.memo(({ data }) => {
+		return (
+			<>
+				<Box
+					w='100%'
+					h='100%'
+					bgImage={data.imageUrl[0].secure_url}
+					bgSize='cover'
+					bgPos={'50% 50%'}
+				></Box>
+			</>
+		);
+	});
+
+	const HList = React.useMemo(() => {
+		return (
+			<>
+				{console.log('image length : ', images.length)}
+				{images.length === 0 ? (
+					<></>
+				) : (
+					images.map((data, index) => {
+						return (
+							<SplideSlide key={index}>
+								<Box
+									w='100vw'
+									h='500px'
+									position={'relative'}
+									overflowX='hidden'
+								>
+									{data.imageUrl[0].resource_type ===
+									'video' ? (
+										<HVideo data={data} />
+									) : (
+										<HImage data={data} />
+									)}
+									<Text
+										w={{
+											base: 'calc(100vw - 20px)',
+											lg: '50%',
+										}}
+										bg='rgba(0,0,0,.1)'
+										boxShadow={
+											'0 0 0  10000px rgba(0,0,0,.1)'
+										}
+										color={'white'}
+										position='absolute'
+										top={{
+											base: '40%',
+											lg: '30%',
+										}}
+										left={{
+											base: '50%',
+											lg: '30px',
+										}}
+										transform={{
+											base: 'translateX(-50%) translateY(-50%)',
+											lg: 'none',
+										}}
+										fontSize={50}
+										fontWeight={500}
+										lineHeight={1}
+										textAlign={{
+											base: 'center',
+											lg: 'start',
+										}}
+									>
+										{data.title}
+									</Text>
+								</Box>
+							</SplideSlide>
+						);
+					})
+				)}
+			</>
+		);
+	}, [images]);
 
 	return (
 		<>
@@ -133,95 +236,7 @@ const Hero = ({ onLoad }) => {
 							</Suspense>
 						)}
 						<Box>
-							<SplideTrack>
-								{images.length === 0 ? (
-									<></>
-								) : (
-									images.map((data, index) => {
-										return (
-											<SplideSlide key={index}>
-												<Box
-													w='100vw'
-													h='500px'
-													position={'relative'}
-													overflowX='hidden'
-												>
-													{data.imageUrl[0]
-														.resource_type ===
-													'video' ? (
-														<Box
-															w='100%'
-															h='100%'
-															dangerouslySetInnerHTML={{
-																__html: `<video
-															autoPlay='autoplay'
-															loop
-															muted='true'
-															playsinline
-															style="
-																height: 100%;
-																width: 100%;
-																object-fit:cover;
-															"
-															
-														>
-															<source
-																src=${data.imageUrl[0].secure_url}
-															/>
-														</video>`,
-															}}
-														></Box>
-													) : (
-														<Box
-															w='100%'
-															h='100%'
-															bgImage={
-																data.imageUrl[0]
-																	.secure_url
-															}
-															bgSize='cover'
-															bgPos={'50% 50%'}
-														></Box>
-													)}
-													<Text
-														w={{
-															base: 'calc(100vw - 20px)',
-															lg: '50%',
-														}}
-														bg='rgba(0,0,0,.1)'
-														boxShadow={
-															'0 0 0  10000px rgba(0,0,0,.1)'
-														}
-														color={'white'}
-														position='absolute'
-														top={{
-															base: '40%',
-															lg: '30%',
-														}}
-														left={{
-															base: '50%',
-															lg: '30px',
-														}}
-														transform={{
-															base: 'translateX(-50%) translateY(-50%)',
-															lg: 'none',
-														}}
-														fontSize={50}
-														fontWeight={500}
-														lineHeight={1}
-														textAlign={{
-															base: 'center',
-															lg: 'start',
-														}}
-													>
-														{data.title}
-													</Text>
-												</Box>
-											</SplideSlide>
-										);
-									})
-								)}
-							</SplideTrack>
+							<SplideTrack>{HList}</SplideTrack>
 						</Box>
 					</Splide>
 				</Box>

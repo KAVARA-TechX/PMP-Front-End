@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import getRefereshToken from '../apis/getRefreshToken';
 import getUserinfoApi from '../apis/getUserInfoApi';
 
 const LoginContext = createContext();

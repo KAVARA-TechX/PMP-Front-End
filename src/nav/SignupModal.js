@@ -7,14 +7,10 @@ import {
 	Button,
 	Box,
 	Text,
-	Icon,
 	Input,
-	useToast,
 	Image,
 } from '@chakra-ui/react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { GoogleLogin } from 'react-google-login';
 import { AccessLoginContext } from '../context/LoginContext';
 import SignupApi from '../apis/SignupApi';
 import googleLoginApi from '../apis/googleLoginApi';

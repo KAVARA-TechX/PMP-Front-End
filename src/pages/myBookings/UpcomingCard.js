@@ -65,7 +65,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		if (
 			parts_index === 0
 				? true
-				: parts[parts_index - 1].amount === true
+				: parts[parts_index - 1].status === true
 				? true
 				: false
 		) {
@@ -206,6 +206,7 @@ const UpcomingCard = ({ data, changeState }) => {
 					paymentType: { parts: parts, normal: {} },
 				}
 			);
+			window.location.reload();
 		} catch (error) {}
 	};
 
@@ -231,6 +232,7 @@ const UpcomingCard = ({ data, changeState }) => {
 				isClosable: true,
 			});
 			changeState((prev) => !prev);
+			window.location.reload();
 		} catch (error) {}
 	};
 

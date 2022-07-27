@@ -2,33 +2,34 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { Box, Icon, Skeleton, Text, useToast } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
-import Hero from './heroSection/Hero';
-import Facts from './facts/Facts';
-import Packages from './packages/Packages';
-import DreamVacation from './dreamVacation/DreamVacation';
-import Banner from './banner/Banner';
+// import Hero from './heroSection/Hero';
+// import Facts from './facts/Facts';
+// import Packages from './packages/Packages';
+// import DreamVacation from './dreamVacation/DreamVacation';
+// import Banner from './banner/Banner';
+// import { FaCaretSquareRight } from 'react-icons/fa';
 // import ImageSlider from './imageSlider/ImageSlider';
 // import IconSection from './iconSection/IconSection';
 // import Blog from './blogs/Blog';
 // import Footer from './footer/Footer';
 
-// const Hero = lazy(() => {
-// 	return import('./heroSection/Hero');
-// });
+const Hero = lazy(() => {
+	return import('./heroSection/Hero');
+});
 
-// const Facts = lazy(() => {
-// 	return import('./facts/Facts');
-// });
+const Facts = lazy(() => {
+	return import('./facts/Facts');
+});
 
-// const Packages = lazy(() => {
-// 	return import('./packages/Packages');
-// });
-// const DreamVacation = lazy(() => {
-// 	return import('./dreamVacation/DreamVacation');
-// });
-// const Banner = lazy(() => {
-// 	return import('./banner/Banner');
-// });
+const Packages = lazy(() => {
+	return import('./packages/Packages');
+});
+const DreamVacation = lazy(() => {
+	return import('./dreamVacation/DreamVacation');
+});
+const Banner = lazy(() => {
+	return import('./banner/Banner');
+});
 const ImageSlider = lazy(() => {
 	return import('./imageSlider/ImageSlider');
 });
@@ -420,15 +421,6 @@ const Homepage = () => {
 	const location = useLocation();
 	const toast = useToast();
 
-	const [sec_1, set_sec_1] = useState(false);
-	const [sec_2, set_sec_2] = useState(false);
-	const [sec_3, set_sec_3] = useState(false);
-	const [sec_4, set_sec_4] = useState(false);
-	const [sec_5, set_sec_5] = useState(false);
-	const [sec_6, set_sec_6] = useState(false);
-	const [sec_7, set_sec_7] = useState(false);
-	const [sec_8, set_sec_8] = useState(false);
-
 	useEffect(() => {
 		try {
 			if (location.state.account) {
@@ -451,125 +443,40 @@ const Homepage = () => {
 
 	return (
 		<Box overflow='hidden'>
-			{/* <Suspense fallback={''}> */}
-			<Hero onLoad={set_sec_1} />
-			{/* </Suspense> */}
+			<Suspense fallback={<Skeleton h='500px' />}>
+				<Hero />
+			</Suspense>
+			<Suspense fallback={<LoadingForFacts />}>
+				<Facts />
+			</Suspense>
 
-			{sec_1 ? (
-				<>
-					{/* <Suspense fallback={<LoadingForFacts />}> */}
-					<Facts onLoad={set_sec_2} />
-					{/* </Suspense> */}
-					{sec_2 ? (
-						<>
-							{/* <Suspense fallback={<LoadingPackages />}> */}
-							<Packages onLoad={set_sec_3} />
-							{/* </Suspense> */}
-							{sec_3 ? (
-								<>
-									{/* <Suspense
-										fallback={<LoadingDreamVacation />}
-									> */}
-									<DreamVacation onLoad={set_sec_4} />
-									{/* </Suspense> */}
-									{sec_4 ? (
-										<>
-											{/* <Suspense
-												fallback={<LoadingBanner />}
-											> */}
-											<Banner onLoad={set_sec_5} />
-											{/* </Suspense> */}
-											{sec_5 ? (
-												<>
-													<Suspense
-														fallback={
-															<LoadingImageSlider />
-														}
-													>
-														<ImageSlider
-															onLoad={set_sec_6}
-														/>
-													</Suspense>
-													{sec_6 ? (
-														<>
-															<Suspense
-																fallback={
-																	<LoadingDreamVacation />
-																}
-															>
-																<IconSection
-																	onLoad={
-																		set_sec_7
-																	}
-																/>
-															</Suspense>
-															{sec_7 ? (
-																<>
-																	<Suspense
-																		fallback={
-																			<LoadingBlogs />
-																		}
-																	>
-																		<Blog
-																			onLoad={
-																				set_sec_8
-																			}
-																		/>
-																	</Suspense>
+			<Suspense fallback={<LoadingPackages />}>
+				<Packages />
+			</Suspense>
 
-																	{true ? (
-																		<Suspense
-																			fallback={
-																				''
-																			}
-																		>
-																			<Footer />
-																		</Suspense>
-																	) : (
-																		<>
-																			{/* <LoadingBlogs /> */}
-																		</>
-																	)}
-																</>
-															) : (
-																<>
-																	<LoadingBlogs />
-																</>
-															)}
-														</>
-													) : (
-														<>
-															<LoadingImageSlider />
-														</>
-													)}
-												</>
-											) : (
-												<>
-													<LoadingBanner />
-												</>
-											)}
-										</>
-									) : (
-										<>
-											<LoadingDreamVacation />
-										</>
-									)}
-								</>
-							) : (
-								<></>
-							)}
-						</>
-					) : (
-						<>
-							<LoadingPackages />
-						</>
-					)}
-				</>
-			) : (
-				<>
-					<LoadingForFacts />
-				</>
-			)}
+			<Suspense fallback={<LoadingDreamVacation />}>
+				<DreamVacation />
+			</Suspense>
+
+			<Suspense fallback={<LoadingBanner />}>
+				<Banner />
+			</Suspense>
+
+			<Suspense fallback={<LoadingImageSlider />}>
+				<ImageSlider />
+			</Suspense>
+
+			<Suspense fallback={<LoadingDreamVacation />}>
+				<IconSection />
+			</Suspense>
+
+			<Suspense fallback={<LoadingBlogs />}>
+				<Blog />
+			</Suspense>
+
+			<Suspense fallback={''}>
+				<Footer />
+			</Suspense>
 		</Box>
 	);
 };
