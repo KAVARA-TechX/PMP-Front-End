@@ -10,13 +10,31 @@ import {
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import React, { useRef } from 'react';
-import c_list from '../search/list.json';
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
 
 const SearchResultPopover = ({ location, setLocation }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialFocusRef = useRef();
 	const ref = useRef();
+	const [c_list, set_c_list] = useState([]);
+
+	const getDestinationList = async () => {
+		if (!sessionStorage.getItem('destination_list')) {
+			try {
+				const res = await axios.get(
+					'https://planmyleisure.herokuapp.com/package/destination-list'
+				);
+				set_c_list(res.data.destinationArray);
+				sessionStorage.setItem(
+					'destination_list',
+					res.data.destinationArray
+				);
+			} catch (error) {
+				console.log('while loading destination something went wrong');
+			}
+		}
+	};
 
 	return (
 		<>
@@ -70,6 +88,7 @@ const SearchResultPopover = ({ location, setLocation }) => {
 								onOpen();
 								setLocation(e.target.value);
 							}}
+							onFocus={getDestinationList}
 						/>
 					</InputGroup>
 				</PopoverTrigger>
@@ -84,11 +103,13 @@ const SearchResultPopover = ({ location, setLocation }) => {
 				>
 					<PopoverBody>
 						{c_list
-							.filter((val) =>
-								val.name.toLowerCase().indexOf(location) !== -1
+							.filter((val) => {
+								return val
+									.toLowerCase()
+									.indexOf(location.toLowerCase()) !== -1
 									? true
-									: false
-							)
+									: false;
+							})
 							.map((loc, index) => {
 								return (
 									<Text
@@ -99,18 +120,19 @@ const SearchResultPopover = ({ location, setLocation }) => {
 										}}
 										key={index}
 										onClick={() => {
-											setLocation(loc.name);
+											setLocation(loc);
 											onClose();
 										}}
 									>
-										{loc.name}
+										{loc}
 									</Text>
 								);
 							}).length !== 0 ? (
 							c_list
 								.filter((val) =>
-									val.name.toLowerCase().indexOf(location) !==
-									-1
+									val
+										.toLowerCase()
+										.indexOf(location.toLowerCase()) !== -1
 										? true
 										: false
 								)
@@ -124,11 +146,11 @@ const SearchResultPopover = ({ location, setLocation }) => {
 											}}
 											key={index}
 											onClick={() => {
-												setLocation(loc.name);
+												setLocation(loc);
 												onClose();
 											}}
 										>
-											{loc.name}
+											{loc}
 										</Text>
 									);
 								})
