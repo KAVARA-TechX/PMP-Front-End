@@ -1,8 +1,9 @@
-import { Box, Text, Icon } from '@chakra-ui/react';
+import { Box, Text, Icon, Image } from '@chakra-ui/react';
 import { BiChevronRight } from 'react-icons/bi';
 import React, { useEffect, useRef, useState } from 'react';
 import UserForm from '../modal/UserForm';
 import getBannerApi from '../apis/getBannerApi';
+import bannerImg from '../assets/Visit Maldives.webp';
 
 const Banner = () => {
 	const [modalState, setModalState] = useState(false);
@@ -22,8 +23,11 @@ const Banner = () => {
 				set_type(res.data.bannerImages[0].imageUrl.resource_type);
 			} catch (error) {}
 		};
-
-		getData();
+		if (window.innerWidth <= 991) {
+			set_quote('Visit Maldives: A Fantasy Fulfilled');
+		} else {
+			getData();
+		}
 	}, []);
 	return (
 		<>
@@ -40,7 +44,14 @@ const Banner = () => {
 					position='relative'
 					className='banner'
 				>
-					{type === 'video' ? (
+					{window.innerWidth <= 991 ? (
+						<Image
+							src={bannerImg}
+							h='100%'
+							objectFit='cover'
+							objectPosition={'50% 50%'}
+						></Image>
+					) : type === 'video' ? (
 						<Box
 							w={{ base: '100%', lg: '100%' }}
 							borderRadius={{ base: 'none', lg: 'xl' }}

@@ -1,4 +1,4 @@
-import { Box, Icon, Skeleton, Text } from '@chakra-ui/react';
+import { Box, Icon, Image, Skeleton, Text } from '@chakra-ui/react';
 import React, { Suspense, useEffect, useRef } from 'react';
 import { useState } from 'react';
 // import Nav from '../nav/Nav';
@@ -8,6 +8,7 @@ import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './Hero.css';
+import bannerImg from '../assets/heroImg.webp';
 
 const Nav = React.lazy(() => {
 	return import('../nav/Nav');
@@ -50,7 +51,12 @@ const Hero = () => {
 				}
 			}
 		};
-		getImages();
+
+		if (window.innerWidth <= 991) {
+			setLoading(false);
+		} else {
+			getImages();
+		}
 	}, []);
 
 	const HVideo = React.memo(({ data }) => {
@@ -171,74 +177,116 @@ const Hero = () => {
 							<Nav />
 						</Suspense>
 					</Box>
-					{/* <Box pos={'absolute'} zindex={102}></Box> */}
-					<Splide
-						aria-label='images'
-						options={{
-							type: 'loop',
-							gap: '1rem',
-							autoplay: true,
-							pauseOnHover: false,
-							resetProgress: false,
-							height: '500px',
-							interval: 15000,
-							transition: 'slide',
-						}}
-						hasTrack={false}
-						ref={splide_ref}
-						onMove={(e) => {
-							setCurrentIndex(e.index);
-						}}
-					>
-						<div className='splide__arrows'>
-							<div className='orange_bar'></div>
-							<p className='slider_city'>
-								{images.length === 0
-									? ''
-									: images[currentIndex].city}
-							</p>
-							<p className='slider_location'>
-								{images.length === 0
-									? ''
-									: images[currentIndex].location}
-							</p>
-							<div className='slider_controls'>
-								<button
-									className='splide__arrow splide__arrow--prev'
-									ref={prev}
-								>
-									<Icon
-										as={AiOutlineLeftCircle}
-										transform='rotate(180deg)'
-										fontSize='24px'
-										color='#fff !important'
-									/>
-								</button>
-								<button
-									className='splide__arrow splide__arrow--next'
-									ref={next}
-								>
-									<Icon
-										as={AiOutlineRightCircle}
-										fontSize='24px'
-										fill='#fff'
-									/>
-								</button>
-							</div>
-						</div>
-						{window.innerWidth <= 991 ? (
+					{window.innerWidth <= 991 ? (
+						<Box h='500px' w='100vw' position={'relative'}>
+							<Image
+								src={bannerImg}
+								h='100%'
+								w='100%'
+								objectFit='cover'
+								objectPosition={'50% 50%'}
+							/>
+							<Text
+								w={{
+									base: 'calc(100vw - 20px)',
+									lg: '50%',
+								}}
+								bg='rgba(0,0,0,.1)'
+								boxShadow={'0 0 0  10000px rgba(0,0,0,.1)'}
+								color={'white'}
+								position='absolute'
+								top={{
+									base: '40%',
+									lg: '30%',
+								}}
+								left={{
+									base: '50%',
+									lg: '30px',
+								}}
+								transform={{
+									base: 'translateX(-50%) translateY(-50%)',
+									lg: 'none',
+								}}
+								fontSize={50}
+								fontWeight={500}
+								lineHeight={1}
+								textAlign={{
+									base: 'center',
+									lg: 'start',
+								}}
+							>
+								It's Time For You To Experience The
+								Inexperienced
+							</Text>
 							<Suspense fallback=''>
 								<MobileSearch />
 							</Suspense>
-						) : (
+						</Box>
+					) : (
+						<Splide
+							aria-label='images'
+							options={{
+								type: 'loop',
+								gap: '1rem',
+								autoplay: true,
+								pauseOnHover: false,
+								resetProgress: false,
+								height: '500px',
+								interval: 15000,
+								transition: 'slide',
+							}}
+							hasTrack={false}
+							ref={splide_ref}
+							onMove={(e) => {
+								setCurrentIndex(e.index);
+							}}
+						>
+							<div className='splide__arrows'>
+								<div className='orange_bar'></div>
+								<p className='slider_city'>
+									{images.length === 0
+										? ''
+										: images[currentIndex].city}
+								</p>
+								<p className='slider_location'>
+									{images.length === 0
+										? ''
+										: images[currentIndex].location}
+								</p>
+								<div className='slider_controls'>
+									<button
+										className='splide__arrow splide__arrow--prev'
+										ref={prev}
+									>
+										<Icon
+											as={AiOutlineLeftCircle}
+											transform='rotate(180deg)'
+											fontSize='24px'
+											color='#fff !important'
+										/>
+									</button>
+									<button
+										className='splide__arrow splide__arrow--next'
+										ref={next}
+									>
+										<Icon
+											as={AiOutlineRightCircle}
+											fontSize='24px'
+											fill='#fff'
+										/>
+									</button>
+								</div>
+							</div>
+
 							<Suspense fallback=''>
 								<Search />
 							</Suspense>
-						)}
-						<Box>
-							<SplideTrack>{HList}</SplideTrack>
-						</Box>
-					</Splide>
+
+							<Box>
+								<SplideTrack>{HList}</SplideTrack>
+							</Box>
+						</Splide>
+					)}
 				</Box>
 			)}
 		</>
