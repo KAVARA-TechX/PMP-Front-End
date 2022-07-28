@@ -74,7 +74,10 @@ const Facts = () => {
 			}
 		};
 
-		getData();
+		if (window.innerWidth <= 991) {
+		} else {
+			getData();
+		}
 
 		animate();
 	}, []);
@@ -91,7 +94,9 @@ const Facts = () => {
 			gap={{ base: 0, lg: '20px' }}
 			ref={container_ref}
 		>
-			{type === 'video' ? (
+			{window.innerWidth <= 991 ? (
+				<></>
+			) : type === 'video' ? (
 				<Box
 					className='facts_img'
 					w={{ base: '0%', lg: '45%' }}
