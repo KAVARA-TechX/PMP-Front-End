@@ -48,6 +48,7 @@ const Banner = () => {
 						<Image
 							src={bannerImg}
 							h='100%'
+							w='100%'
 							objectFit='cover'
 							objectPosition={'50% 50%'}
 						></Image>

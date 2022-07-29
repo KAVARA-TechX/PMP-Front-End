@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import TravelAgentModal from './TravelAgentModal';
 import React, { useState } from 'react';
 import BrandsModal from './BrandsModal';
-import logo from '../assets/logo/logo.png';
+import logo from '../assets/logo/c__2_-removebg.webp';
 import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
 
@@ -40,7 +40,7 @@ const Footer = () => {
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
-						<Image src={logo} h='100%' />
+						<Image src={logo} h='100%' w='fit-content' />
 					</Box>
 					<Text mb='10px'>Leisure away with Plan My Leisure</Text>
 					<Box

@@ -9,7 +9,7 @@ import {
 	MenuList,
 } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo/logo.png';
+import logo from '../assets/logo/c__2_-removebg.webp';
 import { BsPersonCircle } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import LoginModal from './LoginModal';
@@ -87,6 +87,7 @@ const Nav = () => {
 					<Image
 						src={logo}
 						h='100px'
+						w='fit-content'
 						cursor={'pointer'}
 						onClick={() => {
 							navigate('/');
