@@ -195,8 +195,8 @@ const Hero = () => {
 								boxShadow={'0 0 0  10000px rgba(0,0,0,.1)'}
 								color={'white'}
 								position='absolute'
-								top={{
-									base: '40%',
+								bottom={{
+									base: '5%',
 									lg: '30%',
 								}}
 								left={{
@@ -207,7 +207,8 @@ const Hero = () => {
 									base: 'translateX(-50%) translateY(-50%)',
 									lg: 'none',
 								}}
-								fontSize={50}
+								fontFamily={'Mansalva'}
+								fontSize={30}
 								fontWeight={500}
 								lineHeight={1}
 								textAlign={{
