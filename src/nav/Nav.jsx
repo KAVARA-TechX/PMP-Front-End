@@ -87,7 +87,6 @@ const Nav = () => {
 					<Image
 						src={logo}
 						h='100px'
-						w='fit-content'
 						cursor={'pointer'}
 						onClick={() => {
 							navigate('/');
