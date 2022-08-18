@@ -5,7 +5,7 @@ import img from '../../assets/footer.jpg';
 import { CalendarIcon } from '@chakra-ui/icons';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import PackageCardd from './PackageCard';
+import PackageCard from './PackageCard';
 import getPackageApi from '../../apis/getPackageApi';
 
 const PackagesPage = () => {
@@ -126,19 +126,19 @@ const PackagesPage = () => {
 				overflow={'hidden'}
 			>
 				<Text fontSize={30} mb={4}>
-					Maldives Tour Package
+					Tour Package
 				</Text>
 				<Text lineHeight={7}>
-					Travel to the Maldives and witness the most surreal and
+					Travel to the beautiful sites and witness the most surreal and
 					stunning white-sand beaches and magnificent underwater
-					world. Get exclusive Maldives Tour Packages to experience a
+					world. Get exclusive Tour Packages to experience a
 					true holiday of a lifetime in the tropical paradise.
 				</Text>
 				{/* package cards */}
 				<Box pt={'40px'} pb='40px'>
 					{/* card  */}
 					{packageList.map((data, index) => {
-						return <PackageCardd data={data} key={index} />;
+						return <PackageCard data={data} key={index} />;
 					})}
 				</Box>
 			</Box>

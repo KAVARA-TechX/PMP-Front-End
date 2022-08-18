@@ -12,7 +12,7 @@ import AboutPackage from './pages/aboutPackage/AboutPackage';
 import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 import UserActivation from './pages/UserActivation/UserActivation';
-import Cancellation from './pages/cancellation/Cancellation';
+import Cancellation from './pages/Cancellation/Cancellation';
 import RefundPage from './pages/RefundPage/RefundPage';
 import MyBookings from './pages/myBookings/MyBookings';
 import Upcoming from './pages/myBookings/Upcoming';
@@ -24,6 +24,12 @@ import Tac from './Tac';
 import AboutUs from './AboutUs';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+// import TagManager from 'react-gtm-module'
+// const tagManagerArgs = {
+//     gtmId: 'GTM-XXXXXX'
+// }
+
+// TagManager.initialize(tagManagerArgs)
 
 const App = () => {
 	const { loginState } = AccessLoginContext();

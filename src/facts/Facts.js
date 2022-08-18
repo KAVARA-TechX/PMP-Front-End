@@ -147,7 +147,7 @@ const Facts = () => {
 							display={'flex'}
 							gap='2px'
 						>
-							<Text id='fact-n2'>1000</Text>+
+							<Text id='fact-n2'>2000</Text>+
 						</Text>
 						<Text>Travellers</Text>
 					</Box>

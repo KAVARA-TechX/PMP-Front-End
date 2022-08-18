@@ -669,7 +669,7 @@ const UpcomingCard = ({ data, changeState }) => {
 													bg='rgba(0,0,0,.6)'
 													textAlign={'center'}
 												>
-													Month-{index + 1}
+													EMI-{index + 1}
 												</Text>
 												<Box
 													display={'flex'}
