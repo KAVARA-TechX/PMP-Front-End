@@ -58,7 +58,7 @@ const UserActivation = lazy(() => {
 	return import('./pages/UserActivation/UserActivation');
 });
 const Cancellation = lazy(() => {
-	return import('./pages/cancellation/Cancellation');
+	return import('./pages/Cancellation/Cancellation');
 });
 const RefundPage = lazy(() => {
 	return import('./pages/RefundPage/RefundPage');

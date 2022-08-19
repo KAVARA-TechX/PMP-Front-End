@@ -970,7 +970,7 @@ const AboutPackage = () => {
 							>
 								<Box>
 									<Text color='gray.600' fontSize={20}>
-										M.R.P
+										Per person Tariff
 									</Text>
 									<Text
 										color='black'

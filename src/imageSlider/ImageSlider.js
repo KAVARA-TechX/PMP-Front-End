@@ -9,7 +9,7 @@ import scuba from '../assets/thingsToDo/scuba-card.webp';
 import spa from '../assets/thingsToDo/spa.webp';
 import sunset from '../assets/thingsToDo/sunset.webp';
 import surf from '../assets/thingsToDo/skiing.webp';
-import surfing from '../assets/thingsToDo/Surfing.webp';
+import surfing from '../assets/thingsToDo/surfing.webp';
 import './ImageSlider.css';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 

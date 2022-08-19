@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getPackageApi = (x = 8, y = 1) => {
+const getPackageApi = (x = 15, y = 1) => {
 	const [count, page] = [x, y];
 
 	return axios.get(
