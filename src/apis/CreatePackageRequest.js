@@ -16,7 +16,7 @@ const CreatePackageRequest = (
 	console.log(' 5. user id : ', userId);
 
 	return axios.post(
-		'https://planmyleisure.herokuapp.com/package/create-package-request',
+		'/package/create-package-request',
 		{
 			packageId,
 			startDate,

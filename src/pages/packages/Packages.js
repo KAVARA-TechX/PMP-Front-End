@@ -7,21 +7,25 @@ import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import PackageCard from './PackageCard';
 import getPackageApi from '../../apis/getPackageApi';
+import '../../style.css'
 
 const PackagesPage = () => {
 	const [packageList, setPackageList] = useState([]);
+	const [packageLength, setPackageLength] = useState(0);
+	const [currentPage, setCurrentPage] = useState(0);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
 		const getPackageList = async () => {
 			const response = await getPackageApi();
-
 			setPackageList(response.data.packages);
+			setPackageLength(Math.ceil(response.data.packages.length / 15));
 		};
 
 		getPackageList();
 	}, []);
+
 
 	return (
 		<>
@@ -126,7 +130,7 @@ const PackagesPage = () => {
 				overflow={'hidden'}
 			>
 				<Text fontSize={30} mb={4}>
-					 Tour Package
+					Tour Package
 				</Text>
 				<Text lineHeight={7}>
 					Travel to the beautiful sites and witness the most surreal and
@@ -136,11 +140,20 @@ const PackagesPage = () => {
 				</Text>
 				{/* package cards */}
 				<Box pt={'40px'} pb='40px'>
-					{/* card  */}
-					{packageList.map((data, index) => {
-						return <PackageCard data={data} key={index} />;
-					})}
+					{
+						packageList.slice(currentPage * 16, (currentPage * 16) + 15).map((data, index) => {
+							return <PackageCard data={data} key={index} />;
+						})
+					}
 				</Box>
+
+				<div className='pagination'>
+					{
+						[...Array(packageLength).keys()].map(page => (
+							<span onClick={() => setCurrentPage(page)}> {page + 1} </span>
+						))
+					}
+				</div>
 			</Box>
 			<Footer />
 		</>

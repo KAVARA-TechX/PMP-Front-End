@@ -9,7 +9,7 @@ const createLead = (name, email, phone) => {
 	console.log(name, email, phone);
 	console.log(completeDate);
 
-	return axios.post('https://planmyleisure.herokuapp.com/lead/create-lead', {
+	return axios.post('/lead/create-lead', {
 		name,
 		phone,
 		source: 'Landing Page',

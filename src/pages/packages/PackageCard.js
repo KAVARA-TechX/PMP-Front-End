@@ -126,7 +126,7 @@ const PackageCardd = ({ data }) => {
 
 	return (
 		<>
-			{console.log('data is : ', data)}
+			{/* {console.log('data is : ', data)} */}
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}

@@ -10,7 +10,7 @@ const brandsRequest = (
 	businessType
 ) => {
 	return axios.post(
-		'https://planmyleisure.herokuapp.com/brand/become-brand',
+		'/brand/become-brand',
 		{
 			firstName,
 			lastName,

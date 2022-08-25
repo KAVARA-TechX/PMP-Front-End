@@ -25,7 +25,7 @@ const searchApi = (text, startDate = '', endDate = '', numberOfPeople = '') => {
 	console.log(MyDateString, MyEndDateString);
 
 	return axios.post(
-		'https://planmyleisure.herokuapp.com/package/search-package',
+		'/package/search-package',
 		{
 			title: text,
 			period: [MyDateString, MyEndDateString],

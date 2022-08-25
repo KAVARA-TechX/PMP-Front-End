@@ -108,7 +108,7 @@ const BlogList = () => {
 		const getBlogs = async () => {
 			try {
 				const response = await axios.get(
-					'https://planmyleisure.herokuapp.com/blog/get-blogs'
+					'/blog/get-blogs'
 				);
 				console.log(response);
 				setBlogList(response.data);

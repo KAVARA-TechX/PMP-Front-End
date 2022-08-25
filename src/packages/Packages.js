@@ -43,7 +43,7 @@ const Packages = () => {
 							? false
 							: true
 					);
-				} catch (error) {}
+				} catch (error) { }
 			}
 		};
 		getData();
@@ -60,6 +60,9 @@ const Packages = () => {
 			.getElementById('pkg_cards_parent')
 			.scrollBy({ left: -255, top: 0, behavior: 'smooth' });
 	};
+
+
+	console.log('pkg', pkg)
 
 	return (
 		<>
@@ -185,66 +188,68 @@ const Packages = () => {
 					id='pkg_cards_parent'
 					color='#fff'
 				>
-					{pkg.map((data, index) => {
-						return (
-							<Box
-								className='pkg_card'
-								key={index}
-								display={'inline-block'}
-								h='370px'
-								w='255px'
-								bgImg={
-									data.image[0] === undefined
-										? 'https://source.unsplash.com/random'
-										: data.image[0].secure_url
-								}
-								bgSize='cover'
-								bgPos={'50%'}
-								borderRadius={'xl'}
-								mr={index === pkg.length - 1 ? 0 : '15px'}
-								cursor='pointer'
-								onClick={() => {
-									navigate(
-										`/about-package/${data.packageId}`
-									);
-								}}
-								transition='.2s'
-								_hover={{
-									boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
-								}}
-								overflow='hidden'
-							>
+					{
+						pkg.slice(0, 7).map((data, index) => {
+							return (
 								<Box
-									w='100%'
-									h='100%'
-									background='none'
-									_hover={{
-										background:
-											'linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.8) 100%)',
-										p: {
-											display: 'inline-block',
-										},
+									className='pkg_card'
+									key={index}
+									display={'inline-block'}
+									h='370px'
+									w='255px'
+									bgImg={
+										data.image[0] === undefined
+											? 'https://source.unsplash.com/random'
+											: data.image[0].secure_url
+									}
+									bgSize='cover'
+									bgPos={'50%'}
+									borderRadius={'xl'}
+									mr={index === pkg.length - 1 ? 0 : '15px'}
+									cursor='pointer'
+									onClick={() => {
+										navigate(
+											`/about-package/${data.packageId}`
+										);
 									}}
-									position='relative'
+									transition='.2s'
+									_hover={{
+										boxShadow: '0 13px 15px rgb(0,0,0,0.2)',
+									}}
+									overflow='hidden'
 								>
-									<Text
-										as='p'
-										display={'none'}
-										w='80%'
-										whiteSpace={'pre-wrap'}
-										position='absolute'
-										bottom={'20px'}
-										left='20px'
-										transform='translateX(0px)'
-										transition={'.5s'}
-										fontWeight={600}
+									<Box
+										w='100%'
+										h='100%'
+										background='none'
+										_hover={{
+											background:
+												'linear-gradient(180deg, rgba(43, 43, 43, 0) 0%, rgba(43, 43, 43, 0.8) 100%)',
+											p: {
+												display: 'inline-block',
+											},
+										}}
+										position='relative'
 									>
-										{data.packageTitle}
-									</Text>
+										<Text
+											as='p'
+											display={'none'}
+											w='80%'
+											whiteSpace={'pre-wrap'}
+											position='absolute'
+											bottom={'20px'}
+											left='20px'
+											transform='translateX(0px)'
+											transition={'.5s'}
+											fontWeight={600}
+										>
+											{data.packageTitle}
+										</Text>
+									</Box>
 								</Box>
-							</Box>
-						);
-					})}
+							);
+						})
+					}
 				</Box>
 			</Box>
 		</>

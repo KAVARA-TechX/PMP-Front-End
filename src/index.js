@@ -10,6 +10,8 @@ import './index.css';
 
 const root_tag = document.getElementById('root');
 
+axios.defaults.baseURL = 'https://planmy.herokuapp.com'
+
 ReactDOM.render(
 	<LoginProvider>
 		<ChakraProvider>

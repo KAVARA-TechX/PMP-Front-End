@@ -4,7 +4,7 @@ const createOrderApi = (amount, receipt, notes) => {
 	console.log('amount is : ', amount);
 
 	return axios.post(
-		'https://planmyleisure.herokuapp.com/payment/create-order',
+		'/payment/create-order',
 		{
 			amount,
 			currency: 'INR',

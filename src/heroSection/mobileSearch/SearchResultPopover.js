@@ -23,7 +23,7 @@ const SearchResultPopover = ({ location, setLocation }) => {
 		if (!sessionStorage.getItem('destination_list')) {
 			try {
 				const res = await axios.get(
-					'https://planmyleisure.herokuapp.com/package/destination-list'
+					'/package/destination-list'
 				);
 				set_c_list(res.data.destinationArray);
 				sessionStorage.setItem(

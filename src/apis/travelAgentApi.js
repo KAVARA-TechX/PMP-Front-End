@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const travelAgentApi = (firstName, lastName, email, mobileNumber) => {
 	return axios.post(
-		'https://planmyleisure.herokuapp.com/agent/become-agent',
+		'/agent/become-agent',
 		{
 			firstName,
 			lastName,

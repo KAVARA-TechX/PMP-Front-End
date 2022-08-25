@@ -197,7 +197,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmyleisure.herokuapp.com/package/update-request-package',
+				'/package/update-request-package',
 				{
 					packageId: data._id,
 					paymentStatus: pay_status
@@ -216,7 +216,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmyleisure.herokuapp.com/package/update-request-package',
+				'/package/update-request-package',
 				{
 					packageId: data._id,
 					paymentStatus: { status: 'Done' },
@@ -240,7 +240,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		set_c_loading(true);
 		try {
 			const res = await axios.patch(
-				'https://planmyleisure.herokuapp.com/package/update-request-package',
+				'/package/update-request-package',
 				{
 					packageId: data._id,
 					status:
