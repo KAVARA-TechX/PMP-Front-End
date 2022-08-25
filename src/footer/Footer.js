@@ -14,6 +14,7 @@ import BrandsModal from './BrandsModal';
 import logo from '../assets/logo/c__2_-removebg.webp';
 import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
+import { BsTelephoneFill } from 'react-icons/bs';
 
 const Footer = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Footer = () => {
 			<TravelAgentModal state={travelagent} setState={setTravelAgent} />
 			<BrandsModal state={brands} setState={setBrands} />
 			<Box
-				h={{ base: 'fit-content', lg: '440px' }}
+				h={{ base: 'fit-content', lg: '480px' }}
 				w='100vw'
 				overflow={'hidden'}
 				className='hide-scroll-bar'
@@ -36,7 +37,7 @@ const Footer = () => {
 				py='30px'
 				px={{ base: '20px', lg: '9vw' }}
 				color='#fff'
-				//
+			//
 			>
 				<Box pl='20px' display={'flex'} flexDir='column'>
 					<Box h='100px'>
@@ -89,9 +90,27 @@ const Footer = () => {
 								info@planmyleisure.com
 							</a>
 							<br />
-							<a href='mailto:planmyleisure@gmail.com'>
-								planmyleisure@gmail.com
+							<a href='mailto:sales@planmyleisure.com'>
+								sales@planmyleisure.com
 							</a>
+						</Text>
+					</Box>
+					<Box
+						display={'flex'}
+						alignItems='flex-start'
+						gap='5px'
+						mt='10px'
+					>
+						<Icon as={BsTelephoneFill} />
+						<Text
+							position='relative'
+							bottom='5px'
+							fontSize={'14px'}
+						>
+							<a href='tel:+918800869909'>
+								+918800869909
+							</a>
+							<br />
 						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
@@ -207,7 +226,7 @@ const Footer = () => {
 					<Box display={'flex'} mt='30px' gap='30px'>
 						<Box
 							as='a'
-							href='https://www.facebook.com/Plan-My-Leisure-101398345900413'
+							href='https://www.facebook.com/planmyleisuretravels'
 							w='20px'
 							h='20px'
 							borderRadius={'5px'}
