@@ -915,7 +915,7 @@ const AboutPackage = () => {
 							</Box>
 							<Box mt='30px'>
 								<Text fontSize={'24px'} fontWeight={600}>
-									Resorts
+								Hotel/Resort
 								</Text>
 								<UnorderedList fontSize={'20px'}>
 									{pkgData.resorts.values.map(
