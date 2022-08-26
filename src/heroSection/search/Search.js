@@ -38,7 +38,6 @@ const Search = () => {
 	const navigate = useNavigate();
 
 	const [startDate, setStartDate] = useState();
-	const [endDate, setEndDate] = useState();
 
 	const getDestinationList = async () => {
 		if (!sessionStorage.getItem('destination_list')) {
@@ -65,7 +64,7 @@ const Search = () => {
 				console.log('are you fucking idiot');
 			} else {
 				navigate(
-					`/search/${location}/${startDate}/${endDate}/${guest}`
+					`/search/${location}/${startDate}/${guest}`
 				);
 			}
 		}
@@ -78,16 +77,12 @@ const Search = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(location, startDate, endDate, guest);
+		console.log({ location, startDate, guest });
 
 		if (location !== '') {
 			if (startDate !== undefined) {
-				if (endDate !== undefined) {
-					if (guest >= 1) {
-						setSubmitButton(false);
-					} else {
-						setSubmitButton(true);
-					}
+				if (guest >= 1) {
+					setSubmitButton(false);
 				} else {
 					setSubmitButton(true);
 				}
@@ -97,7 +92,7 @@ const Search = () => {
 		} else {
 			setSubmitButton(true);
 		}
-	}, [location, startDate, endDate, guest]);
+	}, [location, startDate,  guest]);
 
 	useOutsideClick({
 		ref: ref,
@@ -174,7 +169,7 @@ const Search = () => {
 					<PopoverContent
 						w={'250px'}
 						maxH='250px'
-						overflowY={'scroll'}
+						overflowY={'auto'}
 						ref={ref}
 						position='relative'
 						top='-10px'
@@ -190,7 +185,7 @@ const Search = () => {
 										.indexOf(location.toLowerCase()) !== -1
 										? true
 										: false;
-								})
+								}).slice(0, 1)
 								.map((loc, index) => {
 									return (
 										<Text
@@ -214,10 +209,10 @@ const Search = () => {
 										val
 											.toLowerCase()
 											.indexOf(location.toLowerCase()) !==
-										-1
+											-1
 											? true
 											: false
-									)
+									).slice(0, 1)
 									.map((loc, index) => {
 										return (
 											<Text
@@ -244,7 +239,7 @@ const Search = () => {
 					</PopoverContent>
 				</Popover>
 			</Box>
-			<When setStartDate={setStartDate} setEndDate={setEndDate} />
+			<When setStartDate={setStartDate}/>
 			<Who setGuest={setGuest} />
 			{/* search Button */}
 			<Box
@@ -252,7 +247,7 @@ const Search = () => {
 				display='flex'
 				justifyContent={'center'}
 				mt={{ base: 5, lg: 0 }}
-				// mr={}
+			// mr={}
 			>
 				<Button
 					h='40px'

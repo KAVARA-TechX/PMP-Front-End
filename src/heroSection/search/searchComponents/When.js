@@ -8,20 +8,16 @@ import {
 	useDisclosure,
 	useOutsideClick,
 } from '@chakra-ui/react';
-import { DayPicker } from 'react-day-picker';
 import React, { useState, useRef } from 'react';
-import { addDays, format } from 'date-fns';
-import CheckOutDate from './CheckOutDate';
 import CheckInDate from './CheckInDate';
 
-const When = ({ setStartDate, setEndDate }) => {
+const When = ({ setStartDate }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const popoverRef = useRef();
 
-	const [isCheckInSelected, setIsCheckInSelected] = useState(false);
 
 	const [checkInDate, setCheckInDate] = useState();
-	const [checkOutDate, setCheckoutDate] = useState();
+
 
 	const [checkoutValue, setCheckoutValue] = useState('Travel Dates');
 
@@ -33,29 +29,16 @@ const When = ({ setStartDate, setEndDate }) => {
 	});
 
 	const handleCheckInDate = (e) => {
+		onClose();
+		setCheckoutValue(`${e.getDate()}/${e.getMonth() + 1}/${e.getFullYear()}`
+		);
 		setCheckInDate(e);
 		setStartDate(e);
-		setIsCheckInSelected(true);
+
 	};
 
-	const handleCheckOutDate = (e) => {
-		onClose();
-		setCheckoutValue(
-			`${checkInDate.getDate()}/${
-				checkInDate.getMonth() + 1
-			}/${checkInDate.getFullYear()} - ${e.getDate()}/${
-				e.getMonth() + 1
-			}/${e.getFullYear()}`
-		);
-		setCheckoutDate((prev) => e);
-		setEndDate(e);
-
-		// setEndDate(e);
-		setIsCheckInSelected(false);
-	};
 	return (
 		<Box
-			// minW='100px'
 			textAlign={'center'}
 			minW={{ base: '50%', lg: '100px' }}
 		>
@@ -79,17 +62,10 @@ const When = ({ setStartDate, setEndDate }) => {
 							zIndex={10000}
 							ref={popoverRef}
 						>
-							{!isCheckInSelected ? (
-								<CheckInDate
-									handleStart={handleCheckInDate}
-									current={checkInDate}
-								/>
-							) : (
-								<CheckOutDate
-									startWith={checkInDate}
-									handleEnd={handleCheckOutDate}
-								/>
-							)}
+							<CheckInDate
+								handleStart={handleCheckInDate}
+								current={checkInDate}
+							/>
 						</PopoverContent>
 					</Portal>
 				</Box>

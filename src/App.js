@@ -104,7 +104,7 @@ const App = () => {
 			/>
 			<Route path='search'>
 				<Route
-					path=':location/:checkInDate/:checkOutDate/:guests'
+					path=':location/:checkInDate/:guests'
 					element={
 						<Suspense fallback={''}>
 							<SearchResult />
