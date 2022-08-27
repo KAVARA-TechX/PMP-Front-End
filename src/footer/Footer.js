@@ -3,7 +3,6 @@ import {
 	FaFacebookF,
 	FaLinkedinIn,
 	FaTwitter,
-	FaYoutube,
 	FaInstagram,
 } from 'react-icons/fa';
 import './Footer.css';

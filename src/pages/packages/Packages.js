@@ -1,8 +1,8 @@
 import Nav from '../../nav/Nav';
-import { Box, Text, Icon } from '@chakra-ui/react';
+import { Box, Text, Icon, Button } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import img from '../../assets/footer.jpg';
-import { CalendarIcon } from '@chakra-ui/icons';
+import { ArrowForwardIcon, CalendarIcon } from '@chakra-ui/icons';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import PackageCard from './PackageCard';
@@ -11,8 +11,9 @@ import '../../style.css'
 
 const PackagesPage = () => {
 	const [packageList, setPackageList] = useState([]);
+
 	const [packageLength, setPackageLength] = useState(0);
-	const [currentPage, setCurrentPage] = useState(0);
+	const [currentShow, setCurrentShow] = useState(15);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -20,11 +21,15 @@ const PackagesPage = () => {
 		const getPackageList = async () => {
 			const response = await getPackageApi();
 			setPackageList(response.data.packages);
-			setPackageLength(Math.ceil(response.data.packages.length / 15));
+			setPackageLength(response.data.packages.length);
 		};
 
 		getPackageList();
 	}, []);
+
+	const handleShowMore = () => {
+		setCurrentShow(currentShow + 15);
+	}
 
 
 	return (
@@ -141,19 +146,22 @@ const PackagesPage = () => {
 				{/* package cards */}
 				<Box pt={'40px'} pb='40px'>
 					{
-						packageList.slice(currentPage * 16, (currentPage * 16) + 15).map((data, index) => {
+						packageList.slice(0, currentShow).map((data, index) => {
 							return <PackageCard data={data} key={index} />;
 						})
 					}
 				</Box>
 
-				<div className='pagination'>
-					{
-						[...Array(packageLength).keys()].map(page => (
-							<span onClick={() => setCurrentPage(page)}> {page + 1} </span>
-						))
-					}
-				</div>
+				<Box textAlign='center' py='20px' display={`${packageLength <= currentShow ? 'none' : ''}`}>
+					<Button
+						colorScheme='teal'
+						rightIcon={<ArrowForwardIcon />}
+						variant='outline'
+						onClick={handleShowMore}
+					>
+						Load more
+					</Button>
+				</Box>
 			</Box>
 			<Footer />
 		</>
