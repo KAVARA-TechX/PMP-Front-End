@@ -141,7 +141,7 @@ const Hero = () => {
 										}}
 										left={{
 											base: '50%',
-											lg: '30px',
+											lg: '120px',
 										}}
 										transform={{
 											base: 'translateX(-50%) translateY(-50%)',

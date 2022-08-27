@@ -26,103 +26,68 @@ const Footer = () => {
 			<TravelAgentModal state={travelagent} setState={setTravelAgent} />
 			<BrandsModal state={brands} setState={setBrands} />
 			<Box
-				h={{ base: 'fit-content', lg: '480px' }}
-				w='100vw'
-				overflow={'hidden'}
-				className='hide-scroll-bar'
 				bg='#082032'
-				display={'grid'}
-				gridTemplateColumns={{ base: '1fr', lg: '1fr 1.5fr .5fr' }}
-				gap={{ base: '20px', lg: '0' }}
-				py='30px'
-				px={{ base: '20px', lg: '9vw' }}
 				color='#fff'
-			//
 			>
-				<Box pl='20px' display={'flex'} flexDir='column'>
-					<Box h='100px'>
-						<Image src={logo} h='100%' w='fit-content' />
-					</Box>
-					<Text mb='10px'>Leisure away with Plan My Leisure</Text>
-					<Box
-						display={'flex'}
-						alignItems='flex-start'
-						gap='5px'
-						mt='10px'
-					>
-						<Icon as={HiLocationMarker} />
-						<Box position='relative' bottom='5px'>
-							<Text fontSize={'14px'}>
-								B-5, 1st Floor, Sayba Shopping Center,
-								<br />
-								Newmill Road, Kurla West, Mumbai,
-								<br /> 400070, India
-							</Text>
+				<Box
+					// h={{ base: 'fit-content', lg: '480px' }}
+					w='100vw'
+					overflow='hidden'
+					className='hide-scroll-bar'
+					display='grid'
+					gridTemplateColumns={{ base: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }}
+					gap='20px'
+					py='30px'
+					px={{ base: '40px', lg: '9vw' }}
+
+				//
+				>
+					<Box display={'flex'} flexDir='column'>
+						<Box h='100px'>
+							<Image src={logo} h='100%' w='fit-content' />
 						</Box>
-					</Box>
-					<Box
-						display={'flex'}
-						alignItems='flex-start'
-						gap='5px'
-						mt='10px'
-					>
-						<Icon as={HiLocationMarker} />
-						<Box position='relative' bottom='5px'>
-							<Text fontSize={'14px'}>
-								4th Floor, Plaza Mall, MG Road, Gurgaon,
-								Haryana, 122002, India
-							</Text>
-						</Box>
-					</Box>
-					<Box
-						display={'flex'}
-						alignItems='flex-start'
-						gap='5px'
-						mt='10px'
-					>
-						<Icon as={MdEmail} />
-						<Text
-							position='relative'
-							bottom='5px'
-							fontSize={'14px'}
+						<Text mb='10px'>Leisure away with Plan My Leisure</Text>
+						<Box
+							display={'flex'}
+							alignItems='flex-start'
+							gap='5px'
+							mt='10px'
 						>
-							<a href='mailto:info@planmyleisure.com'>
-								info@planmyleisure.com
-							</a>
-							<br />
-							<a href='mailto:sales@planmyleisure.com'>
-								sales@planmyleisure.com
-							</a>
+							<Icon as={HiLocationMarker} />
+							<Box position='relative' bottom='5px'>
+								<Text fontSize={'14px'}>
+									B-5, 1st Floor, Sayba Shopping Center,
+									<br />
+									Newmill Road, Kurla West, Mumbai,
+									<br /> 400070, India
+								</Text>
+							</Box>
+						</Box>
+						<Box
+							display={'flex'}
+							alignItems='flex-start'
+							gap='5px'
+							mt='10px'
+						>
+							<Icon as={HiLocationMarker} />
+							<Box position='relative' bottom='5px'>
+								<Text fontSize={'14px'}>
+									4th Floor, Plaza Mall, MG Road, Gurgaon,
+									Haryana, 122002, India
+								</Text>
+							</Box>
+						</Box>
+
+						<Box flexGrow={1}></Box>
+						<Text
+							pt='40px'
+							display={{ base: 'none', lg: 'inline-block' }}
+						>
+							© Plan My Leisure 2019
 						</Text>
 					</Box>
-					<Box
-						display={'flex'}
-						alignItems='flex-start'
-						gap='5px'
-						mt='10px'
-					>
-						<Icon as={BsTelephoneFill} />
-						<Text
-							position='relative'
-							bottom='5px'
-							fontSize={'14px'}
-						>
-							<a href='tel:+918800869909'>
-								+918800869909
-							</a>
-							<br />
-						</Text>
-					</Box>
-					<Box flexGrow={1}></Box>
-					<Text
-						pt='20px'
-						display={{ base: 'none', lg: 'inline-block' }}
-					>
-						© Plan My Leisure 2019
-					</Text>
-				</Box>
-				<Box display={'flex'} justifyContent='space-around' pt='30px'>
-					<Box>
+
+					<Box pt='30px'>
 						<Text fontSize='24px' fontWeight={600}>
 							About
 						</Text>
@@ -167,7 +132,7 @@ const Footer = () => {
 							{/* <Text>Careers</Text> */}
 						</Box>
 					</Box>
-					<Box>
+					<Box pt='30px'>
 						<Text fontSize='24px' fontWeight={600}>
 							Support
 						</Text>
@@ -221,88 +186,122 @@ const Footer = () => {
 							</Text>
 						</Box>
 					</Box>
-				</Box>
-				<Box pl='20px' pr='20px' mx={{ base: 'auto', lg: '' }}>
-					<Box display={'flex'} mt='30px' gap='30px'>
+
+					<Box pt='30px'>
+						<Text fontSize='24px' fontWeight={600}>
+							Contact Us
+						</Text>
+
 						<Box
-							as='a'
-							href='https://www.facebook.com/planmyleisuretravels'
-							w='20px'
-							h='20px'
-							borderRadius={'5px'}
 							display={'flex'}
-							justifyContent='center'
-							alignItems={'center'}
-							p={5}
-							className='hide-scroll-bar facebook'
-							border='1px solid rgba(255,255,255,.2)'
+							alignItems='flex-start'
+							gap='5px'
+							mt='10px'
 						>
-							<Icon as={FaFacebookF} color='rgb(255,255,255)' />
+							<Icon as={MdEmail} />
+							<Text
+								position='relative'
+								bottom='5px'
+								fontSize={'14px'}
+							>
+								<a href='mailto:info@planmyleisure.com'>
+									info@planmyleisure.com
+								</a>
+								<br />
+								<a href='mailto:sales@planmyleisure.com'>
+									sales@planmyleisure.com
+								</a>
+							</Text>
 						</Box>
 						<Box
-							as='a'
-							h='fit-content'
-							href='https://www.instagram.com/planmyleisure/'
-							borderRadius={'5px'}
 							display={'flex'}
-							justifyContent='center'
-							alignItems={'center'}
-							className='hide-scroll-bar instagram'
-							p={'11px'}
-							border='1px solid rgba(255,255,255,.2)'
+							alignItems='flex-start'
+							gap='5px'
+							mt='15px'
 						>
-							<Icon as={FaInstagram} color='rgb(255,255,255)' />
+							<Icon as={BsTelephoneFill} />
+							<Text
+								position='relative'
+								bottom='5px'
+								fontSize={'14px'}
+							>
+								<a href='tel:+918800869909'>
+									+918800869909
+								</a>
+								<br />
+							</Text>
 						</Box>
-						<Box
-							as='a'
-							href='https://www.linkedin.com/company/planmyleisure/'
-							w='20px'
-							h='20px'
-							borderRadius={'5px'}
-							display={'flex'}
-							justifyContent='center'
-							alignItems={'center'}
-							className='hide-scroll-bar linkedin'
-							p={5}
-							border='1px solid rgba(255,255,255,.2)'
-						>
-							<Icon as={FaLinkedinIn} color='rgb(255,255,255)' />
-						</Box>
-						<Box
-							as='a'
-							href='https://twitter.com/PlanMyLeisure'
-							w='20px'
-							h='20px'
-							borderRadius={'5px'}
-							display={'flex'}
-							justifyContent='center'
-							alignItems={'center'}
-							p={5}
-							className='hide-scroll-bar twitter'
-							border='1px solid rgba(255,255,255,.2)'
-						>
-							<Icon as={FaTwitter} color='rgb(255,255,255)' />
-						</Box>
-						<Box
-							as='a'
-							href='https://www.youtube.com/channel/UCNrQbWSzaU5qAUxOqYEHf6A'
-							w='20px'
-							h='20px'
-							borderRadius={'5px'}
-							display={'flex'}
-							justifyContent='center'
-							alignItems={'center'}
-							p={5}
-							className='hide-scroll-bar youtube'
-							border='1px solid rgba(255,255,255,.2)'
-						>
-							<Icon as={FaYoutube} color='rgb(255,255,255)' />
+
+
+						<Box display={'flex'} mt='30px' gap='30px'>
+							<Box
+								as='a'
+								href='https://www.facebook.com/planmyleisuretravels'
+								w='20px'
+								h='20px'
+								borderRadius={'5px'}
+								display={'flex'}
+								justifyContent='center'
+								alignItems={'center'}
+								p={5}
+								className='hide-scroll-bar facebook'
+								border='1px solid rgba(255,255,255,.2)'
+							>
+								<Icon as={FaFacebookF} color='rgb(255,255,255)' />
+							</Box>
+							<Box
+								as='a'
+								h='fit-content'
+								href='https://www.instagram.com/planmyleisure/'
+								borderRadius={'5px'}
+								display={'flex'}
+								justifyContent='center'
+								alignItems={'center'}
+								className='hide-scroll-bar instagram'
+								p={'11px'}
+								border='1px solid rgba(255,255,255,.2)'
+							>
+								<Icon as={FaInstagram} color='rgb(255,255,255)' />
+							</Box>
+							<Box
+								as='a'
+								href='https://www.linkedin.com/company/planmyleisure/'
+								w='20px'
+								h='20px'
+								borderRadius={'5px'}
+								display={'flex'}
+								justifyContent='center'
+								alignItems={'center'}
+								className='hide-scroll-bar linkedin'
+								p={5}
+								border='1px solid rgba(255,255,255,.2)'
+							>
+								<Icon as={FaLinkedinIn} color='rgb(255,255,255)' />
+							</Box>
+							<Box
+								as='a'
+								href='https://twitter.com/PlanMyLeisure'
+								w='20px'
+								h='20px'
+								borderRadius={'5px'}
+								display={'flex'}
+								justifyContent='center'
+								alignItems={'center'}
+								p={5}
+								className='hide-scroll-bar twitter'
+								border='1px solid rgba(255,255,255,.2)'
+							>
+								<Icon as={FaTwitter} color='rgb(255,255,255)' />
+							</Box>
 						</Box>
 					</Box>
+
 				</Box>
-				<Box>
+
+
+				<Box px={{ base: '40px', lg: '9vw' }}>
 					<Text
-						pt='20px'
+						py='20px'
 						textAlign={'center'}
 						display={{ lg: 'none' }}
 					>
