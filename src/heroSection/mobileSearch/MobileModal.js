@@ -207,7 +207,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												fontSize={'23px'}
 												fontWeight={900}
 											>
-												Travel Dates
+												Travel Date
 											</Text>
 										</Box>
 										<AccordionIcon

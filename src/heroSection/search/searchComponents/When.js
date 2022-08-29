@@ -19,7 +19,7 @@ const When = ({ setStartDate }) => {
 	const [checkInDate, setCheckInDate] = useState();
 
 
-	const [checkoutValue, setCheckoutValue] = useState('Travel Dates');
+	const [checkoutValue, setCheckoutValue] = useState('Travel Date');
 
 	useOutsideClick({
 		ref: popoverRef,

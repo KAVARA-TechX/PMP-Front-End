@@ -149,10 +149,10 @@ const Search = () => {
 							ref={initialFocusRef}
 							value={location}
 							textAlign={{ base: 'center', lg: 'start' }}
-							w='100%'
+							w={{base: '100%', lg: '110px' }}
 							fontSize={20}
 							type='text'
-							placeholder='Destination'
+							placeholder='Destinations'
 							outline={'none'}
 							border='none'
 							pl={0}

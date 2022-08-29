@@ -181,7 +181,7 @@ const IconSection = () => {
 							fontSize={{ base: '22px', lg: '20px' }}
 							textAlign={'center'}
 						>
-							Easy Pricing
+							Best Price Guaranteed
 						</Text>
 					</Box>
 				</Box>
