@@ -1,14 +1,9 @@
 {
   "projects": {
-<<<<<<< HEAD
-    "default": "pmlpro"
-  }
-}
-=======
+
     "default": "pmlpro",
     "production": "pmlpro",
     "staging": "plan-my-leisure-testing"
   },
   "targets": {}
 }
->>>>>>> c30c41c44404ce6f0aa4333e51a5cfd88a715e30
