@@ -136,7 +136,7 @@ const Packages = () => {
           cursor="pointer"
           onClick={leftButton}
           _hover={{ background: "rgba(20, 17, 119,1)" }}
-          display={hide_or_show ? "flex" : "none"}
+          display={hide_or_show ? { lg: "flex", base: "none" } : "none"}
           justifyContent={"center"}
           alignItems="center"
           color="white"
@@ -157,7 +157,7 @@ const Packages = () => {
           cursor="pointer"
           onClick={rightButton}
           _hover={{ background: "rgba(20, 17, 119,1)" }}
-          display={hide_or_show ? "flex" : "none"}
+          display={hide_or_show ? { lg: "flex", base: "none" } : "none"}
           justifyContent={"center"}
           alignItems="center"
           color="white"
