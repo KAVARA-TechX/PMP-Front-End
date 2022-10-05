@@ -6,31 +6,30 @@ import {
 	Button,
 	Popover,
 	PopoverTrigger,
-	Portal,
 	PopoverContent,
-	PopoverArrow,
-	PopoverHeader,
-	PopoverCloseButton,
 	PopoverBody,
-	PopoverFooter,
 	useDisclosure,
 	useOutsideClick,
 } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'react';
-import { DayPicker } from 'react-day-picker';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
-import CheckInDate from './searchComponents/CheckInDate';
-import CheckOutDate from './searchComponents/CheckOutDate';
-import Who from './searchComponents/Who';
-import When from './searchComponents/When';
-import c_list from './list.json';
+import axios from 'axios';
+
+const Who = React.lazy(() => {
+	return import('./searchComponents/Who');
+});
+
+const When = React.lazy(() => {
+	return import('./searchComponents/When');
+});
 
 const Search = () => {
 	const [location, setLocation] = useState('');
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [guest, setGuest] = useState(0);
 	const [submitButton, setSubmitButton] = useState(true);
+	const [c_list, set_c_list] = useState([]);
 
 	const initialFocusRef = useRef();
 	const popoverRef = useRef();
@@ -39,7 +38,23 @@ const Search = () => {
 	const navigate = useNavigate();
 
 	const [startDate, setStartDate] = useState();
-	const [endDate, setEndDate] = useState();
+
+	const getDestinationList = async () => {
+		if (!sessionStorage.getItem('destination_list')) {
+			try {
+				const res = await axios.get(
+					'/package/destination-list'
+				);
+				set_c_list(res.data.destinationArray);
+				sessionStorage.setItem(
+					'destination_list',
+					res.data.destinationArray
+				);
+			} catch (error) {
+				console.log('while loading destination something went wrong');
+			}
+		}
+	};
 
 	const handleForm = () => {
 		if (location === '') {
@@ -49,23 +64,25 @@ const Search = () => {
 				console.log('are you fucking idiot');
 			} else {
 				navigate(
-					`/search/${location}/${startDate}/${endDate}/${guest}`
+					`/search/${location}/${startDate}/${guest}`
 				);
 			}
 		}
 	};
 
 	useEffect(() => {
-		console.log(location, startDate, endDate, guest);
+		if (sessionStorage.getItem('destination_list')) {
+			set_c_list(sessionStorage.getItem('destination_list').split(','));
+		}
+	}, []);
+
+	useEffect(() => {
+		console.log({ location, startDate, guest });
 
 		if (location !== '') {
 			if (startDate !== undefined) {
-				if (endDate !== undefined) {
-					if (guest >= 1) {
-						setSubmitButton(false);
-					} else {
-						setSubmitButton(true);
-					}
+				if (guest >= 1) {
+					setSubmitButton(false);
 				} else {
 					setSubmitButton(true);
 				}
@@ -75,7 +92,7 @@ const Search = () => {
 		} else {
 			setSubmitButton(true);
 		}
-	}, [location, startDate, endDate, guest]);
+	}, [location, startDate,  guest]);
 
 	useOutsideClick({
 		ref: ref,
@@ -89,6 +106,11 @@ const Search = () => {
 			onClose();
 		}
 	}, [location]);
+
+	const handlePopoverTrigger = (e) => {
+		onOpen();
+		setLocation(e.target.value);
+	};
 
 	return (
 		<Box
@@ -127,29 +149,27 @@ const Search = () => {
 							ref={initialFocusRef}
 							value={location}
 							textAlign={{ base: 'center', lg: 'start' }}
-							w='100%'
+							w={{base: '100%', lg: '110px' }}
 							fontSize={20}
 							type='text'
-							placeholder='Destination'
+							placeholder='Destinations'
 							outline={'none'}
 							border='none'
 							pl={0}
 							pr={0}
 							_focus={{ outline: 'none' }}
 							pb={{ base: 3, lg: 0 }}
-							onChange={(e) => {
-								onOpen();
-								setLocation(e.target.value);
-							}}
+							onChange={handlePopoverTrigger}
 							_placeholder={{
 								color: '#696969',
 							}}
+							onFocus={getDestinationList}
 						/>
 					</PopoverTrigger>
 					<PopoverContent
 						w={'250px'}
 						maxH='250px'
-						overflowY={'scroll'}
+						overflowY={'auto'}
 						ref={ref}
 						position='relative'
 						top='-10px'
@@ -159,12 +179,13 @@ const Search = () => {
 					>
 						<PopoverBody>
 							{c_list
-								.filter((val) =>
-									val.name.toLowerCase().indexOf(location) !==
-									-1
+								.filter((val) => {
+									return val
+										.toLowerCase()
+										.indexOf(location.toLowerCase()) !== -1
 										? true
-										: false
-								)
+										: false;
+								}).slice(0, 1)
 								.map((loc, index) => {
 									return (
 										<Text
@@ -175,22 +196,23 @@ const Search = () => {
 											}}
 											key={index}
 											onClick={() => {
-												setLocation(loc.name);
+												setLocation(loc);
 												onClose();
 											}}
 										>
-											{loc.name}
+											{loc}
 										</Text>
 									);
 								}).length !== 0 ? (
 								c_list
 									.filter((val) =>
-										val.name
+										val
 											.toLowerCase()
-											.indexOf(location) !== -1
+											.indexOf(location.toLowerCase()) !==
+											-1
 											? true
 											: false
-									)
+									).slice(0, 1)
 									.map((loc, index) => {
 										return (
 											<Text
@@ -202,11 +224,11 @@ const Search = () => {
 												}}
 												key={index}
 												onClick={() => {
-													setLocation(loc.name);
+													setLocation(loc);
 													onClose();
 												}}
 											>
-												{loc.name}
+												{loc}
 											</Text>
 										);
 									})
@@ -217,7 +239,7 @@ const Search = () => {
 					</PopoverContent>
 				</Popover>
 			</Box>
-			<When setStartDate={setStartDate} setEndDate={setEndDate} />
+			<When setStartDate={setStartDate}/>
 			<Who setGuest={setGuest} />
 			{/* search Button */}
 			<Box
@@ -225,7 +247,7 @@ const Search = () => {
 				display='flex'
 				justifyContent={'center'}
 				mt={{ base: 5, lg: 0 }}
-				// mr={}
+			// mr={}
 			>
 				<Button
 					h='40px'
@@ -246,4 +268,4 @@ const Search = () => {
 	);
 };
 
-export default Search;
+export default React.memo(Search);

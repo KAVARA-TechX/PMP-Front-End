@@ -18,7 +18,7 @@ import {
 	CheckCircleIcon,
 } from '@chakra-ui/icons';
 import img from '../../assets/footer.jpg';
-import sideImg from '../../assets/thingsToDo/skiing.png';
+import sideImg from '../../assets/thingsToDo/skiing.webp';
 import { AccessLoginContext } from '../../context/LoginContext';
 import { useState } from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
@@ -126,7 +126,7 @@ const PackageCardd = ({ data }) => {
 
 	return (
 		<>
-			{console.log('data is : ', data)}
+			{/* {console.log('data is : ', data)} */}
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}

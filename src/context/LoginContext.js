@@ -4,15 +4,30 @@ import getUserinfoApi from '../apis/getUserInfoApi';
 const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
-	const [loginState, setLoginState] = useState(false);
+	const [loginState, setLoginState] = useState(null);
 	const [token, setToken] = useState('');
 	const [used, setUsed] = useState('');
 	const [loginclick, setLoginclick] = useState(null);
 	const [profileurl, setProfileurl] = useState('');
 
+	// const refresh = async () => {
+	// 	try {
+	// 		const res = await getRefereshToken(
+	// 			window.localStorage.getItem('token')
+	// 		);
+	// 		console.log('refresh res : ', res);
+	// 	} catch (error) {
+	// 		console.log('error');
+	// 	}
+	// };
+
 	useEffect(() => {
-		if (window.localStorage.getItem('loginStatus') === 'true') {
-			setLoginState(window.localStorage.getItem('loginStatus'));
+		if (window.localStorage.getItem('token')) {
+			setLoginState(
+				window.localStorage.getItem('loginStatus')
+					? window.localStorage.getItem('loginStatus')
+					: false
+			);
 			setToken(
 				window.localStorage.getItem('token')
 					? window.localStorage.getItem('token')
@@ -36,6 +51,7 @@ const LoginProvider = ({ children }) => {
 			} else {
 				setProfileurl(window.localStorage.getItem('profileImg'));
 			}
+			// refresh();
 		}
 	}, []);
 

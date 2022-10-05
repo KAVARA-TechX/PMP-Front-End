@@ -1,31 +1,21 @@
 import {
 	Box,
-	Text,
-	Button,
 	Image,
 	Icon,
-	Drawer,
 	useDisclosure,
-	DrawerOverlay,
-	DrawerContent,
-	DrawerCloseButton,
-	DrawerHeader,
-	DrawerBody,
 	Menu,
 	MenuButton,
 	MenuItem,
 	MenuList,
 } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FiMenu } from 'react-icons/fi';
-import logo from '../assets/logo/logo.png';
+import logo from '../assets/logo/c__2_-removebg.webp';
 import { BsPersonCircle } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import LoginModal from './LoginModal';
 import React, { useEffect, useRef, useState } from 'react';
 import SignupModal from './SignupModal';
 import { AccessLoginContext } from '../context/LoginContext';
-import { GoogleLogout } from 'react-google-login';
 import LogoutApi from '../apis/LogoutApi';
 
 const Nav = () => {
@@ -194,11 +184,6 @@ const Nav = () => {
 												Logout
 											</MenuItem>
 										)}
-										{/* <MenuItem
-											_focus={{ bg: 'rgba(0,0,0,.3)' }}
-										>
-											Logout
-										</MenuItem> */}
 									</>
 								) : (
 									<>
@@ -222,116 +207,6 @@ const Nav = () => {
 						</Menu>
 					</Box>
 				</Box>
-				{/* <Box
-					position={'absolute'}
-					display={{ base: 'inline-block', lg: 'none' }}
-					top={'20px'}
-					right={'10px'}
-				>
-					<Button
-						bg='transperant'
-						_active={{ backgroundColor: 'transparent' }}
-						_hover={{ backgroundColor: 'transparent' }}
-						onClick={() => {
-							onOpen();
-						}}
-					>
-						<Icon as={FiMenu} color='white' fontSize={35} />
-					</Button>
-					<Drawer onClose={onClose} isOpen={isOpen} size={'full'}>
-						<DrawerOverlay zIndex={100000000}>
-							<DrawerContent bg='black'>
-								<DrawerCloseButton />
-								<DrawerHeader>
-									<Image src={logo} h={'100px'} />
-								</DrawerHeader>
-								<DrawerBody
-									display={'flex'}
-									flexDir={'column'}
-									alignItems='center'
-									gap={5}
-								>
-									<Text
-										display={'inline-block'}
-										cursor={'pointer'}
-										color={
-											path === ''
-												? 'rgb(69, 64, 203)'
-												: '#f5f5f5'
-										}
-										borderBottom={
-											path === ''
-												? '1px solid rgb(69, 64, 203)'
-												: 'none'
-										}
-										onClick={() => {
-											navigate('/');
-										}}
-										fontSize={40}
-									>
-										Home
-									</Text>
-									<Box>
-										<Text
-											cursor={'pointer'}
-											color={
-												path === 'blogs'
-													? 'rgb(69, 64, 203)'
-													: '#f5f5f5'
-											}
-											borderBottom={
-												path === 'blogs'
-													? '1px solid  rgb(69, 64, 203)'
-													: 'none'
-											}
-											onClick={() => {
-												navigate('/blogs');
-											}}
-											fontSize={40}
-											flexGrow={2}
-										>
-											Blogs
-										</Text>
-									</Box>
-									<Box>
-										<Text
-											cursor={'pointer'}
-											color={
-												path === 'packages'
-													? 'rgb(69, 64, 203)'
-													: '#f5f5f5'
-											}
-											borderBottom={
-												path === 'packages'
-													? '1px solid  rgb(69, 64, 203)'
-													: 'none'
-											}
-											onClick={() => {
-												navigate('/packages');
-											}}
-											fontSize={40}
-											flexGrow={2}
-										>
-											Packages
-										</Text>
-									</Box>
-									<Button
-										bg='rgb(69, 64, 203)'
-										_hover={{
-											backgroundColor: 'rgb(69, 64, 203)',
-										}}
-										color='white'
-										mt={'100px'}
-										fontSize={20}
-										onClick={handleLoignClick}
-									>
-										Login
-									</Button>
-								</DrawerBody>
-							</DrawerContent>
-						</DrawerOverlay>
-					</Drawer>
-				</Box> */}
 			</Box>
 		</>
 	);

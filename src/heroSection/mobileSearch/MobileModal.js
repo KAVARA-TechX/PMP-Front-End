@@ -28,7 +28,7 @@ import {
 } from '@chakra-ui/react';
 
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { addDays } from 'date-fns';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
@@ -114,8 +114,9 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 			>
 				<Box
 					position={'absolute'}
-					h='100vh'
+					h={`${window.innerHeight - window.innerHeight * 0.01}px`}
 					w='100vw'
+					bottom={'0'}
 					bg='#FFFDF7'
 					ref={search_modal}
 					zIndex={20000000000}
@@ -206,7 +207,7 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 												fontSize={'23px'}
 												fontWeight={900}
 											>
-												Travel Dates
+												Travel Date
 											</Text>
 										</Box>
 										<AccordionIcon
@@ -454,4 +455,4 @@ const MobileModal = ({ state, changeState, handleStart }) => {
 	);
 };
 
-export default MobileModal;
+export default React.memo(MobileModal);

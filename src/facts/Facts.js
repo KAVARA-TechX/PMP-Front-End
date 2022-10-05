@@ -1,14 +1,14 @@
-// import { lazy, Suspense } from 'react';
-import { AspectRatio, Box, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
-import image from '../assets/thingsToDo/dream-vacation.png';
+import React, { useEffect, useRef, useState } from 'react';
 import './Facts.css';
-import vid from '../assets/videos/production ID_4782135.mp4';
+import getFactsImageApi from '../apis/getFactsImageApi';
 
 const Facts = () => {
 	const container_ref = useRef(null);
 	const container = gsap.utils.selector(container_ref);
+	const [media, set_media] = useState(null);
+	const [type, set_type] = useState(null);
 
 	const animate = () => {
 		gsap.from(container('.facts_img'), {
@@ -44,9 +44,42 @@ const Facts = () => {
 	};
 
 	useEffect(() => {
-		// if (window.innerWidth >= 992) {
+		const getData = async () => {
+			if (sessionStorage.getItem('fd')) {
+				set_media(JSON.parse(sessionStorage.getItem('fd')));
+				set_type(
+					JSON.parse(sessionStorage.getItem('fd')).resource_type
+				);
+			} else {
+				try {
+					const res = await getFactsImageApi();
+					set_media(
+						res.data.factImages.length === 0
+							? null
+							: res.data.factImages[0].imageUrl
+					);
+
+					if (res.data.factImages.length !== 0) {
+						sessionStorage.setItem(
+							'fd',
+							JSON.stringify(res.data.factImages[0].imageUrl)
+						);
+					}
+					set_type(
+						res.data.factImages.length === 0
+							? null
+							: res.data.factImages[0].imageUrl.resource_type
+					);
+				} catch (error) {}
+			}
+		};
+
+		if (window.innerWidth <= 991) {
+		} else {
+			getData();
+		}
+
 		animate();
-		// }
 	}, []);
 
 	return (
@@ -61,20 +94,37 @@ const Facts = () => {
 			gap={{ base: 0, lg: '20px' }}
 			ref={container_ref}
 		>
-			<Box
-				className='facts_img'
-				w={{ base: '0%', lg: '45%' }}
-				mb={10}
-				borderRadius='20px'
-				bgImage={image}
-				bgSize='cover'
-				bgPosition={'50% 50%'}
-				overflow='hidden'
-			>
-				<video loop autoPlay muted id='facts_video'>
-					<source src={vid} type='video/mp4' autoPlay={true}></source>
-				</video>
-			</Box>
+			{window.innerWidth <= 991 ? (
+				<></>
+			) : type === 'video' ? (
+				<Box
+					className='facts_img'
+					w={{ base: '0%', lg: '45%' }}
+					mb={10}
+					borderRadius='20px'
+					overflow='hidden'
+					dangerouslySetInnerHTML={{
+						__html: `<video class='facts_video' loop autoPlay playsinline muted="true" id='facts_video'>
+						<source
+							src=${media === null ? '' : media.secure_url}
+						></source>
+					</video>`,
+					}}
+				></Box>
+			) : (
+				<>
+					<Box
+						className='facts_img'
+						w={{ base: '0%', lg: '45%' }}
+						mb={10}
+						borderRadius='20px'
+						bgImage={media === null ? '' : media.url}
+						bgSize='cover'
+						bgPosition={'50% 50%'}
+						overflow='hidden'
+					></Box>
+				</>
+			)}
 			<Box
 				w={{ base: '100%', lg: '35.57%' }}
 				h='fit-content'
@@ -189,17 +239,10 @@ const Facts = () => {
 						</Text>
 						<Text>Satisfied Clients</Text>
 					</Box>
-					{/* <Box
-						height='150px'
-						display='flex'
-						flexDir={'column'}
-						justifyContent={'center'}
-						alignItems='center'
-					></Box> */}
 				</Box>
 			</Box>
 		</Box>
 	);
 };
 
-export default Facts;
+export default React.memo(Facts);

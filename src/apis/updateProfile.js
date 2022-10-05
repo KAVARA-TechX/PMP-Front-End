@@ -4,7 +4,7 @@ const updateProfile = (name, email, gender, dob, phone, address, avatar) => {
 	let token = localStorage.getItem('token');
 
 	return axios.patch(
-		'https://planmy.herokuapp.com/user/update-profile',
+		'/user/update-profile',
 		{
 			name,
 			email,

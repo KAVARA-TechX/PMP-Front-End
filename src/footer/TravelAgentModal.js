@@ -9,7 +9,7 @@ import {
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import travelAgentApi from '../apis/travelAgentApi';
 
 const TravelAgentModal = ({ state, setState }) => {
@@ -78,9 +78,9 @@ const TravelAgentModal = ({ state, setState }) => {
 			<ModalContent bg='transperant' position={'relative'}>
 				<Box
 					position={'absolute'}
-					w='600px'
+					w={{ base: '95vw', lg: '600px' }}
 					h='fit-content'
-					bg='#222'
+					bg='#fffdf7'
 					left='50%'
 					top='50%'
 					transform={'translate(-50%,-50%)'}
@@ -193,8 +193,9 @@ const TravelAgentModal = ({ state, setState }) => {
 								pt='30px'
 							>
 								<Button
-									bg='#32BAC9'
-									_hover={{ background: '#32BAC9' }}
+									bg='#141177'
+									color='#fff'
+									_hover={{ background: '#141177' }}
 									onClick={handleSubmit}
 									isLoading={loading}
 								>
@@ -209,4 +210,4 @@ const TravelAgentModal = ({ state, setState }) => {
 	);
 };
 
-export default TravelAgentModal;
+export default React.memo(TravelAgentModal);

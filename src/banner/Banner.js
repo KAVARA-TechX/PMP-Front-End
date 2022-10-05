@@ -1,42 +1,38 @@
-import { Box, Text, Icon } from '@chakra-ui/react';
+import { Box, Text, Icon, Image } from '@chakra-ui/react';
 import { BiChevronRight } from 'react-icons/bi';
 import React, { useEffect, useRef, useState } from 'react';
-import banner from '../assets/VisitMaldives.png';
 import UserForm from '../modal/UserForm';
-import { gsap } from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import getBannerApi from '../apis/getBannerApi';
+import bannerImg from '../assets/Visit Maldives.webp';
 
 const Banner = () => {
-	gsap.registerPlugin(ScrollTrigger);
 	const [modalState, setModalState] = useState(false);
 	const banner_container = useRef(null);
-	const banner_pls = gsap.utils.selector(banner_container);
-
-	const animate = () => {
-		gsap.from(banner_pls('.banner'), {
-			scrollTrigger: {
-				trigger: banner_container.current,
-				start: 'top 65%',
-			},
-			y: 100,
-			opacity: 0,
-			duration: 1,
-			delay: 0.5,
-			onComplete: function () {
-				ScrollTrigger.refresh();
-			},
-		});
-	};
+	const [media, set_media] = useState(null);
+	const [quote, set_quote] = useState(null);
+	const [type, set_type] = useState(null);
 
 	useEffect(() => {
-		// if (window.innerWidth >= 992) {
-		animate();
-		// }
+		// get banner image data
+		const getData = async () => {
+			try {
+				const res = await getBannerApi();
+				set_media(res.data.bannerImages[0].imageUrl);
+				console.log('media is : ', res.data.bannerImages[0].imageUrl);
+				set_quote(res.data.bannerImages[0].quote);
+				set_type(res.data.bannerImages[0].imageUrl.resource_type);
+			} catch (error) {}
+		};
+		if (window.innerWidth <= 991) {
+			set_quote('Visit Maldives: A Fantasy Fulfilled');
+		} else {
+			getData();
+		}
 	}, []);
 	return (
 		<>
 			<UserForm state={modalState} setState={setModalState} />
-			<Box px={{ base: '0px', lg: '9vw' }}>
+			<Box px={{ base: '0px', lg: '9vw' }} ref={banner_container}>
 				<Box
 					w={{ base: '100vw', lg: '100%' }}
 					h={{ base: '350px', lg: '250px' }}
@@ -45,117 +41,113 @@ const Banner = () => {
 					overflow={'hidden'}
 					mb={'50px'}
 					flexDir={{ base: 'column', lg: 'row' }}
-					ref={banner_container}
+					position='relative'
+					className='banner'
 				>
+					{window.innerWidth <= 991 ? (
+						<Image
+							src={bannerImg}
+							h='100%'
+							w='100%'
+							objectFit='cover'
+							objectPosition={'50% 50%'}
+						></Image>
+					) : type === 'video' ? (
+						<Box
+							w={{ base: '100%', lg: '100%' }}
+							borderRadius={{ base: 'none', lg: 'xl' }}
+							overflow='hidden'
+							h='100%'
+							// className='banner'
+							dangerouslySetInnerHTML={{
+								__html: `<video
+								autoplay
+								muted
+								loop
+								playsinline
+								style="
+									height: 100%;
+									width: 100%;
+									object-fit: cover;
+									object-position: center;
+								"
+							>
+								<source src=${media ? media.secure_url : ''} />
+							</video>`,
+							}}
+						></Box>
+					) : (
+						<Box
+							w={{ base: '100%', lg: '100%' }}
+							h='100%'
+							bgImage={media ? media.secure_url : ''}
+							bgSize={'cover'}
+							bgPosition='left'
+							className='banner'
+						></Box>
+					)}
 					<Box
-						w={{ base: '100%', lg: '100%' }}
+						w='100%'
 						h='100%'
-						bgImage={banner}
-						bgSize={'cover'}
-						bgPosition='left'
-						className='banner'
+						bg={{
+							base: 'linear-gradient(0deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)',
+							lg: 'linear-gradient(270deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)',
+						}}
+						position='absolute'
+						borderRadius={{ base: 'none', lg: 'xl' }}
 					>
 						<Box
-							w='100%'
-							h='100%'
-							bg='linear-gradient(270deg, #263646 0.85%, rgba(196, 196, 196, 0) 68.47%)'
-							position='relative'
+							position={'absolute'}
+							top='50%'
+							transform={{
+								base: 'translateX(50%) translateY(-50%)',
+								lg: 'translateY(-50%)',
+							}}
+							right={{ base: '50%', lg: '10%' }}
+							display={'flex'}
+							flexDir='column'
+							alignItems={'center'}
+							width={{ base: '90%', lg: '30%' }}
 						>
-							<Box
-								position={'absolute'}
-								top='50%'
-								transform={{
-									base: 'translateX(50%) translateY(-50%)',
-									lg: 'translateY(-50%)',
-								}}
-								right={{ base: '50%', lg: '10%' }}
-								display={'flex'}
-								flexDir='column'
-								alignItems={'center'}
-							>
+							<Box display={'flex'} justifyContent='center'>
 								<Text
 									fontFamily={'Mansalva'}
 									textAlign='center'
 									fontSize={35}
 									fontWeight={700}
-									whiteSpace='nowrap'
+									whiteSpace='wrap'
 									color='#fff'
+									// w={{ base: '', lg: '55%' }}
 								>
-									Visit Maldives <br /> A Fantasy Fulfilled
+									{quote}
+									{/* Visit Maldives <br /> A Fantasy Fulfilled */}
 								</Text>
-								<Box
-									bg='rgba(20, 17, 119,.7)'
-									py={3}
-									px={5}
-									w='fit-content'
-									borderRadius={'xl'}
-									cursor='pointer'
-									mt={5}
-									onClick={() => {
-										setModalState(true);
-									}}
-									textAlign='center'
-									color='#fff'
-									fontWeight={600}
-									transition={'.5s'}
-									transform='translate(0)'
-									display='flex'
-									alignItems={'center'}
-									_hover={{
-										background: 'rgba(20, 17, 119,.9)',
-										svg: { transform: 'translate(5px)' },
-									}}
-								>
-									<Text>Customize your trip</Text>
-									<Icon as={BiChevronRight} fontSize='20px' />
-								</Box>
 							</Box>
-						</Box>
-					</Box>
-					<Box
-						w={{ base: '100%', lg: '0%' }}
-						h={{ base: '30%', lg: '100%' }}
-						bg='rgb(40,56,75)'
-						// boxShadow='-50px 0 100px 100px rgb(40,56,75)'
-						position={'relative'}
-						display='none'
-					>
-						<Box
-							position={'absolute'}
-							top={{ base: '-30%', lg: '50%' }}
-							left={{ base: '50%', lg: '0%' }}
-							transform={'translateY(-50%) translateX(-50%)'}
-							display='flex'
-							flexDir={'column'}
-							alignItems='centers'
-							color='white'
-						>
-							<Text
-								textAlign={'center'}
-								fontSize={20}
-								fontWeight={500}
-							></Text>
-							<Text
-								textAlign='center'
-								fontSize={35}
-								fontWeight={500}
-								whiteSpace='nowrap'
-							>
-								A Fantasy Fulfilled
-							</Text>
 							<Box
-								bg='#32BAC9'
-								mx='auto'
+								bg='rgba(20, 17, 119,.7)'
 								py={3}
 								px={5}
+								w='fit-content'
 								borderRadius={'xl'}
 								cursor='pointer'
 								mt={5}
 								onClick={() => {
 									setModalState(true);
 								}}
+								textAlign='center'
+								color='#fff'
+								fontWeight={600}
+								transition={'.5s'}
+								transform='translate(0)'
+								display='flex'
+								alignItems={'center'}
+								_hover={{
+									background: 'rgba(20, 17, 119,.9)',
+									svg: { transform: 'translate(5px)' },
+								}}
 							>
-								Packages From ₹19,524
+								<Text>Customize your trip</Text>
+								<Icon as={BiChevronRight} fontSize='20px' />
 							</Box>
 						</Box>
 					</Box>
@@ -165,4 +157,4 @@ const Banner = () => {
 	);
 };
 
-export default Banner;
+export default React.memo(Banner);

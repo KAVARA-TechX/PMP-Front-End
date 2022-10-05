@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 const getAllHeroImage = () => {
-	return axios.get('https://planmy.herokuapp.com/blog/hero-image');
+	return axios.get('/blog/hero-image');
 };
 export default getAllHeroImage;

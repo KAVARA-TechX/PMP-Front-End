@@ -16,7 +16,7 @@ const CreatePackageRequest = (
 	console.log(' 5. user id : ', userId);
 
 	return axios.post(
-		'https://planmy.herokuapp.com/package/create-package-request',
+		'/package/create-package-request',
 		{
 			packageId,
 			startDate,
@@ -24,7 +24,8 @@ const CreatePackageRequest = (
 			numberOfPeople,
 			location,
 			userId,
-			paymentStatus,
+			paymentStatus: { status: paymentStatus },
+			paymentType: { parts: [], normal: { price: '', status: false } },
 		}
 	);
 };

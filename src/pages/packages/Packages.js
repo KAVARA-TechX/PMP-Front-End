@@ -1,27 +1,36 @@
 import Nav from '../../nav/Nav';
-import { Box, Text, Icon } from '@chakra-ui/react';
+import { Box, Text, Icon, Button } from '@chakra-ui/react';
 import Footer from '../../footer/Footer';
 import img from '../../assets/footer.jpg';
-import { CalendarIcon } from '@chakra-ui/icons';
+import { ArrowForwardIcon, CalendarIcon } from '@chakra-ui/icons';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import PackageCard from './PackageCard';
 import getPackageApi from '../../apis/getPackageApi';
+import '../../style.css'
 
 const PackagesPage = () => {
 	const [packageList, setPackageList] = useState([]);
+
+	const [packageLength, setPackageLength] = useState(0);
+	const [currentShow, setCurrentShow] = useState(15);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
 		const getPackageList = async () => {
 			const response = await getPackageApi();
-
 			setPackageList(response.data.packages);
+			setPackageLength(response.data.packages.length);
 		};
 
 		getPackageList();
 	}, []);
+
+	const handleShowMore = () => {
+		setCurrentShow(currentShow + 15);
+	}
+
 
 	return (
 		<>
@@ -131,15 +140,28 @@ const PackagesPage = () => {
 				<Text lineHeight={7}>
 					Travel to the beautiful sites and witness the most surreal and
 					stunning white-sand beaches and magnificent underwater
-					world. Get exclusive Tour Packages to experience a
+					world. Get exclusive  Tour Packages to experience a
 					true holiday of a lifetime in the tropical paradise.
 				</Text>
 				{/* package cards */}
 				<Box pt={'40px'} pb='40px'>
-					{/* card  */}
-					{packageList.map((data, index) => {
-						return <PackageCard data={data} key={index} />;
-					})}
+					{
+						packageList.slice(0, currentShow).map((data, index) => {
+							return <PackageCard data={data} key={index} />;
+						})
+					}
+				</Box>
+
+				<Box textAlign='center' py='20px' display={`${packageLength <= currentShow ? 'none' : ''}`}>
+					<Button
+						colorScheme='teal'
+						rightIcon={<ArrowForwardIcon />}
+						variant='outline'
+						onClick={handleShowMore}
+					>
+						Load more
+					</Button>
+
 				</Box>
 			</Box>
 			<Footer />

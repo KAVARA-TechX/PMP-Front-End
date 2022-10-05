@@ -11,18 +11,25 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import brandsRequest from '../apis/brandsRequest';
 
 const BrandsModal = ({ state, setState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [fname, setFname] = useState('');
+	const [check_fname, set_check_fname] = useState(false);
 	const [lname, setLname] = useState('');
+	const [check_lname, set_check_lname] = useState(false);
 	const [email, setEmail] = useState('');
+	const [check_email, set_check_Email] = useState(false);
 	const [phone, setPhone] = useState('');
+	const [check_phone, set_check_phone] = useState(false);
 	const [cname, setCname] = useState('');
+	const [check_cname, set_check_cname] = useState(false);
 	const [cwebsite, setCwebsite] = useState('');
+	const [check_cwebsite, set_check_cwebsite] = useState(false);
 	const [bType, setBtype] = useState('');
+	const [check_bType, set_check_bType] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const toast = useToast();
 
@@ -71,15 +78,71 @@ const BrandsModal = ({ state, setState }) => {
 		}
 	};
 
+	const checkFormBeforeSubmit = () => {
+		if (
+			fname === '' ||
+			lname === '' ||
+			email === '' ||
+			phone === '' ||
+			cname === '' ||
+			cwebsite === '' ||
+			bType === ''
+		) {
+			if (fname === '') {
+				set_check_fname(true);
+			} else {
+				set_check_fname(false);
+			}
+
+			if (lname === '') {
+				set_check_lname(true);
+			} else {
+				set_check_lname(false);
+			}
+
+			if (email === '') {
+				set_check_Email(true);
+			} else {
+				set_check_Email(false);
+			}
+
+			if (phone === '') {
+				set_check_phone(true);
+			} else {
+				set_check_phone(false);
+			}
+
+			if (cname === '') {
+				set_check_cname(true);
+			} else {
+				set_check_cname(false);
+			}
+
+			if (cwebsite === '') {
+				set_check_cwebsite(true);
+			} else {
+				set_check_cwebsite(false);
+			}
+
+			if (bType === '') {
+				set_check_bType(true);
+			} else {
+				set_check_bType(false);
+			}
+		} else {
+			handleSubmit();
+		}
+	};
+
 	return (
 		<Modal isOpen={isOpen} size='full' onClose={onClose}>
 			<ModalOverlay />
 			<ModalContent bg='transperant' position={'relative'}>
 				<Box
 					position={'absolute'}
-					w='600px'
+					w={{ base: '95vw', lg: '600px' }}
 					h='fit-content'
-					bg='#222'
+					bg='#fffdf7'
 					left='50%'
 					top='50%'
 					transform={'translate(-50%,-50%)'}
@@ -112,6 +175,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setFname(e.target.value);
 								}}
+								isInvalid={check_fname}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -122,6 +186,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setLname(e.target.value);
 								}}
+								isInvalid={check_lname}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -132,6 +197,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setEmail(e.target.value);
 								}}
+								isInvalid={check_email}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -142,6 +208,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setPhone(e.target.value);
 								}}
+								isInvalid={check_phone}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -152,6 +219,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setCname(e.target.value);
 								}}
+								isInvalid={check_cname}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -162,6 +230,7 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setCwebsite(e.target.value);
 								}}
+								isInvalid={check_cwebsite}
 							/>
 						</Box>
 						<Box pt='20px'>
@@ -172,14 +241,16 @@ const BrandsModal = ({ state, setState }) => {
 								onChange={(e) => {
 									setBtype(e.target.value);
 								}}
+								isInvalid={check_bType}
 							/>
 						</Box>
 					</Box>
 					<Box display={'flex'} justifyContent='center' pt='30px'>
 						<Button
-							bg='#32BAC9'
-							_hover={{ background: '#32BAC9' }}
-							onClick={handleSubmit}
+							bg='#141177'
+							color='#fff'
+							_hover={{ background: '#141177' }}
+							onClick={checkFormBeforeSubmit}
 							isLoading={loading}
 						>
 							Submit
@@ -191,4 +262,4 @@ const BrandsModal = ({ state, setState }) => {
 	);
 };
 
-export default BrandsModal;
+export default React.memo(BrandsModal);

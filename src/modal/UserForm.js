@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Modal,
 	useDisclosure,
@@ -49,12 +50,18 @@ const UserForm = ({ state, setState }) => {
 					console.log(response);
 					SetIsSubmitted(true);
 					SetLoading(false);
+					setTimeout(() => {
+						console.log('timer is out');
+						setState(false);
+						onClose();
+					}, 5000);
 				} catch (err) {
 					console.log(err);
 					SetLoading(false);
 				}
 			} else {
 				setCheckPhone(true);
+				SetLoading(false);
 			}
 		}
 	};
@@ -72,33 +79,21 @@ const UserForm = ({ state, setState }) => {
 			isOpen={isOpen}
 			onClose={onClose}
 			maxWidth={'50vw'}
+			borderRadius={'20px'}
 		>
 			<ModalOverlay />
-			<ModalContent maxW='600px'>
-				<ModalHeader p={0}>
-					<Box
-						bgImage={main1}
-						bgPosition={'50% 60%'}
-						bgSize={'cover'}
-						color='white'
-						h='200px '
-						display={'flex'}
-						alignItems='center'
-						fontSize={30}
-						fontWeight={800}
-						px={5}
-						textTransform='uppercase'
-					>
-						get customised quotation
-					</Box>
-				</ModalHeader>
+			<ModalContent maxW='600px' borderRadius={'20px'} overflow='hidden'>
 				<ModalCloseButton
-					color='white'
 					onClick={() => {
 						setState(false);
 					}}
 				/>
-				<ModalBody pb={6} bg='#222222'>
+				<ModalBody
+					pb={6}
+					bg='#fffdf7'
+					borderRadius={'20px'}
+					overflow='hidden'
+				>
 					<Box
 						pt={5}
 						display={'flex'}
@@ -106,8 +101,14 @@ const UserForm = ({ state, setState }) => {
 						alignItems={'center'}
 					>
 						<CheckCircleIcon fontSize={40} color='green.500' />
-						<Text color='green.400' fontSize={20} mt={2}>
-							Form Submitted Successfully!
+						<Text
+							color='green.400'
+							fontSize={20}
+							mt={2}
+							textAlign='center'
+						>
+							Request submitted succesfully.
+							<br /> We will get in touch with you shortly.
 						</Text>
 					</Box>
 				</ModalBody>
@@ -121,9 +122,14 @@ const UserForm = ({ state, setState }) => {
 				isOpen={isOpen}
 				onClose={onClose}
 				maxWidth={'50vw'}
+				borderRadius={'20px'}
 			>
 				<ModalOverlay />
-				<ModalContent maxW='600px'>
+				<ModalContent
+					maxW='600px'
+					borderRadius={'20px'}
+					overflow='hidden'
+				>
 					<ModalHeader p={0}>
 						<Box
 							bgImage={main1}
@@ -138,7 +144,7 @@ const UserForm = ({ state, setState }) => {
 							px={5}
 							textTransform='uppercase'
 						>
-							get customised quotation
+							Customize your trip.
 						</Box>
 					</ModalHeader>
 					<ModalCloseButton
@@ -147,13 +153,14 @@ const UserForm = ({ state, setState }) => {
 							setState(false);
 						}}
 					/>
-					<ModalBody pb={6} bg='#222222'>
+					<ModalBody pb={6} bg='#fffdf7'>
 						<FormControl>
 							<FormLabel>Name</FormLabel>
 							<Input
 								isInvalid={checkName}
 								ref={initialRef}
 								placeholder='Name'
+								value={name}
 								onChange={(e) => {
 									setName(e.target.value);
 								}}
@@ -166,6 +173,7 @@ const UserForm = ({ state, setState }) => {
 								isInvalid={checkEmail}
 								placeholder='Email'
 								type='email'
+								value={email}
 								onChange={(e) => {
 									setEmail(e.target.value);
 								}}
@@ -175,8 +183,9 @@ const UserForm = ({ state, setState }) => {
 							<FormLabel>Mobile No.</FormLabel>
 							<Input
 								isInvalid={checkPhone}
-								placeholder='+91 0000000000'
+								placeholder='0000000000'
 								type='number'
+								value={phone}
 								onChange={(e) => {
 									setPhone(e.target.value);
 								}}
@@ -185,13 +194,13 @@ const UserForm = ({ state, setState }) => {
 						</FormControl>
 					</ModalBody>
 
-					<ModalFooter bg='#222222'>
+					<ModalFooter bg='#fffdf7'>
 						<Button
 							isLoading={loading}
 							_hover={{
-								backgroundColor: '#32BAC9',
+								backgroundColor: '#141177',
 							}}
-							bg='#32BAC9'
+							bg='#141177'
 							color='white'
 							mr={3}
 							onClick={() => {
@@ -207,4 +216,4 @@ const UserForm = ({ state, setState }) => {
 	);
 };
 
-export default UserForm;
+export default React.memo(UserForm);

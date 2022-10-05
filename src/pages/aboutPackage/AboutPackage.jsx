@@ -25,19 +25,12 @@ import {
   AiOutlinePlusCircle,
   AiOutlineStar,
 } from "react-icons/ai";
-import { FaTripadvisor } from "react-icons/fa";
-import { GiCancel } from "react-icons/gi";
-import { FcGoogle } from "react-icons/fc";
-import { IoLogoWhatsapp } from "react-icons/io";
-import img from "../../assets/thingsToDo/dream-vacation.png";
 import Nav from "../../nav/Nav";
 import "./AboutPackage.css";
 import Footer from "../../footer/Footer";
 import getPackageById from "../../apis/getPackageById";
-import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
-import { setDay } from "date-fns";
-import sideImg from "../../assets/thingsToDo/skiing.png";
+import { useLocation, useParams } from "react-router-dom";
+import sideImg from "../../assets/thingsToDo/skiing.webp";
 import { DayPicker } from "react-day-picker";
 import "../../../node_modules/react-day-picker/dist/style.css";
 import { addDays } from "date-fns";
@@ -50,6 +43,7 @@ import logo from "../../assets/logo/logo.png";
 import createOrderApi from "../../apis/createOrderApi";
 import BookModal from "./BookModal";
 import IndianCities from "../../indianCities";
+import PhoneNumberModal from "./PhoneNumberModal";
 
 const days = ["Mon", "Tus", "Wed", "Thr", "Fri", "Sat", "Sun"];
 const months = [
@@ -101,6 +95,7 @@ const AboutPackage = () => {
   const [sDate, setSDate] = useState();
   const [eDate, setEDate] = useState();
   const { loginState, loginclick } = AccessLoginContext();
+  const data_from_prev_page = useLocation().state;
 
   // for modal ------------------------
   const [showDate, setShowDate] = useState(true);
@@ -119,6 +114,8 @@ const AboutPackage = () => {
   const [book_modal_state, set_book_modal_state] = useState(false);
   const [dep_city, set_dep_city] = useState("");
   const [cities, set_cities] = useState(IndianCities);
+  const [phone_modal, set_phone_modal] = useState(false);
+  const [clicked_on, set_clicked_on] = useState(null);
 
   const handleBookedPackage = async (response) => {
     // here i have to create a request with the default settings and set it's status to booked and call the save_order api
@@ -298,12 +295,66 @@ const AboutPackage = () => {
     });
   }, [dep_city]);
 
+  const handleUnknownCity = (e) => {
+    if (e.key === "Enter") {
+      if (dep_city === "") {
+        // don't do anything
+      } else {
+        // next page
+        handleCity(dep_city);
+      }
+    }
+  };
+
+  const checkForMobileNumber = async () => {
+    set_clicked_on("book_now");
+    try {
+      const res = await getUserinfoApi();
+      if (String(res.data.phone).length === 10) {
+        set_book_modal_state(true);
+      } else {
+        set_phone_modal(true);
+      }
+    } catch (error) {
+      console.log("error occured ");
+    }
+  };
+
+  const handleCustomise = async () => {
+    set_clicked_on("Customise");
+    try {
+      const res = await getUserinfoApi();
+      if (String(res.data.phone).length === 10) {
+        onOpen();
+      } else {
+        set_phone_modal(true);
+      }
+    } catch (error) {
+      console.log("error occured ");
+    }
+  };
+
   return (
     <>
+      {clicked_on === "book_now" ? (
+        <PhoneNumberModal
+          state={phone_modal}
+          changeState={set_phone_modal}
+          nextModal={set_book_modal_state}
+        />
+      ) : (
+        <PhoneNumberModal
+          state={phone_modal}
+          changeState={set_phone_modal}
+          anotherModal={onOpen}
+        />
+      )}
       <BookModal
         state={book_modal_state}
         changeState={set_book_modal_state}
         pkgData={pkgData}
+        data={data_from_prev_page}
+        bookNowButtonLoading={setBooknowLoading}
       />
       <Modal
         isOpen={isOpen}
@@ -455,6 +506,7 @@ const AboutPackage = () => {
                     onChange={(e) => {
                       set_dep_city(e.target.value);
                     }}
+                    onKeyPress={handleUnknownCity}
                   />
                 </Box>
                 <Box flexGrow={2} mt="10px" mx="20px" overflowX={"scroll"}>
@@ -474,7 +526,7 @@ const AboutPackage = () => {
                           }}
                           key={index}
                           _hover={{
-                            background: "rgba(255,255,255,.2)",
+                            background: "rgba(0,0,0,.1)",
                           }}
                         >
                           <Text>{item.cityName}</Text>
@@ -484,7 +536,7 @@ const AboutPackage = () => {
                     })
                   )}
                 </Box>
-                <Box w="100%" display={"flex"}>
+                <Box w="100%" display={"none"}>
                   <Box
                     pb="10px"
                     bg="gray"
@@ -681,8 +733,62 @@ const AboutPackage = () => {
               right={0}
               left={0}
               zIndex={10}
-            >
-              <Box position={"absolute"} bottom={0} left="5vw">
+            ></Box>
+
+            <Splide aria-label="images" className="splide-slide">
+              {pkgData.image.map((data, index) => {
+                return (
+                  <SplideSlide key={index}>
+                    {data.resource_type === "video" ? (
+                      <Box
+                        w="100%"
+                        h={{
+                          base: "200px",
+                          lg: "500px",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: `<video
+													autoplay
+													muted
+													loop
+													style="
+														height:100%;
+														width:100%;
+														objectFit:cover;
+													"
+												>
+													<source
+														src=${data.secure_url}
+													/>
+												</video>`,
+                        }}
+                      ></Box>
+                    ) : (
+                      <Box
+                        w="100%"
+                        h="500px"
+                        bgImage={data.secure_url}
+                        bgSize={"cover"}
+                        bgPos="50% 50%"
+                      ></Box>
+                    )}
+                  </SplideSlide>
+                );
+              })}
+            </Splide>
+          </Box>
+          <Box
+            w="100vw"
+            display={{ base: "flex", lg: "inline-block" }}
+            flexDir="column-reverse"
+            minH="100vh"
+            position={"relative"}
+            px={{ base: "20px", lg: "9vw" }}
+            pt={{ base: "5px", lg: "50px" }}
+            pb="50px"
+          >
+            <Box w={{ base: "100%", lg: "50vw" }}>
+              <Box mt="0px">
                 <Text fontSize={30} fontWeight={700}>
                   {pkgData.packageTitle}
                 </Text>
@@ -704,65 +810,16 @@ const AboutPackage = () => {
                     })}
                   </Box>
                   <Box display={"inline-flex"} alignItems="start">
-                    <Icon as={MdLocationOn} color="white" fontSize={20} p={0} />
+                    <Icon
+                      as={MdLocationOn}
+                      color="gray.500"
+                      fontSize={20}
+                      p={0}
+                    />
                     <Text display={"inline-block"}>{pkgData.destination}</Text>
                   </Box>
                 </Text>
-              </Box>
-            </Box>
-
-            <Splide aria-label="images" className="splide-slide">
-              {pkgData.image.map((data, index) => {
-                return (
-                  <SplideSlide key={index}>
-                    {data.resource_type === "video" ? (
-                      <Box
-                        w="100%"
-                        h={{
-                          base: "200px",
-                          lg: "500px",
-                        }}
-                      >
-                        <video
-                          autoPlay
-                          muted
-                          loop
-                          style={{
-                            height: "100%",
-                            width: "100%",
-                            objectFit: "cover",
-                          }}
-                        >
-                          <source src={data.url} />
-                        </video>
-                      </Box>
-                    ) : (
-                      <Box
-                        w="100%"
-                        h="500px"
-                        bgImage={data.url}
-                        bgSize={"cover"}
-                        bgPos="50% 50%"
-                      ></Box>
-                    )}
-                  </SplideSlide>
-                );
-              })}
-            </Splide>
-          </Box>
-          <Box
-            w="100vw"
-            display={{ base: "flex", lg: "inline-block" }}
-            flexDir="column-reverse"
-            minH="100vh"
-            position={"relative"}
-            px={{ base: "20px", lg: "9vw" }}
-            pt={{ base: "5px", lg: "50px" }}
-            pb="50px"
-          >
-            <Box w={{ base: "100%", lg: "50vw" }}>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
+                <Text mt="30px" fontSize={"24px"} fontWeight={600}>
                   Details
                 </Text>
                 <Text fontSize={"20px"} pl="5px">
@@ -778,7 +835,6 @@ const AboutPackage = () => {
                   {pkgData.packageDetail4}
                 </Text>
               </Box>
-
               <Box mt="30px">
                 <Text fontSize={"24px"} fontWeight={600}>
                   Inclusions
@@ -795,7 +851,7 @@ const AboutPackage = () => {
               </Box>
               <Box mt="30px">
                 <Text fontSize={"24px"} fontWeight={600}>
-                  Resorts
+                  Hotel/Resort
                 </Text>
                 <UnorderedList fontSize={"20px"}>
                   {pkgData.resorts.values.map((data, index) => {
@@ -823,6 +879,14 @@ const AboutPackage = () => {
                   {pkgData.itinerary}
                 </Text>
               </Box>
+              <Box mt="30px">
+                <Text fontSize={"24px"} fontWeight={600}>
+                  Flights
+                </Text>
+                <Text fontSize={"20px"} pl="5px">
+                  {pkgData.flightDetails ? pkgData.flightDetails.details : ""}
+                </Text>
+              </Box>
             </Box>
             <Box
               position={{ base: "none", lg: "absolute" }}
@@ -846,7 +910,7 @@ const AboutPackage = () => {
               >
                 <Box>
                   <Text color="gray.600" fontSize={20}>
-                    Per Person Tariff
+                    Per person Tariff
                   </Text>
                   <Text color="black" fontSize={30} fontWeight={700}>
                     ₹{pkgData.startingPrice}
@@ -873,9 +937,7 @@ const AboutPackage = () => {
                     flexGrow={1}
                     cursor="pointer"
                     onClick={() => {
-                      loginState
-                        ? set_book_modal_state(true)
-                        : loginclick.click();
+                      loginState ? checkForMobileNumber() : loginclick.click();
                     }}
                     _hover={{
                       background: "rgba(20, 17, 119,1)",
@@ -899,7 +961,7 @@ const AboutPackage = () => {
                       color: "white",
                     }}
                     onClick={() => {
-                      loginState ? onOpen() : loginclick.click();
+                      loginState ? handleCustomise() : loginclick.click();
                     }}
                   >
                     Customize
@@ -934,45 +996,6 @@ const AboutPackage = () => {
                   </Text>
                 </Box>
               </Box>
-              {/* <Box display={'flex'} justifyContent='center' mt='50px'>
-						<Box
-							w='90%'
-							bg='green.300'
-							textAlign={'center'}
-							display='flex'
-							alignItems={'center'}
-							gap={3}
-							px='10px'
-							py='15px'
-							borderRadius={'md'}
-							justifyContent='center'
-						>
-							<Icon as={IoLogoWhatsapp} color='green' />{' '}
-							<Text color='green'>Contact us on Whatsapp</Text>
-						</Box>
-					</Box> */}
-              {/* <Box display={'flex'} mt='50px' color={'black'}>
-						<Box
-							display={'flex'}
-							alignItems='center'
-							gap='10px'
-							flexGrow={1}
-							justifyContent='center'
-						>
-							<EmailIcon />
-							<Text>Mail this Quote</Text>
-						</Box>
-						<Box
-							display={'flex'}
-							alignItems='center'
-							gap='10px'
-							flexGrow={1}
-							justifyContent='center'
-						>
-							<Icon as={GiCancel} />
-							<Text>cancelation policy</Text>
-						</Box>
-					</Box> */}
             </Box>
           </Box>
           <Footer />

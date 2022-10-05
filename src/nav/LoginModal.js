@@ -7,12 +7,11 @@ import {
 	Button,
 	Box,
 	Text,
-	Icon,
 	Input,
 	useToast,
 	Image,
 } from '@chakra-ui/react';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AccessLoginContext } from '../context/LoginContext';
 import LoginApi from '../apis/LoginApi';
 import googleLoginApi from '../apis/googleLoginApi';
@@ -21,8 +20,7 @@ import googleIcon from '../assets/logo/icons8-google.svg';
 
 const LoginModal = ({ open, setOpen }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { setLoginState, setToken, setUsed, setProfileurl } =
-		AccessLoginContext();
+	const { setLoginState, setToken, setUsed, setProfileurl } = AccessLoginContext();
 	const [email, setEmail] = useState('');
 	const [checkEmail, setCheckEmail] = useState(false);
 	const [password, setPassword] = useState('');
@@ -31,6 +29,7 @@ const LoginModal = ({ open, setOpen }) => {
 	const toast = useToast();
 
 	const gLoginButton = useCallback((node) => {
+		console.log('click on google')
 		if (node !== null) {
 			/* global google */
 			google.accounts.id.initialize({
@@ -48,7 +47,7 @@ const LoginModal = ({ open, setOpen }) => {
 	const handleCallbackResponse = async (response) => {
 		console.log('google response is : ', response);
 		var userObj = jwt_decode(response.credential);
-		console.log(userObj);
+		console.log('userObj', userObj);
 
 		// this is what we do when user login
 		try {

@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-const getPackageApi = () => {
-	const [count, page] = [15, 1];
+const getPackageApi = (x = 15, y = 1) => {
+  const [count, page] = [x, y];
 
-	return axios.get('https://planmy.herokuapp.com/package/get-packages', {
-		count,
-		page,
-	});
+  return axios.get("/package/get-packages", {
+    count,
+    page,
+  });
 };
 
 export default getPackageApi;

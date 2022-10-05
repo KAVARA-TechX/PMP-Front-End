@@ -8,8 +8,16 @@ import {
 	Button,
 	Badge,
 	useToast,
+	AlertDialog,
+	AlertDialogOverlay,
+	AlertDialogContent,
+	AlertDialogHeader,
+	AlertDialogBody,
+	Input,
+	AlertDialogFooter,
+	useDisclosure,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoAirplaneSharp } from 'react-icons/io5';
 import { MdDateRange } from 'react-icons/md';
 import { MdPeopleAlt } from 'react-icons/md';
@@ -30,6 +38,12 @@ const UpcomingCard = ({ data, changeState }) => {
 	const [parts, setParts] = useState([]);
 	const toast = useToast();
 	const eDate = new Date(data.endDate);
+	const [refetch, set_refetch] = useState(false);
+
+	// for alert
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const cancleRef = useRef();
+	const [c_loading, set_c_loading] = useState(false);
 
 	const initializeRazorpay = () => {
 		return new Promise((resolve) => {
@@ -51,7 +65,7 @@ const UpcomingCard = ({ data, changeState }) => {
 		if (
 			parts_index === 0
 				? true
-				: parts[parts_index - 1].split('_').length === 2
+				: parts[parts_index - 1].status === true
 				? true
 				: false
 		) {
@@ -61,10 +75,11 @@ const UpcomingCard = ({ data, changeState }) => {
 				alert('Razorpay failed to load');
 			}
 
+			// check if it's last or not
 			const pay_status = parts_index + 1 === parts.length;
 
 			const order_data = await createOrderApi(
-				amount_to_be_paid * 100,
+				amount_to_be_paid.amount * 100,
 				'',
 				''
 			).then((res) => res);
@@ -78,7 +93,10 @@ const UpcomingCard = ({ data, changeState }) => {
 				image: logo,
 				handler: function (response) {
 					setParts((prev) => {
-						prev[parts_index] = `${amount_to_be_paid}_paid`;
+						prev[parts_index] = {
+							amount: amount_to_be_paid.amount,
+							status: true,
+						};
 						return [...prev];
 					});
 					handlePartsPackagePaid(pay_status);
@@ -158,9 +176,7 @@ const UpcomingCard = ({ data, changeState }) => {
 						: res.data.package[0]
 				);
 				try {
-					setParts(
-						data.paymentType.split(',')[0].split(':')[1].split('-')
-					);
+					setParts(data.paymentType.parts);
 					setLoading(false);
 				} catch (error) {
 					setParts([]);
@@ -173,21 +189,24 @@ const UpcomingCard = ({ data, changeState }) => {
 		};
 
 		getPackageData();
-	}, []);
+	}, [refetch]);
 
 	// -------------------------------------------------------
 
-	const handlePartsPackagePaid = async (pay_status) => {
+	const handlePartsPackagePaid = async (pay_status, parts_index) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/package/update-request-package',
+				'/package/update-request-package',
 				{
 					packageId: data._id,
-					paymentStatus: pay_status ? 'Done' : 'Confirmed',
-					paymentType: `parts:${parts.join('-')}`,
+					paymentStatus: pay_status
+						? { status: 'Done' }
+						: { status: 'Confirmed' },
+					paymentType: { parts: parts, normal: {} },
 				}
 			);
+			window.location.reload();
 		} catch (error) {}
 	};
 
@@ -197,10 +216,10 @@ const UpcomingCard = ({ data, changeState }) => {
 		try {
 			const response = await getUserinfoApi();
 			const res = await axios.patch(
-				'https://planmy.herokuapp.com/package/update-request-package',
+				'/package/update-request-package',
 				{
 					packageId: data._id,
-					paymentStatus: 'Done',
+					paymentStatus: { status: 'Done' },
 				}
 			);
 			console.log('resssssssssss : ', res);
@@ -213,11 +232,66 @@ const UpcomingCard = ({ data, changeState }) => {
 				isClosable: true,
 			});
 			changeState((prev) => !prev);
+			window.location.reload();
 		} catch (error) {}
+	};
+
+	const handleFormCancelStatus = async () => {
+		set_c_loading(true);
+		try {
+			const res = await axios.patch(
+				'/package/update-request-package',
+				{
+					packageId: data._id,
+					status:
+						data.paymentStatus.status === 'Done' ||
+						data.paymentStatus.status === 'Confirmed'
+							? 'RequestedCancellation'
+							: 'Cancelled',
+				}
+			);
+			console.log('i just want to cancel the request : ', res);
+			set_c_loading(false);
+			onClose();
+			set_refetch((prev) => !prev);
+		} catch (error) {
+			set_c_loading(false);
+		}
 	};
 
 	return (
 		<>
+			<AlertDialog
+				isOpen={isOpen}
+				onClose={onClose}
+				leastDestructiveRef={cancleRef}
+			>
+				<AlertDialogOverlay>
+					<AlertDialogContent bg='#fffdf7'>
+						<AlertDialogHeader fontSize={'lg'} fontWeight={'bold'}>
+							Are you sure?
+						</AlertDialogHeader>
+						<AlertDialogBody>
+							<Text mb='10px'>
+								Are you sure you want to cancel this trip?
+							</Text>
+						</AlertDialogBody>
+						<AlertDialogFooter>
+							<Button ref={cancleRef} onClick={onClose}>
+								Cancel
+							</Button>
+							<Button
+								colorScheme='red'
+								ml={3}
+								onClick={handleFormCancelStatus}
+								isLoading={c_loading}
+							>
+								Confirm
+							</Button>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialogOverlay>
+			</AlertDialog>
 			{console.log('data is : ', data)}
 			{loading ? (
 				<></>
@@ -226,29 +300,33 @@ const UpcomingCard = ({ data, changeState }) => {
 			) : (
 				<Box
 					w='100%'
-					h='300px'
+					h={{ base: 'fit-content', lg: '300px' }}
 					bg='transparent'
 					border='1px solid #2d3748'
 					borderRadius={'20px'}
 					overflow='hidden'
 					display={'flex'}
+					flexDir={{ base: 'column', lg: 'row' }}
 				>
 					<Box
-						w='30%'
-						h='100%'
-						bgImage={pkgData.image[0].url}
+						w={{ base: '100%', lg: '30%' }}
+						h={{ base: '300px', lg: '100%' }}
+						bgImage={pkgData.image[0].secure_url}
 						bgSize='cover'
 						bgPos={'50% 50%'}
 					></Box>
 					<Box
 						pl='10px'
-						w='35%'
+						w={{ base: '100%', lg: '35%' }}
 						display={'flex'}
 						flexDir='column'
 						pb='20px'
 					>
 						<Box h='fit-content'>
-							<Text fontSize={'24px'} fontWeight={700}>
+							<Text
+								fontSize={{ base: '20px', lg: '24px' }}
+								fontWeight={700}
+							>
 								{loading ? 'loading' : pkgData.packageTitle}
 							</Text>
 							<Box display={'flex'} mt='5px' pl='5px'>
@@ -260,11 +338,16 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={IoAirplaneSharp}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '16px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
 
-									<Text pl='10px'>{data.location}</Text>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
+										{data.location}
+									</Text>
 								</Box>
 								<Box
 									display={'flex'}
@@ -275,10 +358,13 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={MdDateRange}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '14px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
-									<Text pl='10px'>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
 										{`${sDate.getDate()}/${
 											sDate.getMonth() + 1
 										}/${sDate.getFullYear()}`}
@@ -295,10 +381,15 @@ const UpcomingCard = ({ data, changeState }) => {
 								>
 									<Icon
 										as={MdPeopleAlt}
-										fontSize={'20px'}
-										color='rgba(255,255,255,.5)'
+										fontSize={{ base: '14px', lg: '20px' }}
+										color='rgba(0,0,0,.5)'
 									/>
-									<Text pl='10px'>{data.numberOfPeople}</Text>
+									<Text
+										pl='10px'
+										fontSize={{ base: '14px', lg: '20px' }}
+									>
+										{data.numberOfPeople}
+									</Text>
 								</Box>
 							</Box>
 						</Box>
@@ -306,7 +397,7 @@ const UpcomingCard = ({ data, changeState }) => {
 							flexGrow={1}
 							mt='20px'
 							ml='20px'
-							display={'grid'}
+							display={{ base: 'none', lg: 'grid' }}
 							gridTemplateColumns='repeat(3,1fr)'
 						>
 							<Box>
@@ -343,11 +434,14 @@ const UpcomingCard = ({ data, changeState }) => {
 								Room Type :<br /> {pkgData.roomType}
 							</Text>
 						</Box>
-						{data.pdf !== undefined ? (
+						{data.pdf === undefined || data.pdf === '' ? (
+							<></>
+						) : (
 							<Box
 								display={'flex'}
 								alignItems='center'
 								gap='10px'
+								pt={{ base: '20px', lg: '' }}
 							>
 								<Text>See complete package : </Text>
 								<a href={data.pdf} target='blank'>
@@ -358,18 +452,18 @@ const UpcomingCard = ({ data, changeState }) => {
 									/>
 								</a>
 							</Box>
-						) : (
-							<></>
 						)}
 					</Box>
 					<Box
-						h='100%'
-						w='35%'
+						h={{ base: 'fit-content', lg: '100%' }}
+						w={{ base: '100%', lg: '35%' }}
 						bg='gray.700'
 						pr='20px'
 						display={'flex'}
 						flexDir='column'
 						color='#fff'
+						position='relative'
+						pb={{ base: '50px', lg: '' }}
 					>
 						<Box
 							pr='20px'
@@ -384,11 +478,13 @@ const UpcomingCard = ({ data, changeState }) => {
 								flexDir={'column'}
 								alignItems={'flex-start '}
 							>
-								<Text fontSize={'18px'}>Total Amount</Text>
-								<Text fontSize={'24px'} fontWeight={700}>
-									{/* {payOption === 'pay now'
-										? 'Rs 30,000/-'
-										: 'Rs 9,000/month'} */}
+								<Text fontSize={{ base: '16px', lg: '18px' }}>
+									Total Amount
+								</Text>
+								<Text
+									fontSize={{ base: '16px', lg: '18px' }}
+									fontWeight={700}
+								>
 									{'Rs ' + pkgData.startingPrice}
 								</Text>
 							</Box>
@@ -398,16 +494,29 @@ const UpcomingCard = ({ data, changeState }) => {
 								alignItems={'flex-end'}
 								gap='10px'
 							>
+								{/* shows payment status processing or done */}
 								<Box
-									fontSize='20px'
+									fontSize={{ base: '14px', lg: '20px' }}
 									display={
-										data.paymentStatus === 'Confirmed'
+										data.status === 'Cancelled'
+											? 'inline-block'
+											: data.status ===
+											  'RequestedCancellation'
+											? 'inline-block'
+											: data.paymentStatus.status ===
+											  'Confirmed'
 											? 'none'
 											: 'inline-block'
 									}
 									bg={
-										data.paymentStatus === 'Done'
-											? 'green.500'
+										data.status === 'Cancelled'
+											? 'red'
+											: data.paymentStatus.status ===
+											  'Done'
+											? data.status ===
+											  'RequestedCancellation'
+												? 'red.500'
+												: 'green.500'
 											: 'rgba(255,240,0,.3)'
 									}
 									color='#fff'
@@ -417,23 +526,34 @@ const UpcomingCard = ({ data, changeState }) => {
 									borderRadius={'10px'}
 									fontWeight={600}
 								>
-									{data.paymentStatus === undefined
+									{data.status === 'Cancelled'
+										? 'Cancelled'
+										: data.status ===
+										  'RequestedCancellation'
+										? 'Requested Cancellation'
+										: data.paymentStatus.status ===
+										  undefined
 										? 'Processing'
-										: data.paymentStatus === 'Done'
+										: data.paymentStatus.status === 'Done'
 										? 'Booked'
 										: 'Processing'}
 								</Box>
+
 								<Box
+									fontSize={{ base: '14px', lg: '20px' }}
 									display={
-										data.paymentStatus === 'Confirmed'
+										data.paymentStatus.status ===
+										'Confirmed'
 											? 'inline-block'
 											: 'none'
 									}
 								>
-									<Text fontSize={'16px'}>Payment Plan</Text>
+									<Text>Payment Plan</Text>
 									{parts.length === 0 ? (
 										<></>
-									) : parts[0].split('_').length === 2 ? (
+									) : parts.filter((data) => {
+											return data.status;
+									  }).length !== 0 ? (
 										<Text
 											color='gray.400'
 											textAlign={'end'}
@@ -456,186 +576,38 @@ const UpcomingCard = ({ data, changeState }) => {
 											</option>
 										</Select>
 									)}
-									{/* <Select
-										w='130px'
-										value={payOption}
-										onChange={(e) => {
-											setPayOption(e.target.value);
-										}}
-									>
-										<option value={'pay now'}>
-											pay now
-										</option>
-										<option value='pay in parts'>
-											pay in parts
-										</option>
-									</Select> */}
 								</Box>
 							</Box>
 						</Box>
-						{payOption === 'pay now' ? (
-							parts.length === 0 ? (
-								<></>
-							) : parts[0].split('_').length === 2 ? (
-								<Box
-									flexGrow={1}
-									display='flex'
-									flexDir={'column'}
-									justifyContent='center'
-									alignItems={'center'}
-									pb='20px'
+						{payOption === 'pay now' &&
+						parts.filter((data) => {
+							return data.status;
+						}).length === 0 ? (
+							<Box
+								fontSize={{ base: '14px', lg: '20px' }}
+								pb='40px'
+								display={
+									data.paymentStatus.status === 'Requested'
+										? 'none'
+										: data.paymentStatus.status === 'Done'
+										? 'none'
+										: 'flex'
+								}
+								flexGrow={1}
+								flexDir='column'
+								justifyContent='flex-end'
+								mt='20px'
+								alignItems={'center'}
+							>
+								<Button
+									bg='#0e87f6'
+									w='80%'
+									onClick={handleBookNow}
+									isLoading={payLoading}
 								>
-									<Box
-										w='100%'
-										pb='20px'
-										display={'grid'}
-										flexGrow={1}
-										gridTemplateColumns='repeat(3,1fr)'
-										mt='20px'
-										alignItems={'center'}
-										gap='10px 10px'
-										pl='20px'
-									>
-										{parts.map((data, index) => {
-											return (
-												<Box
-													border={
-														'1px solid rgba(0,0,0,.6)'
-													}
-													borderRadius={'10px'}
-													overflow='hidden'
-												>
-													<Text
-														bg='rgba(0,0,0,.6)'
-														textAlign={'center'}
-													>
-														Month-{index + 1}
-													</Text>
-													<Box
-														display={'flex'}
-														justifyContent='center'
-														py='5px'
-													>
-														{data.split('_')
-															.length === 2 ? (
-															<Button
-																bg='green.400'
-																w='80%'
-																_hover={{
-																	background:
-																		'green.400',
-																}}
-																cursor={
-																	'not-allowed'
-																}
-															>
-																Paid
-															</Button>
-														) : (
-															<Button
-																bg='#0e87f6'
-																w='80%'
-																onClick={() => {
-																	handlePayInParts(
-																		data,
-																		index
-																	);
-																}}
-															>
-																Pay - {data}
-															</Button>
-														)}
-													</Box>
-												</Box>
-											);
-										})}
-
-										{/* <Box
-										border={'1px solid rgba(0,0,0,.6)'}
-										borderRadius={'10px'}
-										overflow='hidden'
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-2
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
-										{/* <Box
-										borderRadius={'10px'}
-										overflow='hidden'
-										border={'1px solid rgba(0,0,0,.6)'}
-									>
-										<Text
-											bg='rgba(0,0,0,.6)'
-											textAlign={'center'}
-										>
-											Month-3
-										</Text>
-										<Box
-											display={'flex'}
-											justifyContent='center'
-											py='5px'
-											bg='transparent'
-										>
-											<Button bg='#32BAC9' w='80%'>
-												Pay
-											</Button>
-										</Box>
-									</Box> */}
-									</Box>
-									<Box>
-										<Text
-											textDecor={'underline'}
-											textAlign='center'
-											color='rgba(255,255,255,.5)'
-										>
-											Cancel Booking
-										</Text>
-									</Box>
-								</Box>
-							) : (
-								<Box
-									pb='20px'
-									display={
-										data.paymentStatus === 'Requested'
-											? 'none'
-											: data.paymentStatus === 'Done'
-											? 'none'
-											: 'flex'
-									}
-									flexGrow={1}
-									flexDir='column'
-									justifyContent='flex-end'
-									mt='20px'
-									alignItems={'center'}
-								>
-									<Button
-										bg='#0e87f6'
-										w='80%'
-										onClick={handleBookNow}
-										isLoading={payLoading}
-									>
-										Pay Now
-									</Button>
-									<Text
-										textDecor={'underline'}
-										color='rgba(255,255,255,.5)'
-									>
-										Cancel Booking
-									</Text>
-								</Box>
-							)
+									Pay Now
+								</Button>
+							</Box>
 						) : (
 							<Box
 								flexGrow={1}
@@ -644,6 +616,7 @@ const UpcomingCard = ({ data, changeState }) => {
 								justifyContent='center'
 								alignItems={'center'}
 								pb='20px'
+								fontSize={{ base: '14px', lg: '20px' }}
 							>
 								<Box
 									w='100%'
@@ -676,8 +649,7 @@ const UpcomingCard = ({ data, changeState }) => {
 													justifyContent='center'
 													py='5px'
 												>
-													{data.split('_').length ===
-													2 ? (
+													{data.status === true ? (
 														<Button
 															bg='green.400'
 															w='80%'
@@ -702,7 +674,7 @@ const UpcomingCard = ({ data, changeState }) => {
 																);
 															}}
 														>
-															Pay - {data}
+															Pay - {data.amount}
 														</Button>
 													)}
 												</Box>
@@ -710,15 +682,27 @@ const UpcomingCard = ({ data, changeState }) => {
 										);
 									})}
 								</Box>
-								<Box>
-									<Text
-										textDecor={'underline'}
-										textAlign='center'
-										color='rgba(255,255,255,.5)'
-									>
-										Cancel Booking
-									</Text>
-								</Box>
+							</Box>
+						)}
+						{data.status === 'Cancelled' ||
+						data.status === 'RequestedCancellation' ? (
+							<></>
+						) : (
+							<Box
+								position={'absolute'}
+								bottom='10px'
+								left='50%'
+								transform={'translateX(-50%)'}
+							>
+								<Text
+									textDecor={'underline'}
+									textAlign='center'
+									color='rgba(255,255,255,.5)'
+									onClick={onOpen}
+									cursor='pointer'
+								>
+									Cancel Booking
+								</Text>
 							</Box>
 						)}
 					</Box>

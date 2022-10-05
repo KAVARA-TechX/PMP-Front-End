@@ -1,4 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -8,6 +9,8 @@ import { LoginProvider } from './context/LoginContext';
 import './index.css';
 
 const root_tag = document.getElementById('root');
+
+axios.defaults.baseURL = 'https://planmyleisure.herokuapp.com'
 
 ReactDOM.render(
 	<LoginProvider>

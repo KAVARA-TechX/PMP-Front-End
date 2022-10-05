@@ -1,12 +1,17 @@
 import { CheckIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
-// import { da } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
-import img from '../../assets/footer.jpg';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import React from 'react';
 
-const PackageCard = (data) => {
+const PackageCard = ({
+	data,
+	fromSearchPage,
+	checkInDate,
+	checkOutDate,
+	guests,
+}) => {
 	const navigate = useNavigate();
 
 	return (
@@ -24,11 +29,11 @@ const PackageCard = (data) => {
 				boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
 			}}
 		>
-			{data.data.image.length === 1 ? (
+			{data.image.length === 1 ? (
 				<Box
 					h={{ base: '200px', lg: '100%' }}
 					w={{ base: '100%', lg: '30%' }}
-					bgImg={data.data.image[0].url}
+					bgImg={data.image[0].secure_url}
 					bgSize='cover'
 					bgPos={'50% 50%'}
 				></Box>
@@ -38,32 +43,33 @@ const PackageCard = (data) => {
 					w={{ base: '100%', lg: '30%' }}
 				>
 					<Splide aria-label='images' className='splide-slide'>
-						{data.data.image.map((data, index) => {
+						{data.image.map((data, index) => {
 							return (
 								<SplideSlide key={index}>
 									{data.resource_type === 'video' ? (
 										<Box
 											w='100%'
 											h={{ base: '200px', lg: '400px' }}
-										>
-											<video
-												autoPlay
+											dangerouslySetInnerHTML={{
+												__html: `<video
+												autoplay
 												muted
 												loop
-												style={{
-													height: '100%',
-													width: '100%',
-													objectFit: 'cover',
-												}}
+												style="
+													height: 100%;
+													width: 100%;
+													object-fit: cover;
+												"
 											>
-												<source src={data.url} />
-											</video>
-										</Box>
+												<source src=${data.secure_url} />
+											</video>`,
+											}}
+										></Box>
 									) : (
 										<Box
 											w='100%'
 											h={{ base: '200px', lg: '400px' }}
-											bgImage={data.url}
+											bgImage={data.secure_url}
 											bgSize={'cover'}
 											bgPos='50% 50%'
 										></Box>
@@ -84,7 +90,7 @@ const PackageCard = (data) => {
 				w={{ base: '100%', lg: '40%' }}
 			>
 				<Text fontSize={20} fontWeight={700}>
-					{data.data.packageTitle}
+					{data.packageTitle}
 				</Text>
 				<Text display={'flex'} alignItems='center' gap={1}></Text>
 				<Box
@@ -97,23 +103,23 @@ const PackageCard = (data) => {
 					pl={5}
 					pr={5}
 				>
-					<Text as='li'>{data.data.packageDetail1}</Text>
-					{data.data.packageDetail2 === '' ? (
+					<Text as='li'>{data.packageDetail1}</Text>
+					{data.packageDetail2 === '' ? (
 						<></>
 					) : (
-						<Text as='li'>{data.data.packageDetail2}</Text>
+						<Text as='li'>{data.packageDetail2}</Text>
 					)}
 
-					{data.data.packageDetail3 === '' ? (
+					{data.packageDetail3 === '' ? (
 						<></>
 					) : (
-						<Text as='li'>{data.data.packageDetail3}</Text>
+						<Text as='li'>{data.packageDetail3}</Text>
 					)}
-					{data.data.packageDetail4 === '' ||
-					data.data.packageDetail4 === undefined ? (
+					{data.packageDetail4 === '' ||
+					data.packageDetail4 === undefined ? (
 						<></>
 					) : (
-						<Text as='li'>{data.data.packageDetail4}</Text>
+						<Text as='li'>{data.packageDetail4}</Text>
 					)}
 				</Box>
 				<Box flexGrow={2} mt={5} />
@@ -134,11 +140,11 @@ const PackageCard = (data) => {
 				</Box>
 				<Box display={{ base: 'inline-block', lg: 'none' }}>
 					<Text textAlign={'start'} fontWeight={600}>
-						{data.data.packageTitle}
+						{data.packageTitle}
 					</Text>
 				</Box>
 				<Box display={'flex'} flexWrap='wrap'>
-					{String(data.data.inclusion)
+					{String(data.inclusion)
 						.split(',')
 						.map((item, index) => {
 							return (
@@ -175,7 +181,7 @@ const PackageCard = (data) => {
 						display={'flex'}
 						alignItems='end'
 					>
-						<Text>₹{data.data.startingPrice}</Text>
+						<Text>₹{data.startingPrice}</Text>
 						<Text fontSize={15} color='whiteAlpha.700'>
 							/person
 						</Text>
@@ -195,7 +201,17 @@ const PackageCard = (data) => {
 							color: 'rgba(0,0,0,.8)',
 						}}
 						onClick={() => {
-							navigate(`/about-package/${data.data.packageId}`);
+							if (fromSearchPage) {
+								navigate(`/about-package/${data.packageId}`, {
+									state: {
+										checkInDate: checkInDate,
+										checkOutDate: checkOutDate,
+										guests: guests,
+									},
+								});
+							} else {
+								navigate(`/about-package/${data.packageId}`);
+							}
 						}}
 					>
 						View Package
@@ -206,4 +222,4 @@ const PackageCard = (data) => {
 	);
 };
 
-export default PackageCard;
+export default React.memo(PackageCard);

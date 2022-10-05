@@ -1,24 +1,35 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import Hero from './heroSection/Hero';
 import { Box, Icon, Skeleton, Text, useToast } from '@chakra-ui/react';
-import Banner from './banner/Banner';
 import { useLocation } from 'react-router-dom';
 import { BiChevronRight } from 'react-icons/bi';
-import Footer from './footer/Footer';
-import SpaceBetween from './spaceBetween/SpaceBetween';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/src/ScrollTrigger';
+// import Hero from './heroSection/Hero';
+// import Facts from './facts/Facts';
+// import Packages from './packages/Packages';
+// import DreamVacation from './dreamVacation/DreamVacation';
+// import Banner from './banner/Banner';
+// import { FaCaretSquareRight } from 'react-icons/fa';
+// import ImageSlider from './imageSlider/ImageSlider';
+// import IconSection from './iconSection/IconSection';
+// import Blog from './blogs/Blog';
+// import Footer from './footer/Footer';
+
+const Hero = lazy(() => {
+	return import('./heroSection/Hero');
+});
 
 const Facts = lazy(() => {
 	return import('./facts/Facts');
 });
-const DreamVacation = lazy(() => {
-	return import('./dreamVacation/DreamVacation');
-});
+
 const Packages = lazy(() => {
 	return import('./packages/Packages');
 });
-
+const DreamVacation = lazy(() => {
+	return import('./dreamVacation/DreamVacation');
+});
+const Banner = lazy(() => {
+	return import('./banner/Banner');
+});
 const ImageSlider = lazy(() => {
 	return import('./imageSlider/ImageSlider');
 });
@@ -28,9 +39,9 @@ const IconSection = lazy(() => {
 const Blog = lazy(() => {
 	return import('./blogs/Blog');
 });
-// const Partners = lazy(() => {
-// 	return import('./partners/Partners');
-// });
+const Footer = lazy(() => {
+	return import('./footer/Footer');
+});
 
 //  loading for facts
 const LoadingForFacts = () => {
@@ -407,7 +418,6 @@ const LoadingBlogs = () => {
 };
 
 const Homepage = () => {
-	const [load, setLoad] = useState(false);
 	const location = useLocation();
 	const toast = useToast();
 
@@ -433,36 +443,40 @@ const Homepage = () => {
 
 	return (
 		<Box overflow='hidden'>
-			<Hero /> {/* Responsive Done */}
-			{true ? (
-				<>
-					<Suspense fallback={<LoadingForFacts />}>
-						<Facts />
-					</Suspense>
-					<Suspense fallback={<LoadingPackages />}>
-						<Packages />
-					</Suspense>
-					<Suspense fallback={<LoadingDreamVacation />}>
-						<DreamVacation />
-					</Suspense>
-					<SpaceBetween space='50px' />
-					<Suspense fallback={<LoadingBanner />}>
-						<Banner />
-					</Suspense>
-					<Suspense fallback={<LoadingImageSlider />}>
-						<ImageSlider />
-					</Suspense>
-					<Suspense fallback={<LoadingDreamVacation />}>
-						<IconSection />
-					</Suspense>
-					<Suspense fallback={<LoadingBlogs />}>
-						<Blog />
-					</Suspense>
-					<Footer />
-				</>
-			) : (
-				<></>
-			)}
+			<Suspense fallback={<Skeleton h='500px' />}>
+				<Hero />
+			</Suspense>
+			<Suspense fallback={<LoadingForFacts />}>
+				<Facts />
+			</Suspense>
+
+			<Suspense fallback={<LoadingPackages />}>
+				<Packages />
+			</Suspense>
+
+			<Suspense fallback={<LoadingDreamVacation />}>
+				<DreamVacation />
+			</Suspense>
+
+			<Suspense fallback={<LoadingBanner />}>
+				<Banner />
+			</Suspense>
+
+			<Suspense fallback={<LoadingImageSlider />}>
+				<ImageSlider />
+			</Suspense>
+
+			<Suspense fallback={<LoadingDreamVacation />}>
+				<IconSection />
+			</Suspense>
+
+			<Suspense fallback={<LoadingBlogs />}>
+				<Blog />
+			</Suspense>
+
+			<Suspense fallback={''}>
+				<Footer />
+			</Suspense>
 		</Box>
 	);
 };
