@@ -835,7 +835,6 @@ const AboutPackage = () => {
                   {pkgData.packageDetail4}
                 </Text>
               </Box>
-
               <Box mt="30px">
                 <Text fontSize={"24px"} fontWeight={600}>
                   Inclusions
@@ -885,7 +884,7 @@ const AboutPackage = () => {
                   Flights
                 </Text>
                 <Text fontSize={"20px"} pl="5px">
-                  {pkgData.flightDetails.details}
+                  {pkgData.flightDetails ? pkgData.flightDetails.details : ""}
                 </Text>
               </Box>
             </Box>
