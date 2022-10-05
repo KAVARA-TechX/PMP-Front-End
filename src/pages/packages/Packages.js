@@ -161,6 +161,7 @@ const PackagesPage = () => {
 					>
 						Load more
 					</Button>
+
 				</Box>
 			</Box>
 			<Footer />

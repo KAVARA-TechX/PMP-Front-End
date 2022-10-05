@@ -24,6 +24,7 @@ import { lazy, Suspense } from 'react';
 // import AboutUs from './AboutUs';
 // import ContactUs from './pages/contactUs/ContactUs';
 
+
 const Homepage = lazy(() => {
 	return import('./Homepage');
 });
