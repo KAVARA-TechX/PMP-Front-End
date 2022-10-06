@@ -99,8 +99,9 @@ const BookModal = ({
       setChoosed(new Date());
     }
 
+    setShowConfigRoom(true);
     setShowDate((prev) => !prev);
-    setShowEndDate(true);
+    // setShowEndDate(true);
   };
 
   const handleEndDate = (e) => {
@@ -293,7 +294,7 @@ const BookModal = ({
           ) : (
             <></>
           )}
-          {showEndDate ? (
+          {/* {showEndDate ? (
             <Box w="400px" pt="50px">
               <Text
                 fontSize={20}
@@ -341,7 +342,7 @@ const BookModal = ({
             </Box>
           ) : (
             <></>
-          )}
+          )} */}
           {showConfigRoom ? (
             <Box w="400px" display={"flex"} flexDir="column">
               <Text
@@ -358,7 +359,7 @@ const BookModal = ({
                   cursor="pointer"
                   onClick={() => {
                     setShowConfigRoom(false);
-                    setShowCity(true);
+                    setShowDate(true);
                   }}
                 />
                 Configure your room
