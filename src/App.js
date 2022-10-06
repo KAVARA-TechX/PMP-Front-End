@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 // import Homepage from './Homepage';
 // import SearchResult from './pages/SearchResult/SearchResult';
@@ -24,262 +24,261 @@ import { lazy, Suspense } from 'react';
 // import AboutUs from './AboutUs';
 // import ContactUs from './pages/contactUs/ContactUs';
 
-
 const Homepage = lazy(() => {
-	return import('./Homepage');
+  return import("./Homepage");
 });
 const SearchResult = lazy(() => {
-	return import('./pages/SearchResult/SearchResult');
+  return import("./pages/SearchResult/SearchResult");
 });
 const BlogList = lazy(() => {
-	return import('./pages/BlogsList/BlogList');
+  return import("./pages/BlogsList/BlogList");
 });
 const BlogDetails = lazy(() => {
-	return import('./pages/BlogsList/BlogDetails');
+  return import("./pages/BlogsList/BlogDetails");
 });
 const PackagesPage = lazy(() => {
-	return import('./pages/packages/Packages');
+  return import("./pages/packages/Packages");
 });
 const Hotels = lazy(() => {
-	return import('./pages/hotels/Hotels');
+  return import("./pages/hotels/Hotels");
 });
 const ListingPage = lazy(() => {
-	return import('./pages/listingPage/ListingPage');
+  return import("./pages/listingPage/ListingPage");
 });
 const AboutPackage = lazy(() => {
-	return import('./pages/aboutPackage/AboutPackage');
+  return import("./pages/aboutPackage/AboutPackage");
 });
 const PrivacyPolicy = lazy(() => {
-	return import('./pages/privacyPolicy/PrivacyPolicy');
+  return import("./pages/privacyPolicy/PrivacyPolicy");
 });
 const TermsOfUse = lazy(() => {
-	return import('./pages/TermsOfUse/TermsOfUse');
+  return import("./pages/TermsOfUse/TermsOfUse");
 });
 const UserActivation = lazy(() => {
-	return import('./pages/UserActivation/UserActivation');
+  return import("./pages/UserActivation/UserActivation");
 });
 const Cancellation = lazy(() => {
-	return import('./pages/Cancellation/Cancellation');
+  return import("./pages/cancellation/Cancellation");
 });
 const RefundPage = lazy(() => {
-	return import('./pages/RefundPage/RefundPage');
+  return import("./pages/RefundPage/RefundPage");
 });
 const MyBookings = lazy(() => {
-	return import('./pages/myBookings/MyBookings');
+  return import("./pages/myBookings/MyBookings");
 });
 const Upcoming = lazy(() => {
-	return import('./pages/myBookings/Upcoming');
+  return import("./pages/myBookings/Upcoming");
 });
 const Completed = lazy(() => {
-	return import('./pages/myBookings/Completed');
+  return import("./pages/myBookings/Completed");
 });
 const Cancelled = lazy(() => {
-	return import('./pages/myBookings/Cancelled');
+  return import("./pages/myBookings/Cancelled");
 });
 const Profile = lazy(() => {
-	return import('./pages/profile/Profile');
+  return import("./pages/profile/Profile");
 });
 const Faq = lazy(() => {
-	return import('./Faq');
+  return import("./Faq");
 });
 const Tac = lazy(() => {
-	return import('./Tac');
+  return import("./Tac");
 });
 const AboutUs = lazy(() => {
-	return import('./AboutUs');
+  return import("./AboutUs");
 });
 const ContactUs = lazy(() => {
-	return import('./pages/contactUs/ContactUs');
+  return import("./pages/contactUs/ContactUs");
 });
 
 const App = () => {
-	return (
-		<Routes>
-			<Route
-				path='/'
-				element={
-					<Suspense fallback={''}>
-						<Homepage />
-					</Suspense>
-				}
-			/>
-			<Route path='search'>
-				<Route
-					path=':location/:checkInDate/:guests'
-					element={
-						<Suspense fallback={''}>
-							<SearchResult />
-						</Suspense>
-					}
-				/>
-			</Route>
-			<Route path='blogs'>
-				<Route
-					index
-					element={
-						<Suspense fallback={''}>
-							<BlogList />
-						</Suspense>
-					}
-				/>
-				<Route
-					path=':id'
-					element={
-						<Suspense fallback={''}>
-							<BlogDetails />
-						</Suspense>
-					}
-				/>
-			</Route>
-			<Route
-				path='/packages'
-				element={
-					<Suspense fallback={''}>
-						<PackagesPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/Hotels'
-				element={
-					<Suspense fallback={''}>
-						<Hotels />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/listing'
-				element={
-					<Suspense fallback={''}>
-						<ListingPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/about-package/:id'
-				element={
-					<Suspense fallback={''}>
-						<AboutPackage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/privacy-policy'
-				element={
-					<Suspense fallback={''}>
-						<PrivacyPolicy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/terms-of-use'
-				element={
-					<Suspense fallback={''}>
-						<TermsOfUse />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/user/activate/:token'
-				element={
-					<Suspense fallback={''}>
-						<UserActivation />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/cancellation'
-				element={
-					<Suspense fallback={''}>
-						<Cancellation />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/refund'
-				element={
-					<Suspense fallback={''}>
-						<RefundPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/mybookings'
-				element={
-					<Suspense fallback={''}>
-						<MyBookings />
-					</Suspense>
-				}
-			>
-				<Route
-					index
-					element={
-						<Suspense fallback={''}>
-							<Upcoming />
-						</Suspense>
-					}
-				/>
-				<Route
-					path='completed'
-					element={
-						<Suspense fallback={''}>
-							<Completed />
-						</Suspense>
-					}
-				/>
-				<Route
-					path='cancelled'
-					element={
-						<Suspense fallback={''}>
-							<Cancelled />
-						</Suspense>
-					}
-				/>
-			</Route>
-			<Route path='/profile'>
-				<Route
-					index
-					element={
-						<Suspense fallback={''}>
-							<Profile />
-						</Suspense>
-					}
-				/>
-			</Route>
-			<Route
-				path='/faq'
-				element={
-					<Suspense fallback={''}>
-						<Faq />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/terms-and-conditions'
-				element={
-					<Suspense fallback={''}>
-						<Tac />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/about-us'
-				element={
-					<Suspense fallback={''}>
-						<AboutUs />
-					</Suspense>
-				}
-			/>
-			<Route
-				path='/contactUs'
-				element={
-					<Suspense fallback={''}>
-						<ContactUs />
-					</Suspense>
-				}
-			/>
-		</Routes>
-	);
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={""}>
+            <Homepage />
+          </Suspense>
+        }
+      />
+      <Route path="search">
+        <Route
+          path=":location/:checkInDate/:guests"
+          element={
+            <Suspense fallback={""}>
+              <SearchResult />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route path="blogs">
+        <Route
+          index
+          element={
+            <Suspense fallback={""}>
+              <BlogList />
+            </Suspense>
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <Suspense fallback={""}>
+              <BlogDetails />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route
+        path="/packages"
+        element={
+          <Suspense fallback={""}>
+            <PackagesPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/Hotels"
+        element={
+          <Suspense fallback={""}>
+            <Hotels />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/listing"
+        element={
+          <Suspense fallback={""}>
+            <ListingPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/about-package/:id"
+        element={
+          <Suspense fallback={""}>
+            <AboutPackage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/privacy-policy"
+        element={
+          <Suspense fallback={""}>
+            <PrivacyPolicy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/terms-of-use"
+        element={
+          <Suspense fallback={""}>
+            <TermsOfUse />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/user/activate/:token"
+        element={
+          <Suspense fallback={""}>
+            <UserActivation />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/cancellation"
+        element={
+          <Suspense fallback={""}>
+            <Cancellation />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/refund"
+        element={
+          <Suspense fallback={""}>
+            <RefundPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/mybookings"
+        element={
+          <Suspense fallback={""}>
+            <MyBookings />
+          </Suspense>
+        }
+      >
+        <Route
+          index
+          element={
+            <Suspense fallback={""}>
+              <Upcoming />
+            </Suspense>
+          }
+        />
+        <Route
+          path="completed"
+          element={
+            <Suspense fallback={""}>
+              <Completed />
+            </Suspense>
+          }
+        />
+        <Route
+          path="cancelled"
+          element={
+            <Suspense fallback={""}>
+              <Cancelled />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route path="/profile">
+        <Route
+          index
+          element={
+            <Suspense fallback={""}>
+              <Profile />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route
+        path="/faq"
+        element={
+          <Suspense fallback={""}>
+            <Faq />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/terms-and-conditions"
+        element={
+          <Suspense fallback={""}>
+            <Tac />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/about-us"
+        element={
+          <Suspense fallback={""}>
+            <AboutUs />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/contactUs"
+        element={
+          <Suspense fallback={""}>
+            <ContactUs />
+          </Suspense>
+        }
+      />
+    </Routes>
+  );
 };
 
 export default App;
