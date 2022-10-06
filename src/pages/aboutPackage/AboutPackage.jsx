@@ -336,419 +336,424 @@ const AboutPackage = () => {
   };
 
   return (
-    <>
-      {clicked_on === "book_now" ? (
-        <PhoneNumberModal
-          state={phone_modal}
-          changeState={set_phone_modal}
-          nextModal={set_book_modal_state}
+    !pkgData.isArchived && (
+      <>
+        {clicked_on === "book_now" ? (
+          <PhoneNumberModal
+            state={phone_modal}
+            changeState={set_phone_modal}
+            nextModal={set_book_modal_state}
+          />
+        ) : (
+          <PhoneNumberModal
+            state={phone_modal}
+            changeState={set_phone_modal}
+            anotherModal={onOpen}
+          />
+        )}
+        <BookModal
+          state={book_modal_state}
+          changeState={set_book_modal_state}
+          pkgData={pkgData}
+          data={data_from_prev_page}
+          bookNowButtonLoading={setBooknowLoading}
         />
-      ) : (
-        <PhoneNumberModal
-          state={phone_modal}
-          changeState={set_phone_modal}
-          anotherModal={onOpen}
-        />
-      )}
-      <BookModal
-        state={book_modal_state}
-        changeState={set_book_modal_state}
-        pkgData={pkgData}
-        data={data_from_prev_page}
-        bookNowButtonLoading={setBooknowLoading}
-      />
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        size="full"
-        isCentered
-        position="relative"
-      >
-        <ModalOverlay />
-        <ModalContent bg="transparent" overflow={"hidden"}>
-          <Box
-            w="fit-content"
-            h="500px"
-            position={"absolute"}
-            bg="#FFFDF7"
-            top="50%"
-            left="50%"
-            transform={"translate(-50%,-50%)"}
-            borderRadius="xl"
-            display={"flex"}
-            overflow="hidden"
-          >
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size="full"
+          isCentered
+          position="relative"
+        >
+          <ModalOverlay />
+          <ModalContent bg="transparent" overflow={"hidden"}>
             <Box
-              w="300px"
-              bgImg={sideImg}
-              bgSize="cover"
-              display={{ base: "none", lg: "block" }}
-            ></Box>
-            {showDate ? (
-              <Box w="400px" pt="50px">
-                <Text
-                  fontSize={20}
-                  fontWeight={600}
-                  textAlign="center"
-                  display={"flex"}
-                  justifyContent="space-around"
-                  alignItems={"center"}
-                >
-                  <Box></Box>
-                  Check-in date
-                  <CloseIcon
-                    fontSize={13}
-                    cursor="pointer"
-                    onClick={() => {
-                      onClose();
-                    }}
-                  />
-                </Text>
-                <Box
-                  h="100%"
-                  w="100%"
-                  display={"flex"}
-                  justifyContent="center"
-                  pt={"50px"}
-                >
-                  <DayPicker
-                    selected={choosed}
-                    onSelect={handleDate}
-                    mode="single"
-                    fromMonth={new Date()}
-                    disabled={{ before: new Date() }}
-                  />
-                </Box>
-              </Box>
-            ) : (
-              <></>
-            )}
-            {showEndDate ? (
-              <Box w="400px" pt="50px">
-                <Text
-                  fontSize={20}
-                  fontWeight={600}
-                  textAlign="center"
-                  display={"flex"}
-                  justifyContent="space-around"
-                  alignItems={"center"}
-                >
-                  <ArrowBackIcon
-                    fontSize={20}
-                    cursor="pointer"
-                    onClick={() => {
-                      setShowEndDate(false);
-                      setShowDate(true);
-                    }}
-                  />
-                  Check-out date
-                  <CloseIcon
-                    fontSize={13}
-                    cursor="pointer"
-                    onClick={() => {
-                      onClose();
-                    }}
-                  />
-                </Text>
-                <Box
-                  h="100%"
-                  w="100%"
-                  display={"flex"}
-                  justifyContent="center"
-                  pt={"50px"}
-                >
-                  <DayPicker
-                    selected={choosed}
-                    onSelect={handleEndDate}
-                    mode="single"
-                    fromMonth={endDateFromMonth}
-                    disabled={{
-                      before: addDays(endDateFromMonth, 3),
-                    }}
-                  />
-                </Box>
-              </Box>
-            ) : (
-              <></>
-            )}
-            {/* choose your departure city */}
-            {showCity ? (
-              <Box w="400px" display={"flex"} flexDir="column">
-                <Text
-                  fontSize={20}
-                  fontWeight={600}
-                  textAlign="center"
-                  pt="40px"
-                  display={"flex"}
-                  justifyContent="space-around"
-                  alignItems={"center"}
-                >
-                  <ArrowBackIcon
-                    fontSize={20}
-                    cursor="pointer"
-                    onClick={() => {
-                      setShowCity(false);
-                      setShowEndDate(true);
-                    }}
-                  />
-                  Choose your departure city
-                  <CloseIcon
-                    fontSize={13}
-                    cursor="pointer"
-                    onClick={() => {
-                      onClose();
-                    }}
-                  />
-                </Text>
-                <Box mx="20px" mt="20px">
-                  <Input
-                    type="text"
-                    value={dep_city}
-                    onChange={(e) => {
-                      set_dep_city(e.target.value);
-                    }}
-                    onKeyPress={handleUnknownCity}
-                  />
-                </Box>
-                <Box flexGrow={2} mt="10px" mx="20px" overflowX={"scroll"}>
-                  {cities === undefined ? (
-                    <></>
-                  ) : (
-                    cities.map((item, index) => {
-                      return (
-                        <Text
-                          display={"flex"}
-                          justifyContent="space-between"
-                          borderBottom={"1px solid gray"}
-                          py="10px"
-                          cursor={"pointer"}
-                          onClick={() => {
-                            handleCity(item.cityName);
-                          }}
-                          key={index}
-                          _hover={{
-                            background: "rgba(0,0,0,.1)",
-                          }}
-                        >
-                          <Text>{item.cityName}</Text>
-                          <Text>{item.airportCode}</Text>
-                        </Text>
-                      );
-                    })
-                  )}
-                </Box>
-                <Box w="100%" display={"none"}>
-                  <Box
-                    pb="10px"
-                    bg="gray"
-                    borderRight={"1px solid black"}
-                    color="white"
-                  >
-                    <Text textAlign={"center"}>
-                      I'm departing from Outside India
-                    </Text>
-                  </Box>
-                  <Box pb="10px" bg="gray" color="white">
-                    <Text textAlign={"center"}>
-                      I have booked my flights already
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-            ) : (
-              <></>
-            )}
-            {showConfigRoom ? (
-              <Box w="400px" display={"flex"} flexDir="column">
-                <Text
-                  fontSize={20}
-                  fontWeight={600}
-                  textAlign="center"
-                  pt="40px"
-                  display={"flex"}
-                  justifyContent="space-around"
-                  alignItems={"center"}
-                >
-                  <ArrowBackIcon
-                    fontSize={20}
-                    cursor="pointer"
-                    onClick={() => {
-                      setShowConfigRoom(false);
-                      setShowCity(true);
-                    }}
-                  />
-                  Configure your room
-                  <CloseIcon
-                    fontSize={13}
-                    cursor="pointer"
-                    onClick={() => {
-                      onClose();
-                    }}
-                  />
-                </Text>
-                <Box
-                  mt="80px"
-                  display={"flex"}
-                  flexDir="column"
-                  alignItems={"center"}
-                  gap={5}
-                  h="100%"
-                  pb={5}
-                >
+              w="fit-content"
+              h="500px"
+              position={"absolute"}
+              bg="#FFFDF7"
+              top="50%"
+              left="50%"
+              transform={"translate(-50%,-50%)"}
+              borderRadius="xl"
+              display={"flex"}
+              overflow="hidden"
+            >
+              <Box
+                w="300px"
+                bgImg={sideImg}
+                bgSize="cover"
+                display={{ base: "none", lg: "block" }}
+              ></Box>
+              {showDate ? (
+                <Box w="400px" pt="50px">
                   <Text
                     fontSize={20}
                     fontWeight={600}
-                    display="flex"
-                    alignItems="center"
-                    gap={5}
-                  >
-                    <Icon
-                      as={AiOutlineMinusCircle}
-                      cursor={numberOfAdults === 1 ? "not-allowed" : "pointer"}
-                      color={
-                        numberOfAdults === 1 ? "gray" : "rgba(20, 17, 119,1)"
-                      }
-                      onClick={() => {
-                        if (numberOfAdults !== 1) {
-                          setNumberOfAdults((prev) => prev - 1);
-                        }
-                      }}
-                      disabled={true}
-                    />
-                    {numberOfAdults} Adults
-                    <Icon
-                      as={AiOutlinePlusCircle}
-                      cursor="pointer"
-                      color={"rgba(20, 17, 119,1)"}
-                      onClick={() => {
-                        setNumberOfAdults((prev) => prev + 1);
-                      }}
-                    />
-                  </Text>
-                  <Text
-                    fontSize={20}
-                    fontWeight={600}
-                    display="flex"
-                    alignItems="center"
-                    gap={5}
-                  >
-                    <Icon
-                      as={AiOutlineMinusCircle}
-                      cursor={numberOfChilds === 0 ? "not-allowed" : "pointer"}
-                      color={
-                        numberOfChilds === 0 ? "gray" : "rgba(20, 17, 119,1)"
-                      }
-                      onClick={() => {
-                        if (numberOfChilds !== 0) {
-                          setNumberOfChlids((prev) => prev - 1);
-                        }
-                      }}
-                    />
-                    {numberOfChilds} Childs
-                    <Icon
-                      as={AiOutlinePlusCircle}
-                      cursor="pointer"
-                      color={"rgba(20, 17, 119,1)"}
-                      onClick={() => {
-                        setNumberOfChlids((prev) => prev + 1);
-                      }}
-                    />
-                  </Text>
-                  <Box flexGrow={2}></Box>
-                  <Button
-                    bg="rgba(20, 17, 119,1)"
-                    px="15px"
-                    py="10px"
-                    w="80%"
-                    fontWeight={600}
-                    color="white"
-                    borderRadius={"md"}
                     textAlign="center"
-                    onClick={handlePackageRequest}
-                    cursor="pointer"
-                    _hover={{
-                      background: "rgba(20, 17, 119,1)",
-                    }}
-                    isLoading={loading}
+                    display={"flex"}
+                    justifyContent="space-around"
+                    alignItems={"center"}
                   >
-                    Get Trip Cost
-                  </Button>
-                </Box>
-              </Box>
-            ) : (
-              <></>
-            )}
-            {/* show thankyou for submission */}
-            {isFilled ? (
-              <>
-                <Box
-                  w="400px"
-                  h="100%"
-                  pt="50px"
-                  display={"flex"}
-                  justifyContent="center"
-                  alignItems="center"
-                  position={"relative"}
-                >
-                  <CloseIcon
-                    position={"absolute"}
-                    top="20px"
-                    right="20px"
-                    cursor={"pointer"}
-                    onClick={() => {
-                      onClose();
-                    }}
-                  />
+                    <Box></Box>
+                    Check-in date
+                    <CloseIcon
+                      fontSize={13}
+                      cursor="pointer"
+                      onClick={() => {
+                        onClose();
+                      }}
+                    />
+                  </Text>
                   <Box
-                    display={"inline-flex"}
+                    h="100%"
+                    w="100%"
+                    display={"flex"}
+                    justifyContent="center"
+                    pt={"50px"}
+                  >
+                    <DayPicker
+                      selected={choosed}
+                      onSelect={handleDate}
+                      mode="single"
+                      fromMonth={new Date()}
+                      disabled={{ before: new Date() }}
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <></>
+              )}
+              {showEndDate ? (
+                <Box w="400px" pt="50px">
+                  <Text
+                    fontSize={20}
+                    fontWeight={600}
+                    textAlign="center"
+                    display={"flex"}
+                    justifyContent="space-around"
+                    alignItems={"center"}
+                  >
+                    <ArrowBackIcon
+                      fontSize={20}
+                      cursor="pointer"
+                      onClick={() => {
+                        setShowEndDate(false);
+                        setShowDate(true);
+                      }}
+                    />
+                    Check-out date
+                    <CloseIcon
+                      fontSize={13}
+                      cursor="pointer"
+                      onClick={() => {
+                        onClose();
+                      }}
+                    />
+                  </Text>
+                  <Box
+                    h="100%"
+                    w="100%"
+                    display={"flex"}
+                    justifyContent="center"
+                    pt={"50px"}
+                  >
+                    <DayPicker
+                      selected={choosed}
+                      onSelect={handleEndDate}
+                      mode="single"
+                      fromMonth={endDateFromMonth}
+                      disabled={{
+                        before: addDays(endDateFromMonth, 3),
+                      }}
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <></>
+              )}
+              {/* choose your departure city */}
+              {showCity ? (
+                <Box w="400px" display={"flex"} flexDir="column">
+                  <Text
+                    fontSize={20}
+                    fontWeight={600}
+                    textAlign="center"
+                    pt="40px"
+                    display={"flex"}
+                    justifyContent="space-around"
+                    alignItems={"center"}
+                  >
+                    <ArrowBackIcon
+                      fontSize={20}
+                      cursor="pointer"
+                      onClick={() => {
+                        setShowCity(false);
+                        setShowEndDate(true);
+                      }}
+                    />
+                    Choose your departure city
+                    <CloseIcon
+                      fontSize={13}
+                      cursor="pointer"
+                      onClick={() => {
+                        onClose();
+                      }}
+                    />
+                  </Text>
+                  <Box mx="20px" mt="20px">
+                    <Input
+                      type="text"
+                      value={dep_city}
+                      onChange={(e) => {
+                        set_dep_city(e.target.value);
+                      }}
+                      onKeyPress={handleUnknownCity}
+                    />
+                  </Box>
+                  <Box flexGrow={2} mt="10px" mx="20px" overflowX={"scroll"}>
+                    {cities === undefined ? (
+                      <></>
+                    ) : (
+                      cities.map((item, index) => {
+                        return (
+                          <Text
+                            display={"flex"}
+                            justifyContent="space-between"
+                            borderBottom={"1px solid gray"}
+                            py="10px"
+                            cursor={"pointer"}
+                            onClick={() => {
+                              handleCity(item.cityName);
+                            }}
+                            key={index}
+                            _hover={{
+                              background: "rgba(0,0,0,.1)",
+                            }}
+                          >
+                            <Text>{item.cityName}</Text>
+                            <Text>{item.airportCode}</Text>
+                          </Text>
+                        );
+                      })
+                    )}
+                  </Box>
+                  <Box w="100%" display={"none"}>
+                    <Box
+                      pb="10px"
+                      bg="gray"
+                      borderRight={"1px solid black"}
+                      color="white"
+                    >
+                      <Text textAlign={"center"}>
+                        I'm departing from Outside India
+                      </Text>
+                    </Box>
+                    <Box pb="10px" bg="gray" color="white">
+                      <Text textAlign={"center"}>
+                        I have booked my flights already
+                      </Text>
+                    </Box>
+                  </Box>
+                </Box>
+              ) : (
+                <></>
+              )}
+              {showConfigRoom ? (
+                <Box w="400px" display={"flex"} flexDir="column">
+                  <Text
+                    fontSize={20}
+                    fontWeight={600}
+                    textAlign="center"
+                    pt="40px"
+                    display={"flex"}
+                    justifyContent="space-around"
+                    alignItems={"center"}
+                  >
+                    <ArrowBackIcon
+                      fontSize={20}
+                      cursor="pointer"
+                      onClick={() => {
+                        setShowConfigRoom(false);
+                        setShowCity(true);
+                      }}
+                    />
+                    Configure your room
+                    <CloseIcon
+                      fontSize={13}
+                      cursor="pointer"
+                      onClick={() => {
+                        onClose();
+                      }}
+                    />
+                  </Text>
+                  <Box
+                    mt="80px"
+                    display={"flex"}
                     flexDir="column"
                     alignItems={"center"}
-                    justifyContent="center"
+                    gap={5}
+                    h="100%"
+                    pb={5}
                   >
-                    <CheckCircleIcon color="green.200" fontSize={40} />
-                    <Text fontSize={30} fontWeight="600">
-                      Thank you!
+                    <Text
+                      fontSize={20}
+                      fontWeight={600}
+                      display="flex"
+                      alignItems="center"
+                      gap={5}
+                    >
+                      <Icon
+                        as={AiOutlineMinusCircle}
+                        cursor={
+                          numberOfAdults === 1 ? "not-allowed" : "pointer"
+                        }
+                        color={
+                          numberOfAdults === 1 ? "gray" : "rgba(20, 17, 119,1)"
+                        }
+                        onClick={() => {
+                          if (numberOfAdults !== 1) {
+                            setNumberOfAdults((prev) => prev - 1);
+                          }
+                        }}
+                        disabled={true}
+                      />
+                      {numberOfAdults} Adults
+                      <Icon
+                        as={AiOutlinePlusCircle}
+                        cursor="pointer"
+                        color={"rgba(20, 17, 119,1)"}
+                        onClick={() => {
+                          setNumberOfAdults((prev) => prev + 1);
+                        }}
+                      />
                     </Text>
-                    <Text>Your request has been sent.</Text>
+                    <Text
+                      fontSize={20}
+                      fontWeight={600}
+                      display="flex"
+                      alignItems="center"
+                      gap={5}
+                    >
+                      <Icon
+                        as={AiOutlineMinusCircle}
+                        cursor={
+                          numberOfChilds === 0 ? "not-allowed" : "pointer"
+                        }
+                        color={
+                          numberOfChilds === 0 ? "gray" : "rgba(20, 17, 119,1)"
+                        }
+                        onClick={() => {
+                          if (numberOfChilds !== 0) {
+                            setNumberOfChlids((prev) => prev - 1);
+                          }
+                        }}
+                      />
+                      {numberOfChilds} Childs
+                      <Icon
+                        as={AiOutlinePlusCircle}
+                        cursor="pointer"
+                        color={"rgba(20, 17, 119,1)"}
+                        onClick={() => {
+                          setNumberOfChlids((prev) => prev + 1);
+                        }}
+                      />
+                    </Text>
+                    <Box flexGrow={2}></Box>
+                    <Button
+                      bg="rgba(20, 17, 119,1)"
+                      px="15px"
+                      py="10px"
+                      w="80%"
+                      fontWeight={600}
+                      color="white"
+                      borderRadius={"md"}
+                      textAlign="center"
+                      onClick={handlePackageRequest}
+                      cursor="pointer"
+                      _hover={{
+                        background: "rgba(20, 17, 119,1)",
+                      }}
+                      isLoading={loading}
+                    >
+                      Get Trip Cost
+                    </Button>
                   </Box>
                 </Box>
-              </>
-            ) : (
-              <></>
-            )}
-          </Box>
-        </ModalContent>
-      </Modal>
-      {loading ? (
-        <></>
-      ) : (
-        <>
-          <Box h="500px" position={"relative"} color="#fff">
-            <Box position={"absolute"} top={0} zIndex={10}>
-              <Nav />
+              ) : (
+                <></>
+              )}
+              {/* show thankyou for submission */}
+              {isFilled ? (
+                <>
+                  <Box
+                    w="400px"
+                    h="100%"
+                    pt="50px"
+                    display={"flex"}
+                    justifyContent="center"
+                    alignItems="center"
+                    position={"relative"}
+                  >
+                    <CloseIcon
+                      position={"absolute"}
+                      top="20px"
+                      right="20px"
+                      cursor={"pointer"}
+                      onClick={() => {
+                        onClose();
+                      }}
+                    />
+                    <Box
+                      display={"inline-flex"}
+                      flexDir="column"
+                      alignItems={"center"}
+                      justifyContent="center"
+                    >
+                      <CheckCircleIcon color="green.200" fontSize={40} />
+                      <Text fontSize={30} fontWeight="600">
+                        Thank you!
+                      </Text>
+                      <Text>Your request has been sent.</Text>
+                    </Box>
+                  </Box>
+                </>
+              ) : (
+                <></>
+              )}
             </Box>
-            <Box
-              position={"absolute"}
-              h="fit-content"
-              bottom={0}
-              right={0}
-              left={0}
-              zIndex={10}
-            ></Box>
+          </ModalContent>
+        </Modal>
+        {loading ? (
+          <></>
+        ) : (
+          <>
+            <Box h="500px" position={"relative"} color="#fff">
+              <Box position={"absolute"} top={0} zIndex={10}>
+                <Nav />
+              </Box>
+              <Box
+                position={"absolute"}
+                h="fit-content"
+                bottom={0}
+                right={0}
+                left={0}
+                zIndex={10}
+              ></Box>
 
-            <Splide aria-label="images" className="splide-slide">
-              {pkgData.image.map((data, index) => {
-                return (
-                  <SplideSlide key={index}>
-                    {data.resource_type === "video" ? (
-                      <Box
-                        w="100%"
-                        h={{
-                          base: "200px",
-                          lg: "500px",
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: `<video
+              <Splide aria-label="images" className="splide-slide">
+                {pkgData.image.map((data, index) => {
+                  return (
+                    <SplideSlide key={index}>
+                      {data.resource_type === "video" ? (
+                        <Box
+                          w="100%"
+                          h={{
+                            base: "200px",
+                            lg: "500px",
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: `<video
 													autoplay
 													muted
 													loop
@@ -762,247 +767,252 @@ const AboutPackage = () => {
 														src=${data.secure_url}
 													/>
 												</video>`,
-                        }}
-                      ></Box>
-                    ) : (
-                      <Box
-                        w="100%"
-                        h="500px"
-                        bgImage={data.secure_url}
-                        bgSize={"cover"}
-                        bgPos="50% 50%"
-                      ></Box>
-                    )}
-                  </SplideSlide>
-                );
-              })}
-            </Splide>
-          </Box>
-          <Box
-            w="100vw"
-            display={{ base: "flex", lg: "inline-block" }}
-            flexDir="column-reverse"
-            minH="100vh"
-            position={"relative"}
-            px={{ base: "20px", lg: "9vw" }}
-            pt={{ base: "5px", lg: "50px" }}
-            pb="50px"
-          >
-            <Box w={{ base: "100%", lg: "50vw" }}>
-              <Box mt="0px">
-                <Text fontSize={30} fontWeight={700}>
-                  {pkgData.packageTitle}
-                </Text>
-                <Text display="flex" mb="10px" gap={3}>
-                  <Box display={"inline-flex"} alignItems="center">
-                    {[1, 2, 3, 4, 5].map((val, index) => {
-                      if (val <= pkgData.star) {
-                        return <StarIcon key={index} color="gold" />;
-                      } else {
-                        return (
-                          <Icon
-                            key={index}
-                            as={AiOutlineStar}
-                            color="gold"
-                            fontSize={20}
-                          />
-                        );
-                      }
-                    })}
-                  </Box>
-                  <Box display={"inline-flex"} alignItems="start">
-                    <Icon
-                      as={MdLocationOn}
-                      color="gray.500"
-                      fontSize={20}
-                      p={0}
-                    />
-                    <Text display={"inline-block"}>{pkgData.destination}</Text>
-                  </Box>
-                </Text>
-                <Text mt="30px" fontSize={"24px"} fontWeight={600}>
-                  Details
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.packageDetail1}
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.packageDetail2}
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.packageDetail3}
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.packageDetail4}
-                </Text>
-              </Box>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
-                  Inclusions
-                </Text>
-                <UnorderedList fontSize={"20px"}>
-                  {pkgData.inclusion.split(",").map((data, index) => {
-                    return data === "" ? (
-                      <></>
-                    ) : (
-                      <ListItem key={index}>{data}</ListItem>
-                    );
-                  })}
-                </UnorderedList>
-              </Box>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
-                  Hotel/Resort
-                </Text>
-                <UnorderedList fontSize={"20px"}>
-                  {pkgData.resorts.values.map((data, index) => {
-                    return data === "" ? (
-                      <></>
-                    ) : (
-                      <ListItem key={index}>{data}</ListItem>
-                    );
-                  })}
-                </UnorderedList>
-              </Box>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
-                  Room Type
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.roomType}
-                </Text>
-              </Box>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
-                  Itinerary
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {parse(pkgData.itinerary)}
-                </Text>
-              </Box>
-              <Box mt="30px">
-                <Text fontSize={"24px"} fontWeight={600}>
-                  Flights
-                </Text>
-                <Text fontSize={"20px"} pl="5px">
-                  {pkgData.flightDetails ? pkgData.flightDetails.details : ""}
-                </Text>
-              </Box>
+                          }}
+                        ></Box>
+                      ) : (
+                        <Box
+                          w="100%"
+                          h="500px"
+                          bgImage={data.secure_url}
+                          bgSize={"cover"}
+                          bgPos="50% 50%"
+                        ></Box>
+                      )}
+                    </SplideSlide>
+                  );
+                })}
+              </Splide>
             </Box>
             <Box
-              position={{ base: "none", lg: "absolute" }}
-              w={{ base: "90vw", lg: "400px" }}
-              mx="auto"
-              h="fit-content"
-              bg="white"
-              right={"100px"}
-              top={"0px"}
-              borderRadius="xl"
-              pt="20px"
-              px="20px"
-              pb="30px"
-              mt={"30px"}
+              w="100vw"
+              display={{ base: "flex", lg: "inline-block" }}
+              flexDir="column-reverse"
+              minH="100vh"
+              position={"relative"}
+              px={{ base: "20px", lg: "9vw" }}
+              pt={{ base: "5px", lg: "50px" }}
+              pb="50px"
             >
-              <Box
-                display={"flex"}
-                flexDir="column"
-                justifyContent="space-between"
-                alignItems="flex-start"
-              >
-                <Box>
-                  <Text color="gray.600" fontSize={20}>
-                    Per person Tariff
+              <Box w={{ base: "100%", lg: "50vw" }}>
+                <Box mt="0px">
+                  <Text fontSize={30} fontWeight={700}>
+                    {pkgData.packageTitle}
                   </Text>
-                  <Text color="black" fontSize={30} fontWeight={700}>
-                    ₹{pkgData.startingPrice}
+                  <Text display="flex" mb="10px" gap={3}>
+                    <Box display={"inline-flex"} alignItems="center">
+                      {[1, 2, 3, 4, 5].map((val, index) => {
+                        if (val <= pkgData.star) {
+                          return <StarIcon key={index} color="gold" />;
+                        } else {
+                          return (
+                            <Icon
+                              key={index}
+                              as={AiOutlineStar}
+                              color="gold"
+                              fontSize={20}
+                            />
+                          );
+                        }
+                      })}
+                    </Box>
+                    <Box display={"inline-flex"} alignItems="start">
+                      <Icon
+                        as={MdLocationOn}
+                        color="gray.500"
+                        fontSize={20}
+                        p={0}
+                      />
+                      <Text display={"inline-block"}>
+                        {pkgData.destination}
+                      </Text>
+                    </Box>
                   </Text>
-                  {/* <Text fontSize={15} color='green' fontWeight={600}>
-								Total Savings: ₹10,000
-							</Text> */}
+                  <Text mt="30px" fontSize={"24px"} fontWeight={600}>
+                    Details
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.packageDetail1}
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.packageDetail2}
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.packageDetail3}
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.packageDetail4}
+                  </Text>
                 </Box>
-                <Box
-                  color="white"
-                  display={"flex"}
-                  w="100%"
-                  gap={"20px"}
-                  boxSizing="border-box"
-                >
-                  <Button
-                    h="100%"
-                    isLoading={booknowLoading}
-                    bg="rgba(20, 17, 119,1)"
-                    py="20px"
-                    fontSize={20}
-                    borderRadius="xl"
-                    textAlign={"center"}
-                    flexGrow={1}
-                    cursor="pointer"
-                    onClick={() => {
-                      loginState ? checkForMobileNumber() : loginclick.click();
-                    }}
-                    _hover={{
-                      background: "rgba(20, 17, 119,1)",
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                  <Button
-                    h="100%"
-                    bg="transparent"
-                    color="rgba(20, 17, 119,1)"
-                    border="3px solid rgba(20, 17, 119,1)"
-                    py="18px"
-                    fontSize={20}
-                    borderRadius="xl"
-                    textAlign={"center"}
-                    flexGrow={1}
-                    cursor="pointer"
-                    _hover={{
-                      background: "rgba(20, 17, 119,1)",
-                      color: "white",
-                    }}
-                    onClick={() => {
-                      loginState ? handleCustomise() : loginclick.click();
-                    }}
-                  >
-                    Customize
-                  </Button>
+                <Box mt="30px">
+                  <Text fontSize={"24px"} fontWeight={600}>
+                    Inclusions
+                  </Text>
+                  <UnorderedList fontSize={"20px"}>
+                    {pkgData.inclusion.split(",").map((data, index) => {
+                      return data === "" ? (
+                        <></>
+                      ) : (
+                        <ListItem key={index}>{data}</ListItem>
+                      );
+                    })}
+                  </UnorderedList>
+                </Box>
+                <Box mt="30px">
+                  <Text fontSize={"24px"} fontWeight={600}>
+                    Hotel/Resort
+                  </Text>
+                  <UnorderedList fontSize={"20px"}>
+                    {pkgData.resorts.values.map((data, index) => {
+                      return data === "" ? (
+                        <></>
+                      ) : (
+                        <ListItem key={index}>{data}</ListItem>
+                      );
+                    })}
+                  </UnorderedList>
+                </Box>
+                <Box mt="30px">
+                  <Text fontSize={"24px"} fontWeight={600}>
+                    Room Type
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.roomType}
+                  </Text>
+                </Box>
+                <Box mt="30px">
+                  <Text fontSize={"24px"} fontWeight={600}>
+                    Itinerary
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {parse(pkgData.itinerary)}
+                  </Text>
+                </Box>
+                <Box mt="30px">
+                  <Text fontSize={"24px"} fontWeight={600}>
+                    Flights
+                  </Text>
+                  <Text fontSize={"20px"} pl="5px">
+                    {pkgData.flightDetails ? pkgData.flightDetails.details : ""}
+                  </Text>
                 </Box>
               </Box>
               <Box
-                mt="50px"
-                display={"none"}
-                justifyContent="space-between"
-                alignItems={"center"}
-                px="30px"
+                position={{ base: "none", lg: "absolute" }}
+                w={{ base: "90vw", lg: "400px" }}
+                mx="auto"
+                h="fit-content"
+                bg="white"
+                right={"100px"}
+                top={"0px"}
+                borderRadius="xl"
+                pt="20px"
+                px="20px"
+                pb="30px"
+                mt={"30px"}
               >
-                <Box color={"black"}>
-                  <Text>Check-in :</Text>
-                  <Text fontSize={20} fontWeight={700}>
-                    {days[sDate.getDay()] +
-                      ", " +
-                      sDate.getDate() +
-                      " " +
-                      months[sDate.getMonth()]}
-                  </Text>
+                <Box
+                  display={"flex"}
+                  flexDir="column"
+                  justifyContent="space-between"
+                  alignItems="flex-start"
+                >
+                  <Box>
+                    <Text color="gray.600" fontSize={20}>
+                      Per person Tariff
+                    </Text>
+                    <Text color="black" fontSize={30} fontWeight={700}>
+                      ₹{pkgData.startingPrice}
+                    </Text>
+                    {/* <Text fontSize={15} color='green' fontWeight={600}>
+								Total Savings: ₹10,000
+							</Text> */}
+                  </Box>
+                  <Box
+                    color="white"
+                    display={"flex"}
+                    w="100%"
+                    gap={"20px"}
+                    boxSizing="border-box"
+                  >
+                    <Button
+                      h="100%"
+                      isLoading={booknowLoading}
+                      bg="rgba(20, 17, 119,1)"
+                      py="20px"
+                      fontSize={20}
+                      borderRadius="xl"
+                      textAlign={"center"}
+                      flexGrow={1}
+                      cursor="pointer"
+                      onClick={() => {
+                        loginState
+                          ? checkForMobileNumber()
+                          : loginclick.click();
+                      }}
+                      _hover={{
+                        background: "rgba(20, 17, 119,1)",
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                    <Button
+                      h="100%"
+                      bg="transparent"
+                      color="rgba(20, 17, 119,1)"
+                      border="3px solid rgba(20, 17, 119,1)"
+                      py="18px"
+                      fontSize={20}
+                      borderRadius="xl"
+                      textAlign={"center"}
+                      flexGrow={1}
+                      cursor="pointer"
+                      _hover={{
+                        background: "rgba(20, 17, 119,1)",
+                        color: "white",
+                      }}
+                      onClick={() => {
+                        loginState ? handleCustomise() : loginclick.click();
+                      }}
+                    >
+                      Customize
+                    </Button>
+                  </Box>
                 </Box>
-                <Box color="black">
-                  <Text>Check-out :</Text>
-                  <Text fontSize={20} fontWeight={700}>
-                    {days[eDate.getDay()] +
-                      ", " +
-                      eDate.getDate() +
-                      " " +
-                      months[eDate.getMonth()]}
-                  </Text>
+                <Box
+                  mt="50px"
+                  display={"none"}
+                  justifyContent="space-between"
+                  alignItems={"center"}
+                  px="30px"
+                >
+                  <Box color={"black"}>
+                    <Text>Check-in :</Text>
+                    <Text fontSize={20} fontWeight={700}>
+                      {days[sDate.getDay()] +
+                        ", " +
+                        sDate.getDate() +
+                        " " +
+                        months[sDate.getMonth()]}
+                    </Text>
+                  </Box>
+                  <Box color="black">
+                    <Text>Check-out :</Text>
+                    <Text fontSize={20} fontWeight={700}>
+                      {days[eDate.getDay()] +
+                        ", " +
+                        eDate.getDate() +
+                        " " +
+                        months[eDate.getMonth()]}
+                    </Text>
+                  </Box>
                 </Box>
               </Box>
             </Box>
-          </Box>
-          <Footer />
-        </>
-      )}
-    </>
+            <Footer />
+          </>
+        )}
+      </>
+    )
   );
 };
 
