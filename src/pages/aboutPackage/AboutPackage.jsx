@@ -25,6 +25,7 @@ import {
   AiOutlinePlusCircle,
   AiOutlineStar,
 } from "react-icons/ai";
+import parse from "html-react-parser";
 import Nav from "../../nav/Nav";
 import "./AboutPackage.css";
 import Footer from "../../footer/Footer";
@@ -876,7 +877,7 @@ const AboutPackage = () => {
                   Itinerary
                 </Text>
                 <Text fontSize={"20px"} pl="5px">
-                  {pkgData.itinerary}
+                  {parse(pkgData.itinerary)}
                 </Text>
               </Box>
               <Box mt="30px">
