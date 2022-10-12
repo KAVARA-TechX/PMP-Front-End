@@ -170,6 +170,7 @@ const Packages = () => {
           display={"block"}
           whiteSpace="nowrap"
           mt="20px"
+          pb="20px"
           overflowX={{ base: "scroll", lg: "scroll" }}
           className="hide-scroll-bar"
           ref={cardsParentRef}
@@ -199,7 +200,8 @@ const Packages = () => {
                 }}
                 transition=".2s"
                 _hover={{
-                  boxShadow: "0 13px 15px rgb(0,0,0,0.2)",
+                  boxShadow:
+                    "0 13px 15px rgb(0,0,0,0.4), rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset",
                 }}
                 overflow="hidden"
               >
