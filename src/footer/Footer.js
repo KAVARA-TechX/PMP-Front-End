@@ -184,7 +184,9 @@ const Footer = () => {
             <Box display={"flex"} alignItems="flex-start" gap="5px" mt="15px">
               <Icon as={BsTelephoneFill} />
               <Text position="relative" bottom="5px" fontSize={"14px"}>
-                <a href="tel:+918800869909">+918800869909</a>
+                <a href="tel:+917303599368">+917303599368</a>
+                <br />
+                <a href="tel:+917303599367">+917303599367</a>
                 <br />
               </Text>
             </Box>
