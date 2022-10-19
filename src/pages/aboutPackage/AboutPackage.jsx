@@ -887,14 +887,38 @@ const AboutPackage = () => {
                     {parse(pkgData.itinerary)}
                   </Text>
                 </Box>
-                <Box mt="30px">
-                  <Text fontSize={"24px"} fontWeight={600}>
-                    Flights
-                  </Text>
-                  <Text fontSize={"20px"} pl="5px">
-                    {pkgData.flightDetails ? pkgData.flightDetails.details : ""}
-                  </Text>
-                </Box>
+                {pkgData.flightDetails.details !== "" && (
+                  <Box mt="30px">
+                    <Text fontSize={"24px"} fontWeight={600}>
+                      Flights
+                    </Text>
+                    <Text fontSize={"20px"} pl="5px">
+                      {pkgData.flightDetails
+                        ? pkgData.flightDetails.details
+                        : ""}
+                    </Text>
+                  </Box>
+                )}
+                {pkgData.activity && (
+                  <Box mt="30px">
+                    <Text fontSize={"24px"} fontWeight={600}>
+                      Activity
+                    </Text>
+                    <Text fontSize={"20px"} pl="5px">
+                      {pkgData.activity ? parse(pkgData.activity) : ""}
+                    </Text>
+                  </Box>
+                )}
+                {pkgData.transferVal && (
+                  <Box mt="30px">
+                    <Text fontSize={"24px"} fontWeight={600}>
+                      Transfer
+                    </Text>
+                    <Text fontSize={"20px"} pl="5px">
+                      {pkgData.transferVal ? pkgData.transferVal : ""}
+                    </Text>
+                  </Box>
+                )}
               </Box>
               <Box
                 position={{ base: "none", lg: "absolute" }}
