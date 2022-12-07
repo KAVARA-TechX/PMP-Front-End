@@ -10,7 +10,7 @@ import './index.css';
 
 const root_tag = document.getElementById('root');
 
-axios.defaults.baseURL = 'https://planmyleisure.herokuapp.com'
+axios.defaults.baseURL = 'https://backend.planmyleisure.com/'
 
 ReactDOM.render(
 	<LoginProvider>
