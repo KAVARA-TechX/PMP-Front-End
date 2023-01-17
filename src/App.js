@@ -12,7 +12,6 @@ import { lazy, Suspense } from "react";
 // import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 // import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
 // import UserActivation from './pages/UserActivation/UserActivation';
-// import Cancellation from './pages/cancellation/Cancellation';
 // import RefundPage from './pages/RefundPage/RefundPage';
 // import MyBookings from './pages/myBookings/MyBookings';
 // import Upcoming from './pages/myBookings/Upcoming';
@@ -58,7 +57,7 @@ const UserActivation = lazy(() => {
   return import("./pages/UserActivation/UserActivation");
 });
 const Cancellation = lazy(() => {
-  return import("./pages/cancellation/Cancellation");
+  return import("./pages/Cancellation/Cancellation");
 });
 const RefundPage = lazy(() => {
   return import("./pages/RefundPage/RefundPage");

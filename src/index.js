@@ -10,7 +10,7 @@ import './index.css';
 
 const root_tag = document.getElementById('root');
 
-axios.defaults.baseURL = 'https://backend.planmyleisure.com/'
+axios.defaults.baseURL = 'https://plan-my-peace.onrender.com/'
 
 ReactDOM.render(
 	<LoginProvider>
